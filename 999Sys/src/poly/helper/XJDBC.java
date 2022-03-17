@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class XJDBC {
     static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String dburl = "jdbc:sqlserver://DESKTOP-4GO9SU3\\NONGDAT:1433;databaseName=ORANGESYS";
+    static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=ORANGESYS";
     static String user = "sa";
     static String pass = "123";
 
