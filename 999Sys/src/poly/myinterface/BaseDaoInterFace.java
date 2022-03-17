@@ -5,10 +5,17 @@
  */
 package poly.myinterface;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author NTV
  */
-public interface BaseDaoInterFace {
-    
+public interface BaseDaoInterFace<T,K> {
+    public boolean insert(T e)throws Exception;
+    public boolean update(T e)throws Exception;
+    public boolean delete(K key)throws Exception;
+    public T selectById(K key)throws Exception;
+    public ArrayList<T> selectAll()throws Exception;
+    public ArrayList<T> selectByquery(String query,Object...args)throws Exception;
 }
