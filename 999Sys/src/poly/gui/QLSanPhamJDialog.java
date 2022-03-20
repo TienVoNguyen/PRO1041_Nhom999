@@ -21,28 +21,50 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author XUÂN THÀNH
  */
-public class QL_SanPham extends javax.swing.JDialog {
+public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     JButton button = new JButton();
+    DefaultTableModel model;
 
     /**
      * Creates new form QL_SanPham
      */
-    public QL_SanPham(java.awt.Frame parent, boolean modal) {
+    public QLSanPhamJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
+        //full màn hình
+        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
-        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
+        model = (DefaultTableModel) tblSanPham.getModel();
+        //Add button vào bảng
+        addButtonToTable();
+        
+        model.addRow(new Object[]{
+            1,2,3,4,5,6,7,8,9,10,11
+        });
+        model.addRow(new Object[]{
+            1,2,3,4,5,6,7,8,9,10,11
+        });
+    }
+
+    private void addButtonToTable() {
+        // Add button vào trong bảng
+        this.button.setSize(50, 50);
         tblSanPham.getColumn("tool").setCellRenderer(new ButtonRenderer());
         tblSanPham.getColumn("tool").setCellEditor(new ButtonEditor(new JCheckBox()));
+        //Add sự kiện cho button
         button.addActionListener(
                 new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Do you want to modify this line?");
-            }
-        }
+                    public void actionPerformed(ActionEvent event) {
+                        if (tblSanPham.getSelectedRow() == -1)return;
+                        System.out.println(tblSanPham.getSelectedRow());
+                        model.removeRow(tblSanPham.getSelectedRow());
+                        if (tblSanPham.getSelectedRow() == -1)return;
+                        tblSanPham.setRowSelectionInterval(0, 0);
+                    }
+                }
         );
     }
 
@@ -81,42 +103,38 @@ public class QL_SanPham extends javax.swing.JDialog {
         cbbTimChatLieu = new javax.swing.JComboBox<>();
         btnTimKiem = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtGhiChu = new javax.swing.JTextArea();
         jPanel14 = new javax.swing.JPanel();
         jPanel36 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        txtMaVach = new javax.swing.JTextField();
+        txtMaSanPham = new javax.swing.JTextField();
         jPanel35 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         cbbDanhMuc = new javax.swing.JComboBox<>();
         btnThemDanhMuc = new javax.swing.JButton();
-        jPanel34 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        txtTenSP = new javax.swing.JTextField();
+        jPanel37 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        txtMaVach = new javax.swing.JTextField();
         jPanel33 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         cbbDonViTinh = new javax.swing.JComboBox<>();
         btnThemDVT = new javax.swing.JButton();
-        jPanel32 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        txtGiaBan = new javax.swing.JSpinner();
+        jPanel34 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtTenSP = new javax.swing.JTextField();
         jPanel31 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         cbbSize = new javax.swing.JComboBox<>();
         btnThemSize = new javax.swing.JButton();
-        jPanel30 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        txtGiaNhap = new javax.swing.JSpinner();
+        jPanel32 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtGiaBan = new javax.swing.JSpinner();
         jPanel27 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         cbbMau = new javax.swing.JComboBox<>();
         btnThemMau = new javax.swing.JButton();
-        jPanel29 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        txtNgayNhap = new javax.swing.JTextField();
+        jPanel30 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        txtGiaNhap = new javax.swing.JSpinner();
         jPanel28 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         cbbChatLieu = new javax.swing.JComboBox<>();
@@ -124,6 +142,9 @@ public class QL_SanPham extends javax.swing.JDialog {
         jPanel21 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JSpinner();
+        jPanel29 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNgayNhap = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
@@ -205,7 +226,7 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));
         jPanel12.setPreferredSize(new java.awt.Dimension(300, 50));
-        jPanel12.setLayout(new java.awt.GridLayout());
+        jPanel12.setLayout(new java.awt.GridLayout(1, 0));
 
         btnChonAnh.setBackground(new java.awt.Color(0, 0, 0));
         btnChonAnh.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -255,19 +276,15 @@ public class QL_SanPham extends javax.swing.JDialog {
         txtTimKiem.setPreferredSize(new java.awt.Dimension(158, 30));
         jPanel16.add(txtTimKiem);
 
-        cbbTimDanhMuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbbTimDanhMuc.setPreferredSize(new java.awt.Dimension(154, 30));
         jPanel16.add(cbbTimDanhMuc);
 
-        cbbTimMau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbbTimMau.setPreferredSize(new java.awt.Dimension(74, 30));
         jPanel16.add(cbbTimMau);
 
-        cbbTimSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbbTimSize.setPreferredSize(new java.awt.Dimension(74, 30));
         jPanel16.add(cbbTimSize);
 
-        cbbTimChatLieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbbTimChatLieu.setPreferredSize(new java.awt.Dimension(74, 30));
         jPanel16.add(cbbTimChatLieu);
 
@@ -282,26 +299,6 @@ public class QL_SanPham extends javax.swing.JDialog {
         jPanel9.setBackground(new java.awt.Color(0, 0, 0));
         jPanel9.setLayout(new java.awt.BorderLayout());
 
-        jPanel13.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel13.setLayout(new java.awt.BorderLayout());
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ghi chú");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel2.setPreferredSize(new java.awt.Dimension(150, 12));
-        jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jPanel13.add(jLabel2, java.awt.BorderLayout.LINE_START);
-
-        txtGhiChu.setColumns(20);
-        txtGhiChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        txtGhiChu.setRows(5);
-        jScrollPane2.setViewportView(txtGhiChu);
-
-        jPanel13.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
-        jPanel9.add(jPanel13, java.awt.BorderLayout.PAGE_END);
-
         jPanel14.setBackground(new java.awt.Color(0, 0, 0));
         jPanel14.setLayout(new java.awt.GridLayout(6, 2, 10, 10));
 
@@ -310,13 +307,14 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Mã vạch");
+        jLabel13.setText("Mã sản phẩm");
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel13.setPreferredSize(new java.awt.Dimension(150, 12));
         jPanel36.add(jLabel13, java.awt.BorderLayout.LINE_START);
 
-        txtMaVach.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPanel36.add(txtMaVach, java.awt.BorderLayout.CENTER);
+        txtMaSanPham.setEditable(false);
+        txtMaSanPham.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel36.add(txtMaSanPham, java.awt.BorderLayout.CENTER);
 
         jPanel14.add(jPanel36);
 
@@ -330,7 +328,6 @@ public class QL_SanPham extends javax.swing.JDialog {
         jLabel12.setPreferredSize(new java.awt.Dimension(150, 12));
         jPanel35.add(jLabel12, java.awt.BorderLayout.LINE_START);
 
-        cbbDanhMuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel35.add(cbbDanhMuc, java.awt.BorderLayout.CENTER);
 
         btnThemDanhMuc.setText("Thêm Danh mục mới");
@@ -338,6 +335,39 @@ public class QL_SanPham extends javax.swing.JDialog {
         jPanel35.add(btnThemDanhMuc, java.awt.BorderLayout.LINE_END);
 
         jPanel14.add(jPanel35);
+
+        jPanel37.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel37.setLayout(new java.awt.BorderLayout());
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Mã vạch");
+        jLabel14.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel14.setPreferredSize(new java.awt.Dimension(150, 12));
+        jPanel37.add(jLabel14, java.awt.BorderLayout.LINE_START);
+
+        txtMaVach.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel37.add(txtMaVach, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel37);
+
+        jPanel33.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel33.setLayout(new java.awt.BorderLayout());
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Đơn vị tính");
+        jLabel10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel10.setPreferredSize(new java.awt.Dimension(150, 12));
+        jPanel33.add(jLabel10, java.awt.BorderLayout.LINE_START);
+
+        jPanel33.add(cbbDonViTinh, java.awt.BorderLayout.CENTER);
+
+        btnThemDVT.setText("Thêm ĐVT mới");
+        btnThemDVT.setPreferredSize(new java.awt.Dimension(143, 21));
+        jPanel33.add(btnThemDVT, java.awt.BorderLayout.LINE_END);
+
+        jPanel14.add(jPanel33);
 
         jPanel34.setBackground(new java.awt.Color(0, 0, 0));
         jPanel34.setLayout(new java.awt.BorderLayout());
@@ -354,38 +384,6 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         jPanel14.add(jPanel34);
 
-        jPanel33.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel33.setLayout(new java.awt.BorderLayout());
-
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Đơn vị tính");
-        jLabel10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel10.setPreferredSize(new java.awt.Dimension(150, 12));
-        jPanel33.add(jLabel10, java.awt.BorderLayout.LINE_START);
-
-        cbbDonViTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel33.add(cbbDonViTinh, java.awt.BorderLayout.CENTER);
-
-        btnThemDVT.setText("Thêm ĐVT mới");
-        btnThemDVT.setPreferredSize(new java.awt.Dimension(143, 21));
-        jPanel33.add(btnThemDVT, java.awt.BorderLayout.LINE_END);
-
-        jPanel14.add(jPanel33);
-
-        jPanel32.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel32.setLayout(new java.awt.BorderLayout());
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Giá bán");
-        jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel9.setPreferredSize(new java.awt.Dimension(150, 12));
-        jPanel32.add(jLabel9, java.awt.BorderLayout.LINE_START);
-        jPanel32.add(txtGiaBan, java.awt.BorderLayout.CENTER);
-
-        jPanel14.add(jPanel32);
-
         jPanel31.setBackground(new java.awt.Color(0, 0, 0));
         jPanel31.setLayout(new java.awt.BorderLayout());
 
@@ -396,7 +394,6 @@ public class QL_SanPham extends javax.swing.JDialog {
         jLabel8.setPreferredSize(new java.awt.Dimension(150, 12));
         jPanel31.add(jLabel8, java.awt.BorderLayout.LINE_START);
 
-        cbbSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel31.add(cbbSize, java.awt.BorderLayout.CENTER);
 
         btnThemSize.setText("Thêm size mới");
@@ -405,18 +402,20 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         jPanel14.add(jPanel31);
 
-        jPanel30.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel30.setLayout(new java.awt.BorderLayout());
+        jPanel32.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel32.setLayout(new java.awt.BorderLayout());
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Giá nhập");
-        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel7.setPreferredSize(new java.awt.Dimension(150, 12));
-        jPanel30.add(jLabel7, java.awt.BorderLayout.LINE_START);
-        jPanel30.add(txtGiaNhap, java.awt.BorderLayout.CENTER);
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Giá bán");
+        jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel9.setPreferredSize(new java.awt.Dimension(150, 12));
+        jPanel32.add(jLabel9, java.awt.BorderLayout.LINE_START);
 
-        jPanel14.add(jPanel30);
+        txtGiaBan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel32.add(txtGiaBan, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel32);
 
         jPanel27.setBackground(new java.awt.Color(0, 0, 0));
         jPanel27.setLayout(new java.awt.BorderLayout());
@@ -428,7 +427,6 @@ public class QL_SanPham extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(150, 12));
         jPanel27.add(jLabel4, java.awt.BorderLayout.LINE_START);
 
-        cbbMau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel27.add(cbbMau, java.awt.BorderLayout.CENTER);
 
         btnThemMau.setText("Thêm màu mới");
@@ -437,20 +435,20 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         jPanel14.add(jPanel27);
 
-        jPanel29.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel29.setLayout(new java.awt.BorderLayout());
+        jPanel30.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel30.setLayout(new java.awt.BorderLayout());
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Ngày nhập");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel6.setPreferredSize(new java.awt.Dimension(150, 12));
-        jPanel29.add(jLabel6, java.awt.BorderLayout.LINE_START);
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Giá nhập");
+        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel7.setPreferredSize(new java.awt.Dimension(150, 12));
+        jPanel30.add(jLabel7, java.awt.BorderLayout.LINE_START);
 
-        txtNgayNhap.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPanel29.add(txtNgayNhap, java.awt.BorderLayout.CENTER);
+        txtGiaNhap.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel30.add(txtGiaNhap, java.awt.BorderLayout.CENTER);
 
-        jPanel14.add(jPanel29);
+        jPanel14.add(jPanel30);
 
         jPanel28.setBackground(new java.awt.Color(0, 0, 0));
         jPanel28.setLayout(new java.awt.BorderLayout());
@@ -462,7 +460,6 @@ public class QL_SanPham extends javax.swing.JDialog {
         jLabel5.setPreferredSize(new java.awt.Dimension(150, 12));
         jPanel28.add(jLabel5, java.awt.BorderLayout.LINE_START);
 
-        cbbChatLieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel28.add(cbbChatLieu, java.awt.BorderLayout.CENTER);
 
         btnThemChatLieu.setText("Thêm chất liệu mới");
@@ -486,24 +483,53 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         jPanel14.add(jPanel21);
 
+        jPanel29.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel29.setLayout(new java.awt.BorderLayout());
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Ngày nhập");
+        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel6.setPreferredSize(new java.awt.Dimension(150, 12));
+        jPanel29.add(jLabel6, java.awt.BorderLayout.LINE_START);
+
+        txtNgayNhap.setEditable(false);
+        txtNgayNhap.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel29.add(txtNgayNhap, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel29);
+
         jPanel9.add(jPanel14, java.awt.BorderLayout.CENTER);
 
         jPanel5.add(jPanel9, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.PAGE_START);
 
-        tblSanPham.setBackground(new java.awt.Color(0, 0, 0));
-        tblSanPham.setForeground(new java.awt.Color(255, 255, 255));
+        tblSanPham.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"q", "q", "q", null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "tool"
+                "Ma SP", "Ma Vach", "Ten SP", "Gia Ban", "Gia Nhap", "So Luong", "Danh Muc", "DVT", "Size", "Mau", "Chat Lieu", "Ngay Nhap", "tool"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblSanPham.setGridColor(new java.awt.Color(0, 0, 0));
+        tblSanPham.setRowHeight(40);
         jScrollPane1.setViewportView(tblSanPham);
+        if (tblSanPham.getColumnModel().getColumnCount() > 0) {
+            tblSanPham.getColumnModel().getColumn(12).setMinWidth(60);
+            tblSanPham.getColumnModel().getColumn(12).setPreferredWidth(60);
+            tblSanPham.getColumnModel().getColumn(12).setMaxWidth(60);
+        }
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -546,20 +572,23 @@ public class QL_SanPham extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QL_SanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLSanPhamJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QL_SanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLSanPhamJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QL_SanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLSanPhamJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QL_SanPham.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QLSanPhamJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                QL_SanPham dialog = new QL_SanPham(new javax.swing.JFrame(), true);
+                QLSanPhamJDialog dialog = new QLSanPhamJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -597,7 +626,7 @@ public class QL_SanPham extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -609,7 +638,6 @@ public class QL_SanPham extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -626,6 +654,7 @@ public class QL_SanPham extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
+    private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -633,12 +662,11 @@ public class QL_SanPham extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JTable tblSanPham;
-    private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JSpinner txtGiaBan;
     private javax.swing.JSpinner txtGiaNhap;
+    private javax.swing.JTextField txtMaSanPham;
     private javax.swing.JTextField txtMaVach;
     private javax.swing.JTextField txtNgayNhap;
     private javax.swing.JSpinner txtSoLuong;
@@ -654,7 +682,7 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Modify" : value.toString());
+            setText((value == null) ? "Xóa" : value.toString());
             return this;
         }
     }
@@ -669,7 +697,7 @@ public class QL_SanPham extends javax.swing.JDialog {
 
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-            label = (value == null) ? "Modify" : value.toString();
+            label = (value == null) ? "Xóa" : value.toString();
             button.setText(label);
             return button;
         }
