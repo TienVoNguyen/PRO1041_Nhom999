@@ -10,8 +10,8 @@ package poly.entity;
  * @author Admin
  */
 public class SanPham {
-    private int maSP;
-    private String maDanhMuc,maVach,anhSanPham;
+    private int maSP,maDanhMuc;
+    private String maVach,anhSanPham,tenSanPham;
     private double giaNhap,giaBan;
     private double soLuong;
     private String ngayNhap;
@@ -22,7 +22,7 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int maSP, String maDanhMuc, String maVach, String anhSanPham, double giaNhap, double giaBan, double soLuong, String ngayNhap, boolean apDungKM, int maDVT, int maMau, int maSize, int maChatLieu, boolean trangThai) {
+    public SanPham(int maSP, int maDanhMuc, String maVach, String anhSanPham, double giaNhap, double giaBan, double soLuong, String ngayNhap, boolean apDungKM, int maDVT, int maMau, int maSize, int maChatLieu, boolean trangThai) {
         this.maSP = maSP;
         this.maDanhMuc = maDanhMuc;
         this.maVach = maVach;
@@ -39,6 +39,22 @@ public class SanPham {
         this.trangThai = trangThai;
     }
 
+    public SanPham(int maDanhMuc, String maVach, String anhSanPham, double giaNhap, double giaBan, double soLuong, String ngayNhap, boolean apDungKM, int maDVT, int maMau, int maSize, int maChatLieu, boolean trangThai) {
+        this.maDanhMuc = maDanhMuc;
+        this.maVach = maVach;
+        this.anhSanPham = anhSanPham;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.soLuong = soLuong;
+        this.ngayNhap = ngayNhap;
+        this.apDungKM = apDungKM;
+        this.maDVT = maDVT;
+        this.maMau = maMau;
+        this.maSize = maSize;
+        this.maChatLieu = maChatLieu;
+        this.trangThai = trangThai;
+    }
+    
     public int getMaSP() {
         return maSP;
     }
@@ -47,11 +63,11 @@ public class SanPham {
         this.maSP = maSP;
     }
 
-    public String getMaDanhMuc() {
+    public int getMaDanhMuc() {
         return maDanhMuc;
     }
 
-    public void setMaDanhMuc(String maDanhMuc) {
+    public void setMaDanhMuc(int maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     }
 
@@ -143,12 +159,26 @@ public class SanPham {
         this.maChatLieu = maChatLieu;
     }
 
+    public String getTenSanPham() {
+        return tenSanPham;
+    }
+
+    public void setTenSanPham(String tenSanPham) {
+        this.tenSanPham = tenSanPham;
+    }
+
     public boolean isTrangThai() {
         return trangThai;
     }
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    
+    @Override
+    public String toString() {
+        return  this.maSP + "";
     }
     
 }
