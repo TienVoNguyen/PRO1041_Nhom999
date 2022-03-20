@@ -23,8 +23,8 @@ public class ResetPassByEmail {
 
     public static int resetPass() {
         int codeSMS = (int) (Math.random() * (999999 - 111110 + 1) + 111110);
-        final String iDMail = "nongvandat111097@gmail.com";
-        final String passMail = "01646321997a";
+        final String iDMail = "sendmail.fpttext@gmail.com";
+        final String passMail = "sendmail.fpttext10";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -45,7 +45,7 @@ public class ResetPassByEmail {
             message.setFrom(new InternetAddress("sendmail.fpttext@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("datnvph18618@fpt.edu.vn")
+                    InternetAddress.parse("vontph18623@fpt.edu.vn")
             );
             message.setSubject("Quản Lý Sinh Viên");
             message.setText("Xin chào Anh Dat Dep Troai \n"

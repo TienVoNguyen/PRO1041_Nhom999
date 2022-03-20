@@ -25,7 +25,7 @@ public class MainFrm extends javax.swing.JFrame {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);//hiển thị toàn màn hình
         
         // Đăng nhập
-//        new LoginJDialog(this, true).setVisible(true);
+        new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
         HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
         
@@ -224,6 +224,7 @@ public class MainFrm extends javax.swing.JFrame {
         pnlMain.add(pnlFooter, java.awt.BorderLayout.PAGE_END);
 
         pnlTabs.setBackground(new java.awt.Color(255, 204, 153));
+        pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         pnlMain.add(pnlTabs, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
