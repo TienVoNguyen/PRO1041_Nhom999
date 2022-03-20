@@ -23,4 +23,14 @@
 hs_err_pid*
 /999Sys/nbproject/private/
 /999Sys/build/
+<<<<<<< HEAD
+<<<<<<< HEAD
 /999Sys/dist/
+=======
+/999Sys/dist/
+>>>>>>> 06c0ec87ca4463a8ed1628549c0fa7a87d48a669
+=======
+
+/999Sys/dist/
+
+>>>>>>> f39647003ad42afa92f4cb3b58afed6f21e7ae0f
