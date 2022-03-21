@@ -86,7 +86,7 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
         sp.setApDungKM(rs.getBoolean("APDUNGKM"));
         sp.setMaDVT(rs.getInt("MADVT"));
         sp.setMaMau(rs.getInt("MAMAU"));
-        sp.setMaSize(rs.getInt("MASIZE"));
+        sp.setMaSize(rs.getString("MASIZE"));
         sp.setMaChatLieu(rs.getInt("MACHATLIEU"));
         sp.setTrangThai(rs.getBoolean("TRANGTHAI"));
        return sp;
