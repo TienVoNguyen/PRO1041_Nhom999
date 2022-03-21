@@ -7,27 +7,57 @@ package poly.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import poly.entity.danhMuc;
+import poly.entity.DanhMuc;
 
 /**
  *
  * @author 98tae
  */
-public class DanhMucDao extends BaseDao<danhMuc, String>{
+public class DanhMucDao extends BaseDao<DanhMuc, String>{
 
     @Override
     public String getQuery(String action) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (action) {
+            case "INSERT":
+                return "INSERT INTO DANHMUC (TENDANHMUC,NGAYTHEM) VALUES (?,?)";
+            case "UPDATE":
+                return " UPDATE DANHMUC SET TENDANHMUC =?, TRANGTHAI =? WHERE MADM = ?";
+            case "DELETE":
+                return "DELETE FROM SANPHAM WHERE MASP = ?";
+            case "SELECTBYID":
+                return "SELECT TENDANHMUC,TRANGTHAI FROM DANHMUC WHERE MADM = ?";
+            case "SELECTALL":
+                return "SELECT * FROM DANHMUC";
+        }
+        return "";
+    }
+   
+
+    @Override
+    public Object[] getParams(String action, DanhMuc obj) {
+        switch (action) {
+            case "INSERT":
+                return new Object[]{
+                    obj.getTenDanhMuc()
+                };
+            case "UPDATE":
+                return new Object[]{
+                   obj.getTenDanhMuc(),
+                   obj.getTenDanhMuc(),
+                   obj.getMaDM()
+                };
+        }
+        return null;
     }
 
     @Override
-    public Object[] getParams(String action, danhMuc obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public danhMuc createEntity(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public DanhMuc createEntity(ResultSet rs) throws SQLException {
+      DanhMuc dm = new DanhMuc();
+      dm.setMaDM(rs.getInt("MADM"));
+      dm.setTenDanhMuc(rs.getString("TENDANHMUC"));
+      dm.setNgayThem(rs.getString("NGAYTHEM"));
+      dm.setTrangThai(rs.getBoolean("TRANGTHAI"));
+      return dm;
     }
     
 }

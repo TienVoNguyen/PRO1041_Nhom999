@@ -9,21 +9,21 @@ package poly.entity;
  *
  * @author Admin
  */
-public class danhMuc {
+public class DanhMuc {
     private int maDM;
     private String tenDanhMuc,ngayThem;
     private boolean trangThai;
 
-    public danhMuc() {
+    public DanhMuc() {
     }
 
-    public danhMuc(int maDM, String tenDanhMuc, String ngayThem, boolean trangThai) {
+    public DanhMuc(int maDM, String tenDanhMuc, String ngayThem, boolean trangThai) {
         this.maDM = maDM;
         this.tenDanhMuc = tenDanhMuc;
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
     }
-    public danhMuc(String tenDanhMuc, String ngayThem, boolean trangThai) {
+    public DanhMuc(String tenDanhMuc, String ngayThem, boolean trangThai) {
         this.tenDanhMuc = tenDanhMuc;
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
@@ -61,5 +61,10 @@ public class danhMuc {
         this.trangThai = trangThai;
     }
 
+    @Override
+    public String toString() {
+        return this.tenDanhMuc+"" ;
+    }
+    
    
 }
