@@ -25,7 +25,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     JButton button = new JButton();
     DefaultTableModel model;
-
+    public static  int i ;
     /**
      * Creates new form QL_SanPham
      */
@@ -34,22 +34,22 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-        setSize(parent.getWidth(), parent.getHeight());
-        setLocationRelativeTo(null);
-
+//        setSize(parent.getWidth(), parent.getHeight());
+//        setLocationRelativeTo(null);
         model = (DefaultTableModel) tblSanPham.getModel();
         //Add button vào bảng
         addButtonToTable();
-        
+
         model.addRow(new Object[]{
-            1,2,3,4,5,6,7,8,9,10,11
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
         });
         model.addRow(new Object[]{
-            1,2,3,4,5,6,7,8,9,10,11
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
         });
     }
 
     private void addButtonToTable() {
+       
         // Add button vào trong bảng
         this.button.setSize(50, 50);
         tblSanPham.getColumn("tool").setCellRenderer(new ButtonRenderer());
@@ -57,14 +57,21 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         //Add sự kiện cho button
         button.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        if (tblSanPham.getSelectedRow() == -1)return;
-                        System.out.println(tblSanPham.getSelectedRow());
-                        model.removeRow(tblSanPham.getSelectedRow());
-                        if (tblSanPham.getSelectedRow() == -1)return;
-                        tblSanPham.setRowSelectionInterval(0, 0);
-                    }
+            public void actionPerformed(ActionEvent event) {
+                if (tblSanPham.getSelectedRow() == -1) {
+                    return;
                 }
+                if (i == 1) {
+                     model.removeRow(0);
+                }
+                i = tblSanPham.getRowCount();
+                model.removeRow(tblSanPham.getSelectedRow());
+                if (model.getColumnCount() == 1) {
+                    i = 1;
+                }
+                System.out.println(tblSanPham.getRowCount());
+            }
+        }
         );
     }
 
