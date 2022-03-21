@@ -13,7 +13,8 @@ import poly.entity.DanhMuc;
  *
  * @author 98tae
  */
-public class DanhMucDao extends BaseDao<DanhMuc, String> {
+public class DanhMucDao extends poly.dao.BaseDao<DanhMuc, String> {
+
 
     @Override
     public String getQuery(String action) {
@@ -32,6 +33,7 @@ public class DanhMucDao extends BaseDao<DanhMuc, String> {
         return "";
     }
 
+  
     @Override
     public Object[] getParams(String action, DanhMuc obj) {
         switch (action) {
@@ -48,6 +50,7 @@ public class DanhMucDao extends BaseDao<DanhMuc, String> {
         }
         return null;
     }
+
 
     @Override
     public DanhMuc createEntity(ResultSet rs) throws SQLException {

@@ -25,7 +25,7 @@ public class MainFrm extends javax.swing.JFrame {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);//hiển thị toàn màn hình
         
         // Đăng nhập
-        new LoginJDialog(this, true).setVisible(true);
+//        new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
         HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
         
@@ -45,7 +45,7 @@ public class MainFrm extends javax.swing.JFrame {
         jpmMenu = new javax.swing.JPopupMenu();
         mniQLSanPham = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mniQLChiTietSP = new javax.swing.JMenuItem();
         pnlMain = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -90,12 +90,12 @@ public class MainFrm extends javax.swing.JFrame {
         jSeparator1.setOpaque(true);
         jpmMenu.add(jSeparator1);
 
-        jMenuItem2.setBackground(new java.awt.Color(102, 51, 0));
-        jMenuItem2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jMenuItem2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem2.setText("Quản Lý Chung");
-        jMenuItem2.setOpaque(true);
-        jpmMenu.add(jMenuItem2);
+        mniQLChiTietSP.setBackground(new java.awt.Color(102, 51, 0));
+        mniQLChiTietSP.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniQLChiTietSP.setForeground(new java.awt.Color(255, 255, 255));
+        mniQLChiTietSP.setText("Quản Lý Chi Tiết sản phẩm");
+        mniQLChiTietSP.setOpaque(true);
+        jpmMenu.add(mniQLChiTietSP);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -305,7 +305,6 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -314,6 +313,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu jpmMenu;
     private javax.swing.JLabel lblTenNV;
+    private javax.swing.JMenuItem mniQLChiTietSP;
     private javax.swing.JMenuItem mniQLSanPham;
     private javax.swing.JPanel pnlFooter;
     private javax.swing.JPanel pnlHeader;

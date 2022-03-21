@@ -23,12 +23,7 @@ public class DanhMuc {
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
     }
-    public DanhMuc(String tenDanhMuc, String ngayThem, boolean trangThai) {
-        this.tenDanhMuc = tenDanhMuc;
-        this.ngayThem = ngayThem;
-        this.trangThai = trangThai;
-    }
-    
+
     public int getMaDM() {
         return maDM;
     }
@@ -60,6 +55,5 @@ public class DanhMuc {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
-   
+    
 }
