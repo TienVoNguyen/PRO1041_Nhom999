@@ -34,8 +34,8 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-//        setSize(parent.getWidth(), parent.getHeight());
-//        setLocationRelativeTo(null);
+        //setSize(parent.getWidth(), parent.getHeight());
+        setLocationRelativeTo(null);
         model = (DefaultTableModel) tblSanPham.getModel();
         //Add button vào bảng
         addButtonToTable();
@@ -58,6 +58,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         button.addActionListener(
                 new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+
                 if (tblSanPham.getSelectedRow() == -1) {
                     return;
                 }
@@ -269,6 +270,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnLuu.setBackground(new java.awt.Color(102, 102, 255));
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
         jPanel15.add(btnLuu);
 
         btnMoi.setBackground(new java.awt.Color(102, 102, 255));
@@ -531,6 +537,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         });
         tblSanPham.setGridColor(new java.awt.Color(0, 0, 0));
         tblSanPham.setRowHeight(40);
+        tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSanPham);
         if (tblSanPham.getColumnModel().getColumnCount() > 0) {
             tblSanPham.getColumnModel().getColumn(12).setMinWidth(60);
@@ -561,6 +572,14 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblSanPhamMouseClicked
 
     /**
      * @param args the command line arguments
