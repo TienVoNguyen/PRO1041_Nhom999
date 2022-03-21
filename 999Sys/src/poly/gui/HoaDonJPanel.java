@@ -13,10 +13,15 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import poly.dao.DanhMucDao;
+import poly.dao.SanPhamDao;
+import poly.entity.DanhMuc;
+import poly.entity.LoaiKhachHang;
 import poly.helper.ButtonColumn;
 
 /**
@@ -32,6 +37,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     DefaultTableModel dtmSanPham;
     DefaultTableModel dtmKhachHang;
     DefaultTableModel dtmHoaDon;
+    DefaultComboBoxModel<DanhMuc> CBBModelDM;
+    DefaultComboBoxModel<LoaiKhachHang> CBBModelLKH;
+    DanhMucDao daoDM;
+    SanPhamDao daoSP;
+    //khách hàng DAO?
+    //Loại KH DAO?
+    //hóa đơn DAO?
+    //CT hóa đơn DAO?
+    
     boolean isSanPhamSelected = true;
     JTabbedPane pnlTabs;
 
@@ -47,18 +61,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         //truyền vào pnlTabs từ MainFm
         this.pnlTabs = pnlTabs;
 
-        dtmSanPham.addRow(new Object[]{
-            "quần đùi", 120000, 3, 20, null, 100
-        });
-        dtmSanPham.addRow(new Object[]{
-            "Áo ba lỗ", 70000, 3, 20, null, 110
-        });
-        dtmKhachHang.addRow(new Object[]{
-            "KH01", "Khách hàng thân thiết", "A.Thành", "Hà Nội", "Nam", "mxthanh@gmail.com", "0335138102", "22/07/1998", "15/03/20222", null
-        });
-        dtmKhachHang.addRow(new Object[]{
-            "KH02", "Khách hàng thân thiết", "A.Putin", "mát cơ va", "Nam", "mxthanh@gmail.com", "0335138102", "22/07/1998", "15/03/20222", null
-        });
+        
     }
 
     private void addButtonToTable() {
@@ -94,7 +97,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 int sl = (int) table.getValueAt(modelRow, 2) + 1;
-                double gia = Double.parseDouble(table.getValueAt(modelRow, 6) + "");
+                 double gia = Double.parseDouble(table.getValueAt(modelRow, 6) + "");
                 ((DefaultTableModel) table.getModel()).setValueAt(sl, modelRow, 2);
                 ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", sl * gia), modelRow, 7);
                 tongTien();
@@ -559,8 +562,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addGroup(pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbbDanhMucSP)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 25, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
         );
 
         pnlCard_KhachHang_SanPham.add(pnlSanPham, "SanPham");
@@ -704,7 +707,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                                 .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdoNam, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -764,9 +767,12 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlKhachHangLayout.createSequentialGroup()
                 .addGroup(pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                     .addGroup(pnlKhachHangLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlKhachHangLayout.createSequentialGroup()
+                        .addGap(199, 199, 199)
                         .addComponent(jButton1)
                         .addGap(37, 37, 37)
                         .addComponent(jButton2)
@@ -776,15 +782,14 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         pnlKhachHangLayout.setVerticalGroup(
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlKhachHangLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addGroup(pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pnlCard_KhachHang_SanPham.add(pnlKhachHang, "KhachHang");
