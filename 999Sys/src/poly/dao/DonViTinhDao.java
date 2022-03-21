@@ -19,7 +19,7 @@ public class DonViTinhDao extends BaseDao<DonViTinh, String>{
     public String getQuery(String action) {
          switch (action) {
             case "INSERT":
-                return "INSERT INTO DONVITINH (TENDVT,TRANGTHAI) VALUES (?,?)";
+                return "INSERT INTO DONVITINH (TENDVT) VALUES (?)";
             case "UPDATE":
                 return "UPDATE DONVITINH SET TENDVT =?, TRANGTHAI =? WHERE MADVT = ?";
             case "DELETE":
@@ -37,9 +37,7 @@ public class DonViTinhDao extends BaseDao<DonViTinh, String>{
         switch (action) {
             case "INSERT":
                 return new Object[]{
-                    obj.getMaDVT(),
-                    obj.getTenDVT(),
-                    obj.isTrangThai()
+                    obj.getTenDVT()
                 };
             case "UPDATE":
                 return new Object[]{
@@ -54,9 +52,9 @@ public class DonViTinhDao extends BaseDao<DonViTinh, String>{
     @Override
     public DonViTinh createEntity(ResultSet rs) throws SQLException {
         DonViTinh dVT = new DonViTinh();
-        dVT.setMaDVT(rs.getInt("[MADVT]"));
-        dVT.setTenDVT(rs.getString("[TENDVT]"));
-        dVT.setTrangThai(rs.getBoolean("[TRANGTHAI]"));
+        dVT.setMaDVT(rs.getInt("MADVT"));
+        dVT.setTenDVT(rs.getString("TENDVT"));
+        dVT.setTrangThai(rs.getBoolean("TRANGTHAI"));
         return dVT;
     }
     

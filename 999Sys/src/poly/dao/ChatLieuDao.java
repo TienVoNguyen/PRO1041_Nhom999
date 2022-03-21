@@ -19,7 +19,7 @@ public class ChatLieuDao extends BaseDao<ChatLieu, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO CHATLIEU(MACHATLIEU,TENCHATLIEU,TRANGTHAI) VALUES (?,?,?)";
+                return "INSERT INTO CHATLIEU(TENCHATLIEU) VALUES (?)";
             case "UPDATE":
                 return "UPDATE CHATLIEU SET TENCHATLIEU =?, TRANGTHAI =? WHERE MACHATLIEU = ?";
             case "DELETE":
@@ -37,8 +37,7 @@ public class ChatLieuDao extends BaseDao<ChatLieu, String>{
         switch(action){
             case "INSERT":
                 return new Object[]{
-                    obj.getTenChatLieu(),
-                    obj.isTrangThai()
+                    obj.getTenChatLieu()
                 };
             case "UPDATE":
                 return new Object[]{
@@ -53,9 +52,9 @@ public class ChatLieuDao extends BaseDao<ChatLieu, String>{
     @Override
     public ChatLieu createEntity(ResultSet rs) throws SQLException {
         ChatLieu cl = new ChatLieu();
-        cl.setMaChatLieu(rs.getInt("[MACHATLIEU]"));
-        cl.setTenChatLieu(rs.getString("[TENCHATLIEU]"));
-        cl.setTrangThai(rs.getBoolean("[TRANGTHAI]"));
+        cl.setMaChatLieu(rs.getInt("MACHATLIEU"));
+        cl.setTenChatLieu(rs.getString("TENCHATLIEU"));
+        cl.setTrangThai(rs.getBoolean("TRANGTHAI"));
         return cl;
     }
     

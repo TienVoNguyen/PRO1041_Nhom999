@@ -19,7 +19,7 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO CT_HOADON(MAHD,MASP, SOLUONG, GHICHU, TRANGTHAI) VALUES (?,?,?,?)";
+                return "INSERT INTO CT_HOADON(MAHD,MASP, SOLUONG, GHICHU) VALUES (?,?,?)";
             case "UPDATE":
                 return "UPDATE CT_HOADON SET SOLUONG =?, GHICHU =?, TRANGTHAI =? WHERE MAHD = ? and MASP =?";
             case "DELETE":
@@ -40,8 +40,7 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
                     obj.getMaHD(),
                     obj.getMaSP(),
                     obj.getSoLuong(),
-                    obj.getGhiChu(),
-                    obj.isTrangThai()
+                    obj.getGhiChu()
                 };
             case "UPDATE":
                 return new Object[]{

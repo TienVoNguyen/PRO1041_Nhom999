@@ -19,7 +19,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO HOADON (MANV, MAKH, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN, TRANGTHAI) VALUES (?,?,?,?,?,?,?,?)";
+                return "INSERT INTO HOADON (MANV, MAKH, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN) VALUES (?,?,?,?,?,?,?)";
             case "UPDATE":
                 return "UPDATE HOADON SET MANV =?, MAKH =?, NGAYMUA =?, GIAMGIA =?, NGAYGIAOHANG =?, TIENSHIP =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
             case "DELETE":
@@ -44,8 +44,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
                     obj.getGiamGia(),
                     obj.getNgayGiaoHang(),
                     obj.getTienShip(),
-                    obj.getThanhTien(),
-                    obj.isTrangThai()
+                    obj.getThanhTien()
                 };
             case "UPDATE":
                 return new Object[]{
