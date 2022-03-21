@@ -29,7 +29,7 @@ public class SizeDao extends BaseDao<Size, String> {
             case "SELECTBYID":
                 return "SELECT * FROM   SIZE WHERE SIZE = ?";
             case "SELECTALL":
-                return "SELECT * FROM   MAUSAC";
+                return "SELECT * FROM   SIZE";
 
         }
         return "";
