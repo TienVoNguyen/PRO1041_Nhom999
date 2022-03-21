@@ -9,14 +9,14 @@ package poly.entity;
  *
  * @author Admin
  */
-public class vaiTro {
+public class VaiTro {
     private String maVaiTro,tenVaiTro;
     private boolean trangThai;
 
-    public vaiTro() {
+    public VaiTro() {
     }
 
-    public vaiTro(String maVaiTro, String tenVaiTro, boolean trangThai) {
+    public VaiTro(String maVaiTro, String tenVaiTro, boolean trangThai) {
         this.maVaiTro = maVaiTro;
         this.tenVaiTro = tenVaiTro;
         this.trangThai = trangThai;

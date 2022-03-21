@@ -9,16 +9,18 @@ package poly.entity;
  *
  * @author Admin
  */
-public class khachHang {
-    private String maKH,maLoaiKH,hoTen,ngaySinh;
+public class KhachHang {
+    private String maKH;
+    private int maLoaiKH;
+    private String hoTen,ngaySinh;
     private boolean gioiTinh;
     private String email,SDT,diaChi,ngayTao;
     private boolean trangThai;
 
-    public khachHang() {
+    public KhachHang() {
     }
 
-    public khachHang(String maKH, String maLoaiKH, String hoTen, String ngaySinh, boolean gioiTinh, String email, String SDT, String diaChi, String ngayTao, boolean trangThai) {
+    public KhachHang(String maKH, int maLoaiKH, String hoTen, String ngaySinh, boolean gioiTinh, String email, String SDT, String diaChi, String ngayTao, boolean trangThai) {
         this.maKH = maKH;
         this.maLoaiKH = maLoaiKH;
         this.hoTen = hoTen;
@@ -39,11 +41,11 @@ public class khachHang {
         this.maKH = maKH;
     }
 
-    public String getMaLoaiKH() {
+    public int getMaLoaiKH() {
         return maLoaiKH;
     }
 
-    public void setMaLoaiKH(String maLoaiKH) {
+    public void setMaLoaiKH(int maLoaiKH) {
         this.maLoaiKH = maLoaiKH;
     }
 

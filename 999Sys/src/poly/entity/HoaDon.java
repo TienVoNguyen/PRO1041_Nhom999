@@ -9,7 +9,7 @@ package poly.entity;
  *
  * @author Admin
  */
-public class hoaDon {
+public class HoaDon {
     private int maHD;
     private String maNV,maKH,ngayMua;
     private double giamGia;
@@ -17,10 +17,10 @@ public class hoaDon {
     private double tienShip,thanhTien;
     private boolean trangThai;
 
-    public hoaDon() {
+    public HoaDon() {
     }
 
-    public hoaDon(int maHD, String maNV, String maKH, String ngayMua, double giamGia, String ngayGiaoHang, double tienShip, double thanhTien, boolean trangThai) {
+    public HoaDon(int maHD, String maNV, String maKH, String ngayMua, double giamGia, String ngayGiaoHang, double tienShip, double thanhTien, boolean trangThai) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.maKH = maKH;

@@ -9,25 +9,31 @@ package poly.entity;
  *
  * @author Admin
  */
-public class danhMuc {
-    private String maDM,tenDanhMuc,ngayThem;
+public class DanhMuc {
+    private int maDM;
+    private String tenDanhMuc,ngayThem;
     private boolean trangThai;
 
-    public danhMuc() {
+    public DanhMuc() {
     }
 
-    public danhMuc(String maDM, String tenDanhMuc, String ngayThem, boolean trangThai) {
+    public DanhMuc(int maDM, String tenDanhMuc, String ngayThem, boolean trangThai) {
         this.maDM = maDM;
         this.tenDanhMuc = tenDanhMuc;
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
     }
-
-    public String getMaDM() {
+    public DanhMuc(String tenDanhMuc, String ngayThem, boolean trangThai) {
+        this.tenDanhMuc = tenDanhMuc;
+        this.ngayThem = ngayThem;
+        this.trangThai = trangThai;
+    }
+    
+    public int getMaDM() {
         return maDM;
     }
 
-    public void setMaDM(String maDM) {
+    public void setMaDM(int maDM) {
         this.maDM = maDM;
     }
 
@@ -54,5 +60,6 @@ public class danhMuc {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
+
+   
 }
