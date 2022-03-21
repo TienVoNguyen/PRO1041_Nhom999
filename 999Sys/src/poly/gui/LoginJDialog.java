@@ -48,30 +48,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpnCardGoc = new javax.swing.JPanel();
-        jpnResetPass = new javax.swing.JPanel();
-        txtMaNV = new javax.swing.JTextField();
-        btnMaNV = new javax.swing.JButton();
-        txtCode = new javax.swing.JTextField();
-        btnOK = new javax.swing.JButton();
-        jpnCardChil = new javax.swing.JPanel();
-        jpnCode = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jSeparator6 = new javax.swing.JSeparator();
-        jSeparator7 = new javax.swing.JSeparator();
-        txtNewPass = new javax.swing.JPasswordField();
-        txtNewPass2 = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jpn0 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
         jpnLogin = new javax.swing.JPanel();
         jpnID = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
+        txtID = new javax.swing.JTextField();
         jpnPass = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
@@ -80,221 +61,53 @@ public class LoginJDialog extends javax.swing.JDialog {
         lblForgotPass = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
+        jpnResetPass = new javax.swing.JPanel();
+        txtMaNV = new javax.swing.JTextField();
+        btnMaNV = new javax.swing.JButton();
+        txtCode = new javax.swing.JTextField();
+        btnOK = new javax.swing.JButton();
+        jpnCardChil = new javax.swing.JPanel();
+        jpn0 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jpnCode = new javax.swing.JPanel();
+        btnDongY = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        txtNewPass = new javax.swing.JPasswordField();
+        txtNewPass2 = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Đăng Nhập Hệ Thống Bán Hàng");
+        setUndecorated(true);
 
         jPanel4.setBackground(new java.awt.Color(255, 102, 0));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/logoLogin.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/Logo_Chinh.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpnCardGoc.setLayout(new java.awt.CardLayout());
-
-        jpnResetPass.setBackground(new java.awt.Color(51, 204, 255));
-
-        txtMaNV.setBackground(new java.awt.Color(51, 204, 255));
-        txtMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtMaNV.setForeground(new java.awt.Color(255, 255, 255));
-        txtMaNV.setText("Mã Nhân Viên");
-        txtMaNV.setBorder(null);
-
-        btnMaNV.setText("Xác Nhận");
-        btnMaNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaNVActionPerformed(evt);
-            }
-        });
-
-        txtCode.setBackground(new java.awt.Color(51, 204, 255));
-        txtCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCode.setForeground(new java.awt.Color(255, 255, 255));
-        txtCode.setText("Mã Code");
-        txtCode.setBorder(null);
-
-        btnOK.setText("OK");
-        btnOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOKActionPerformed(evt);
-            }
-        });
-
-        jpnCardChil.setBackground(new java.awt.Color(51, 153, 255));
-        jpnCardChil.setLayout(new java.awt.CardLayout());
-
-        jpnCode.setBackground(new java.awt.Color(51, 204, 255));
-
-        jButton3.setText("Đồng Ý");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Hủy");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        txtNewPass.setBackground(new java.awt.Color(51, 204, 255));
-        txtNewPass.setForeground(new java.awt.Color(255, 255, 255));
-        txtNewPass.setText("jPasswordField1");
-        txtNewPass.setBorder(null);
-
-        txtNewPass2.setBackground(new java.awt.Color(51, 204, 255));
-        txtNewPass2.setForeground(new java.awt.Color(255, 255, 255));
-        txtNewPass2.setText("jPasswordField1");
-        txtNewPass2.setBorder(null);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tạo Mật Khẩu Mới");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Nhập Lại Mật Khẩu");
-
-        javax.swing.GroupLayout jpnCodeLayout = new javax.swing.GroupLayout(jpnCode);
-        jpnCode.setLayout(jpnCodeLayout);
-        jpnCodeLayout.setHorizontalGroup(
-            jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnCodeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator7)
-                    .addComponent(txtNewPass2)
-                    .addGroup(jpnCodeLayout.createSequentialGroup()
-                        .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNewPass)
-                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
-                        .addGap(0, 2, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
-        );
-
-        jpnCodeLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jButton4});
-
-        jpnCodeLayout.setVerticalGroup(
-            jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnCodeLayout.createSequentialGroup()
-                .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpnCodeLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnCodeLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNewPass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-        );
-
-        jpnCodeLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, jButton4});
-
-        jpnCardChil.add(jpnCode, "cardCode");
-
-        jpn0.setBackground(new java.awt.Color(51, 204, 255));
-
-        javax.swing.GroupLayout jpn0Layout = new javax.swing.GroupLayout(jpn0);
-        jpn0.setLayout(jpn0Layout);
-        jpn0Layout.setHorizontalGroup(
-            jpn0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
-        );
-        jpn0Layout.setVerticalGroup(
-            jpn0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-        );
-
-        jpnCardChil.add(jpn0, "card0");
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel6.setText("Đổi Mật Khẩu");
-
-        javax.swing.GroupLayout jpnResetPassLayout = new javax.swing.GroupLayout(jpnResetPass);
-        jpnResetPass.setLayout(jpnResetPassLayout);
-        jpnResetPassLayout.setHorizontalGroup(
-            jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnResetPassLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtCode, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                        .addComponent(jSeparator5))
-                    .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                        .addComponent(jSeparator1))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                    .addComponent(btnOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpnResetPassLayout.createSequentialGroup()
-                .addComponent(jpnCardChil, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jpnResetPassLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCode, txtMaNV});
-
-        jpnResetPassLayout.setVerticalGroup(
-            jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnResetPassLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpnResetPassLayout.createSequentialGroup()
-                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnResetPassLayout.createSequentialGroup()
-                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jpnCardChil, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        jpnCardGoc.add(jpnResetPass, "cardResetPass");
 
         jpnLogin.setBackground(new java.awt.Color(204, 102, 255));
 
@@ -302,12 +115,10 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/login24.png"))); // NOI18N
 
-        txtID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtID.setText("UserName");
-        txtID.setBorder(null);
-        txtID.setCaretColor(new java.awt.Color(255, 255, 255));
-
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtID.setBorder(null);
 
         javax.swing.GroupLayout jpnIDLayout = new javax.swing.GroupLayout(jpnID);
         jpnID.setLayout(jpnIDLayout);
@@ -318,30 +129,31 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnIDLayout.createSequentialGroup()
-                        .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                        .addGap(6, 6, 6))
-                    .addGroup(jpnIDLayout.createSequentialGroup()
-                        .addComponent(jSeparator4)
-                        .addContainerGap())))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(txtID))
+                .addContainerGap())
         );
         jpnIDLayout.setVerticalGroup(
             jpnIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnIDLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jpnIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpnIDLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jpnPass.setBackground(new java.awt.Color(255, 255, 255));
+        jpnPass.setAlignmentX(0.0F);
+        jpnPass.setAlignmentY(0.0F);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/key.png"))); // NOI18N
 
         txtPass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPass.setText("Pass");
+        txtPass.setAlignmentX(0.0F);
+        txtPass.setAlignmentY(0.0F);
         txtPass.setBorder(null);
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -367,7 +179,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -384,9 +196,20 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         lblForgotPass.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblForgotPass.setText("Quên mật khẩu ?");
+        lblForgotPass.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lblForgotPassMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblForgotPassMouseMoved(evt);
+            }
+        });
         lblForgotPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblForgotPassMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblForgotPassMouseExited(evt);
             }
         });
 
@@ -440,12 +263,255 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         jpnCardGoc.add(jpnLogin, "cardLogin");
 
+        jpnResetPass.setBackground(new java.awt.Color(51, 204, 255));
+
+        txtMaNV.setBackground(new java.awt.Color(51, 204, 255));
+        txtMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMaNV.setForeground(new java.awt.Color(255, 255, 255));
+        txtMaNV.setBorder(null);
+        txtMaNV.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMaNVFocusGained(evt);
+            }
+        });
+
+        btnMaNV.setText("Xác Nhận");
+        btnMaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaNVActionPerformed(evt);
+            }
+        });
+
+        txtCode.setBackground(new java.awt.Color(51, 204, 255));
+        txtCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCode.setForeground(new java.awt.Color(255, 255, 255));
+        txtCode.setBorder(null);
+        txtCode.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodeFocusGained(evt);
+            }
+        });
+
+        btnOK.setText("OK");
+        btnOK.setEnabled(false);
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
+
+        jpnCardChil.setBackground(new java.awt.Color(51, 153, 255));
+        jpnCardChil.setLayout(new java.awt.CardLayout());
+
+        jpn0.setBackground(new java.awt.Color(51, 204, 255));
+
+        jButton1.setText("Hủy");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpn0Layout = new javax.swing.GroupLayout(jpn0);
+        jpn0.setLayout(jpn0Layout);
+        jpn0Layout.setHorizontalGroup(
+            jpn0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpn0Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+        jpn0Layout.setVerticalGroup(
+            jpn0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpn0Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+
+        jpnCardChil.add(jpn0, "card0");
+
+        jpnCode.setBackground(new java.awt.Color(51, 204, 255));
+
+        btnDongY.setText("Đồng Ý");
+        btnDongY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDongYActionPerformed(evt);
+            }
+        });
+
+        btnHuy.setText("Hủy");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
+
+        jSeparator6.setBackground(new java.awt.Color(204, 0, 255));
+        jSeparator6.setForeground(new java.awt.Color(204, 0, 204));
+
+        jSeparator7.setBackground(new java.awt.Color(204, 51, 255));
+        jSeparator7.setForeground(new java.awt.Color(204, 0, 255));
+
+        txtNewPass.setBackground(new java.awt.Color(51, 204, 255));
+        txtNewPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtNewPass.setBorder(null);
+
+        txtNewPass2.setBackground(new java.awt.Color(51, 204, 255));
+        txtNewPass2.setForeground(new java.awt.Color(255, 255, 255));
+        txtNewPass2.setBorder(null);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Tạo Mật Khẩu Mới");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Nhập Lại Mật Khẩu");
+
+        javax.swing.GroupLayout jpnCodeLayout = new javax.swing.GroupLayout(jpnCode);
+        jpnCode.setLayout(jpnCodeLayout);
+        jpnCodeLayout.setHorizontalGroup(
+            jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnCodeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator7)
+                    .addComponent(txtNewPass2)
+                    .addGroup(jpnCodeLayout.createSequentialGroup()
+                        .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNewPass)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnCodeLayout.createSequentialGroup()
+                        .addComponent(btnDongY, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnCodeLayout.createSequentialGroup()
+                        .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
+        );
+
+        jpnCodeLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDongY, btnHuy});
+
+        jpnCodeLayout.setVerticalGroup(
+            jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnCodeLayout.createSequentialGroup()
+                .addGroup(jpnCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpnCodeLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnDongY, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnCodeLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNewPass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
+        );
+
+        jpnCodeLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDongY, btnHuy});
+
+        jpnCardChil.add(jpnCode, "cardCode");
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel6.setText("Đổi Mật Khẩu");
+
+        jSeparator1.setBackground(new java.awt.Color(204, 0, 255));
+        jSeparator1.setForeground(new java.awt.Color(204, 0, 255));
+
+        jSeparator5.setBackground(new java.awt.Color(204, 0, 255));
+        jSeparator5.setForeground(new java.awt.Color(204, 0, 255));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Mã Nhân Viên");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Mã Code");
+
+        javax.swing.GroupLayout jpnResetPassLayout = new javax.swing.GroupLayout(jpnResetPass);
+        jpnResetPass.setLayout(jpnResetPassLayout);
+        jpnResetPassLayout.setHorizontalGroup(
+            jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnResetPassLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(109, 109, 109))
+            .addGroup(jpnResetPassLayout.createSequentialGroup()
+                .addComponent(jpnCardChil, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpnResetPassLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(jpnResetPassLayout.createSequentialGroup()
+                        .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCode, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpnResetPassLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCode, txtMaNV});
+
+        jpnResetPassLayout.setVerticalGroup(
+            jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnResetPassLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel6)
+                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnResetPassLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnResetPassLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(btnMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpnResetPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnResetPassLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnResetPassLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpnCardChil, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jpnCardGoc.add(jpnResetPass, "cardResetPass");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jpnCardGoc, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
@@ -508,8 +574,10 @@ try {
             String maNV = txtMaNV.getText();
             ArrayList<NhanVien> list = dao.selectAll();
             boolean check = false;
+             String mailAddress ="";
             for (NhanVien nv : list) {
                 if (nv.getMaNV().trim().equals(maNV)) {
+                    mailAddress = nv.getEmail();
                     check = true;
                     break;
                 }
@@ -517,7 +585,13 @@ try {
             if (check == true) {
                 Messeger.alert(this, "Hãy nhập mã xác nhận được gửi qua mail!");
                 btnOK.setEnabled(check);
-                codeSMS = ResetPassByEmail.resetPass();
+               
+                try{
+                codeSMS = ResetPassByEmail.resetPass(mailAddress);
+                }catch(Exception e){
+                    Messeger.showErrorDialog(this, "Mail không tồn tại", "Error!");
+                    e.printStackTrace();
+                }
             } else {
                 Messeger.alert(this, "Mã nhân viên không tồn tại!");
                 btnOK.setEnabled(check);
@@ -546,11 +620,11 @@ try {
         }
     }//GEN-LAST:event_btnOKActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        cardGoc.show(jpnCardGoc, "cardLogin");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        
+    }//GEN-LAST:event_btnHuyActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDongYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongYActionPerformed
         if(txtNewPass.getText().length()<0){
             Messeger.showErrorDialog(this, "Không để trống Mật khẩu mới", "Error!");
             txtNewPass.setBackground(Color.YELLOW);
@@ -559,9 +633,50 @@ try {
             Messeger.showErrorDialog(this, "Mật khẩu mới không khớp", "Error!");
             txtNewPass2.setBackground(Color.YELLOW);
             return;
+        }else{
+            try {
+                ArrayList<NhanVien> list = dao.selectAll();
+                boolean check = false;
+                for(NhanVien nv : list){
+                    if(nv.getMaNV().equalsIgnoreCase(txtMaNV.getText())){
+                        nv.setPassWord(new String(txtNewPass.getPassword()));
+                        dao.update(nv);
+                        break;
+                    }
+                }
+                Messeger.alert(this, "Đổi mật khẩu thành công!");
+                Auth.user = null;
+                cardGoc.show(jpnCardGoc, "cardLogin");
+            } catch (Exception ex) {
+                Messeger.showErrorDialog(this, "Lỗi quên mật khẩu!", "Lỗi!");
+                ex.printStackTrace();
+            }
         }
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnDongYActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       cardGoc.show(jpnCardGoc, "cardLogin");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtMaNVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNVFocusGained
+        txtMaNV.setText("");
+    }//GEN-LAST:event_txtMaNVFocusGained
+
+    private void txtCodeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodeFocusGained
+        txtCode.setText("");
+    }//GEN-LAST:event_txtCodeFocusGained
+
+    private void lblForgotPassMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseDragged
+lblForgotPass.setForeground(Color.black);    }//GEN-LAST:event_lblForgotPassMouseDragged
+
+    private void lblForgotPassMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseMoved
+lblForgotPass.setForeground(Color.red);
+    }//GEN-LAST:event_lblForgotPassMouseMoved
+
+    private void lblForgotPassMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseExited
+lblForgotPass.setForeground(Color.black);                                              
+    }//GEN-LAST:event_lblForgotPassMouseExited
 
     /**
      * @param args the command line arguments
@@ -606,17 +721,20 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDongY;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnMaNV;
     private javax.swing.JButton btnOK;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

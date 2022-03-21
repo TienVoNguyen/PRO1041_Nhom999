@@ -1,0 +1,107 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package poly.entity;
+
+/**
+ *
+ * @author Admin
+ */
+public class HoaDon {
+    private int maHD;
+    private String maNV,maKH,ngayMua;
+    private double giamGia;
+    private String ngayGiaoHang;
+    private double tienShip,thanhTien;
+    private boolean trangThai;
+
+    public HoaDon() {
+    }
+
+    public HoaDon(int maHD, String maNV, String maKH, String ngayMua, double giamGia, String ngayGiaoHang, double tienShip, double thanhTien, boolean trangThai) {
+        this.maHD = maHD;
+        this.maNV = maNV;
+        this.maKH = maKH;
+        this.ngayMua = ngayMua;
+        this.giamGia = giamGia;
+        this.ngayGiaoHang = ngayGiaoHang;
+        this.tienShip = tienShip;
+        this.thanhTien = thanhTien;
+        this.trangThai = trangThai;
+    }
+
+    public int getMaHD() {
+        return maHD;
+    }
+
+    public void setMaHD(int maHD) {
+        this.maHD = maHD;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
+    }
+
+    public String getNgayMua() {
+        return ngayMua;
+    }
+
+    public void setNgayMua(String ngayMua) {
+        this.ngayMua = ngayMua;
+    }
+
+    public double getGiamGia() {
+        return giamGia;
+    }
+
+    public void setGiamGia(double giamGia) {
+        this.giamGia = giamGia;
+    }
+
+    public String getNgayGiaoHang() {
+        return ngayGiaoHang;
+    }
+
+    public void setNgayGiaoHang(String ngayGiaoHang) {
+        this.ngayGiaoHang = ngayGiaoHang;
+    }
+
+    public double getTienShip() {
+        return tienShip;
+    }
+
+    public void setTienShip(double tienShip) {
+        this.tienShip = tienShip;
+    }
+
+    public double getThanhTien() {
+        return thanhTien;
+    }
+
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+    
+}
