@@ -25,7 +25,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     JButton button = new JButton();
     DefaultTableModel model;
-
+    public static  int i ;
     /**
      * Creates new form QL_SanPham
      */
@@ -36,7 +36,6 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         //full màn hình
         //setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
-
         model = (DefaultTableModel) tblSanPham.getModel();
         //Add button vào bảng
         addButtonToTable();
@@ -50,6 +49,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }
 
     private void addButtonToTable() {
+       
         // Add button vào trong bảng
         this.button.setSize(50, 50);
         tblSanPham.getColumn("tool").setCellRenderer(new ButtonRenderer());
@@ -58,16 +58,19 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         button.addActionListener(
                 new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                System.out.println(tblSanPham.getSelectedRow());
-                model.removeRow(tblSanPham.getSelectedRow());
+
                 if (tblSanPham.getSelectedRow() == -1) {
-                    if (tblSanPham.getRowCount() > 0) {
-                        tblSanPham.setRowSelectionInterval(0, 0);
-                    }
                     return;
                 }
-//                model.removeRow(tblSanPham.getSelectedRow());
-
+                if (i == 1) {
+                     model.removeRow(0);
+                }
+                i = tblSanPham.getRowCount();
+                model.removeRow(tblSanPham.getSelectedRow());
+                if (model.getColumnCount() == 1) {
+                    i = 1;
+                }
+                System.out.println(tblSanPham.getRowCount());
             }
         }
         );

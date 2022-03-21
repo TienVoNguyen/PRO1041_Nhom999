@@ -9,15 +9,15 @@ package poly.entity;
  *
  * @author Admin
  */
-public class chatLieu {
+public class ChatLieu {
     private int maChatLieu;
     private String tenChatLieu;
     private boolean trangThai;
 
-    public chatLieu() {
+    public ChatLieu() {
     }
 
-    public chatLieu(int maChatLieu, String tenChatLieu, boolean trangThai) {
+    public ChatLieu(int maChatLieu, String tenChatLieu, boolean trangThai) {
         this.maChatLieu = maChatLieu;
         this.tenChatLieu = tenChatLieu;
         this.trangThai = trangThai;

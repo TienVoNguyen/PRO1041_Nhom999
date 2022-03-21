@@ -9,34 +9,34 @@ package poly.entity;
  *
  * @author Admin
  */
-public class mauSac {
-    private int maMau;
-    private String tenMau;
+public class DonViTinh {
+    private int maDVT;
+    private String tenDVT;
     private boolean trangThai;
 
-    public mauSac() {
+    public DonViTinh() {
     }
 
-    public mauSac(int maMau, String tenMau, boolean trangThai) {
-        this.maMau = maMau;
-        this.tenMau = tenMau;
+    public DonViTinh(int maDVT, String tenDVT, boolean trangThai) {
+        this.maDVT = maDVT;
+        this.tenDVT = tenDVT;
         this.trangThai = trangThai;
     }
 
-    public int getMaMau() {
-        return maMau;
+    public int getMaDVT() {
+        return maDVT;
     }
 
-    public void setMaMau(int maMau) {
-        this.maMau = maMau;
+    public void setMaDVT(int maDVT) {
+        this.maDVT = maDVT;
     }
 
-    public String getTenMau() {
-        return tenMau;
+    public String getTenDVT() {
+        return tenDVT;
     }
 
-    public void setTenMau(String tenMau) {
-        this.tenMau = tenMau;
+    public void setTenDVT(String tenDVT) {
+        this.tenDVT = tenDVT;
     }
 
     public boolean isTrangThai() {

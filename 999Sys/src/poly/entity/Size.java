@@ -9,34 +9,34 @@ package poly.entity;
  *
  * @author Admin
  */
-public class donViTinh {
-    private int maDVT;
-    private String tenDVT;
+public class Size {
+    private int maSize;
+    private String tenSize;
     private boolean trangThai;
 
-    public donViTinh() {
+    public Size() {
     }
 
-    public donViTinh(int maDVT, String tenDVT, boolean trangThai) {
-        this.maDVT = maDVT;
-        this.tenDVT = tenDVT;
+    public Size(int maSize, String tenSize, boolean trangThai) {
+        this.maSize = maSize;
+        this.tenSize = tenSize;
         this.trangThai = trangThai;
     }
 
-    public int getMaDVT() {
-        return maDVT;
+    public int getMaSize() {
+        return maSize;
     }
 
-    public void setMaDVT(int maDVT) {
-        this.maDVT = maDVT;
+    public void setMaSize(int maSize) {
+        this.maSize = maSize;
     }
 
-    public String getTenDVT() {
-        return tenDVT;
+    public String getTenSize() {
+        return tenSize;
     }
 
-    public void setTenDVT(String tenDVT) {
-        this.tenDVT = tenDVT;
+    public void setTenSize(String tenSize) {
+        this.tenSize = tenSize;
     }
 
     public boolean isTrangThai() {

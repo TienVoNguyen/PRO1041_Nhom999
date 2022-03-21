@@ -9,14 +9,14 @@ package poly.entity;
  *
  * @author Admin
  */
-public class loaiKhachHang {
+public class LoaiKhachHang {
  private String maLoaiKH,tenLoaiKH;
  private boolean trangThai;
 
-    public loaiKhachHang() {
+    public LoaiKhachHang() {
     }
 
-    public loaiKhachHang(String maLoaiKH, String tenLoaiKH, boolean trangThai) {
+    public LoaiKhachHang(String maLoaiKH, String tenLoaiKH, boolean trangThai) {
         this.maLoaiKH = maLoaiKH;
         this.tenLoaiKH = tenLoaiKH;
         this.trangThai = trangThai;

@@ -4,16 +4,26 @@
  */
 package poly.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import poly.entity.KhuyenMai;
+import poly.entity.SanPham;
+import poly.helper.XJDBC;
 
 /**
  *
  * @author 98tae
  */
 public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
-
+    public KhuyenMaiDAO() {
+    }
+    
+    
     @Override
     public String getQuery(String action) {
         switch (action) {
@@ -27,13 +37,15 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                 return "SELECT MAKM, MASP, TENKM, HINHTHUCAD, GIAMTOIDA, NGAYBATDAU, NGAYKETTHUC, GIATRI TRANGTHAI FROM   KHUYENMAI WHERE (MAKM = ?)";
             case "SELECTALL":
                 return "SELECT * FROM KHUYENMAI";
+            case "SelectMASP":
+                return "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ?";
         }
         return "";
     }
 
     @Override
     public Object[] getParams(String action, KhuyenMai obj) {
-            switch (action) {
+        switch (action) {
             case "INSERT":
                 return new Object[]{
                     obj.getMaSP(),
@@ -75,5 +87,19 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
         return km;
     }
 
-    
+    public static ArrayList<String> getMaSP_InDanhMuc(int maDM){
+        String sql = "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ?";
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJDBC.query(sql, maDM);
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 }
