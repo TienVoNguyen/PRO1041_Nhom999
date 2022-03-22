@@ -15,7 +15,7 @@ import poly.helper.XJDBC;
  *
  * @author 98tae
  */
-public class SanPhamDao extends BaseDao<SanPham, String> {
+public class SanPhamDao extends BaseDao<SanPham, Integer> {
 
     @Override
     public String getQuery(String action) {
@@ -27,7 +27,7 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
             case "DELETE":
                 return "DELETE FROM SANPHAM WHERE MASP = ?";
             case "SELECTBYID":
-                return "SELECT MADM, MAVACH, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, APDUNGKM, MADVT, MAMAU, MASIZE, MACHATLIEU, TRANGTHAI FROM   SANPHAM WHERE (MASP = ?)";
+                return "SELECT * FROM   SANPHAM WHERE (MASP = ?)";
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":

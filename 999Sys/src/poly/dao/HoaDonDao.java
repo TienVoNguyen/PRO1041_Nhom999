@@ -19,9 +19,9 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO HOADON (MANV, MAKH, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN) VALUES (?,?,?,?,?,?,?)";
+                return "INSERT INTO HOADON (MAHOADON, MANV, MAKH, MATT, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN) VALUES (?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE HOADON SET MANV =?, MAKH =?, NGAYMUA =?, GIAMGIA =?, NGAYGIAOHANG =?, TIENSHIP =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
+                return "UPDATE HOADON SET MANV =?, MAKH =?, MATT =?, NGAYMUA =?, GIAMGIA =?, NGAYGIAOHANG =?, TIENSHIP =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
             case "DELETE":
                 return "DELETE FROM HOADON WHERE MAHOADON =?";
             case "SELECTBYID":
@@ -40,6 +40,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
                     obj.getMaHD(),
                     obj.getMaNV(),
                     obj.getMaKH(),
+                    obj.getMaTT(),
                     obj.getNgayMua(),
                     obj.getGiamGia(),
                     obj.getNgayGiaoHang(),
@@ -50,6 +51,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
                 return new Object[]{
                     obj.getMaNV(),
                     obj.getMaKH(),
+                    obj.getMaTT(),
                     obj.getNgayMua(),
                     obj.getGiamGia(),
                     obj.getNgayGiaoHang(),
@@ -74,6 +76,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
         hD.setTienShip(rs.getDouble("TIENSHIP"));
         hD.setThanhTien(rs.getDouble("THANHTIEN"));
         hD.setTrangThai(rs.getBoolean("TRANGTHAI"));
+        hD.setMaTT(rs.getInt("MATT"));
         return hD;
     }
     

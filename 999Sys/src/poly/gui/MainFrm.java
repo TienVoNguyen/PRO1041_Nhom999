@@ -5,8 +5,18 @@
  */
 package poly.gui;
 
-import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import poly.dao.CTHoaDonDao;
+import poly.dao.HoaDonDao;
+import poly.dao.KhachHangDao;
+import poly.dao.SanPhamDao;
+import poly.entity.CTHoaDon;
+import poly.entity.HoaDon;
+import poly.entity.KhachHang;
 
 /**
  *
@@ -15,6 +25,13 @@ import javax.swing.JFrame;
 public class MainFrm extends javax.swing.JFrame {
 
     static int hoaDonIndex = 2;
+    private HoaDonDao daoHD;
+    private KhachHangDao daoKH;
+    private SanPhamDao daoSP;
+    private CTHoaDonDao daoCTHD;
+
+    static ArrayList<CTHoaDon> listCTHD;
+    static KhachHang k;
     /**
      * Creates new form MainFrm
      */
@@ -23,14 +40,19 @@ public class MainFrm extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);//hiển thị toàn màn hình
-        
+
+        this.daoHD = new HoaDonDao();
+        this.daoKH = new KhachHangDao();
+        this.daoSP = new SanPhamDao();
+        this.daoCTHD = new CTHoaDonDao();
         // Đăng nhập
-        new LoginJDialog(this, true).setVisible(true);
+//        new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
-        HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
-        
-        pnlTabs.addTab("Khách lẻ 0" + 1, hdpnl);
-        pnlTabs.setSelectedComponent(hdpnl);
+//        HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+
+        loadHoaDonChoTT();
+//        pnlTabs.addTab("Khách lẻ 0" + 1, hdpnl);
+//        pnlTabs.setSelectedComponent(hdpnl);
     }
 
     /**
@@ -61,7 +83,7 @@ public class MainFrm extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnKhuyenMai = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnThongKe = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -198,9 +220,14 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel1.add(btnKhuyenMai);
 
-        jButton2.setText("jButton1");
-        jButton2.setPreferredSize(new java.awt.Dimension(73, 40));
-        jPanel1.add(jButton2);
+        btnThongKe.setText("Thống Kê");
+        btnThongKe.setPreferredSize(new java.awt.Dimension(173, 40));
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnThongKe);
 
         jButton3.setText("jButton1");
         jButton3.setPreferredSize(new java.awt.Dimension(73, 40));
@@ -247,7 +274,7 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void btnThemHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHoaDonActionPerformed
         HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
-        
+
         pnlTabs.addTab("Khách lẻ 0" + hoaDonIndex, hdpnl);
         hoaDonIndex++;
         pnlTabs.setSelectedComponent(hdpnl);
@@ -255,7 +282,7 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void btnMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseClicked
         jpmMenu.show(btnMenu, -160, -160);
-        
+
     }//GEN-LAST:event_btnMenuMouseClicked
 
     private void mniQLSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLSanPhamActionPerformed
@@ -274,6 +301,10 @@ public class MainFrm extends javax.swing.JFrame {
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         new QL_KhuyenMaiJDiaLog(this, true).setVisible(true);
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        new DoanhThuJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,7 +348,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMinimise;
     private javax.swing.JButton btnThemHoaDon;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnThongKe;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -337,5 +368,24 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JTabbedPane pnlTabs;
     // End of variables declaration//GEN-END:variables
 
+    private void loadHoaDonChoTT() {
+        List<HoaDon> list = new ArrayList<>();
+        try {
+            list = this.daoHD.selectAll();
+            for (HoaDon h : list) {
+                if (h.getMaTT() == 1) {
+                    k = this.daoKH.selectById(h.getMaKH());
+                    listCTHD = this.daoCTHD.selectCTHD(h.getMaHD());
+                    System.out.println(k.getMaKH() + h.getMaHD() + listCTHD.get(0).getMaSP());
+                    HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+                    pnlTabs.addTab(k.getMaKH() , hdpnl);
+                    pnlTabs.setSelectedComponent(hdpnl);
+                    hdpnl.loadDataToHoaDon();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

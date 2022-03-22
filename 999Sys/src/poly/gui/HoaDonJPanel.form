@@ -526,7 +526,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="18" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+                            <Property name="text" type="java.lang.String" value="M&#xe3; Khuy&#x1ebf;n M&#x1ea1;i"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>

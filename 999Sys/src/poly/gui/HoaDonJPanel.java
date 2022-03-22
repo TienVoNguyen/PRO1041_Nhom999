@@ -31,6 +31,7 @@ import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
 import poly.dao.LoaiKhachHangDao;
 import poly.dao.SanPhamDao;
+import poly.entity.CTHoaDon;
 import poly.entity.DanhMuc;
 import poly.entity.KhachHang;
 import poly.entity.LoaiKhachHang;
@@ -574,7 +575,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         btnXoa.setBackground(new java.awt.Color(255, 51, 51));
         btnXoa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnXoa.setText("Xóa");
+        btnXoa.setText("Mã Khuyến Mại");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -954,11 +955,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHoaDonMoiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        if (pnlTabs.getTabCount() == 1) {
-            JOptionPane.showMessageDialog(this, "chiu");
-            return;
-        }
-        pnlTabs.remove(pnlTabs.getSelectedComponent());
+            JOptionPane.showMessageDialog(this, "Đang Update, Cứ từ từ");
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
@@ -1194,5 +1191,32 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         sp.setMaDanhMuc(dm.getMaDM());
         loadDataToTableSanPham(sp);
 
+    }
+    
+    public void loadDataToHoaDon(){
+        this.dtmHoaDon.setRowCount(0);
+        ArrayList<CTHoaDon> list = MainFrm.listCTHD;
+        KhachHang kh = MainFrm.k;
+        for (CTHoaDon c : list) {
+            try {
+                SanPham s = this.daoSP.selectById(c.getMaSP());
+                dtmHoaDon.addRow(new Object[]{
+                    null,
+                    s.getTenSanPham(),
+                    c.getSoLuong(),
+                    null,
+                    null,
+                    s.getGiaBan(),
+                    0,
+                    c.getSoLuong()*s.getGiaBan(),
+                    c.getMaSP()
+                });
+                lblTenKH.setText(kh.getHoTen());
+                lblTenKH.setToolTipText(kh.getMaKH());
+                tongTien();
+            } catch (Exception ex) {
+                Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
