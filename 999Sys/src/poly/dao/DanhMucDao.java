@@ -13,8 +13,7 @@ import poly.entity.DanhMuc;
  *
  * @author 98tae
  */
-public class DanhMucDao extends poly.dao.BaseDao<DanhMuc, String> {
-
+public class DanhMucDao extends BaseDao<DanhMuc, String>{
 
     @Override
     public String getQuery(String action) {
@@ -24,7 +23,7 @@ public class DanhMucDao extends poly.dao.BaseDao<DanhMuc, String> {
             case "UPDATE":
                 return " UPDATE DANHMUC SET TENDANHMUC =?, TRANGTHAI =? WHERE MADM = ?";
             case "DELETE":
-                return "DELETE FROM SANPHAM WHERE MASP = ?";
+                return "UPDATE DANHMUC SET TRANGTHAI = 0 WHERE MADM = ?";
             case "SELECTBYID":
                 return "SELECT TENDANHMUC,TRANGTHAI FROM DANHMUC WHERE MADM = ?";
             case "SELECTALL":
@@ -32,34 +31,33 @@ public class DanhMucDao extends poly.dao.BaseDao<DanhMuc, String> {
         }
         return "";
     }
+   
 
-  
     @Override
     public Object[] getParams(String action, DanhMuc obj) {
         switch (action) {
             case "INSERT":
                 return new Object[]{
-                    obj.getTenDanhMuc()
+                    obj.getTenDanhMuc(),
+                    obj.getNgayThem()
                 };
             case "UPDATE":
                 return new Object[]{
-                    obj.getTenDanhMuc(),
-                    obj.getTenDanhMuc(),
-                    obj.getMaDM()
+                   obj.getTenDanhMuc(),
+                   obj.getTenDanhMuc(),
+                   obj.getMaDM()
                 };
         }
         return null;
     }
 
-
     @Override
     public DanhMuc createEntity(ResultSet rs) throws SQLException {
-        DanhMuc dm = new DanhMuc();
-        dm.setMaDM(rs.getInt("MADM"));
-        dm.setTenDanhMuc(rs.getString("TENDANHMUC"));
-        dm.setNgayThem(rs.getString("NGAYTHEM"));
-        dm.setTrangThai(rs.getBoolean("TRANGTHAI"));
-        return dm;
+      DanhMuc dm = new DanhMuc();
+      dm.setMaDM(rs.getInt("MADM"));
+      dm.setTenDanhMuc(rs.getString("TENDANHMUC"));
+      dm.setNgayThem(rs.getString("NGAYTHEM"));
+      dm.setTrangThai(rs.getBoolean("TRANGTHAI"));
+      return dm;
     }
-
 }

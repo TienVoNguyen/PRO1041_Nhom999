@@ -23,6 +23,10 @@ public class DanhMuc {
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
     }
+    public DanhMuc(String tenDanhMuc, String ngayThem) {
+        this.tenDanhMuc = tenDanhMuc;
+        this.ngayThem = ngayThem;
+    }
 
     public int getMaDM() {
         return maDM;
