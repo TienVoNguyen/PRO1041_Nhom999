@@ -554,6 +554,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblDanhMucHetHan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDanhMucHetHanMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblDanhMucHetHan);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -573,7 +578,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jpnDanhMuc.add(jPanel10, "cac_phu");
+        jpnDanhMuc.add(jPanel10, "card_phu");
 
         javax.swing.GroupLayout DanhMucLayout = new javax.swing.GroupLayout(DanhMuc);
         DanhMuc.setLayout(DanhMucLayout);
@@ -682,11 +687,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         );
 
         btn_Change_Table2.setText("Hết Hạn");
-        btn_Change_Table2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Change_Table2ActionPerformed(evt);
-            }
-        });
 
         cardGocMauSac.setLayout(new java.awt.CardLayout());
 
@@ -935,7 +935,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             txtDanhMuc_NgayThem.setText("");
             return;
         }
-
         String x = String.valueOf(java.time.LocalDate.now());
         try {
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không ?")) {
@@ -989,16 +988,15 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Sua_qlDanhMucActionPerformed
 
     private void btn_Change_tblDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Change_tblDanhMucActionPerformed
-//        if (btn_Change_tblDanhMuc.getText().equalsIgnoreCase("Hết Hạn")) {
-//            card_DanhMuc.show(jpnDanhMuc, "card_phu");
-//            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, false);
-//            btn_Change_tblDanhMuc.setText("Trở Lại");
-//        } else {
-//            card_DanhMuc.show(jpnDanhMuc, "card_goc");
-//            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, true);
-//            btn_Change_tblDanhMuc.setText("Hết Hạn");
-//        }
-        card_DanhMuc.show(jpnDanhMuc, "card_phu");
+        if (btn_Change_tblDanhMuc.getText().equalsIgnoreCase("Hết Hạn")) {
+            card_DanhMuc.show(jpnDanhMuc, "card_phu");
+            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, false);
+            btn_Change_tblDanhMuc.setText("Trở Lại");
+        } else {
+            card_DanhMuc.show(jpnDanhMuc, "card_goc");
+            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, true);
+            btn_Change_tblDanhMuc.setText("Hết Hạn");
+        }
     }//GEN-LAST:event_btn_Change_tblDanhMucActionPerformed
 
     private void tblSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSizeMouseClicked
@@ -1017,10 +1015,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         Settext(tblSize_HetHan, txtSize_MaSize, txtSize_TenSize, viTri);
     }//GEN-LAST:event_tblSize_HetHanMouseClicked
 
-    private void btn_Change_Table2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Change_Table2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Change_Table2ActionPerformed
-
     private void tblDanhMucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhMucMouseClicked
         int viTri = tblDanhMuc.getSelectedRow();
         if (viTri < 0) {
@@ -1028,6 +1022,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         }
         Settext(tblDanhMuc, txtDanhMuc_MaDM, txtDanhMuc_TenDM, txtDanhMuc_NgayThem, viTri);
     }//GEN-LAST:event_tblDanhMucMouseClicked
+
+    private void tblDanhMucHetHanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhMucHetHanMouseClicked
+        int viTri = tblDanhMucHetHan.getSelectedRow();
+        if (viTri < 0) {
+            return;
+        }
+        Settext(tblDanhMucHetHan, txtDanhMuc_MaDM, txtDanhMuc_TenDM, txtDanhMuc_NgayThem, viTri);
+    }//GEN-LAST:event_tblDanhMucHetHanMouseClicked
 
     /**
      * @param args the command line arguments

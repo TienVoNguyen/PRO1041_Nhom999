@@ -681,7 +681,7 @@
                 <Container class="javax.swing.JPanel" name="jPanel10">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="cac_phu"/>
+                      <CardConstraints cardName="card_phu"/>
                     </Constraint>
                   </Constraints>
 
@@ -745,6 +745,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDanhMucHetHanMouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -926,9 +929,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="H&#x1ebf;t H&#x1ea1;n"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Change_Table2ActionPerformed"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="cardGocMauSac">
 
