@@ -13,7 +13,7 @@ import poly.entity.MauSac;
  *
  * @author Admin
  */
-public class MaMauDao extends BaseDao<MauSac, String>{
+public class MauSacDao extends BaseDao<MauSac, String>{
 
     @Override
     public String getQuery(String action) {
