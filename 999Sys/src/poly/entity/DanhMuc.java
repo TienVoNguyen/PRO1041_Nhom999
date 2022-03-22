@@ -23,12 +23,7 @@ public class DanhMuc {
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
     }
-    public DanhMuc(String tenDanhMuc, String ngayThem, boolean trangThai) {
-        this.tenDanhMuc = tenDanhMuc;
-        this.ngayThem = ngayThem;
-        this.trangThai = trangThai;
-    }
-    
+
     public int getMaDM() {
         return maDM;
     }
@@ -63,8 +58,7 @@ public class DanhMuc {
 
     @Override
     public String toString() {
-        return this.tenDanhMuc+"" ;
+        return tenDanhMuc; //To change body of generated methods, choose Tools | Templates.
     }
     
-   
 }

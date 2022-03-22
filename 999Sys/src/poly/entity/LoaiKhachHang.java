@@ -10,23 +10,24 @@ package poly.entity;
  * @author Admin
  */
 public class LoaiKhachHang {
- private String maLoaiKH,tenLoaiKH;
+ private int maLoaiKH;
+ private String tenLoaiKH;
  private boolean trangThai;
 
     public LoaiKhachHang() {
     }
 
-    public LoaiKhachHang(String maLoaiKH, String tenLoaiKH, boolean trangThai) {
+    public LoaiKhachHang(int maLoaiKH, String tenLoaiKH, boolean trangThai) {
         this.maLoaiKH = maLoaiKH;
         this.tenLoaiKH = tenLoaiKH;
         this.trangThai = trangThai;
     }
 
-    public String getMaLoaiKH() {
+    public int getMaLoaiKH() {
         return maLoaiKH;
     }
 
-    public void setMaLoaiKH(String maLoaiKH) {
+    public void setMaLoaiKH(int maLoaiKH) {
         this.maLoaiKH = maLoaiKH;
     }
 
@@ -45,5 +46,10 @@ public class LoaiKhachHang {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
- 
+
+    @Override
+    public String toString() {
+        return tenLoaiKH;
+    }
+
 }

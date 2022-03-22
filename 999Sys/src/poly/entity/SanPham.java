@@ -5,6 +5,8 @@
  */
 package poly.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
@@ -13,20 +15,23 @@ public class SanPham {
     private int maSP,maDanhMuc;
     private String maVach,anhSanPham,tenSanPham;
     private double giaNhap,giaBan;
-    private double soLuong;
-    private String ngayNhap;
+    private int soLuong;
+    private Date ngayNhap;
     private boolean apDungKM;
-    private int maDVT,maMau,maSize,maChatLieu;
+    private int maDVT,maMau;
+    private String maSize;
+    private int maChatLieu;
     private boolean trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(int maSP, int maDanhMuc, String maVach, String anhSanPham, double giaNhap, double giaBan, double soLuong, String ngayNhap, boolean apDungKM, int maDVT, int maMau, int maSize, int maChatLieu, boolean trangThai) {
+    public SanPham(int maSP, int maDanhMuc, String maVach, String anhSanPham, String tenSanPham, double giaNhap, double giaBan, int soLuong, Date ngayNhap, boolean apDungKM, int maDVT, int maMau, String maSize, int maChatLieu, boolean trangThai) {
         this.maSP = maSP;
         this.maDanhMuc = maDanhMuc;
         this.maVach = maVach;
         this.anhSanPham = anhSanPham;
+        this.tenSanPham = tenSanPham;
         this.giaNhap = giaNhap;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
@@ -39,22 +44,6 @@ public class SanPham {
         this.trangThai = trangThai;
     }
 
-    public SanPham(int maDanhMuc, String maVach, String anhSanPham, double giaNhap, double giaBan, double soLuong, String ngayNhap, boolean apDungKM, int maDVT, int maMau, int maSize, int maChatLieu, boolean trangThai) {
-        this.maDanhMuc = maDanhMuc;
-        this.maVach = maVach;
-        this.anhSanPham = anhSanPham;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
-        this.soLuong = soLuong;
-        this.ngayNhap = ngayNhap;
-        this.apDungKM = apDungKM;
-        this.maDVT = maDVT;
-        this.maMau = maMau;
-        this.maSize = maSize;
-        this.maChatLieu = maChatLieu;
-        this.trangThai = trangThai;
-    }
-    
     public int getMaSP() {
         return maSP;
     }
@@ -87,6 +76,14 @@ public class SanPham {
         this.anhSanPham = anhSanPham;
     }
 
+    public String getTenSanPham() {
+        return tenSanPham;
+    }
+
+    public void setTenSanPham(String tenSanPham) {
+        this.tenSanPham = tenSanPham;
+    }
+
     public double getGiaNhap() {
         return giaNhap;
     }
@@ -103,19 +100,19 @@ public class SanPham {
         this.giaBan = giaBan;
     }
 
-    public double getSoLuong() {
+    public int getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(double soLuong) {
+    public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
 
-    public String getNgayNhap() {
+    public Date getNgayNhap() {
         return ngayNhap;
     }
 
-    public void setNgayNhap(String ngayNhap) {
+    public void setNgayNhap(Date ngayNhap) {
         this.ngayNhap = ngayNhap;
     }
 
@@ -143,11 +140,11 @@ public class SanPham {
         this.maMau = maMau;
     }
 
-    public int getMaSize() {
+    public String getMaSize() {
         return maSize;
     }
 
-    public void setMaSize(int maSize) {
+    public void setMaSize(String maSize) {
         this.maSize = maSize;
     }
 
@@ -159,14 +156,6 @@ public class SanPham {
         this.maChatLieu = maChatLieu;
     }
 
-    public String getTenSanPham() {
-        return tenSanPham;
-    }
-
-    public void setTenSanPham(String tenSanPham) {
-        this.tenSanPham = tenSanPham;
-    }
-
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -174,11 +163,6 @@ public class SanPham {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
     
-    @Override
-    public String toString() {
-        return  this.maSP + "";
-    }
     
 }

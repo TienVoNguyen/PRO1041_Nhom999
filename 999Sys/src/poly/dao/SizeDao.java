@@ -21,15 +21,15 @@ public class SizeDao extends BaseDao<Size, String> {
     public String getQuery(String action) {
         switch (action) {
             case "INSERT":
-                return "INSERT INTO SIZE (TENSIZE) VALUES (?)";
+                return "INSERT INTO SIZE(MASIZE, LOAISIZE)VALUES (?,?)";
             case "UPDATE":
-                return "UPDATE SIZE SET TENSIZE =?, TRANGTHAI =?, WHERE MASIZE = ?";
+                return "UPDATE SIZE SET LOAISIZE =?, TRANGTHAI =? WHERE MASIZE = ?";
             case "DELETE":
-                return "DELETE FROM SIZE WHERE SIZE = ?";
+                return "UPDATE SIZE SET  TRANGTHAI = 0 WHERE MASIZE = ?";
             case "SELECTBYID":
-                return "SELECT * FROM   SIZE WHERE SIZE = ?";
+                return "SELECT * FROM   SIZE WHERE MASIZE = ?";
             case "SELECTALL":
-                return "SELECT * FROM   MAUSAC";
+                return "SELECT * FROM SIZE";
 
         }
         return "";
@@ -40,7 +40,8 @@ public class SizeDao extends BaseDao<Size, String> {
         switch (action) {
             case "INSERT":
                 return new Object[]{
-                    obj.getTenSize(),};
+                    obj.getMaSize(),
+                    obj.getTenSize()};
             case "UPDATE":
                 return new Object[]{
                     obj.getTenSize(),

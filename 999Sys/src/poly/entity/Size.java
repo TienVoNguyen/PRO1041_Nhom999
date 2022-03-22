@@ -10,24 +10,33 @@ package poly.entity;
  * @author Admin
  */
 public class Size {
-    private int maSize;
+
+    private String maSize;
     private String tenSize;
+
     private boolean trangThai;
 
     public Size() {
     }
 
-    public Size(int maSize, String tenSize, boolean trangThai) {
+    public Size(String maSize, String tenSize, boolean trangThai) {
         this.maSize = maSize;
         this.tenSize = tenSize;
         this.trangThai = trangThai;
     }
 
-    public int getMaSize() {
+    
+    public Size(String maSize, String tenSize) {
+        this.maSize = maSize;
+        this.tenSize = tenSize;
+    }
+    
+
+    public String getMaSize() {
         return maSize;
     }
 
-    public void setMaSize(int maSize) {
+    public void setMaSize(String maSize) {
         this.maSize = maSize;
     }
 
@@ -46,5 +55,5 @@ public class Size {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
+
 }
