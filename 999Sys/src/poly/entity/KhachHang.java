@@ -5,20 +5,25 @@
  */
 package poly.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
  */
 public class KhachHang {
-    private String maKH,maLoaiKH,hoTen,ngaySinh;
+    private String maKH;
+    private int maLoaiKH;
+    private String hoTen;
+    private Date ngaySinh,ngayTao;
     private boolean gioiTinh;
-    private String email,SDT,diaChi,ngayTao;
+    private String email,SDT,diaChi;
     private boolean trangThai;
 
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String maLoaiKH, String hoTen, String ngaySinh, boolean gioiTinh, String email, String SDT, String diaChi, String ngayTao, boolean trangThai) {
+    public KhachHang(String maKH, int maLoaiKH, String hoTen, Date ngaySinh, boolean gioiTinh, String email, String SDT, String diaChi, Date ngayTao, boolean trangThai) {
         this.maKH = maKH;
         this.maLoaiKH = maLoaiKH;
         this.hoTen = hoTen;
@@ -39,11 +44,11 @@ public class KhachHang {
         this.maKH = maKH;
     }
 
-    public String getMaLoaiKH() {
+    public int getMaLoaiKH() {
         return maLoaiKH;
     }
 
-    public void setMaLoaiKH(String maLoaiKH) {
+    public void setMaLoaiKH(int maLoaiKH) {
         this.maLoaiKH = maLoaiKH;
     }
 
@@ -55,11 +60,11 @@ public class KhachHang {
         this.hoTen = hoTen;
     }
 
-    public String getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -95,11 +100,11 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return ngayTao;
     }
 
-    public void setNgayTao(String ngayTao) {
+    public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }
 
@@ -110,6 +115,5 @@ public class KhachHang {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
-    
+
 }

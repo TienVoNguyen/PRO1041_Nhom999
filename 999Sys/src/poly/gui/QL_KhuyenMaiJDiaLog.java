@@ -582,6 +582,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+                
             }
             LoadDataToTable_KM();
             return;
