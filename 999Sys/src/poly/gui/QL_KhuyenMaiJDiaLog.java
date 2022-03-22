@@ -45,6 +45,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     CardLayout card_tbl;
     DefaultComboBoxModel<SanPham> model_sp;
     DefaultComboBoxModel<DanhMuc> model_dm;
+
     public QL_KhuyenMaiJDiaLog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -581,6 +582,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+                
             }
             LoadDataToTable_KM();
             return;

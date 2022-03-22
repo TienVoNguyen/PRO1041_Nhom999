@@ -12,7 +12,8 @@ import java.util.Date;
  * @author Admin
  */
 public class SanPham {
-    private int maSP,maDanhMuc;
+
+       private int maSP,maDanhMuc;
     private String maVach,anhSanPham,tenSanPham;
     private double giaNhap,giaBan;
     private int soLuong;
@@ -162,6 +163,11 @@ public class SanPham {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    @Override
+    public String toString() {
+        return maSP+"";
     }
     
     
