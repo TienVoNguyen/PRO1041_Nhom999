@@ -7,12 +7,6 @@ package poly.gui;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.Scene;
-import javafx.scene.chart.Chart;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;

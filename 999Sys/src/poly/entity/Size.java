@@ -31,7 +31,6 @@ public class Size {
         this.tenSize = tenSize;
     }
     
-
     public String getMaSize() {
         return maSize;
     }
