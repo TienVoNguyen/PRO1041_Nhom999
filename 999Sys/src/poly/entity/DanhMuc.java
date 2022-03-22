@@ -23,10 +23,9 @@ public class DanhMuc {
         this.ngayThem = ngayThem;
         this.trangThai = trangThai;
     }
-    public DanhMuc(String tenDanhMuc, String ngayThem, boolean trangThai) {
+    public DanhMuc(String tenDanhMuc, String ngayThem) {
         this.tenDanhMuc = tenDanhMuc;
         this.ngayThem = ngayThem;
-        this.trangThai = trangThai;
     }
     
     public int getMaDM() {

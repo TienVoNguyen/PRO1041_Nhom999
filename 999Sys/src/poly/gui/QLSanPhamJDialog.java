@@ -8,14 +8,21 @@ package poly.gui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import poly.helper.ButtonColumn;
 
 /**
  *
@@ -23,9 +30,8 @@ import javax.swing.table.TableCellRenderer;
  */
 public class QLSanPhamJDialog extends javax.swing.JDialog {
 
-    JButton button = new JButton();
     DefaultTableModel model;
-    public static  int i ;
+
     /**
      * Creates new form QL_SanPham
      */
@@ -35,44 +41,35 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         //full màn hình
 //        setSize(parent.getWidth(), parent.getHeight());
-//        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
+
         model = (DefaultTableModel) tblSanPham.getModel();
         //Add button vào bảng
         addButtonToTable();
-
         model.addRow(new Object[]{
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
         });
         model.addRow(new Object[]{
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+            2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
         });
+        
     }
 
     private void addButtonToTable() {
-       
-        // Add button vào trong bảng
-        this.button.setSize(50, 50);
-        tblSanPham.getColumn("tool").setCellRenderer(new ButtonRenderer());
-        tblSanPham.getColumn("tool").setCellEditor(new ButtonEditor(new JCheckBox()));
-        //Add sự kiện cho button
-        button.addActionListener(
-                new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                if (tblSanPham.getSelectedRow() == -1) {
-                    return;
-                }
-                if (i == 1) {
-                     model.removeRow(0);
-                }
-                i = tblSanPham.getRowCount();
-                model.removeRow(tblSanPham.getSelectedRow());
-                if (model.getColumnCount() == 1) {
-                    i = 1;
-                }
-                System.out.println(tblSanPham.getRowCount());
+
+        //Viết mã sử lỹ cho sự kiện xóa ở đây
+        Action delete = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int modelRow = Integer.valueOf(e.getActionCommand());
+                ((DefaultTableModel) table.getModel()).removeRow(modelRow);
             }
-        }
-        );
+        };
+        
+        //khởi tạo buttonColum để tạo button có sự kiện xóa vào bảng sản phẩm ở cột 12 đặt tên là xóa
+        ButtonColumn buttonColumn = new ButtonColumn(tblSanPham, delete, 12,"Xóa");
+        buttonColumn.setMnemonic(KeyEvent.VK_D);
+
     }
 
     /**
@@ -269,6 +266,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnLuu.setBackground(new java.awt.Color(102, 102, 255));
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
         jPanel15.add(btnLuu);
 
         btnMoi.setBackground(new java.awt.Color(102, 102, 255));
@@ -562,6 +564,15 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        model.addRow(new Object[]{
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+        });
+        model.addRow(new Object[]{
+            2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+        });
+    }//GEN-LAST:event_btnLuuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -681,36 +692,4 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
-    class ButtonRenderer extends JButton implements TableCellRenderer {
-
-        public ButtonRenderer() {
-            setOpaque(true);
-        }
-
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Xóa" : value.toString());
-            return this;
-        }
-    }
-
-    class ButtonEditor extends DefaultCellEditor {
-
-        private String label;
-
-        public ButtonEditor(JCheckBox checkBox) {
-            super(checkBox);
-        }
-
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            label = (value == null) ? "Xóa" : value.toString();
-            button.setText(label);
-            return button;
-        }
-
-        public Object getCellEditorValue() {
-            return new String(label);
-        }
-    }
 }

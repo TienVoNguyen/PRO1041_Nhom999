@@ -21,9 +21,9 @@ public class DanhMucDao extends BaseDao<DanhMuc, String>{
             case "INSERT":
                 return "INSERT INTO DANHMUC (TENDANHMUC,NGAYTHEM) VALUES (?,?)";
             case "UPDATE":
-                return " UPDATE DANHMUC SET TENDANHMUC =?, TRANGTHAI =? WHERE MADM = ?";
+                return "UPDATE DANHMUC SET TENDANHMUC =?, NGAYTHEM =?, TRANGTHAI = ? Where MADM = ?";
             case "DELETE":
-                return "DELETE FROM SANPHAM WHERE MASP = ?";
+                return "UPDATE DANHMUC SET TRANGTHAI = 0 Where MADM = ?";
             case "SELECTBYID":
                 return "SELECT TENDANHMUC,TRANGTHAI FROM DANHMUC WHERE MADM = ?";
             case "SELECTALL":
@@ -38,12 +38,14 @@ public class DanhMucDao extends BaseDao<DanhMuc, String>{
         switch (action) {
             case "INSERT":
                 return new Object[]{
-                    obj.getTenDanhMuc()
+                    obj.getTenDanhMuc(),
+                    obj.getNgayThem()
                 };
             case "UPDATE":
                 return new Object[]{
                    obj.getTenDanhMuc(),
-                   obj.getTenDanhMuc(),
+                   obj.getNgayThem(),
+                   obj.isTrangThai(),
                    obj.getMaDM()
                 };
         }
