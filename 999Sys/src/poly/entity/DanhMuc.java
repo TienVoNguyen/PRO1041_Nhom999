@@ -55,5 +55,10 @@ public class DanhMuc {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    @Override
+    public String toString() {
+        return tenDanhMuc; //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -5,6 +5,8 @@
  */
 package poly.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
@@ -14,7 +16,7 @@ public class SanPham {
     private String maVach,anhSanPham,tenSanPham;
     private double giaNhap,giaBan;
     private int soLuong;
-    private String ngayNhap;
+    private Date ngayNhap;
     private boolean apDungKM;
     private int maDVT,maMau;
     private String maSize;
@@ -24,7 +26,7 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int maSP, int maDanhMuc, String maVach, String anhSanPham, String tenSanPham, double giaNhap, double giaBan, int soLuong, String ngayNhap, boolean apDungKM, int maDVT, int maMau, String maSize, int maChatLieu, boolean trangThai) {
+    public SanPham(int maSP, int maDanhMuc, String maVach, String anhSanPham, String tenSanPham, double giaNhap, double giaBan, int soLuong, Date ngayNhap, boolean apDungKM, int maDVT, int maMau, String maSize, int maChatLieu, boolean trangThai) {
         this.maSP = maSP;
         this.maDanhMuc = maDanhMuc;
         this.maVach = maVach;
@@ -106,11 +108,11 @@ public class SanPham {
         this.soLuong = soLuong;
     }
 
-    public String getNgayNhap() {
+    public Date getNgayNhap() {
         return ngayNhap;
     }
 
-    public void setNgayNhap(String ngayNhap) {
+    public void setNgayNhap(Date ngayNhap) {
         this.ngayNhap = ngayNhap;
     }
 

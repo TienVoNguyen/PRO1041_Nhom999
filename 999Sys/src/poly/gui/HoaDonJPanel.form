@@ -209,7 +209,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="null"/>
+                              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                                <BevelBorder bevelType="1"/>
+                              </Border>
                             </Property>
                           </Properties>
                           <Constraints>
@@ -699,8 +701,8 @@
                                   <Component id="cbbDanhMucSP" max="32767" attributes="0"/>
                                   <Component id="jLabel2" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" pref="25" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="528" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" pref="535" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -720,16 +722,21 @@
                             </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="6" rowCount="0">
+                                <Column editable="false" title="M&#xe3; SP" type="java.lang.Object"/>
+                                <Column editable="false" title="M&#xe3; V&#x1ea1;ch" type="java.lang.Object"/>
                                 <Column editable="false" title="T&#xea;n SP" type="java.lang.Object"/>
                                 <Column editable="false" title="&#x110;&#x1a1;n Gi&#xe1;" type="java.lang.Object"/>
                                 <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                                <Column editable="false" title="Gi&#xe1; Sau Khuy&#x1ebf;n M&#x1ea1;i" type="java.lang.Object"/>
                                 <Column editable="true" title="Th&#xea;m V&#xe0;o H&#xf3;a &#x110;&#x1a1;n" type="java.lang.Object"/>
-                                <Column editable="false" title="M&#xe3; SP" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -755,11 +762,6 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
                               </TableColumnModel>
                             </Property>
                             <Property name="rowHeight" type="int" value="40"/>
@@ -779,6 +781,9 @@
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbDanhMucSPItemStateChanged"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
@@ -813,9 +818,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane3" max="32767" attributes="0"/>
-                                  <Component id="jPanel11" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Component id="jScrollPane3" pref="640" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jPanel11" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
                                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
@@ -829,16 +838,14 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="226" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" pref="280" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -856,7 +863,7 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="10" rowCount="0">
                                 <Column editable="false" title="M&#xe3; Kh&#xe1;ch H&#xe0;ng" type="java.lang.Object"/>
-                                <Column editable="false" title="Lo&#x1ea1;i Kh&#xe1;ch H&#xe0;ng" type="java.lang.Object"/>
+                                <Column editable="false" title="M&#xe3; Lo&#x1ea1;i Kh&#xe1;ch H&#xe0;ng" type="java.lang.Object"/>
                                 <Column editable="false" title="T&#xea;n Kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                                 <Column editable="false" title="&#x110;&#x1ecb;a Ch&#x1ec9;" type="java.lang.Object"/>
                                 <Column editable="false" title="Gi&#x1edb;i T&#xed;nh" type="java.lang.Object"/>
@@ -1000,7 +1007,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                                  <EmptySpace pref="98" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1105,6 +1112,9 @@
                               <StringArray count="0"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbLoaKHItemStateChanged"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>

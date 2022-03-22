@@ -7,6 +7,7 @@ package poly.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import poly.entity.SanPham;
 
 /**
@@ -28,6 +29,8 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
                 return "SELECT MADM, MAVACH, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, APDUNGKM, MADVT, MAMAU, MASIZE, MACHATLIEU, TRANGTHAI FROM   SANPHAM WHERE (MASP = ?)";
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
+            case "SELECTWHERE":
+                return "SELECT * FROM   SANPHAM WHERE MADM =  ? and MASP like ? or TENSP like ?";
         }
         return "";
     }
@@ -67,6 +70,12 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
                     obj.isTrangThai(),
                     obj.getMaSP()
                 };
+            case "SELECTWHERE":
+                return new Object[]{
+                    obj.getMaDanhMuc(),
+                    "%"+obj.getMaSP()+"%",
+                    "%"+obj.getTenSanPham()+"%"
+                };
         }
         return null;
     }
@@ -82,7 +91,7 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
         sp.setGiaNhap(rs.getDouble("GIANHAP"));
         sp.setGiaBan(rs.getDouble("GIABAN"));
         sp.setSoLuong(rs.getInt("SOLUONG"));
-        sp.setNgayNhap(rs.getString("NGAYNHAP"));
+        sp.setNgayNhap(rs.getDate("NGAYNHAP"));
         sp.setApDungKM(rs.getBoolean("APDUNGKM"));
         sp.setMaDVT(rs.getInt("MADVT"));
         sp.setMaMau(rs.getInt("MAMAU"));
@@ -91,5 +100,8 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
         sp.setTrangThai(rs.getBoolean("TRANGTHAI"));
        return sp;
     }
-
+    
+    public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception{
+        return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", sp));
+    }
 }
