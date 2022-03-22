@@ -47,4 +47,9 @@ public class LoaiKhachHang {
         this.trangThai = trangThai;
     }
 
+    @Override
+    public String toString() {
+        return tenLoaiKH;
+    }
+
 }

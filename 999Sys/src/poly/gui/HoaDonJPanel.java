@@ -10,7 +10,11 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
@@ -21,10 +25,15 @@ import javax.swing.table.DefaultTableModel;
 import poly.dao.CTHoaDonDao;
 import poly.dao.DanhMucDao;
 import poly.dao.HoaDonDao;
+import poly.dao.KhachHangDao;
+import poly.dao.LoaiKhachHangDao;
 import poly.dao.SanPhamDao;
 import poly.entity.DanhMuc;
+import poly.entity.KhachHang;
 import poly.entity.LoaiKhachHang;
+import poly.entity.SanPham;
 import poly.helper.ButtonColumn;
+import poly.helper.XDate;
 
 /**
  *
@@ -36,32 +45,38 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
     int slNhap;
     int slGoc;
-    
+
     DefaultTableModel dtmSanPham;
     DefaultTableModel dtmKhachHang;
     DefaultTableModel dtmHoaDon;
     DefaultComboBoxModel<DanhMuc> CBBModelDM;
     DefaultComboBoxModel<LoaiKhachHang> CBBModelLKH;
-    
+
     DanhMucDao daoDM;
     SanPhamDao daoSP;
-    //khách hàng DAO?
-    //Loại KH DAO?
+    KhachHangDao daoKH;
+    LoaiKhachHangDao daoLKH;
     HoaDonDao DAOHD;
     CTHoaDonDao DAOCTHD;
-    
+
     boolean isSanPhamSelected = true;
     JTabbedPane pnlTabs;
 
     public HoaDonJPanel(JTabbedPane pnlTabs) {
         initComponents();
-        
+        this.daoDM = new DanhMucDao();
+        this.daoSP = new SanPhamDao();
+        this.daoKH = new KhachHangDao();
+        this.daoLKH = new LoaiKhachHangDao();
+        this.DAOHD = new HoaDonDao();
+        this.DAOCTHD = new CTHoaDonDao();
+
         this.dtmHoaDon = new DefaultTableModel();
         this.dtmKhachHang = new DefaultTableModel();
         this.dtmSanPham = new DefaultTableModel();
         this.CBBModelDM = new DefaultComboBoxModel<>();
         this.CBBModelLKH = new DefaultComboBoxModel<>();
-        
+
         this.dtmHoaDon = (DefaultTableModel) tblHoaDon.getModel();
         this.dtmKhachHang = (DefaultTableModel) tblKhachHang.getModel();
         this.dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
@@ -70,14 +85,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         //truyền vào pnlTabs từ MainFm
         this.pnlTabs = pnlTabs;
-        
-        this.CBBModelDM = (DefaultComboBoxModel)cbbDanhMucSP.getModel();
-        this.CBBModelLKH = (DefaultComboBoxModel)cbbLoaKH.getModel();
-        
+
+        this.CBBModelDM = (DefaultComboBoxModel) cbbDanhMucSP.getModel();
+        this.CBBModelLKH = (DefaultComboBoxModel) cbbLoaKH.getModel();
+
         loadDataToCBBDM();
         loadDataToCBBLKH();
-        loadDataToTableSanPham();
         
+        
+
     }
 
     private void addButtonToTable() {
@@ -98,7 +114,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 int sl = (int) table.getValueAt(modelRow, 2) - 1;
-                double gia = Double.parseDouble(table.getValueAt(modelRow, 6) + "");
+                double gia = Double.parseDouble(table.getValueAt(modelRow, 5) + "");
                 if (sl == 0) {
                     return;
                 }
@@ -113,7 +129,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 int sl = (int) table.getValueAt(modelRow, 2) + 1;
-                 double gia = Double.parseDouble(table.getValueAt(modelRow, 6) + "");
+                double gia = Double.parseDouble(table.getValueAt(modelRow, 5) + "");
                 ((DefaultTableModel) table.getModel()).setValueAt(sl, modelRow, 2);
                 ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", sl * gia), modelRow, 7);
                 tongTien();
@@ -136,26 +152,40 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
-                slGoc = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 2)) + "");
-                
+                slGoc = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 4)) + "");
+                int maSP = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0)) + "");
                 boolean a = nhapSl();
                 boolean b = checkSL();
                 if (!a && !b) {
+                    boolean c = true;
+                    for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+                        int masphd = Integer.parseInt(tblHoaDon.getValueAt(i, 8) + "");
+                        int sl = Integer.parseInt(tblHoaDon.getValueAt(i, 2) + "");
+                        double dg = Double.parseDouble(tblHoaDon.getValueAt(i, 5) + "");
+                        if (maSP == masphd) {
+                            tblHoaDon.setValueAt(slNhap + sl, i, 2);
+                            tblHoaDon.setValueAt((slNhap + sl) * dg, i, 7);
+                            ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
+                            tongTien();
+                            return;
+                        }
+                    }
+
                     double thanhTien = Double.parseDouble(((DefaultTableModel) table.getModel()).getValueAt(modelRow, 3) + "") * slNhap;
 
                     Object[] data = new Object[]{
                         null,
-                        ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0),
+                        ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 2),
                         slNhap,
                         null,
                         null,
-                        (((DefaultTableModel) table.getModel()).getValueAt(modelRow, 1)),
                         (((DefaultTableModel) table.getModel()).getValueAt(modelRow, 3)),
+                        null,
                         String.format("%.0f", thanhTien),
-                        ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 5)
+                        ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0)
                     };
-                    addDataToHoaDon(data);
-                    ((DefaultTableModel) table.getModel()).setValueAt(slGoc-slNhap, modelRow, 2);
+                    dtmHoaDon.addRow(data);
+                    ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
                     tongTien();
                 }
 
@@ -324,7 +354,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         txtTimKiem.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtTimKiem.setText("Tìm Kiếm");
-        txtTimKiem.setBorder(null);
+        txtTimKiem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel10.add(txtTimKiem, java.awt.BorderLayout.CENTER);
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 51));
@@ -551,6 +581,11 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         }
 
         cbbDanhMucSP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cbbDanhMucSP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbDanhMucSPItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -588,7 +623,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Khách Hàng", "Loại Khách Hàng", "Tên Khách hàng", "Địa Chỉ", "Giới Tính", "Email", "SDT", "Ngày Sinh", "Ngày Tham Gia", "Thêm vào hóa đơn"
+                "Mã Khách Hàng", "Mã Loại Khách Hàng", "Tên Khách hàng", "Địa Chỉ", "Giới Tính", "Email", "SDT", "Ngày Sinh", "Ngày Tham Gia", "Thêm vào hóa đơn"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -620,6 +655,12 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         lblLoaiKH.setForeground(new java.awt.Color(255, 255, 255));
         lblLoaiKH.setText("Loại khách hàng");
         lblLoaiKH.setPreferredSize(new java.awt.Dimension(60, 0));
+
+        cbbLoaKH.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbLoaKHItemStateChanged(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -850,6 +891,20 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         changeBackgroud_SP_KH();
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
+    private void cbbLoaKHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLoaKHItemStateChanged
+        LoaiKhachHang lkh = (LoaiKhachHang) cbbLoaKH.getSelectedItem();
+        KhachHang kh = new KhachHang();
+        kh.setMaLoaiKH(lkh.getMaLoaiKH());
+        loadDataToTableKhachHang(kh);
+    }//GEN-LAST:event_cbbLoaKHItemStateChanged
+
+    private void cbbDanhMucSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbDanhMucSPItemStateChanged
+        DanhMuc dm = (DanhMuc) cbbDanhMucSP.getSelectedItem();
+        SanPham sp = new SanPham();
+        sp.setMaDanhMuc(dm.getMaDM());
+        loadDataToTableSanPham(sp);
+    }//GEN-LAST:event_cbbDanhMucSPItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TenKH;
     private javax.swing.JButton btnHoaDonMoi;
@@ -929,10 +984,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void addDataToHoaDon(Object[] data) {
-        this.dtmHoaDon.addRow(data);
-    }
-
     private void tongTien() {
         double tongTien = 0;
         double giamGia = 0;
@@ -977,11 +1028,72 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }
 
     private void loadDataToCBBDM() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.CBBModelDM.removeAllElements();
+        List<DanhMuc> list = new ArrayList<>();
+        try {
+            list = this.daoDM.selectAll();
+            for (DanhMuc danhMuc : list) {
+                this.CBBModelDM.addElement(danhMuc);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void loadDataToCBBLKH() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.CBBModelLKH.removeAllElements();
+        List<LoaiKhachHang> list = new ArrayList<>();
+        try {
+            list = this.daoLKH.selectAll();
+            for (LoaiKhachHang loaiKhachHang : list) {
+                this.CBBModelLKH.addElement(loaiKhachHang);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadDataToTableSanPham(SanPham sp) {
+        this.dtmSanPham.setRowCount(0);
+        List<SanPham> list = new ArrayList<>();
+        try {
+            list = this.daoSP.selectWhere(sp);
+            for (SanPham sp1 : list) {
+                this.dtmSanPham.addRow(new Object[]{
+                    sp1.getMaSP(),
+                    sp1.getMaVach(),
+                    sp1.getTenSanPham(),
+                    sp1.getGiaBan(),
+                    sp1.getSoLuong()
+                });
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadDataToTableKhachHang(KhachHang kh) {
+        this.dtmKhachHang.setRowCount(0);
+        List<KhachHang> list = new ArrayList<>();
+        try {
+            list = this.daoKH.selectWhere(kh);
+            for (KhachHang kh1 : list) {
+                String gt = kh1.isGioiTinh()? "Nam":"Nữ";
+                this.dtmKhachHang.addRow(new Object[]{
+                    kh1.getMaKH(),
+                    kh1.getMaLoaiKH(),
+                    kh1.getHoTen(),
+                    kh1.getDiaChi(),
+                    gt,
+                    kh1.getEmail(),
+                    kh1.getSDT(),
+                    XDate.toString(kh1.getNgaySinh(), "dd/MM/yyyy"),
+                    XDate.toString(kh1.getNgayTao(), "dd/MM/yyyy")
+                });
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
