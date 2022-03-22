@@ -376,7 +376,6 @@ public class MainFrm extends javax.swing.JFrame {
                 if (h.getMaTT() == 1) {
                     k = this.daoKH.selectById(h.getMaKH());
                     listCTHD = this.daoCTHD.selectCTHD(h.getMaHD());
-                    System.out.println(k.getMaKH() + h.getMaHD() + listCTHD.get(0).getMaSP());
                     HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
                     pnlTabs.addTab(k.getMaKH() , hdpnl);
                     pnlTabs.setSelectedComponent(hdpnl);
