@@ -7,6 +7,7 @@ package poly.gui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
@@ -18,6 +19,8 @@ import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -33,6 +36,7 @@ import poly.entity.KhachHang;
 import poly.entity.LoaiKhachHang;
 import poly.entity.SanPham;
 import poly.helper.ButtonColumn;
+import poly.helper.ImageColumn;
 import poly.helper.XDate;
 
 /**
@@ -82,6 +86,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         this.dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
         //Add button vào bảng
         addButtonToTable();
+        tblSanPham.getColumn("Ảnh SP").setCellRenderer(new ImageColumn());
 
         //truyền vào pnlTabs từ MainFm
         this.pnlTabs = pnlTabs;
@@ -91,8 +96,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         loadDataToCBBDM();
         loadDataToCBBLKH();
-        
-        
 
     }
 
@@ -103,8 +106,29 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
-                ((DefaultTableModel) table.getModel()).removeRow(modelRow);
-                tongTien();
+                int masphd = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 8)) + "");
+                slGoc = Integer.valueOf(((DefaultTableModel) table.getModel()).getValueAt(modelRow, 2) + "");
+                for (int i = 0; i < tblSanPham.getRowCount(); i++) {
+                    int masp = Integer.parseInt(tblSanPham.getValueAt(i, 0) + "");
+                    int sl = Integer.parseInt(tblSanPham.getValueAt(i, 4) + "");
+                    if (masp == masphd) {
+                        tblSanPham.setValueAt(slGoc + sl, i, 4);
+
+                        SanPham sp = new SanPham();
+                        sp.setMaSP(masp);
+                        sp.setSoLuong(slGoc + sl);
+                        try {
+                            daoSP.updateSP(sp);
+                            
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        ((DefaultTableModel) table.getModel()).removeRow(modelRow);
+                        tongTien();
+                    }
+                }
+
             }
 
         };
@@ -114,13 +138,33 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 int sl = (int) table.getValueAt(modelRow, 2) - 1;
+                int masphd = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 8)) + "");
                 double gia = Double.parseDouble(table.getValueAt(modelRow, 5) + "");
                 if (sl == 0) {
                     return;
                 }
-                ((DefaultTableModel) table.getModel()).setValueAt(sl, modelRow, 2);
-                ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", sl * gia), modelRow, 7);
-                tongTien();
+                for (int i = 0; i < tblSanPham.getRowCount(); i++) {
+                    int masp = Integer.parseInt(tblSanPham.getValueAt(i, 0) + "");
+                    int slsp = Integer.parseInt(tblSanPham.getValueAt(i, 4) + "");
+                    if (masp == masphd) {
+                        tblSanPham.setValueAt(slsp + 1, i, 4);
+
+                        SanPham sp = new SanPham();
+                        sp.setMaSP(masp);
+                        sp.setSoLuong(slsp + 1);
+                        try {
+                            daoSP.updateSP(sp);
+                            
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        ((DefaultTableModel) table.getModel()).setValueAt(sl, modelRow, 2);
+                        ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", sl * gia), modelRow, 7);
+                        tongTien();
+                    }
+                }
+
             }
         };
         //Viết mã sử lỹ cho sự kiện Tăng ở đây
@@ -129,10 +173,33 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 int sl = (int) table.getValueAt(modelRow, 2) + 1;
+                int masphd = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 8)) + "");
                 double gia = Double.parseDouble(table.getValueAt(modelRow, 5) + "");
-                ((DefaultTableModel) table.getModel()).setValueAt(sl, modelRow, 2);
-                ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", sl * gia), modelRow, 7);
-                tongTien();
+                for (int i = 0; i < tblSanPham.getRowCount(); i++) {
+                    int masp = Integer.parseInt(tblSanPham.getValueAt(i, 0) + "");
+                    int slsp = Integer.parseInt(tblSanPham.getValueAt(i, 4) + "");
+
+                    if (masp == masphd) {
+                        if (slsp == 0) {
+                            return;
+                        }
+                        tblSanPham.setValueAt(slsp - 1, i, 4);
+
+                        SanPham sp = new SanPham();
+                        sp.setMaSP(masp);
+                        sp.setSoLuong(slsp - 1);
+                        try {
+                            daoSP.updateSP(sp);
+                            
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        ((DefaultTableModel) table.getModel()).setValueAt(sl, modelRow, 2);
+                        ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", sl * gia), modelRow, 7);
+                        tongTien();
+                    }
+                }
 
             }
         };
@@ -167,6 +234,14 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                             tblHoaDon.setValueAt((slNhap + sl) * dg, i, 7);
                             ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
                             tongTien();
+                            SanPham sp = new SanPham();
+                            sp.setMaSP(maSP);
+                            sp.setSoLuong(slGoc - slNhap);
+                            try {
+                                daoSP.updateSP(sp);
+                            } catch (Exception ex) {
+                                Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             return;
                         }
                     }
@@ -186,6 +261,14 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                     };
                     dtmHoaDon.addRow(data);
                     ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
+                    SanPham sp = new SanPham();
+                    sp.setMaSP(maSP);
+                    sp.setSoLuong(slGoc - slNhap);
+                    try {
+                        daoSP.updateSP(sp);
+                    } catch (Exception ex) {
+                        Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     tongTien();
                 }
 
@@ -561,23 +644,26 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã SP", "Mã Vạch", "Tên SP", "Đơn Giá", "Số Lượng", "Thêm Vào Hóa Đơn"
+                "Mã SP", "Mã Vạch", "Tên SP", "Đơn Giá", "Số Lượng", "Thêm Vào Hóa Đơn", "Ảnh SP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblSanPham.setRowHeight(40);
+        tblSanPham.setRowHeight(64);
         jScrollPane2.setViewportView(tblSanPham);
         if (tblSanPham.getColumnModel().getColumnCount() > 0) {
             tblSanPham.getColumnModel().getColumn(5).setMinWidth(120);
             tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(120);
             tblSanPham.getColumnModel().getColumn(5).setMaxWidth(120);
+            tblSanPham.getColumnModel().getColumn(6).setMinWidth(48);
+            tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(48);
+            tblSanPham.getColumnModel().getColumn(6).setMaxWidth(48);
         }
 
         cbbDanhMucSP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -1059,12 +1145,18 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         try {
             list = this.daoSP.selectWhere(sp);
             for (SanPham sp1 : list) {
+                JLabel ImgLabel = new JLabel();
+                ImageIcon icon = new ImageIcon(".\\AnhSP\\quanJeanNamDen.jpg");
+                Image img = icon.getImage().getScaledInstance(48, 64, Image.SCALE_SMOOTH);
+                ImgLabel.setIcon(new ImageIcon(img));
                 this.dtmSanPham.addRow(new Object[]{
                     sp1.getMaSP(),
                     sp1.getMaVach(),
                     sp1.getTenSanPham(),
                     sp1.getGiaBan(),
-                    sp1.getSoLuong()
+                    sp1.getSoLuong(),
+                    null,
+                    ImgLabel
                 });
             }
         } catch (Exception ex) {
@@ -1078,7 +1170,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         try {
             list = this.daoKH.selectWhere(kh);
             for (KhachHang kh1 : list) {
-                String gt = kh1.isGioiTinh()? "Nam":"Nữ";
+                String gt = kh1.isGioiTinh() ? "Nam" : "Nữ";
                 this.dtmKhachHang.addRow(new Object[]{
                     kh1.getMaKH(),
                     kh1.getMaLoaiKH(),
@@ -1096,4 +1188,11 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         }
     }
 
+    public void reloadTableSP() {
+        DanhMuc dm = (DanhMuc) cbbDanhMucSP.getSelectedItem();
+        SanPham sp = new SanPham();
+        sp.setMaDanhMuc(dm.getMaDM());
+        loadDataToTableSanPham(sp);
+
+    }
 }

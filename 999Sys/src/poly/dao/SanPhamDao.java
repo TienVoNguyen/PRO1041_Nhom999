@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import poly.entity.SanPham;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -31,6 +32,8 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":
                 return "SELECT * FROM   SANPHAM WHERE MADM =  ? and MASP like ? or TENSP like ?";
+            case "UPDATEMASP":
+                return "UPDATE SANPHAM SET SOLUONG =? WHERE MASP = ?";
         }
         return "";
     }
@@ -76,6 +79,11 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
                     "%"+obj.getMaSP()+"%",
                     "%"+obj.getTenSanPham()+"%"
                 };
+            case "UPDATEMASP":
+                return new Object[]{
+                    obj.getSoLuong(),
+                    obj.getMaSP()
+                };
         }
         return null;
     }
@@ -103,5 +111,9 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
     
     public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception{
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", sp));
+    }
+    
+    public boolean updateSP(SanPham e) throws Exception {
+        return XJDBC.update(this.getQuery("UPDATEMASP"), this.getParams("UPDATEMASP", e)) > 0;
     }
 }

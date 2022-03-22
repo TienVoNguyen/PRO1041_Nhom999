@@ -25,7 +25,7 @@ public class MainFrm extends javax.swing.JFrame {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);//hiển thị toàn màn hình
         
         // Đăng nhập
-//        new LoginJDialog(this, true).setVisible(true);
+        new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
         HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
         
@@ -60,13 +60,11 @@ public class MainFrm extends javax.swing.JFrame {
         btnKhoaManHinh = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnKhuyenMai = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         pnlTabs = new javax.swing.JTabbedPane();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
@@ -191,9 +189,14 @@ public class MainFrm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
 
-        jButton1.setText("jButton1");
-        jButton1.setPreferredSize(new java.awt.Dimension(73, 40));
-        jPanel1.add(jButton1);
+        btnKhuyenMai.setText("Quản Lý Khuyến Mại");
+        btnKhuyenMai.setPreferredSize(new java.awt.Dimension(173, 40));
+        btnKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhuyenMaiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnKhuyenMai);
 
         jButton2.setText("jButton1");
         jButton2.setPreferredSize(new java.awt.Dimension(73, 40));
@@ -201,6 +204,11 @@ public class MainFrm extends javax.swing.JFrame {
 
         jButton3.setText("jButton1");
         jButton3.setPreferredSize(new java.awt.Dimension(73, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
 
         jButton4.setText("jButton1");
@@ -211,20 +219,17 @@ public class MainFrm extends javax.swing.JFrame {
         jButton5.setPreferredSize(new java.awt.Dimension(73, 40));
         jPanel1.add(jButton5);
 
-        jButton6.setText("jButton1");
-        jButton6.setPreferredSize(new java.awt.Dimension(73, 40));
-        jPanel1.add(jButton6);
-
-        jButton7.setText("jButton1");
-        jButton7.setPreferredSize(new java.awt.Dimension(73, 40));
-        jPanel1.add(jButton7);
-
         pnlFooter.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pnlMain.add(pnlFooter, java.awt.BorderLayout.PAGE_END);
 
         pnlTabs.setBackground(new java.awt.Color(255, 204, 153));
         pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        pnlTabs.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                pnlTabsStateChanged(evt);
+            }
+        });
         pnlMain.add(pnlTabs, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
@@ -256,6 +261,19 @@ public class MainFrm extends javax.swing.JFrame {
     private void mniQLSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLSanPhamActionPerformed
         new QLSanPhamJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_mniQLSanPhamActionPerformed
+
+    private void pnlTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pnlTabsStateChanged
+        HoaDonJPanel hd = (HoaDonJPanel) pnlTabs.getSelectedComponent();
+        hd.reloadTableSP();
+    }//GEN-LAST:event_pnlTabsStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
+        new QL_KhuyenMaiJDiaLog(this, true).setVisible(true);
+    }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,16 +313,14 @@ public class MainFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnKhoaManHinh;
+    private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMinimise;
     private javax.swing.JButton btnThemHoaDon;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -320,4 +336,6 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMain;
     private javax.swing.JTabbedPane pnlTabs;
     // End of variables declaration//GEN-END:variables
+
+
 }
