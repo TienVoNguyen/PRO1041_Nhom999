@@ -20,7 +20,9 @@ import poly.dao.SanPhamDao;
 import poly.entity.KhuyenMai;
 import poly.entity.SanPham;
 import poly.entity.DanhMuc;
+import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XValidate;
 
 /**
  *
@@ -534,6 +536,9 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        if (Validate_QLKhuyenMai()) {
+            return;
+        }
         boolean hinhthucAD = true;
         if (radioPT.isSelected()) {
             hinhthucAD = false;
@@ -558,36 +563,48 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if (Validate_QLKhuyenMai()) {
+            return;
+        }
+        ArrayList<String> s = SanPhamDao.ListSp_NoKhuyenMai(false);
+        for (int i = 0; i < s.size(); i++) {
+            String get = s.get(i);
+            if (cbbSP.getSelectedItem().toString().equals(get)) {
+                Messeger.alert(this, "Sản Phẩm này Không Hỗ Trợ Giảm Giá");
+                return;
+            }
+        }
+
         if (radioDanhMuc.isSelected()) {
             DanhMuc dm = (DanhMuc) model_dm.getSelectedItem();
             ArrayList<String> x = KhuyenMaiDAO.getMaSP_InDanhMuc(dm.getMaDM());
             for (int i = 0; i < x.size(); i++) {
                 String get = x.get(i);
                 boolean hinhthucAD = true;
-        if (radioPT.isSelected()) {
-            hinhthucAD = false;
-        }
+                if (radioPT.isSelected()) {
+                    hinhthucAD = false;
+                }
 
-        try {
-            String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
-            String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
-            kmDao.insert(new KhuyenMai(
-                    Integer.parseInt(get),
-                    Double.parseDouble(txtGiamToiDa.getText()),
-                    Double.parseDouble(txtGiaTri.getText()),
-                    txtTenKhuyenMai.getText(),
-                    ngaybd,
-                    ngaykt,
-                    hinhthucAD));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-                
+                try {
+                    String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
+                    String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
+                    kmDao.insert(new KhuyenMai(
+                            Integer.parseInt(get),
+                            Double.parseDouble(txtGiamToiDa.getText()),
+                            Double.parseDouble(txtGiaTri.getText()),
+                            txtTenKhuyenMai.getText(),
+                            ngaybd,
+                            ngaykt,
+                            hinhthucAD));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
             }
             LoadDataToTable_KM();
             return;
         }
-        
+
         boolean hinhthucAD = true;
         if (radioPT.isSelected()) {
             hinhthucAD = false;
@@ -643,6 +660,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             return;
         }
         setText(viTri);
+        if (tblqlkm.getValueAt(viTri, 2).toString().trim().length() > 3) {
+            radiovnd.setSelected(true);
+        } else {
+            radioPT.setSelected(true);
+        }
     }//GEN-LAST:event_tblqlkmMouseClicked
 
     private void btnThungRacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThungRacActionPerformed
@@ -668,7 +690,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
         txtKhuyenMai.setText(String.valueOf(tblhethang.getValueAt(viTri, 0)));
         txtTenKhuyenMai.setText(String.valueOf(tblhethang.getValueAt(viTri, 1)));
-        txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)));
+        if (String.valueOf(tblhethang.getValueAt(viTri, 2)).length() > 3) {
+            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("đ", ""));
+        } else {
+            txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)).replace("%", ""));
+        }
         txtGiamToiDa.setText(String.valueOf(tblhethang.getValueAt(viTri, 3)));
         txtNgayBatDau.setText(String.valueOf(tblhethang.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tblhethang.getValueAt(viTri, 5)));
@@ -731,7 +757,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     private void setText(int viTri) {
         txtKhuyenMai.setText(String.valueOf(tblqlkm.getValueAt(viTri, 0)));
         txtTenKhuyenMai.setText(String.valueOf(tblqlkm.getValueAt(viTri, 1)));
-        txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)));
+        if (String.valueOf(tblqlkm.getValueAt(viTri, 2)).length() > 3) {
+            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("đ", ""));
+        } else {
+            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("%", ""));
+        }
         txtGiamToiDa.setText(String.valueOf(tblqlkm.getValueAt(viTri, 3)));
         txtNgayBatDau.setText(String.valueOf(tblqlkm.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tblqlkm.getValueAt(viTri, 5)));
@@ -816,7 +846,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         LoadDataToCBBSP();
         LoadDataToCBBDM();
         LoadDataToTable_KM();
-        
+
         txtKhuyenMai.setEnabled(false);
         if (tblqlkm.getRowCount() > 0) {
             setText(0);
@@ -832,10 +862,16 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 String ngaybd = XDate.toString(XDate.toDate(get.getNgayBD(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 if (get.isTrangThai()) {
+                    String magaming = String.format("%.0f", get.getGiaTri());
+                    if (magaming.trim().length() <= 3) {
+                        magaming = magaming + "%";
+                    } else {
+                        magaming = magaming + "đ";
+                    }
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
-                        get.getGiaTri(),
+                        magaming,
                         get.getGiamToiDa(),
                         ngaybd,
                         ngaykt,
@@ -843,7 +879,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                     };
                     model_tbl.addRow(rowData);
                 }
-                
+
             }
             Auto_HetHan_KhuyenMai();
         } catch (Exception ex) {
@@ -861,10 +897,16 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 String ngaybd = XDate.toString(XDate.toDate(get.getNgayBD(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 if (!get.isTrangThai()) {
+                    String magaming = String.format("%.0f", get.getGiaTri());
+                    if (magaming.trim().length() <= 3) {
+                        magaming = magaming + "%";
+                    } else {
+                        magaming = magaming + "đ";
+                    }
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
-                        get.getGiaTri(),
+                        magaming,
                         get.getGiamToiDa(),
                         ngaybd,
                         ngaykt,
@@ -908,13 +950,13 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     private void Auto_HetHan_KhuyenMai() {
         for (int i = 0; i < tblqlkm.getRowCount(); i++) {
             String ngaykt = XDate.toString(XDate.toDate(
-                            String.valueOf(tblqlkm.getValueAt(i, 5)), "dd/MM/yyyy"), "yyyy-MM-dd");
+                    String.valueOf(tblqlkm.getValueAt(i, 5)), "dd/MM/yyyy"), "yyyy-MM-dd");
             Date date1 = Date.valueOf(java.time.LocalDate.now());
             Date date2 = Date.valueOf(ngaykt);
             String relation;
             if (date1.equals(date2)) {
                 relation = "Hai ngày trùng nhau";
-            }else if (date1.before(date2)) // Hoặc  else if (date1.after(date2)== false)
+            } else if (date1.before(date2)) // Hoặc  else if (date1.after(date2)== false)
             {
                 relation = "Trước";
             } else {
@@ -930,5 +972,47 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             }
         }
 
+    }
+
+    private boolean Validate_QLKhuyenMai() {
+        StringBuilder x = new StringBuilder();
+        if (XValidate.isEmpty(txtTenKhuyenMai)) {
+            x.append("Không Để Trống Tên Khuyến Mại\n");
+        } else if (XValidate.isEmpty(txtGiaTri)) {
+            x.append("Không Để Trống Giá Trị Khuyến Mại\n");
+        } else if (Double.parseDouble(txtGiaTri.getText()) < 0) {
+            if (XValidate.focus_Errol(false, txtGiaTri)) {
+                x.append("Giá Trị Phải Lớn Hơn 0 \n");
+            }
+        } else if (XValidate.isNotNumber(txtGiaTri)) {
+            x.append("Giá Trị Phải Nhập Số \n");
+        } else if (XValidate.isEmpty(txtGiamToiDa)) {
+            x.append("Không Để Trống Giảm Giá Tối Đa\n");
+        } else if (XValidate.isNotNumber(txtGiamToiDa)) {
+            x.append("Giảm Giá Tối Đa Phải Nhập Số\n");
+        } else if (XValidate.isEmpty(txtNgayBatDau)) {
+            x.append("Không Để Trống Ngày Bắt Đầu Khuyến Mại\n");
+        } else if (XValidate.IsNotDate(txtNgayBatDau)) {
+            x.append("Vui Lòng Nhập Đúng Định Dạng Ngày Tháng Năm(dd/MM/yyyy)\n");
+        } else if (XValidate.isEmpty(txtNgayKetThuc)) {
+            x.append("Không Để Trống Ngày Kết Thúc Khuyến Mại\n");
+        } else if (XValidate.IsNotDate(txtNgayKetThuc)) {
+            x.append("Vui Lòng Nhập Đúng Định Dạng Ngày Tháng Năm(dd/MM/yyyy)\n");
+        } else if (radiovnd.isSelected() == true & Double.parseDouble(txtGiaTri.getText()) < 10000) {
+            if (XValidate.focus_Errol(false, txtGiaTri)) {
+                x.append("Giảm Giá Phải Lớn Hơn Hoặc Bằng 10 Ngàn");
+            }
+        } else if (radioPT.isSelected() == true & Integer.parseInt(txtGiaTri.getText()) > 100 | Integer.parseInt(txtGiaTri.getText()) < 0) {
+            if (XValidate.focus_Errol(false, txtGiaTri)) {
+                x.append("Giá Trị Khi Giảm Giá Phần Trăm Chỉ Được Nhập Từ 0 đến 100\n");
+            }
+        }
+
+        if (x.toString().length() > 0) {
+            Messeger.alert(this, x.toString());
+            return true;
+        }
+
+        return false;
     }
 }
