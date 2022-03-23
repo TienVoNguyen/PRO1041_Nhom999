@@ -690,13 +690,16 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
         txtKhuyenMai.setText(String.valueOf(tblhethang.getValueAt(viTri, 0)));
         txtTenKhuyenMai.setText(String.valueOf(tblhethang.getValueAt(viTri, 1)));
-        txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)));
+        if (String.valueOf(tblhethang.getValueAt(viTri, 2)).length() > 3) {
+            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("đ", ""));
+        } else {
+            txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)).replace("%", ""));
+        }
         txtGiamToiDa.setText(String.valueOf(tblhethang.getValueAt(viTri, 3)));
         txtNgayBatDau.setText(String.valueOf(tblhethang.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tblhethang.getValueAt(viTri, 5)));
         model_sp.setSelectedItem(String.valueOf(String.valueOf(tblhethang.getValueAt(viTri, 6))));
         txtKhuyenMai.setText("");
-
     }//GEN-LAST:event_tblhethangMouseClicked
 
     private void setNut(boolean boo) {
@@ -754,7 +757,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     private void setText(int viTri) {
         txtKhuyenMai.setText(String.valueOf(tblqlkm.getValueAt(viTri, 0)));
         txtTenKhuyenMai.setText(String.valueOf(tblqlkm.getValueAt(viTri, 1)));
-        txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)));
+        if (String.valueOf(tblqlkm.getValueAt(viTri, 2)).length() > 3) {
+            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("đ", ""));
+        } else {
+            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("%", ""));
+        }
         txtGiamToiDa.setText(String.valueOf(tblqlkm.getValueAt(viTri, 3)));
         txtNgayBatDau.setText(String.valueOf(tblqlkm.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tblqlkm.getValueAt(viTri, 5)));
@@ -856,6 +863,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 if (get.isTrangThai()) {
                     String magaming = String.format("%.0f", get.getGiaTri());
+                    if (magaming.trim().length() <= 3) {
+                        magaming = magaming + "%";
+                    } else {
+                        magaming = magaming + "đ";
+                    }
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
@@ -885,10 +897,16 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 String ngaybd = XDate.toString(XDate.toDate(get.getNgayBD(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 if (!get.isTrangThai()) {
+                    String magaming = String.format("%.0f", get.getGiaTri());
+                    if (magaming.trim().length() <= 3) {
+                        magaming = magaming + "%";
+                    } else {
+                        magaming = magaming + "đ";
+                    }
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
-                        get.getGiaTri(),
+                        magaming,
                         get.getGiamToiDa(),
                         ngaybd,
                         ngaykt,
@@ -963,10 +981,10 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         } else if (XValidate.isEmpty(txtGiaTri)) {
             x.append("Không Để Trống Giá Trị Khuyến Mại\n");
         } else if (Double.parseDouble(txtGiaTri.getText()) < 0) {
-            if (XValidate.focus_Errol(false, txtGiaTri)){
-             x.append("Giá Trị Phải Lớn Hơn 0 \n");
-            };
-        }else if (XValidate.isNotNumber(txtGiaTri)) {
+            if (XValidate.focus_Errol(false, txtGiaTri)) {
+                x.append("Giá Trị Phải Lớn Hơn 0 \n");
+            }
+        } else if (XValidate.isNotNumber(txtGiaTri)) {
             x.append("Giá Trị Phải Nhập Số \n");
         } else if (XValidate.isEmpty(txtGiamToiDa)) {
             x.append("Không Để Trống Giảm Giá Tối Đa\n");

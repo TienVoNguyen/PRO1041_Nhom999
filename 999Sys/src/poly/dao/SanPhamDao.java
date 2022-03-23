@@ -15,7 +15,7 @@ import poly.helper.XJDBC;
  *
  * @author 98tae
  */
-public class SanPhamDao extends BaseDao<SanPham, String> {
+public class SanPhamDao extends BaseDao<SanPham, Integer> {
 
     @Override
     public String getQuery(String action) {
@@ -27,11 +27,13 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
             case "DELETE":
                 return "DELETE FROM SANPHAM WHERE MASP = ?";
             case "SELECTBYID":
-                return "SELECT MADM, MAVACH, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, APDUNGKM, MADVT, MAMAU, MASIZE, MACHATLIEU, TRANGTHAI FROM   SANPHAM WHERE (MASP = ?)";
+                return "SELECT * FROM   SANPHAM WHERE (MASP = ?)";
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":
                 return "SELECT * FROM   SANPHAM WHERE MADM =  ? and MASP like ? or TENSP like ?";
+            case "UPDATEMASP":
+                return "UPDATE SANPHAM SET SOLUONG =? WHERE MASP = ?";
         }
         return "";
     }
@@ -77,6 +79,11 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
                     "%" + obj.getMaSP() + "%",
                     "%" + obj.getTenSanPham() + "%"
                 };
+            case "UPDATEMASP":
+                return new Object[]{
+                    obj.getSoLuong(),
+                    obj.getMaSP()
+                };
         }
         return null;
     }
@@ -119,7 +126,11 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
             return list;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
-        }
+        }}
 
+    
+    public boolean updateSP(SanPham e) throws Exception {
+        return XJDBC.update(this.getQuery("UPDATEMASP"), this.getParams("UPDATEMASP", e)) > 0;
     }
+
 }
