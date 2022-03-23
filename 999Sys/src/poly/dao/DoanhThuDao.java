@@ -8,11 +8,13 @@ package poly.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import poly.helper.XDate;
 import poly.helper.XJDBC;
 
 /**
@@ -71,7 +73,7 @@ public class DoanhThuDao {
 
     public JFreeChart createChart(int month, int year) {
         String chartTitle = "Biểu đồ doanh thu tháng " + month + " năm " + year;
-        String sql = "{Call SP_BTDT(?, ?)}";
+        String sql = "{Call SP_CHARTMONTH(?, ?)}";
         try {
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             ResultSet rs = XJDBC.query(sql, month, year);
@@ -81,7 +83,7 @@ public class DoanhThuDao {
             JFreeChart lineChart = ChartFactory.createLineChart(
                     chartTitle.toUpperCase(),
                     "NGÀY", "DOANH THU (VND)", dataset,
-                    PlotOrientation.VERTICAL, false, false, false);
+                    PlotOrientation.VERTICAL, true, false, false);
             rs.getStatement().getConnection().close();
             return lineChart;
         } catch (Exception e) {
@@ -90,15 +92,65 @@ public class DoanhThuDao {
         return null;
     }
     
-    public List<Object[]> getThongKeNgay(String day) {
+    public List<Object[]> getThongKeNgay(int month, int year) {
         
         try {
             List<Object[]> lst = new ArrayList<>();
-            String sql = "{Call SP_DTBYNGAYNOW(?)}";
-            ResultSet rs = XJDBC.query(sql, day);
+            String sql = "{Call SP_DTBYNGAYINMONTH(?, ?)}";
+            ResultSet rs = XJDBC.query(sql, month, year);
+            
+            while (rs.next()) {
+                String da = XDate.toString(rs.getDate("NGAYMUA"), "dd/MM/yyyy");
+                lst.add(new Object[]{
+                    da,
+                    rs.getInt("SOHD"),
+                    rs.getInt("HDTHAPNHAT"),
+                    rs.getInt("HDCAONHAT"),
+                    rs.getInt("TBHOADON"),
+                    rs.getInt("SOTIENGIAM"),
+                    rs.getInt("THANHTIEN"),
+                });
+                
+            }
+            rs.getStatement().getConnection().close();
+            return lst;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public JFreeChart createChartMonths(int year) {
+        String chartTitle = "Biểu đồ doanh thu " + " năm " + year;
+        String sql = "{Call SP_CHARTYEAR(?)}";
+        try {
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            ResultSet rs = XJDBC.query(sql, year);
+            while (rs.next()) {
+                dataset.addValue(rs.getDouble("THANHTIEN"), "DOANHTHU", rs.getString("THANG"));
+            }
+            JFreeChart lineChart = ChartFactory.createLineChart(
+                    chartTitle.toUpperCase(),
+                    "THÁNG", "DOANH THU (VND)", dataset,
+                    PlotOrientation.VERTICAL, true, false, false);
+            rs.getStatement().getConnection().close();
+            return lineChart;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public List<Object[]> getThongKeMonths(int year) {
+        
+        try {
+            List<Object[]> lst = new ArrayList<>();
+            String sql = "{Call SP_DTTHANG(?)}";
+            ResultSet rs = XJDBC.query(sql, year);
             
             while (rs.next()) {
                 lst.add(new Object[]{
+                    rs.getString("THANG"),
                     rs.getInt("SOHD"),
                     rs.getInt("HDTHAPNHAT"),
                     rs.getInt("HDCAONHAT"),
