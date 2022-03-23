@@ -76,8 +76,8 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "SELECTWHERE":
                 return new Object[]{
                     obj.getMaDanhMuc(),
-                    "%"+obj.getMaSP()+"%",
-                    "%"+obj.getTenSanPham()+"%"
+                    "%" + obj.getMaSP() + "%",
+                    "%" + obj.getTenSanPham() + "%"
                 };
             case "UPDATEMASP":
                 return new Object[]{
@@ -106,14 +106,31 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
         sp.setMaSize(rs.getString("MASIZE"));
         sp.setMaChatLieu(rs.getInt("MACHATLIEU"));
         sp.setTrangThai(rs.getBoolean("TRANGTHAI"));
-       return sp;
+        return sp;
     }
-    
-    public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception{
+
+    public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception {
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", sp));
     }
+
+    public static ArrayList<String> ListSp_NoKhuyenMai(boolean boo) {
+        String sql = "SELECT MASP FROM  SANPHAM\n"
+                + "WHERE APDUNGKM = ?";
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJDBC.query(sql, boo);
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }}
+
     
     public boolean updateSP(SanPham e) throws Exception {
         return XJDBC.update(this.getQuery("UPDATEMASP"), this.getParams("UPDATEMASP", e)) > 0;
     }
+
 }
