@@ -16,14 +16,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.chart.renderer.category.CategoryItemRendererState;
-import org.jfree.chart.renderer.category.CategoryStepRenderer;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.renderer.category.WaterfallBarRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import poly.helper.XDate;
 import poly.helper.XJDBC;
@@ -198,7 +191,7 @@ public class DoanhThuDao {
         }
         return null;
     }
-    
+
     public JFreeChart createChartYear() {
         String chartTitle = "Biểu đồ doanh thu các" + " năm ";
         String sql = "{Call SP_CHARTYEARS}";
@@ -253,6 +246,50 @@ public class DoanhThuDao {
             return lst;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Object[]> getThongKeSP(int index) throws Exception {
+        List<Object[]> lst = new ArrayList<>();
+        switch (index) {
+            case 0:
+                String sql = "{Call SP_DTSP}";
+                ResultSet rs = XJDBC.query(sql);
+                
+                while (rs.next()) {
+                lst.add(new Object[]{
+                    rs.getString("MASP"),
+                    rs.getString("TENSP"),
+                    rs.getInt("CONLAI"),
+                    rs.getInt("DABAN"),
+                    rs.getInt("SOHD"),
+                    rs.getInt("TBHOADON"),
+                    rs.getInt("SOTIENGIAM"),
+                    rs.getInt("THANHTIEN"),});
+
+            }
+            rs.getStatement().getConnection().close();
+            return lst;
+            case 1:
+                String sql1 = "{Call SP_DTSP}";
+                ResultSet rs1 = XJDBC.query(sql1);
+                
+                while (rs1.next()) {
+                lst.add(new Object[]{
+                    rs1.getString("MASP"),
+                    rs1.getString("TENSP"),
+                    rs1.getInt("SOHD"),
+                    rs1.getInt("HDTHAPNHAT"),
+                    rs1.getInt("HDCAONHAT"),
+                    rs1.getInt("TBHOADON"),
+                    rs1.getInt("SOTIENGIAM"),
+                    rs1.getInt("THANHTIEN"),});
+
+            }
+            rs1.getStatement().getConnection().close();
+            return lst;
+            case 2:
         }
         return null;
     }

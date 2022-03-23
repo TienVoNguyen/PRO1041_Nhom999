@@ -8,6 +8,7 @@ package poly.gui;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.List;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     CardLayout cardGoc;
     CardLayout cardResetPass;
     int codeSMS;
+
     public LoginJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -119,6 +121,11 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         txtID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtID.setBorder(null);
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIDKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnIDLayout = new javax.swing.GroupLayout(jpnID);
         jpnID.setLayout(jpnIDLayout);
@@ -155,6 +162,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         txtPass.setAlignmentX(0.0F);
         txtPass.setAlignmentY(0.0F);
         txtPass.setBorder(null);
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+        });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -565,16 +577,16 @@ public class LoginJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void lblForgotPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseClicked
-    cardGoc.show(jpnCardGoc, "cardResetPass");
-    cardResetPass.show(jpnCardChil, "card0");
+        cardGoc.show(jpnCardGoc, "cardResetPass");
+        cardResetPass.show(jpnCardChil, "card0");
     }//GEN-LAST:event_lblForgotPassMouseClicked
 
     private void btnMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaNVActionPerformed
-try {
+        try {
             String maNV = txtMaNV.getText();
             ArrayList<NhanVien> list = dao.selectAll();
             boolean check = false;
-             String mailAddress ="";
+            String mailAddress = "";
             for (NhanVien nv : list) {
                 if (nv.getMaNV().trim().equals(maNV)) {
                     mailAddress = nv.getEmail();
@@ -585,10 +597,10 @@ try {
             if (check == true) {
                 Messeger.alert(this, "Hãy nhập mã xác nhận được gửi qua mail!");
                 btnOK.setEnabled(check);
-               
-                try{
-                codeSMS = ResetPassByEmail.resetPass(mailAddress);
-                }catch(Exception e){
+
+                try {
+                    codeSMS = ResetPassByEmail.resetPass(mailAddress);
+                } catch (Exception e) {
                     Messeger.showErrorDialog(this, "Mail không tồn tại", "Error!");
                     e.printStackTrace();
                 }
@@ -600,45 +612,45 @@ try {
         } catch (Exception ex) {
             Messeger.alert(this, "Lỗi tìm mã nhân viên!");
             ex.printStackTrace();
-        }        
+        }
     }//GEN-LAST:event_btnMaNVActionPerformed
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-     
+
         if (txtCode.getText().length() < 0) {
             Messeger.showErrorDialog(this, "Không để trống mã Code", "Error!");
             return;
         }
-        
+
         int code = Integer.parseInt(txtCode.getText());
         if (code == codeSMS) {
             cardResetPass.show(jpnCardChil, "cardCode");
         } else {
             Messeger.showErrorDialog(this, "Sai mã xác nhận!", "Error !");
             cardResetPass.show(jpnCardChil, "card0");
-            
+
         }
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-        
+
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnDongYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongYActionPerformed
-        if(txtNewPass.getText().length()<0){
+        if (txtNewPass.getText().length() < 0) {
             Messeger.showErrorDialog(this, "Không để trống Mật khẩu mới", "Error!");
             txtNewPass.setBackground(Color.YELLOW);
             return;
-        }else if(!txtNewPass.getText().equalsIgnoreCase(txtNewPass2.getText())){
+        } else if (!txtNewPass.getText().equalsIgnoreCase(txtNewPass2.getText())) {
             Messeger.showErrorDialog(this, "Mật khẩu mới không khớp", "Error!");
             txtNewPass2.setBackground(Color.YELLOW);
             return;
-        }else{
+        } else {
             try {
                 ArrayList<NhanVien> list = dao.selectAll();
                 boolean check = false;
-                for(NhanVien nv : list){
-                    if(nv.getMaNV().equalsIgnoreCase(txtMaNV.getText())){
+                for (NhanVien nv : list) {
+                    if (nv.getMaNV().equalsIgnoreCase(txtMaNV.getText())) {
                         nv.setPassWord(new String(txtNewPass.getPassword()));
                         dao.update(nv);
                         break;
@@ -652,11 +664,11 @@ try {
                 ex.printStackTrace();
             }
         }
-        
+
     }//GEN-LAST:event_btnDongYActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       cardGoc.show(jpnCardGoc, "cardLogin");
+        cardGoc.show(jpnCardGoc, "cardLogin");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtMaNVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNVFocusGained
@@ -668,16 +680,30 @@ try {
     }//GEN-LAST:event_txtCodeFocusGained
 
     private void lblForgotPassMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseDragged
-lblForgotPass.setForeground(Color.black);    }//GEN-LAST:event_lblForgotPassMouseDragged
+        lblForgotPass.setForeground(Color.black);    }//GEN-LAST:event_lblForgotPassMouseDragged
 
     private void lblForgotPassMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseMoved
-lblForgotPass.setForeground(Color.red);
+        lblForgotPass.setForeground(Color.red);
     }//GEN-LAST:event_lblForgotPassMouseMoved
 
     private void lblForgotPassMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseExited
-lblForgotPass.setForeground(Color.black);                                              
+        lblForgotPass.setForeground(Color.black);
     }//GEN-LAST:event_lblForgotPassMouseExited
 
+    private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
+        EnterAcctions(evt);
+    }//GEN-LAST:event_txtIDKeyPressed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        EnterAcctions(evt);
+    }//GEN-LAST:event_txtPassKeyPressed
+
+    
+    private void EnterAcctions(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnLogin.doClick();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -763,10 +789,10 @@ lblForgotPass.setForeground(Color.black);
     // End of variables declaration//GEN-END:variables
 
     private void init() {
-            setLocationRelativeTo(null);
-            this.dao = new NhanVienDao();
-           cardGoc = (CardLayout) jpnCardGoc.getLayout();
-           cardResetPass = (CardLayout) jpnCardChil.getLayout();
-           cardGoc.show(jpnCardGoc, "cardLogin");
+        setLocationRelativeTo(null);
+        this.dao = new NhanVienDao();
+        cardGoc = (CardLayout) jpnCardGoc.getLayout();
+        cardResetPass = (CardLayout) jpnCardChil.getLayout();
+        cardGoc.show(jpnCardGoc, "cardLogin");
     }
 }
