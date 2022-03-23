@@ -40,7 +40,8 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     DefaultTableModel modelTBL_DanhMuc;
     DefaultTableModel modelTBL_DanhMucHetHan;
     CardLayout card_DanhMuc;
-
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   
     public QL_CTSPJdialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -117,7 +118,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         tblMauSac = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        x1 = new javax.swing.JTable();
+        tblMauSacHetHan = new javax.swing.JTable();
         DonViTinh = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -782,7 +783,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
         cardGocMauSac.add(jPanel14, "card_goc");
 
-        x1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMauSacHetHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -805,9 +806,9 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(x1);
-        if (x1.getColumnModel().getColumnCount() > 0) {
-            x1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane7.setViewportView(tblMauSacHetHan);
+        if (tblMauSacHetHan.getColumnModel().getColumnCount() > 0) {
+            tblMauSacHetHan.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -1455,6 +1456,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JTable tblDanhMucHetHan;
     private javax.swing.JTable tblMauSac;
     private javax.swing.JTable tblMauSac1;
+    private javax.swing.JTable tblMauSacHetHan;
     private javax.swing.JTable tblSize;
     private javax.swing.JTable tblSize_HetHan;
     private javax.swing.JTextField txtDanhMuc_MaDM;
@@ -1467,7 +1469,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtMauSac_TenMau1;
     private javax.swing.JTextField txtSize_MaSize;
     private javax.swing.JTextField txtSize_TenSize;
-    private javax.swing.JTable x1;
     private javax.swing.JTable x2;
     // End of variables declaration//GEN-END:variables
 

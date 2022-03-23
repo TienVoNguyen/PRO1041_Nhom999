@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import poly.entity.SanPham;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -73,8 +74,8 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
             case "SELECTWHERE":
                 return new Object[]{
                     obj.getMaDanhMuc(),
-                    "%"+obj.getMaSP()+"%",
-                    "%"+obj.getTenSanPham()+"%"
+                    "%" + obj.getMaSP() + "%",
+                    "%" + obj.getTenSanPham() + "%"
                 };
         }
         return null;
@@ -98,10 +99,27 @@ public class SanPhamDao extends BaseDao<SanPham, String> {
         sp.setMaSize(rs.getString("MASIZE"));
         sp.setMaChatLieu(rs.getInt("MACHATLIEU"));
         sp.setTrangThai(rs.getBoolean("TRANGTHAI"));
-       return sp;
+        return sp;
     }
-    
-    public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception{
+
+    public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception {
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", sp));
+    }
+
+    public static ArrayList<String> ListSp_NoKhuyenMai(boolean boo) {
+        String sql = "SELECT MASP FROM  SANPHAM\n"
+                + "WHERE APDUNGKM = ?";
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJDBC.query(sql, boo);
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
     }
 }
