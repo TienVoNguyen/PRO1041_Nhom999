@@ -40,7 +40,8 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     DefaultTableModel modelTBL_DanhMuc;
     DefaultTableModel modelTBL_DanhMucHetHan;
     CardLayout card_DanhMuc;
-
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   
     public QL_CTSPJdialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -110,14 +111,33 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         btn_Them_qlMauSac = new javax.swing.JButton();
         btn_Xoa_qlMauSac = new javax.swing.JButton();
         btn_Sua_qlMauSac = new javax.swing.JButton();
-        btn_Change_Table2 = new javax.swing.JButton();
+        change_dvt_tbl = new javax.swing.JButton();
         cardGocMauSac = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblMauSac = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        x1 = new javax.swing.JTable();
+        tblMauSacHetHan = new javax.swing.JTable();
+        DonViTinh = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtMauSac_MaMau1 = new javax.swing.JTextField();
+        txtMauSac_TenMau1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        btn_Moi_qlMauSac1 = new javax.swing.JButton();
+        btn_Them_qlMauSac1 = new javax.swing.JButton();
+        btn_Xoa_qlMauSac1 = new javax.swing.JButton();
+        btn_Sua_qlMauSac1 = new javax.swing.JButton();
+        change_dvt_tbl1 = new javax.swing.JButton();
+        cardGocMauSac1 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblMauSac1 = new javax.swing.JTable();
+        jPanel19 = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        x2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -554,6 +574,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblDanhMucHetHan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDanhMucHetHanMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblDanhMucHetHan);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -573,7 +598,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jpnDanhMuc.add(jPanel10, "cac_phu");
+        jpnDanhMuc.add(jPanel10, "card_phu");
 
         javax.swing.GroupLayout DanhMucLayout = new javax.swing.GroupLayout(DanhMuc);
         DanhMuc.setLayout(DanhMucLayout);
@@ -647,12 +672,32 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         );
 
         btn_Moi_qlMauSac.setText("Mới");
+        btn_Moi_qlMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Moi_qlMauSacActionPerformed(evt);
+            }
+        });
 
         btn_Them_qlMauSac.setText("Thêm");
+        btn_Them_qlMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Them_qlMauSacActionPerformed(evt);
+            }
+        });
 
         btn_Xoa_qlMauSac.setText("Xóa");
+        btn_Xoa_qlMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Xoa_qlMauSacActionPerformed(evt);
+            }
+        });
 
         btn_Sua_qlMauSac.setText("Sửa");
+        btn_Sua_qlMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Sua_qlMauSacActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -681,10 +726,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        btn_Change_Table2.setText("Hết Hạn");
-        btn_Change_Table2.addActionListener(new java.awt.event.ActionListener() {
+        change_dvt_tbl.setText("Hết Hạn");
+        change_dvt_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Change_Table2ActionPerformed(evt);
+                change_dvt_tblActionPerformed(evt);
             }
         });
 
@@ -738,7 +783,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
         cardGocMauSac.add(jPanel14, "card_goc");
 
-        x1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMauSacHetHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -761,9 +806,9 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(x1);
-        if (x1.getColumnModel().getColumnCount() > 0) {
-            x1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane7.setViewportView(tblMauSacHetHan);
+        if (tblMauSacHetHan.getColumnModel().getColumnCount() > 0) {
+            tblMauSacHetHan.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -796,7 +841,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                             .addGroup(MauSacLayout.createSequentialGroup()
                                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Change_Table2))
+                                .addComponent(change_dvt_tbl))
                             .addGroup(MauSacLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -811,7 +856,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(MauSacLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_Change_Table2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(change_dvt_tbl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -820,6 +865,236 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         );
 
         jTabbedPane1.addTab("Quản Lý Màu Sắc", MauSac);
+
+        jLabel9.setText("Mã DVT");
+
+        jLabel10.setText("Tên DVT");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(txtMauSac_MaMau1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(txtMauSac_TenMau1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(176, 176, 176))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMauSac_TenMau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMauSac_MaMau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        btn_Moi_qlMauSac1.setText("Mới");
+        btn_Moi_qlMauSac1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Moi_qlMauSac1ActionPerformed(evt);
+            }
+        });
+
+        btn_Them_qlMauSac1.setText("Thêm");
+        btn_Them_qlMauSac1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Them_qlMauSac1ActionPerformed(evt);
+            }
+        });
+
+        btn_Xoa_qlMauSac1.setText("Xóa");
+        btn_Xoa_qlMauSac1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Xoa_qlMauSac1ActionPerformed(evt);
+            }
+        });
+
+        btn_Sua_qlMauSac1.setText("Sửa");
+        btn_Sua_qlMauSac1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Sua_qlMauSac1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_Moi_qlMauSac1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Them_qlMauSac1)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Sua_qlMauSac1)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Xoa_qlMauSac1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Moi_qlMauSac1)
+                    .addComponent(btn_Them_qlMauSac1)
+                    .addComponent(btn_Sua_qlMauSac1)
+                    .addComponent(btn_Xoa_qlMauSac1))
+                .addContainerGap())
+        );
+
+        change_dvt_tbl1.setText("Hết Hạn");
+        change_dvt_tbl1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                change_dvt_tbl1ActionPerformed(evt);
+            }
+        });
+
+        cardGocMauSac1.setLayout(new java.awt.CardLayout());
+
+        tblMauSac1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblMauSac1);
+        if (tblMauSac1.getColumnModel().getColumnCount() > 0) {
+            tblMauSac1.getColumnModel().getColumn(3).setResizable(false);
+            tblMauSac1.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        }
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        cardGocMauSac1.add(jPanel18, "card_goc");
+
+        x2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(x2);
+        if (x2.getColumnModel().getColumnCount() > 0) {
+            x2.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cardGocMauSac1.add(jPanel19, "xxx");
+
+        javax.swing.GroupLayout DonViTinhLayout = new javax.swing.GroupLayout(DonViTinh);
+        DonViTinh.setLayout(DonViTinhLayout);
+        DonViTinhLayout.setHorizontalGroup(
+            DonViTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DonViTinhLayout.createSequentialGroup()
+                .addGroup(DonViTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DonViTinhLayout.createSequentialGroup()
+                        .addGroup(DonViTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DonViTinhLayout.createSequentialGroup()
+                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(change_dvt_tbl1))
+                            .addGroup(DonViTinhLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cardGocMauSac1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        DonViTinhLayout.setVerticalGroup(
+            DonViTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DonViTinhLayout.createSequentialGroup()
+                .addGroup(DonViTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(DonViTinhLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(change_dvt_tbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cardGocMauSac1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Quản Lý DVT", DonViTinh);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -935,7 +1210,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             txtDanhMuc_NgayThem.setText("");
             return;
         }
-
         String x = String.valueOf(java.time.LocalDate.now());
         try {
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không ?")) {
@@ -989,16 +1263,15 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Sua_qlDanhMucActionPerformed
 
     private void btn_Change_tblDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Change_tblDanhMucActionPerformed
-//        if (btn_Change_tblDanhMuc.getText().equalsIgnoreCase("Hết Hạn")) {
-//            card_DanhMuc.show(jpnDanhMuc, "card_phu");
-//            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, false);
-//            btn_Change_tblDanhMuc.setText("Trở Lại");
-//        } else {
-//            card_DanhMuc.show(jpnDanhMuc, "card_goc");
-//            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, true);
-//            btn_Change_tblDanhMuc.setText("Hết Hạn");
-//        }
-        card_DanhMuc.show(jpnDanhMuc, "card_phu");
+        if (btn_Change_tblDanhMuc.getText().equalsIgnoreCase("Hết Hạn")) {
+            card_DanhMuc.show(jpnDanhMuc, "card_phu");
+            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, false);
+            btn_Change_tblDanhMuc.setText("Trở Lại");
+        } else {
+            card_DanhMuc.show(jpnDanhMuc, "card_goc");
+            SetEnable(btn_Moi_qlDanhMuc, btn_Sua_qlDanhMuc, btn_Xoa_qlDanhMuc, btn_Them_qlDanhMuc, true);
+            btn_Change_tblDanhMuc.setText("Hết Hạn");
+        }
     }//GEN-LAST:event_btn_Change_tblDanhMucActionPerformed
 
     private void tblSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSizeMouseClicked
@@ -1017,10 +1290,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         Settext(tblSize_HetHan, txtSize_MaSize, txtSize_TenSize, viTri);
     }//GEN-LAST:event_tblSize_HetHanMouseClicked
 
-    private void btn_Change_Table2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Change_Table2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Change_Table2ActionPerformed
-
     private void tblDanhMucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhMucMouseClicked
         int viTri = tblDanhMuc.getSelectedRow();
         if (viTri < 0) {
@@ -1028,6 +1297,54 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         }
         Settext(tblDanhMuc, txtDanhMuc_MaDM, txtDanhMuc_TenDM, txtDanhMuc_NgayThem, viTri);
     }//GEN-LAST:event_tblDanhMucMouseClicked
+
+    private void tblDanhMucHetHanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhMucHetHanMouseClicked
+        int viTri = tblDanhMucHetHan.getSelectedRow();
+        if (viTri < 0) {
+            return;
+        }
+        Settext(tblDanhMucHetHan, txtDanhMuc_MaDM, txtDanhMuc_TenDM, txtDanhMuc_NgayThem, viTri);
+    }//GEN-LAST:event_tblDanhMucHetHanMouseClicked
+
+    private void btn_Moi_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Moi_qlMauSacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Moi_qlMauSacActionPerformed
+
+    private void btn_Them_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlMauSacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Them_qlMauSacActionPerformed
+
+    private void btn_Sua_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlMauSacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Sua_qlMauSacActionPerformed
+
+    private void btn_Xoa_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlMauSacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Xoa_qlMauSacActionPerformed
+
+    private void change_dvt_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_dvt_tblActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_change_dvt_tblActionPerformed
+
+    private void btn_Moi_qlMauSac1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Moi_qlMauSac1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Moi_qlMauSac1ActionPerformed
+
+    private void btn_Them_qlMauSac1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlMauSac1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Them_qlMauSac1ActionPerformed
+
+    private void btn_Xoa_qlMauSac1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlMauSac1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Xoa_qlMauSac1ActionPerformed
+
+    private void btn_Sua_qlMauSac1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlMauSac1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Sua_qlMauSac1ActionPerformed
+
+    private void change_dvt_tbl1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_dvt_tbl1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_change_dvt_tbl1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1073,25 +1390,33 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DanhMuc;
+    private javax.swing.JPanel DonViTinh;
     private javax.swing.JPanel MauSac;
     private javax.swing.JPanel Size;
-    private javax.swing.JButton btn_Change_Table2;
     private javax.swing.JButton btn_Change_Table_Size;
     private javax.swing.JButton btn_Change_tblDanhMuc;
     private javax.swing.JButton btn_Moi_qlDanhMuc;
     private javax.swing.JButton btn_Moi_qlMauSac;
+    private javax.swing.JButton btn_Moi_qlMauSac1;
     private javax.swing.JButton btn_Moi_qlSize;
     private javax.swing.JButton btn_Sua_qlDanhMuc;
     private javax.swing.JButton btn_Sua_qlMauSac;
+    private javax.swing.JButton btn_Sua_qlMauSac1;
     private javax.swing.JButton btn_Sua_qlSize;
     private javax.swing.JButton btn_Them_qlDanhMuc;
     private javax.swing.JButton btn_Them_qlMauSac;
+    private javax.swing.JButton btn_Them_qlMauSac1;
     private javax.swing.JButton btn_Them_qlSize;
     private javax.swing.JButton btn_Xoa_qlDanhMuc;
     private javax.swing.JButton btn_Xoa_qlMauSac;
+    private javax.swing.JButton btn_Xoa_qlMauSac1;
     private javax.swing.JButton btn_Xoa_qlSize;
     private javax.swing.JPanel cardGocMauSac;
+    private javax.swing.JPanel cardGocMauSac1;
+    private javax.swing.JButton change_dvt_tbl;
+    private javax.swing.JButton change_dvt_tbl1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1099,11 +1424,16 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
@@ -1117,12 +1447,16 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel jpnDanhMuc;
     private javax.swing.JPanel jpnSanPham_cardGoc;
     private javax.swing.JTable tblDanhMuc;
     private javax.swing.JTable tblDanhMucHetHan;
     private javax.swing.JTable tblMauSac;
+    private javax.swing.JTable tblMauSac1;
+    private javax.swing.JTable tblMauSacHetHan;
     private javax.swing.JTable tblSize;
     private javax.swing.JTable tblSize_HetHan;
     private javax.swing.JTextField txtDanhMuc_MaDM;
@@ -1130,10 +1464,12 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtDanhMuc_NgayThem;
     private javax.swing.JTextField txtDanhMuc_TenDM;
     private javax.swing.JTextField txtMauSac_MaMau;
+    private javax.swing.JTextField txtMauSac_MaMau1;
     private javax.swing.JTextField txtMauSac_TenMau;
+    private javax.swing.JTextField txtMauSac_TenMau1;
     private javax.swing.JTextField txtSize_MaSize;
     private javax.swing.JTextField txtSize_TenSize;
-    private javax.swing.JTable x1;
+    private javax.swing.JTable x2;
     // End of variables declaration//GEN-END:variables
 
     private void init() {

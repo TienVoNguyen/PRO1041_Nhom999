@@ -78,8 +78,6 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblYear = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jPanel21 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1800, 1000));
@@ -458,32 +456,6 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Doanh thu theo sản phẩm", jPanel4);
 
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1027, Short.MAX_VALUE)
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Doanh thu theo danh mục", jPanel21);
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1027, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Danh sách sản phẩm sắp hết", jPanel22);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -504,11 +476,11 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMonthItemStateChanged
+    private void cbxMonthInYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMonthInYearItemStateChanged
         // TODO add your handling code here:
-        addChartDays();
-        loadDataDoanhThuDays();
-    }//GEN-LAST:event_cbxMonthItemStateChanged
+        addChartMonths();
+        loadDataDoanhThuMonths();
+    }//GEN-LAST:event_cbxMonthInYearItemStateChanged
 
     private void cbxYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxYearItemStateChanged
         // TODO add your handling code here:
@@ -516,11 +488,11 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         loadDataDoanhThuDays();
     }//GEN-LAST:event_cbxYearItemStateChanged
 
-    private void cbxMonthInYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMonthInYearItemStateChanged
+    private void cbxMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMonthItemStateChanged
         // TODO add your handling code here:
-        addChartMonths();
-        loadDataDoanhThuMonths();
-    }//GEN-LAST:event_cbxMonthInYearItemStateChanged
+        addChartDays();
+        loadDataDoanhThuDays();
+    }//GEN-LAST:event_cbxMonthItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -585,8 +557,6 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
