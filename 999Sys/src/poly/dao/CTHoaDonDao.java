@@ -7,7 +7,9 @@ package poly.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import poly.entity.CTHoaDon;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -28,6 +30,8 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
                 return "SELECT SOLUONG, GHICHU, TRANGTHAI FROM CT_HOADON WHERE MAHD = ? and MASP = ?";
             case "SELECTALL":
                 return "SELECT CT_HOADON.* FROM   CT_HOADON";
+            case "SELECTCTHD":
+                return "SELECT * FROM CT_HOADON WHERE MAHD = ?";
         }
         return "";
     }
@@ -65,4 +69,14 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
         return cTHD;
     }
     
+    public ArrayList<CTHoaDon> selectCTHD(int maHD) throws Exception{
+         ArrayList<CTHoaDon> list = new ArrayList<>();
+        ResultSet rs = XJDBC.query(this.getQuery("SELECTCTHD"), maHD);
+        while(rs.next()){
+            CTHoaDon e2 = createEntity(rs);
+            list.add(e2);
+        }
+        rs.getStatement().getConnection().close();
+        return list;
+    }
 }
