@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.List;
-import javafx.scene.chart.LineChart;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
@@ -366,9 +365,9 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
             .addGap(0, 65, Short.MAX_VALUE)
         );
 
-        pnYear.setLayout(new java.awt.GridLayout());
+        pnYear.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel20.setLayout(new java.awt.GridLayout());
+        jPanel20.setLayout(new java.awt.GridLayout(1, 0));
 
         tblYear.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
