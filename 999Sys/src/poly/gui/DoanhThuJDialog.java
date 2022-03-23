@@ -6,8 +6,10 @@
 package poly.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.scene.chart.LineChart;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
@@ -69,8 +71,15 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         tblMonthInYear = new javax.swing.JTable();
         pnDTMonth = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        pnYear = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblYear = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1800, 1000));
@@ -177,12 +186,12 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Doanh thu ngày", jPanel1);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(0, 102, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 51, 51))); // NOI18N
         jPanel7.setLayout(new java.awt.BorderLayout());
 
         jPanel8.setMaximumSize(new java.awt.Dimension(100, 30));
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -277,7 +286,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jPanel7.add(jPanel8, java.awt.BorderLayout.CENTER);
 
-        jPanel17.setLayout(new java.awt.GridLayout());
+        jPanel17.setLayout(new java.awt.GridLayout(1, 0));
 
         tblMonthInYear.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -309,7 +318,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jPanel17.add(jScrollPane2);
 
-        pnDTMonth.setLayout(new java.awt.GridLayout());
+        pnDTMonth.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -348,46 +357,132 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Doanh thu tháng", jPanel2);
 
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 65, Short.MAX_VALUE)
+        );
+
+        pnYear.setLayout(new java.awt.GridLayout());
+
+        jPanel20.setLayout(new java.awt.GridLayout());
+
+        tblYear.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Năm", "Số HD", "Thấp Nhất", "Cao Nhất", "Trung Bình", "Giảm Giá", "Doanh Thu"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblYear);
+
+        jPanel20.add(jScrollPane3);
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnYear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnYear, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1027, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Doanh thu năm", jPanel3);
-
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jFormattedTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(871, Short.MAX_VALUE))
+            .addGap(0, 1027, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(707, Short.MAX_VALUE))
+            .addGap(0, 779, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Doanh thu nhân viên", jPanel4);
+        jTabbedPane1.addTab("Doanh thu theo sản phẩm", jPanel4);
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1027, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 779, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Doanh thu theo danh mục", jPanel21);
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1027, Short.MAX_VALUE)
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 779, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Danh sách sản phẩm sắp hết", jPanel22);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -474,7 +569,6 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbxMonthInYear;
     private javax.swing.JComboBox<String> cbxYear;
     private javax.swing.JPanel doanhThuChart;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -487,7 +581,12 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -497,10 +596,13 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnDTMonth;
+    private javax.swing.JPanel pnYear;
     private javax.swing.JTable tblDTNgay;
     private javax.swing.JTable tblMonthInYear;
+    private javax.swing.JTable tblYear;
     // End of variables declaration//GEN-END:variables
 
     private void addChartDays() {
@@ -510,7 +612,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
                 int year = Integer.parseInt(cbxYear.getSelectedItem().toString());
                 doanhThuChart.removeAll();
                 ChartPanel chartPanel = new ChartPanel(dt_dao.createChart(month, year));
-                chartPanel.setForeground(Color.black);
+                chartPanel.setMouseZoomable(false);
                 doanhThuChart.add(chartPanel);
                 this.pack();
             } catch (Exception e) {
@@ -524,6 +626,8 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         dt_dao = new DoanhThuDao();
         loadMonths();
         loadYears();
+        addChartYear();
+        loadDataDoanhThuYear();
     }
 
     private void loadYears() {
@@ -576,7 +680,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
                 int year = Integer.parseInt(cbxYear.getSelectedItem().toString());
                 pnDTMonth.removeAll();
                 ChartPanel chartPanel = new ChartPanel(dt_dao.createChartMonths(year));
-                chartPanel.setForeground(Color.black);
+                chartPanel.setMouseZoomable(false);
                 pnDTMonth.add(chartPanel);
                 this.pack();
             } catch (Exception e) {
@@ -596,4 +700,26 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
             }
         }
     }
+    
+    private void addChartYear() {
+            try {
+                pnYear.removeAll();
+                ChartPanel chartPanel = new ChartPanel(dt_dao.createChartYear());
+                chartPanel.setMouseZoomable(false);
+                pnYear.add(chartPanel);
+                this.pack();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+
+    private void loadDataDoanhThuYear() {
+        DefaultTableModel model = (DefaultTableModel) tblYear.getModel();
+        model.setRowCount(0);
+            List<Object[]> list = dt_dao.getThongKeYear();
+            for (Object[] row : list) {
+                model.addRow(row);
+            }
+        }
+    
 }
