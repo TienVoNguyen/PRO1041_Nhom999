@@ -21,7 +21,7 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO CT_HOADON(MAHD,MASP, SOLUONG, GHICHU) VALUES (?,?,?)";
+                return "INSERT INTO CT_HOADON(MAHD,MASP, SOLUONG, GHICHU) VALUES (?,?,?,?)";
             case "UPDATE":
                 return "UPDATE CT_HOADON SET SOLUONG =?, GHICHU =?, TRANGTHAI =? WHERE MAHD = ? and MASP =?";
             case "DELETE":
@@ -78,5 +78,9 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
         }
         rs.getStatement().getConnection().close();
         return list;
+    }
+    
+    public boolean deleteOnerecord(int maHD, int maSP) throws Exception {
+        return XJDBC.update(this.getQuery("DELETE"), maHD, maSP) > 0;
     }
 }
