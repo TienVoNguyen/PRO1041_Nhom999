@@ -46,13 +46,10 @@ public class MainFrm extends javax.swing.JFrame {
         this.daoSP = new SanPhamDao();
         this.daoCTHD = new CTHoaDonDao();
         // Đăng nhập
-//        new LoginJDialog(this, true).setVisible(true);
+        new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
-//        HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
 
         loadHoaDonChoTT();
-//        pnlTabs.addTab("Khách lẻ 0" + 1, hdpnl);
-//        pnlTabs.setSelectedComponent(hdpnl);
     }
 
     /**
@@ -377,9 +374,10 @@ public class MainFrm extends javax.swing.JFrame {
                     k = this.daoKH.selectById(h.getMaKH());
                     listCTHD = this.daoCTHD.selectCTHD(h.getMaHD());
                     HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
-                    pnlTabs.addTab(k.getMaKH() , hdpnl);
+                    pnlTabs.addTab(k == null ? "Khách lẻ: ":k.getHoTen() , hdpnl);
                     pnlTabs.setSelectedComponent(hdpnl);
                     hdpnl.loadDataToHoaDon();
+                    hdpnl.setLabelHoaDon(h);
                 }
             }
         } catch (Exception ex) {
