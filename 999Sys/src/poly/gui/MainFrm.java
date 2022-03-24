@@ -66,6 +66,7 @@ public class MainFrm extends javax.swing.JFrame {
         mniQLSanPham = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniQLChiTietSP = new javax.swing.JMenuItem();
+        pnlTabs = new javax.swing.JTabbedPane();
         pnlMain = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -85,7 +86,6 @@ public class MainFrm extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        pnlTabs = new javax.swing.JTabbedPane();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,6 +114,14 @@ public class MainFrm extends javax.swing.JFrame {
         mniQLChiTietSP.setText("Quản Lý Chi Tiết sản phẩm");
         mniQLChiTietSP.setOpaque(true);
         jpmMenu.add(mniQLChiTietSP);
+
+        pnlTabs.setBackground(new java.awt.Color(255, 204, 153));
+        pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        pnlTabs.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                pnlTabsStateChanged(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -253,15 +261,6 @@ public class MainFrm extends javax.swing.JFrame {
         pnlFooter.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pnlMain.add(pnlFooter, java.awt.BorderLayout.PAGE_END);
-
-        pnlTabs.setBackground(new java.awt.Color(255, 204, 153));
-        pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        pnlTabs.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                pnlTabsStateChanged(evt);
-            }
-        });
-        pnlMain.add(pnlTabs, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
 

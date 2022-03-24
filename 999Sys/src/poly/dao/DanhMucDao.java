@@ -5,9 +5,12 @@
  */
 package poly.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import poly.entity.DanhMuc;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -21,7 +24,7 @@ public class DanhMucDao extends BaseDao<DanhMuc, String>{
             case "INSERT":
                 return "INSERT INTO DANHMUC (TENDANHMUC,NGAYTHEM) VALUES (?,?)";
             case "UPDATE":
-                return " UPDATE DANHMUC SET TENDANHMUC =?, TRANGTHAI =? WHERE MADM = ?";
+                return " UPDATE DANHMUC SET TENDANHMUC =?, TRANGTHAI =? ,NGAYTHEM = ? WHERE MADM = ?";
             case "DELETE":
                 return "UPDATE DANHMUC SET TRANGTHAI = 0 WHERE MADM = ?";
             case "SELECTBYID":
@@ -44,7 +47,8 @@ public class DanhMucDao extends BaseDao<DanhMuc, String>{
             case "UPDATE":
                 return new Object[]{
                    obj.getTenDanhMuc(),
-                   obj.getTenDanhMuc(),
+                   obj.isTrangThai(),
+                   obj.getNgayThem(),
                    obj.getMaDM()
                 };
         }
@@ -60,4 +64,6 @@ public class DanhMucDao extends BaseDao<DanhMuc, String>{
       dm.setTrangThai(rs.getBoolean("TRANGTHAI"));
       return dm;
     }
+    
+   
 }

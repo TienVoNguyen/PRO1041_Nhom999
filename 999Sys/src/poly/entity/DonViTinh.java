@@ -22,6 +22,10 @@ public class DonViTinh {
         this.tenDVT = tenDVT;
         this.trangThai = trangThai;
     }
+    public DonViTinh(String tenDVT, boolean trangThai) {
+        this.tenDVT = tenDVT;
+        this.trangThai = trangThai;
+    }
 
     public int getMaDVT() {
         return maDVT;

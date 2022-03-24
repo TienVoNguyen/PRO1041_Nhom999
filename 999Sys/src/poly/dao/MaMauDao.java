@@ -23,7 +23,7 @@ public class MaMauDao extends BaseDao<MauSac, String>{
             case "UPDATE":
                 return "UPDATE MAUSAC SET TENMAU =?, TRANGTHAI =? WHERE MAMAU = ?";
             case "DELETE":
-                return "DELETE FROM MAUSAC WHERE MAMAU = ?";
+                return "UPDATE MAUSAC SET  TRANGTHAI = 0 WHERE MAMAU = ?";
             case "SELECTBYID":
                 return "SELECT * FROM MAUSAC WHERE (MAMAU = ?)";
             case "SELECTALL":
