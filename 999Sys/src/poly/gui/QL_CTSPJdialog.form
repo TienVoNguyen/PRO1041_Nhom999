@@ -1457,7 +1457,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btn_Change_TableDVT" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="cardGocMauSac1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="cardGocDVT" alignment="1" max="32767" attributes="0"/>
                           <Component id="jPanel17" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1477,7 +1477,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="cardGocMauSac1" max="32767" attributes="0"/>
+                      <Component id="cardGocDVT" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1549,13 +1549,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btn_Moi_qlMauSac1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_Moi_qlDVT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btn_Them_qlMauSac1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_Them_qlDVT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btn_Sua_qlMauSac1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_Sua_qlDVT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btn_Xoa_qlMauSac1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_Xoa_qlDVT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btn_TrangThai_DonViTinh" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1567,10 +1567,10 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btn_Moi_qlMauSac1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_Them_qlMauSac1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_Sua_qlMauSac1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_Xoa_qlMauSac1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_Moi_qlDVT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_Them_qlDVT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_Sua_qlDVT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_Xoa_qlDVT" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_TrangThai_DonViTinh" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1579,30 +1579,45 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btn_Moi_qlMauSac1">
+                <Component class="javax.swing.JButton" name="btn_Moi_qlDVT">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Moi_qlDVTActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_Them_qlMauSac1">
+                <Component class="javax.swing.JButton" name="btn_Them_qlDVT">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Them_qlDVTActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_Xoa_qlMauSac1">
+                <Component class="javax.swing.JButton" name="btn_Xoa_qlDVT">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Xoa_qlDVTActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_Sua_qlMauSac1">
+                <Component class="javax.swing.JButton" name="btn_Sua_qlDVT">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Sua_qlDVTActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_TrangThai_DonViTinh">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Chuy&#x1ec3;n Tr&#x1ea1;ng Th&#xe1;i"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TrangThai_DonViTinhActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1610,8 +1625,11 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="H&#x1ebf;t H&#x1ea1;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Change_TableDVTActionPerformed"/>
+              </Events>
             </Component>
-            <Container class="javax.swing.JPanel" name="cardGocMauSac1">
+            <Container class="javax.swing.JPanel" name="cardGocDVT">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
@@ -1688,6 +1706,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDVTMouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1696,7 +1717,7 @@
                 <Container class="javax.swing.JPanel" name="jPanel19">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="xxx"/>
+                      <CardConstraints cardName="card_phu"/>
                     </Constraint>
                   </Constraints>
 
@@ -1728,7 +1749,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="x2">
+                        <Component class="javax.swing.JTable" name="tblDVTHetHan">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="0">
@@ -1766,6 +1787,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDVTHetHanMouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

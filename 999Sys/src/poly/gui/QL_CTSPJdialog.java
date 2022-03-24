@@ -17,10 +17,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.ChatLieuDao;
 import poly.dao.DanhMucDao;
+import poly.dao.DonViTinhDao;
 import poly.dao.MaMauDao;
 import poly.dao.SizeDao;
 import poly.entity.ChatLieu;
 import poly.entity.DanhMuc;
+import poly.entity.DonViTinh;
 import poly.entity.MauSac;
 import poly.entity.Size;
 import poly.helper.Messeger;
@@ -54,6 +56,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     DefaultTableModel modelTBL_ChatLieu;
     DefaultTableModel modelTBL_ChatLieuHetHan;
     CardLayout card_ChatLieu;
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    DonViTinhDao dao_dvt;
+    DefaultTableModel modelTBL_DVT;
+    DefaultTableModel modelTBL_DVTHetHan;
+    CardLayout card_DVT;
 
     public QL_CTSPJdialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -161,19 +168,19 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         txtDVT_TenDVT = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
-        btn_Moi_qlMauSac1 = new javax.swing.JButton();
-        btn_Them_qlMauSac1 = new javax.swing.JButton();
-        btn_Xoa_qlMauSac1 = new javax.swing.JButton();
-        btn_Sua_qlMauSac1 = new javax.swing.JButton();
+        btn_Moi_qlDVT = new javax.swing.JButton();
+        btn_Them_qlDVT = new javax.swing.JButton();
+        btn_Xoa_qlDVT = new javax.swing.JButton();
+        btn_Sua_qlDVT = new javax.swing.JButton();
         btn_TrangThai_DonViTinh = new javax.swing.JButton();
         btn_Change_TableDVT = new javax.swing.JButton();
-        cardGocMauSac1 = new javax.swing.JPanel();
+        cardGocDVT = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tblDVT = new javax.swing.JTable();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        x2 = new javax.swing.JTable();
+        tblDVTHetHan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -1180,15 +1187,40 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        btn_Moi_qlMauSac1.setText("Mới");
+        btn_Moi_qlDVT.setText("Mới");
+        btn_Moi_qlDVT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Moi_qlDVTActionPerformed(evt);
+            }
+        });
 
-        btn_Them_qlMauSac1.setText("Thêm");
+        btn_Them_qlDVT.setText("Thêm");
+        btn_Them_qlDVT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Them_qlDVTActionPerformed(evt);
+            }
+        });
 
-        btn_Xoa_qlMauSac1.setText("Xóa");
+        btn_Xoa_qlDVT.setText("Xóa");
+        btn_Xoa_qlDVT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Xoa_qlDVTActionPerformed(evt);
+            }
+        });
 
-        btn_Sua_qlMauSac1.setText("Sửa");
+        btn_Sua_qlDVT.setText("Sửa");
+        btn_Sua_qlDVT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Sua_qlDVTActionPerformed(evt);
+            }
+        });
 
         btn_TrangThai_DonViTinh.setText("Chuyển Trạng Thái");
+        btn_TrangThai_DonViTinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TrangThai_DonViTinhActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1196,13 +1228,13 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_Moi_qlMauSac1)
+                .addComponent(btn_Moi_qlDVT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_Them_qlMauSac1)
+                .addComponent(btn_Them_qlDVT)
                 .addGap(18, 18, 18)
-                .addComponent(btn_Sua_qlMauSac1)
+                .addComponent(btn_Sua_qlDVT)
                 .addGap(18, 18, 18)
-                .addComponent(btn_Xoa_qlMauSac1)
+                .addComponent(btn_Xoa_qlDVT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_TrangThai_DonViTinh)
                 .addContainerGap())
@@ -1212,17 +1244,22 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Moi_qlMauSac1)
-                    .addComponent(btn_Them_qlMauSac1)
-                    .addComponent(btn_Sua_qlMauSac1)
-                    .addComponent(btn_Xoa_qlMauSac1)
+                    .addComponent(btn_Moi_qlDVT)
+                    .addComponent(btn_Them_qlDVT)
+                    .addComponent(btn_Sua_qlDVT)
+                    .addComponent(btn_Xoa_qlDVT)
                     .addComponent(btn_TrangThai_DonViTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         btn_Change_TableDVT.setText("Hết Hạn");
+        btn_Change_TableDVT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Change_TableDVTActionPerformed(evt);
+            }
+        });
 
-        cardGocMauSac1.setLayout(new java.awt.CardLayout());
+        cardGocDVT.setLayout(new java.awt.CardLayout());
 
         tblDVT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1245,6 +1282,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDVT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDVTMouseClicked(evt);
             }
         });
         jScrollPane8.setViewportView(tblDVT);
@@ -1272,9 +1314,9 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        cardGocMauSac1.add(jPanel18, "card_goc");
+        cardGocDVT.add(jPanel18, "card_goc");
 
-        x2.setModel(new javax.swing.table.DefaultTableModel(
+        tblDVTHetHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1297,9 +1339,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane9.setViewportView(x2);
-        if (x2.getColumnModel().getColumnCount() > 0) {
-            x2.getColumnModel().getColumn(3).setResizable(false);
+        tblDVTHetHan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDVTHetHanMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(tblDVTHetHan);
+        if (tblDVTHetHan.getColumnModel().getColumnCount() > 0) {
+            tblDVTHetHan.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -1319,7 +1366,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cardGocMauSac1.add(jPanel19, "xxx");
+        cardGocDVT.add(jPanel19, "card_phu");
 
         javax.swing.GroupLayout DonViTinhLayout = new javax.swing.GroupLayout(DonViTinh);
         DonViTinh.setLayout(DonViTinhLayout);
@@ -1331,7 +1378,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_Change_TableDVT))
-                    .addComponent(cardGocMauSac1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardGocDVT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1346,7 +1393,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(cardGocMauSac1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cardGocDVT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1594,13 +1641,13 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Them_qlMauSacActionPerformed
 
     private void btn_Xoa_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlMauSacActionPerformed
-
         if (!Messeger.confirm(this, "Bạn Có Xóa Không ?")) {
             return;
         }
         try {
             dao_ms.delete(txtMauSac_MaMau.getText());
             LoadDataToTableMauSac();
+            LoadDataToTableMauSacHetHan();
             return;
         } catch (Exception ex) {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -1779,6 +1826,92 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btn_Change_TableCLActionPerformed
 
+    private void btn_Moi_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Moi_qlDVTActionPerformed
+        this.ResetText(txtDVT_MaDVT, txtDVT_TenDVT);
+    }//GEN-LAST:event_btn_Moi_qlDVTActionPerformed
+
+    private void btn_Them_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlDVTActionPerformed
+        try {
+            if (!Messeger.confirm(this, "Bạn có muốn thêm không?")) {
+                return;
+            }
+            dao_dvt.insert(new DonViTinh(txtDVT_TenDVT.getText(), true));
+            this.LoadDataToTableDVT();
+            this.ResetText(txtDVT_MaDVT, txtDVT_TenDVT);
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi thêm đơn vị tính", "Error!");
+        }
+    }//GEN-LAST:event_btn_Them_qlDVTActionPerformed
+
+    private void btn_Sua_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlDVTActionPerformed
+        try {
+            if (!Messeger.confirm(this, "Bạn có muốn sửa không?")) {
+                return;
+            }
+            if (!this.checkMa()) {
+                Messeger.showErrorDialog(this, "Mã không tồn tại", "Error!");
+                return;
+            }
+            boolean trangThai = btn_Change_TableDVT.getText().trim().equalsIgnoreCase("Hết Hạn") ? true : false;
+            dao_dvt.update(new DonViTinh(Integer.parseInt(txtDVT_MaDVT.getText()), txtDVT_TenDVT.getText(), trangThai));
+            this.LoadDataToTableDVT();
+            this.LoadDataToTableDVTHetHan();
+            return;
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi sửa đơn vị tính!", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_Sua_qlDVTActionPerformed
+
+    private void btn_Xoa_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlDVTActionPerformed
+        try {
+            if (!Messeger.confirm(this, "Bạn có muốn xóa không?")) {
+                return;
+            }
+            if (!this.checkMa()) {
+                Messeger.showErrorDialog(this, "Mã không tồn tại", "Error!");
+                return;
+            }
+            dao_dvt.update(new DonViTinh(Integer.parseInt(txtDVT_MaDVT.getText()), txtDVT_TenDVT.getText(), false));
+            this.LoadDataToTableDVTHetHan();
+            this.LoadDataToTableDVT();
+            return;
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi xóa đơn vị tính!", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_Xoa_qlDVTActionPerformed
+
+    private void btn_Change_TableDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Change_TableDVTActionPerformed
+        if (btn_Change_TableDVT.getText().trim().equalsIgnoreCase("Hết Hạn")) {
+            btn_Change_TableDVT.setText("Trở Lại");
+            card_DVT.show(cardGocDVT, "card_phu");
+        } else {
+            btn_Change_TableDVT.setText("Hết Hạn");
+            card_DVT.show(cardGocDVT, "card_goc");
+        }
+    }//GEN-LAST:event_btn_Change_TableDVTActionPerformed
+
+    private void btn_TrangThai_DonViTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TrangThai_DonViTinhActionPerformed
+    }//GEN-LAST:event_btn_TrangThai_DonViTinhActionPerformed
+
+    private void tblDVTHetHanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDVTHetHanMouseClicked
+         int viTri = tblDVTHetHan.getSelectedRow();
+        if (viTri < 0) {
+            return;
+        }
+        this.Settext(tblDVTHetHan, txtDVT_MaDVT, txtDVT_TenDVT, viTri);
+    }//GEN-LAST:event_tblDVTHetHanMouseClicked
+
+    private void tblDVTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDVTMouseClicked
+        int viTri = tblDVT.getSelectedRow();
+        if (viTri < 0) {
+            return;
+        }
+        this.Settext(tblDVT, txtDVT_MaDVT, txtDVT_TenDVT, viTri);
+       
+    }//GEN-LAST:event_tblDVTMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1833,32 +1966,32 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JButton btn_Change_Table_Size;
     private javax.swing.JButton btn_Change_tblDanhMuc;
     private javax.swing.JButton btn_Moi_qlChatLieu;
+    private javax.swing.JButton btn_Moi_qlDVT;
     private javax.swing.JButton btn_Moi_qlDanhMuc;
     private javax.swing.JButton btn_Moi_qlMauSac;
-    private javax.swing.JButton btn_Moi_qlMauSac1;
     private javax.swing.JButton btn_Moi_qlSize;
     private javax.swing.JButton btn_Sua_qlChatLieu;
+    private javax.swing.JButton btn_Sua_qlDVT;
     private javax.swing.JButton btn_Sua_qlDanhMuc;
     private javax.swing.JButton btn_Sua_qlMauSac;
-    private javax.swing.JButton btn_Sua_qlMauSac1;
     private javax.swing.JButton btn_Sua_qlSize;
     private javax.swing.JButton btn_Them_qlChatLieu;
+    private javax.swing.JButton btn_Them_qlDVT;
     private javax.swing.JButton btn_Them_qlDanhMuc;
     private javax.swing.JButton btn_Them_qlMauSac;
-    private javax.swing.JButton btn_Them_qlMauSac1;
     private javax.swing.JButton btn_Them_qlSize;
     private javax.swing.JButton btn_TrangThai_CL;
     private javax.swing.JButton btn_TrangThai_DanhMuc;
     private javax.swing.JButton btn_TrangThai_DonViTinh;
     private javax.swing.JButton btn_TrangThai_Size;
     private javax.swing.JButton btn_Xoa_qlChatLieu;
+    private javax.swing.JButton btn_Xoa_qlDVT;
     private javax.swing.JButton btn_Xoa_qlDanhMuc;
     private javax.swing.JButton btn_Xoa_qlMauSac;
-    private javax.swing.JButton btn_Xoa_qlMauSac1;
     private javax.swing.JButton btn_Xoa_qlSize;
     private javax.swing.JPanel cardGocChatLieu;
+    private javax.swing.JPanel cardGocDVT;
     private javax.swing.JPanel cardGocMauSac;
-    private javax.swing.JPanel cardGocMauSac1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1907,6 +2040,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JTable tblCL;
     private javax.swing.JTable tblCLHetHan;
     private javax.swing.JTable tblDVT;
+    private javax.swing.JTable tblDVTHetHan;
     private javax.swing.JTable tblDanhMuc;
     private javax.swing.JTable tblDanhMucHetHan;
     private javax.swing.JTable tblMauSac;
@@ -1925,7 +2059,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtMauSac_TenMau;
     private javax.swing.JTextField txtSize_MaSize;
     private javax.swing.JTextField txtSize_TenSize;
-    private javax.swing.JTable x2;
     // End of variables declaration//GEN-END:variables
 
     private void init() {
@@ -1934,6 +2067,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         init_DanhMuc();
         init_MauSac();
         init_ChatLieu();
+        init_DVT();
     }
 
     private void init_Size() {
@@ -1987,6 +2121,16 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         card_ChatLieu.show(cardGocChatLieu, "card_goc");
         btn_TrangThai_CL.setVisible(false);
 
+    }
+    private void init_DVT() {
+        dao_dvt = new DonViTinhDao();
+        modelTBL_DVT = (DefaultTableModel) tblDVT.getModel();
+        modelTBL_DVTHetHan = (DefaultTableModel) tblDVTHetHan.getModel();
+        this.LoadDataToTableDVT();
+        this.LoadDataToTableDVTHetHan();
+        card_DVT = (CardLayout) cardGocDVT.getLayout();
+        card_DVT.show(cardGocDVT, "card_goc");
+        btn_TrangThai_DonViTinh.setVisible(false);
     }
 
     private void ResetText(JTextField text, JTextField text1) {
@@ -2176,6 +2320,58 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             }
         } catch (Exception ex) {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void LoadDataToTableDVT() {
+        try {
+            modelTBL_DVT.setRowCount(0);
+            ArrayList<DonViTinh> listDVT = dao_dvt.selectAll();
+            for (int i = 0; i < listDVT.size(); i++) {
+                DonViTinh get = listDVT.get(i);
+                if (get.isTrangThai()) {
+                    modelTBL_DVT.addRow(new Object[]{
+                        get.getMaDVT(),
+                        get.getTenDVT()
+                    });
+                }
+            }
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi load Data đơn vị tính!", "Error!");
+        }
+    }
+
+    private void LoadDataToTableDVTHetHan() {
+        try {
+            modelTBL_DVTHetHan.setRowCount(0);
+            ArrayList<DonViTinh> listDVT = dao_dvt.selectAll();
+            for (int i = 0; i < listDVT.size(); i++) {
+                DonViTinh get = listDVT.get(i);
+                if (!get.isTrangThai()) {
+                    modelTBL_DVTHetHan.addRow(new Object[]{
+                        get.getMaDVT(),
+                        get.getTenDVT()
+                    });
+                }
+            }
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi load Data đơn vị tính hết hạn!", "Error!");
+        }
+    }
+
+    private boolean checkMa() {
+        try {
+            int ma = Integer.parseInt(txtDVT_MaDVT.getText());
+            ArrayList<DonViTinh> list = dao_dvt.selectAll();
+            for (DonViTinh dvt : list) {
+                if (dvt.getMaDVT() == ma) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi chech mã", "Error!");
+            ex.printStackTrace();
+            return false;
         }
     }
 }
