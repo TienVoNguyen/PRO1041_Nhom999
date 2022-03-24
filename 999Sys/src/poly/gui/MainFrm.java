@@ -32,6 +32,7 @@ public class MainFrm extends javax.swing.JFrame {
 
     static ArrayList<CTHoaDon> listCTHD;
     static KhachHang k;
+
     /**
      * Creates new form MainFrm
      */
@@ -46,13 +47,10 @@ public class MainFrm extends javax.swing.JFrame {
         this.daoSP = new SanPhamDao();
         this.daoCTHD = new CTHoaDonDao();
         // Đăng nhập
-//        new LoginJDialog(this, true).setVisible(true);
+        new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
-//        HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
 
         loadHoaDonChoTT();
-//        pnlTabs.addTab("Khách lẻ 0" + 1, hdpnl);
-//        pnlTabs.setSelectedComponent(hdpnl);
     }
 
     /**
@@ -143,6 +141,7 @@ public class MainFrm extends javax.swing.JFrame {
         lblTenNV.setForeground(new java.awt.Color(255, 255, 255));
         lblTenNV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTenNV.setText("Mai Xuân Thành");
+        lblTenNV.setToolTipText("Tên Nhân Viên");
         lblTenNV.setPreferredSize(new java.awt.Dimension(160, 17));
         jPanel6.add(lblTenNV, java.awt.BorderLayout.LINE_END);
 
@@ -177,6 +176,7 @@ public class MainFrm extends javax.swing.JFrame {
         btnMinimise.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnMinimise.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimise.setText("--");
+        btnMinimise.setToolTipText("Thu nhỏ");
         btnMinimise.setBorder(null);
         btnMinimise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +189,7 @@ public class MainFrm extends javax.swing.JFrame {
         btnClose.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnClose.setForeground(new java.awt.Color(255, 255, 255));
         btnClose.setText("X");
+        btnClose.setToolTipText("Thoát");
         btnClose.setBorder(null);
         btnClose.setHideActionText(true);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +208,7 @@ public class MainFrm extends javax.swing.JFrame {
         pnlFooter.setLayout(new java.awt.BorderLayout());
 
         btnKhoaManHinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/password32.png"))); // NOI18N
+        btnKhoaManHinh.setToolTipText("Khóa Màn Hình");
         pnlFooter.add(btnKhoaManHinh, java.awt.BorderLayout.LINE_START);
 
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/checklist.png"))); // NOI18N
@@ -220,6 +222,7 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
 
         btnKhuyenMai.setText("Quản Lý Khuyến Mại");
+        btnKhuyenMai.setToolTipText("Quản Lý Khuyến Mại");
         btnKhuyenMai.setPreferredSize(new java.awt.Dimension(173, 40));
         btnKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,6 +232,7 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel1.add(btnKhuyenMai);
 
         btnThongKe.setText("Thống Kê");
+        btnThongKe.setToolTipText("Thống Kê");
         btnThongKe.setPreferredSize(new java.awt.Dimension(173, 40));
         btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,8 +293,12 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniQLSanPhamActionPerformed
 
     private void pnlTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pnlTabsStateChanged
-        HoaDonJPanel hd = (HoaDonJPanel) pnlTabs.getSelectedComponent();
-        hd.reloadTableSP();
+        if (pnlTabs.getComponentCount() > 1) {
+            HoaDonJPanel hd = (HoaDonJPanel) pnlTabs.getSelectedComponent();
+            if (hd != null) {
+                hd.reloadTableSP();
+            }
+        }
     }//GEN-LAST:event_pnlTabsStateChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -371,15 +379,23 @@ public class MainFrm extends javax.swing.JFrame {
         List<HoaDon> list = new ArrayList<>();
         try {
             list = this.daoHD.selectAll();
+            boolean a = true;
             for (HoaDon h : list) {
                 if (h.getMaTT() == 1) {
                     k = this.daoKH.selectById(h.getMaKH());
                     listCTHD = this.daoCTHD.selectCTHD(h.getMaHD());
                     HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
-                    pnlTabs.addTab(k.getMaKH() , hdpnl);
+                    pnlTabs.addTab(k == null ? "Khách lẻ: " : k.getHoTen(), hdpnl);
                     pnlTabs.setSelectedComponent(hdpnl);
                     hdpnl.loadDataToHoaDon();
+                    hdpnl.setLabelHoaDon(h);
+                    a = false;
                 }
+            }
+            if (a) {
+                HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+                pnlTabs.addTab("Khách lẻ ", hdpnl);
+                pnlTabs.setSelectedComponent(hdpnl);
             }
         } catch (Exception ex) {
             Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);

@@ -227,6 +227,9 @@
                           <Border info="null"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIDKeyPressed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -288,6 +291,9 @@
                           <Border info="null"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPassKeyPressed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JSeparator" name="jSeparator2">
                       <Properties>
