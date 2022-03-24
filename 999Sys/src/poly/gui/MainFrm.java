@@ -66,6 +66,12 @@ public class MainFrm extends javax.swing.JFrame {
         mniQLSanPham = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniQLChiTietSP = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mniThongKe = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        mniQLKM = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        mniDangXuat = new javax.swing.JMenuItem();
         pnlMain = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -89,7 +95,8 @@ public class MainFrm extends javax.swing.JFrame {
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
-        jpmMenu.setPreferredSize(new java.awt.Dimension(200, 200));
+        jpmMenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jpmMenu.setPreferredSize(new java.awt.Dimension(300, 200));
 
         mniQLSanPham.setBackground(new java.awt.Color(102, 51, 0));
         mniQLSanPham.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -113,7 +120,63 @@ public class MainFrm extends javax.swing.JFrame {
         mniQLChiTietSP.setForeground(new java.awt.Color(255, 255, 255));
         mniQLChiTietSP.setText("Quản Lý Chi Tiết sản phẩm");
         mniQLChiTietSP.setOpaque(true);
+        mniQLChiTietSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQLChiTietSPActionPerformed(evt);
+            }
+        });
         jpmMenu.add(mniQLChiTietSP);
+
+        jSeparator2.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setOpaque(true);
+        jpmMenu.add(jSeparator2);
+
+        mniThongKe.setBackground(new java.awt.Color(102, 51, 0));
+        mniThongKe.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniThongKe.setForeground(new java.awt.Color(255, 255, 255));
+        mniThongKe.setText("Thống Kê Doanh Thu");
+        mniThongKe.setOpaque(true);
+        mniThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThongKeActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniThongKe);
+
+        jSeparator3.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setOpaque(true);
+        jpmMenu.add(jSeparator3);
+
+        mniQLKM.setBackground(new java.awt.Color(102, 51, 0));
+        mniQLKM.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniQLKM.setForeground(new java.awt.Color(255, 255, 255));
+        mniQLKM.setText("Quản lý khuyến mại");
+        mniQLKM.setOpaque(true);
+        mniQLKM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQLKMActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniQLKM);
+
+        jSeparator4.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator4.setOpaque(true);
+        jpmMenu.add(jSeparator4);
+
+        mniDangXuat.setBackground(new java.awt.Color(102, 51, 0));
+        mniDangXuat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        mniDangXuat.setText("Đăng Xuất");
+        mniDangXuat.setOpaque(true);
+        mniDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDangXuatActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniDangXuat);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -204,6 +267,7 @@ public class MainFrm extends javax.swing.JFrame {
         pnlFooter.add(btnKhoaManHinh, java.awt.BorderLayout.LINE_START);
 
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/checklist.png"))); // NOI18N
+        btnMenu.setToolTipText("Hệ Thống");
         btnMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMenuMouseClicked(evt);
@@ -277,15 +341,19 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnThemHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHoaDonActionPerformed
+        HoaDonJPanel hdpnl1 = (HoaDonJPanel) this.pnlTabs.getComponentAt(pnlTabs.getSelectedIndex());
+        if (hdpnl1.getLblHoaDon().getText().equalsIgnoreCase("Hóa đơn trống")){
+            return;
+        }
+                
         HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
-
         pnlTabs.addTab("Khách lẻ 0" + hoaDonIndex, hdpnl);
         hoaDonIndex++;
         pnlTabs.setSelectedComponent(hdpnl);
     }//GEN-LAST:event_btnThemHoaDonActionPerformed
 
     private void btnMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseClicked
-        jpmMenu.show(btnMenu, -160, -160);
+        jpmMenu.show(btnMenu, -190, -190);
 
     }//GEN-LAST:event_btnMenuMouseClicked
 
@@ -313,6 +381,22 @@ public class MainFrm extends javax.swing.JFrame {
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         new DoanhThuJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
+        new LoginJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_mniDangXuatActionPerformed
+
+    private void mniQLChiTietSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLChiTietSPActionPerformed
+        new QL_CTSPJdialog(this, true).setVisible(true);
+    }//GEN-LAST:event_mniQLChiTietSPActionPerformed
+
+    private void mniThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThongKeActionPerformed
+        new DoanhThuJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_mniThongKeActionPerformed
+
+    private void mniQLKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLKMActionPerformed
+        new QL_KhuyenMaiJDiaLog(this, true).setVisible(true);
+    }//GEN-LAST:event_mniQLKMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,10 +450,16 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu jpmMenu;
     private javax.swing.JLabel lblTenNV;
+    private javax.swing.JMenuItem mniDangXuat;
     private javax.swing.JMenuItem mniQLChiTietSP;
+    private javax.swing.JMenuItem mniQLKM;
     private javax.swing.JMenuItem mniQLSanPham;
+    private javax.swing.JMenuItem mniThongKe;
     private javax.swing.JPanel pnlFooter;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMain;

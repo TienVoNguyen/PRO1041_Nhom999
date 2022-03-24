@@ -5,6 +5,7 @@
  */
 package poly.gui;
 
+import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -68,6 +69,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jPanel10 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtGiamGia = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -75,6 +77,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtTienKhach = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         lblTienThua = new javax.swing.JLabel();
         txtTienThua = new javax.swing.JTextField();
@@ -83,6 +86,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 153, 51)));
+        jPanel1.setPreferredSize(new java.awt.Dimension(620, 425));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
@@ -127,7 +131,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jPanel2.add(jPanel5, java.awt.BorderLayout.LINE_START);
 
         jPanel6.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel6.setLayout(new java.awt.GridLayout());
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
         jPanel2.add(jPanel6, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
@@ -172,14 +176,21 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Giảm giá:");
-        jLabel6.setPreferredSize(new java.awt.Dimension(148, 12));
+        jLabel6.setPreferredSize(new java.awt.Dimension(168, 12));
         jPanel10.add(jLabel6, java.awt.BorderLayout.LINE_START);
 
         txtGiamGia.setEditable(false);
         txtGiamGia.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtGiamGia.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtGiamGia.setText("0");
+        txtGiamGia.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(240, 240, 240)));
         txtGiamGia.setEnabled(false);
         jPanel10.add(txtGiamGia, java.awt.BorderLayout.CENTER);
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setText("₫");
+        jLabel3.setOpaque(true);
+        jPanel10.add(jLabel3, java.awt.BorderLayout.LINE_END);
 
         jPanel8.add(jPanel10);
 
@@ -189,7 +200,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nhập voucher:");
-        jLabel5.setPreferredSize(new java.awt.Dimension(148, 12));
+        jLabel5.setPreferredSize(new java.awt.Dimension(168, 12));
         jPanel13.add(jLabel5, java.awt.BorderLayout.LINE_START);
 
         jButton3.setBackground(new java.awt.Color(255, 102, 51));
@@ -209,16 +220,28 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tiền Khách Trả:");
-        jLabel4.setPreferredSize(new java.awt.Dimension(148, 12));
+        jLabel4.setPreferredSize(new java.awt.Dimension(168, 12));
         jPanel12.add(jLabel4, java.awt.BorderLayout.LINE_START);
 
         txtTienKhach.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtTienKhach.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTienKhach.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        txtTienKhach.setPreferredSize(new java.awt.Dimension(10, 22));
         txtTienKhach.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtTienKhachKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTienKhachKeyReleased(evt);
+            }
         });
         jPanel12.add(txtTienKhach, java.awt.BorderLayout.CENTER);
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel7.setText("₫");
+        jLabel7.setOpaque(true);
+        jPanel12.add(jLabel7, java.awt.BorderLayout.LINE_END);
 
         jPanel8.add(jPanel12);
 
@@ -227,13 +250,14 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
 
         lblTienThua.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTienThua.setForeground(new java.awt.Color(255, 255, 255));
-        lblTienThua.setText("Tiền thừa:");
-        lblTienThua.setPreferredSize(new java.awt.Dimension(148, 12));
+        lblTienThua.setText("Trả Lại Khách:");
+        lblTienThua.setPreferredSize(new java.awt.Dimension(168, 12));
         jPanel9.add(lblTienThua, java.awt.BorderLayout.LINE_START);
 
         txtTienThua.setEditable(false);
         txtTienThua.setBackground(new java.awt.Color(255, 255, 255));
         txtTienThua.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtTienThua.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTienThua.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtTienThua.setEnabled(false);
         txtTienThua.setOpaque(false);
@@ -277,14 +301,35 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void txtTienKhachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachKeyPressed
-        double TienThua = Double.parseDouble(txtTienKhach.getText()) - Double.parseDouble(txtTongTien.getToolTipText());
-        if (TienThua < 0) {
-            lblTienThua.setText("Tiền Khách Thiếu:");
+        char c = evt.getKeyChar();
+        if (c >= '0' && c <= '9') {
+            txtTienKhach.setEditable(true);
         } else {
-            lblTienThua.setText("Tiền Khách Trả:");
+            if (evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+                txtTienKhach.setEditable(true);
+            } else {
+                txtTienKhach.setEditable(false);
+            }
         }
-        this.txtTienThua.setText(df.format(TienThua));
     }//GEN-LAST:event_txtTienKhachKeyPressed
+
+    private void txtTienKhachKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachKeyReleased
+        double TienThua;
+        if (txtTienKhach.getText().isEmpty()) {
+            TienThua = 0;
+        } else {
+            TienThua = Double.parseDouble(txtTienKhach.getText()) - Double.parseDouble(txtTongTien.getToolTipText());
+        }
+        
+        if (TienThua < 0) {
+            lblTienThua.setText("Khách Còn Thiếu:");
+            this.txtTienThua.setText(df.format(TienThua * -1));
+
+        } else {
+            lblTienThua.setText("Trả Lại Khách:");
+            this.txtTienThua.setText(df.format(TienThua));
+        }
+    }//GEN-LAST:event_txtTienKhachKeyReleased
 
     /**
      * @param args the command line arguments
@@ -335,9 +380,11 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
