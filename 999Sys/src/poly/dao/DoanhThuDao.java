@@ -119,11 +119,10 @@ public class DoanhThuDao {
                 lst.add(new Object[]{
                     da,
                     rs.getInt("SOHD"),
-                    rs.getInt("HDTHAPNHAT"),
-                    rs.getInt("HDCAONHAT"),
-                    rs.getInt("TBHOADON"),
-                    rs.getInt("SOTIENGIAM"),
-                    rs.getInt("THANHTIEN"),});
+                    rs.getInt("SOLUONG"),
+                    rs.getInt("GIABAN"),
+                    rs.getInt("GIAMGIA"),
+                    rs.getInt("DOANHTHU")});
 
             }
             rs.getStatement().getConnection().close();
@@ -181,7 +180,7 @@ public class DoanhThuDao {
                     rs.getInt("HDCAONHAT"),
                     rs.getInt("TBHOADON"),
                     rs.getInt("SOTIENGIAM"),
-                    rs.getInt("THANHTIEN"),});
+                    rs.getInt("THANHTIEN")});
 
             }
             rs.getStatement().getConnection().close();
@@ -235,11 +234,10 @@ public class DoanhThuDao {
                 lst.add(new Object[]{
                     rs.getString("NAM"),
                     rs.getInt("SOHD"),
-                    rs.getInt("HDTHAPNHAT"),
-                    rs.getInt("HDCAONHAT"),
-                    rs.getInt("TBHOADON"),
-                    rs.getInt("SOTIENGIAM"),
-                    rs.getInt("THANHTIEN"),});
+                    rs.getInt("SOLUONG"),
+                    rs.getInt("GIABAN"),
+                    rs.getInt("GIAMGIA"),
+                    rs.getInt("DOANHTHU")});
 
             }
             rs.getStatement().getConnection().close();
