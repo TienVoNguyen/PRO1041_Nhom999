@@ -89,6 +89,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         btnXuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1800, 1000));
         setPreferredSize(new java.awt.Dimension(1800, 1000));
         setResizable(false);
 
@@ -456,7 +457,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         jPanel22.setLayout(new java.awt.BorderLayout());
 
         jPanel23.setMaximumSize(new java.awt.Dimension(468, 103));
-        jPanel23.setLayout(new java.awt.GridLayout());
+        jPanel23.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -503,7 +504,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jPanel22.add(jPanel25, java.awt.BorderLayout.WEST);
 
-        jPanel26.setLayout(new java.awt.GridLayout());
+        jPanel26.setLayout(new java.awt.GridLayout(1, 0));
 
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
