@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -133,6 +134,22 @@ public class DoanhThuDao {
         return null;
     }
 
+    public List<Object> getThongKeToDay() throws Exception {
+
+        List<Object> lst = new ArrayList<>();
+        String sql = "SELECT * FROM FNDTTD(?)";
+        ResultSet rs = XJDBC.query(sql, "2022-03-21");
+
+        while (rs.next()) {
+            lst.add(rs.getString("TONGTIEN"));
+            lst.add(rs.getInt("THANHCONG"));
+            lst.add(rs.getInt("BIHUY"));
+        }
+        rs.getStatement().getConnection().close();
+        return lst;
+
+    }
+
     public JFreeChart createChartMonths(int year) {
         String chartTitle = "Biểu đồ doanh thu " + " năm " + year;
         String sql = "{Call SP_CHARTYEAR(?)}";
@@ -176,11 +193,10 @@ public class DoanhThuDao {
                 lst.add(new Object[]{
                     rs.getString("THANG"),
                     rs.getInt("SOHD"),
-                    rs.getInt("HDTHAPNHAT"),
-                    rs.getInt("HDCAONHAT"),
-                    rs.getInt("TBHOADON"),
-                    rs.getInt("SOTIENGIAM"),
-                    rs.getInt("THANHTIEN")});
+                    rs.getInt("SOLUONG"),
+                    rs.getInt("GIABAN"),
+                    rs.getInt("GIAMGIA"),
+                    rs.getInt("DOANHTHU")});
 
             }
             rs.getStatement().getConnection().close();
@@ -254,39 +270,39 @@ public class DoanhThuDao {
             case 0:
                 String sql = "{Call SP_DTSP}";
                 ResultSet rs = XJDBC.query(sql);
-                
-                while (rs.next()) {
-                lst.add(new Object[]{
-                    rs.getString("MASP"),
-                    rs.getString("TENSP"),
-                    rs.getInt("CONLAI"),
-                    rs.getInt("DABAN"),
-                    rs.getInt("SOHD"),
-                    rs.getInt("TBHOADON"),
-                    rs.getInt("SOTIENGIAM"),
-                    rs.getInt("THANHTIEN"),});
 
-            }
-            rs.getStatement().getConnection().close();
-            return lst;
+                while (rs.next()) {
+                    lst.add(new Object[]{
+                        rs.getString("MASP"),
+                        rs.getString("TENSP"),
+                        rs.getInt("CONLAI"),
+                        rs.getInt("DABAN"),
+                        rs.getInt("SOHD"),
+                        rs.getInt("TBHOADON"),
+                        rs.getInt("SOTIENGIAM"),
+                        rs.getInt("THANHTIEN"),});
+
+                }
+                rs.getStatement().getConnection().close();
+                return lst;
             case 1:
                 String sql1 = "{Call SP_DTSP}";
                 ResultSet rs1 = XJDBC.query(sql1);
-                
-                while (rs1.next()) {
-                lst.add(new Object[]{
-                    rs1.getString("MASP"),
-                    rs1.getString("TENSP"),
-                    rs1.getInt("SOHD"),
-                    rs1.getInt("HDTHAPNHAT"),
-                    rs1.getInt("HDCAONHAT"),
-                    rs1.getInt("TBHOADON"),
-                    rs1.getInt("SOTIENGIAM"),
-                    rs1.getInt("THANHTIEN"),});
 
-            }
-            rs1.getStatement().getConnection().close();
-            return lst;
+                while (rs1.next()) {
+                    lst.add(new Object[]{
+                        rs1.getString("MASP"),
+                        rs1.getString("TENSP"),
+                        rs1.getInt("SOHD"),
+                        rs1.getInt("HDTHAPNHAT"),
+                        rs1.getInt("HDCAONHAT"),
+                        rs1.getInt("TBHOADON"),
+                        rs1.getInt("SOTIENGIAM"),
+                        rs1.getInt("THANHTIEN"),});
+
+                }
+                rs1.getStatement().getConnection().close();
+                return lst;
             case 2:
         }
         return null;
