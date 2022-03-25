@@ -3,9 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/ThongKeJDialog.java</file>
+            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/DoanhThuJDialog.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/ThanhToanJDialog.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/QL_CTSPJdialog.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/ButtonColumn.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/HoaDonJPanel.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/MauSacJDialog.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/CustomTabbedPaneUI.java</file>
+=======
             <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/HoaDonJPanel.java</file>
             <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/DoanhThuJDialog.java</file>
             <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
+>>>>>>> a4e99dbdeea9a7ff6a4b8270ff7fe4b0d690036f
+>>>>>>> 7e887214e55a46d4b43676c95e5f159fc887b326
         </group>
     </open-files>
 </project-private>
