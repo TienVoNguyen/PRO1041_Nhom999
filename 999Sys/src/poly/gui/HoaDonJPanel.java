@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -370,7 +371,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         lblLoaiKH = new javax.swing.JLabel();
         cbbLoaKH = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        TenKH = new javax.swing.JTextField();
+        txtTenKH = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         lblDiaChi = new javax.swing.JLabel();
@@ -840,6 +841,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jLabel15.setText("Ngày tham gia");
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 20));
 
+        txtNgayThamGia.setEditable(false);
         txtNgayThamGia.setPreferredSize(new java.awt.Dimension(180, 18));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -883,7 +885,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                                         .addGap(10, 10, 10)
                                         .addComponent(lblLoaiKH, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                                     .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(TenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
@@ -936,7 +938,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1084,11 +1086,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiKHActionPerformed
 
     private void btnLuuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuKHActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnLuuKHActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TenKH;
     private javax.swing.JButton btnHoaDonMoi;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnLuuKH;
@@ -1156,6 +1157,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtNgayThamGia;
     private javax.swing.JTextField txtSDT;
+    private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
@@ -1399,6 +1401,22 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         this.txtSDT.setText("");
         this.txtTimKiem.setText("");
         this.txtTongTien.setText("");
+    }
+    
+    public KhachHang getFormKH(){
+        KhachHang kh = new KhachHang();
+        kh.setMaKH(txtMaKH.getText());
+        kh.setHoTen(txtTenKH.getText());
+        kh.setDiaChi(txtDiaChi.getText());
+        kh.setEmail(txtEmail.getText());
+        kh.setGioiTinh(rdoNam.isSelected());
+        DanhMuc d = (DanhMuc) cbbLoaKH.getSelectedItem();
+        kh.setMaLoaiKH(d.getMaDM());
+        kh.setSDT(txtSDT.getText());
+        kh.setNgayTao(XDate.toDate(XDate.toString(new Date(),"MM/dd/yyyy"), "MM/dd/YYYY"));
+        
+        
+        return kh;
     }
 
 }
