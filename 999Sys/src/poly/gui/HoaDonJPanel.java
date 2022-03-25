@@ -204,13 +204,13 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         };
 
         //khởi tạo buttonColum để tạo button có sự kiện xóa vào bảng sản phẩm ở cột 12 đặt tên là xóa
-        ButtonColumn btnDeleteHoaDon = new ButtonColumn(tblHoaDon, delete, 0, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/cancel-40.png")));
+        ButtonColumn btnDeleteHoaDon = new ButtonColumn(tblHoaDon, delete, 0, "Xóa",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/cancel-40.png")));
         btnDeleteHoaDon.setMnemonic(KeyEvent.VK_D);
         //khởi tạo buttonColum để tạo button có sự kiện Giảm số lượng vào bảng sản phẩm ở cột 3 đặt tên là Giảm
-        ButtonColumn btnTangHoaDon = new ButtonColumn(tblHoaDon, giam, 3, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/giam-40.png")));
+        ButtonColumn btnTangHoaDon = new ButtonColumn(tblHoaDon, giam, 3, "Giảm",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/giam-40.png")));
         btnTangHoaDon.setMnemonic(KeyEvent.VK_D);
         //khởi tạo buttonColum để tạo button có sự kiện Tăng số lượng vào bảng sản phẩm ở cột 4 đặt tên là Tăng
-        ButtonColumn btnGiamHoaDon = new ButtonColumn(tblHoaDon, tang, 4, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/tang-40.png")));
+        ButtonColumn btnGiamHoaDon = new ButtonColumn(tblHoaDon, tang, 4, "Tăng",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/tang-40.png")));
         btnGiamHoaDon.setMnemonic(KeyEvent.VK_D);
         //Bảng Sản Phẩm
         //Viết mã sử lỹ cho sự kiện thêm sản phẩm vào hóa đơn ở đây
@@ -272,7 +272,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         };
         //khởi tạo buttonColum để tạo button có sự kiện 'thêm sản phẩm vào bảng hóa đơn' ở cột 4 đặt tên là Thêm vào hóa đơn
-        ButtonColumn btnThemSPVaoHD = new ButtonColumn(tblSanPham, ThemSPVaoHD, 5, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-to-basket-64.png")));
+        ButtonColumn btnThemSPVaoHD = new ButtonColumn(tblSanPham, ThemSPVaoHD, 5, "thêm sản phẩm vào bảng hóa đơn",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-to-basket-64.png")));
         btnThemSPVaoHD.setMnemonic(KeyEvent.VK_D);
 
         //Bảng Khách hàng
@@ -303,7 +303,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         };
         //khởi tạo buttonColum để tạo button có sự kiện 'thêm khách hàng vào bảng hóa đơn' ở cột 9 đặt tên là Thêm vào hóa đơn
-        ButtonColumn btnThemKHVaoHD = new ButtonColumn(tblKhachHang, ThemKHVaoHD, 9, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-user-70.png")));
+        ButtonColumn btnThemKHVaoHD = new ButtonColumn(tblKhachHang, ThemKHVaoHD, 9, "thêm khách hàng vào hóa đơn",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-user-70.png")));
         btnThemKHVaoHD.setMnemonic(KeyEvent.VK_D);
     }
 

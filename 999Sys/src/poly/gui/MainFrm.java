@@ -20,6 +20,7 @@ import poly.entity.CTHoaDon;
 import poly.entity.HoaDon;
 import poly.entity.KhachHang;
 import poly.helper.CustomTabbedPaneUI;
+import poly.helper.Messeger;
 
 /**
  *
@@ -187,6 +188,11 @@ public class MainFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlMain.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(51, 51, 51)));
         pnlMain.setLayout(new java.awt.BorderLayout());
@@ -338,7 +344,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimiseActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        System.exit(0);
+        checkPreExit();
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseClicked
@@ -386,6 +392,11 @@ public class MainFrm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_pnlTabsStateChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        checkPreExit();
+    }//GEN-LAST:event_formWindowClosing
+
 
     /**
      * @param args the command line arguments
@@ -478,6 +489,22 @@ public class MainFrm extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
             Logger.getLogger(MainFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    private void checkPreExit() {
+        for (int i = 0; i < pnlTabs.getTabCount(); i++) {
+            HoaDonJPanel h = (HoaDonJPanel) pnlTabs.getComponentAt(i);
+            if (!h.getLblHoaDon().getText().equalsIgnoreCase("Hóa đơn trống")){
+                if (Messeger.confirm(this, "Vẫn còn hóa đơn chưa thanh toán! Bạn chắc chắn muốn thoát chứ?")){
+                    System.exit(0);
+                } else {
+                    return;
+                }
+            } else {
+                System.exit(0);
+            }
         }
     }
 
