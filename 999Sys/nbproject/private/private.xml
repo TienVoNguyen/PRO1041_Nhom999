@@ -5,9 +5,11 @@
         <group>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/ThanhToanJDialog.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/QL_CTSPJdialog.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/ButtonColumn.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/HoaDonJPanel.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/MauSacJDialog.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/CustomTabbedPaneUI.java</file>
         </group>
     </open-files>
 </project-private>

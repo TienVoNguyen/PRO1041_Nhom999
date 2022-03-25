@@ -204,13 +204,13 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         };
 
         //khởi tạo buttonColum để tạo button có sự kiện xóa vào bảng sản phẩm ở cột 12 đặt tên là xóa
-        ButtonColumn btnDeleteHoaDon = new ButtonColumn(tblHoaDon, delete, 0, "Xóa");
+        ButtonColumn btnDeleteHoaDon = new ButtonColumn(tblHoaDon, delete, 0, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/cancel-40.png")));
         btnDeleteHoaDon.setMnemonic(KeyEvent.VK_D);
         //khởi tạo buttonColum để tạo button có sự kiện Giảm số lượng vào bảng sản phẩm ở cột 3 đặt tên là Giảm
-        ButtonColumn btnTangHoaDon = new ButtonColumn(tblHoaDon, giam, 3, "Giảm");
+        ButtonColumn btnTangHoaDon = new ButtonColumn(tblHoaDon, giam, 3, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/giam-40.png")));
         btnTangHoaDon.setMnemonic(KeyEvent.VK_D);
         //khởi tạo buttonColum để tạo button có sự kiện Tăng số lượng vào bảng sản phẩm ở cột 4 đặt tên là Tăng
-        ButtonColumn btnGiamHoaDon = new ButtonColumn(tblHoaDon, tang, 4, "Tăng");
+        ButtonColumn btnGiamHoaDon = new ButtonColumn(tblHoaDon, tang, 4, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/tang-40.png")));
         btnGiamHoaDon.setMnemonic(KeyEvent.VK_D);
         //Bảng Sản Phẩm
         //Viết mã sử lỹ cho sự kiện thêm sản phẩm vào hóa đơn ở đây
@@ -272,7 +272,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         };
         //khởi tạo buttonColum để tạo button có sự kiện 'thêm sản phẩm vào bảng hóa đơn' ở cột 4 đặt tên là Thêm vào hóa đơn
-        ButtonColumn btnThemSPVaoHD = new ButtonColumn(tblSanPham, ThemSPVaoHD, 5, "Thêm vào hóa đơn");
+        ButtonColumn btnThemSPVaoHD = new ButtonColumn(tblSanPham, ThemSPVaoHD, 5, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-to-basket-64.png")));
         btnThemSPVaoHD.setMnemonic(KeyEvent.VK_D);
 
         //Bảng Khách hàng
@@ -303,7 +303,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         };
         //khởi tạo buttonColum để tạo button có sự kiện 'thêm khách hàng vào bảng hóa đơn' ở cột 9 đặt tên là Thêm vào hóa đơn
-        ButtonColumn btnThemKHVaoHD = new ButtonColumn(tblKhachHang, ThemKHVaoHD, 9, "Thêm vào hóa đơn");
+        ButtonColumn btnThemKHVaoHD = new ButtonColumn(tblKhachHang, ThemKHVaoHD, 9, "",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-user-70.png")));
         btnThemKHVaoHD.setMnemonic(KeyEvent.VK_D);
     }
 
@@ -670,15 +670,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         tblHoaDon.setRowHeight(40);
         jScrollPane1.setViewportView(tblHoaDon);
         if (tblHoaDon.getColumnModel().getColumnCount() > 0) {
-            tblHoaDon.getColumnModel().getColumn(0).setMinWidth(60);
-            tblHoaDon.getColumnModel().getColumn(0).setPreferredWidth(60);
-            tblHoaDon.getColumnModel().getColumn(0).setMaxWidth(60);
-            tblHoaDon.getColumnModel().getColumn(3).setMinWidth(60);
-            tblHoaDon.getColumnModel().getColumn(3).setPreferredWidth(60);
-            tblHoaDon.getColumnModel().getColumn(3).setMaxWidth(60);
-            tblHoaDon.getColumnModel().getColumn(4).setMinWidth(60);
-            tblHoaDon.getColumnModel().getColumn(4).setPreferredWidth(60);
-            tblHoaDon.getColumnModel().getColumn(4).setMaxWidth(60);
+            tblHoaDon.getColumnModel().getColumn(0).setMinWidth(40);
+            tblHoaDon.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblHoaDon.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblHoaDon.getColumnModel().getColumn(3).setMinWidth(40);
+            tblHoaDon.getColumnModel().getColumn(3).setPreferredWidth(40);
+            tblHoaDon.getColumnModel().getColumn(3).setMaxWidth(40);
+            tblHoaDon.getColumnModel().getColumn(4).setMinWidth(40);
+            tblHoaDon.getColumnModel().getColumn(4).setPreferredWidth(40);
+            tblHoaDon.getColumnModel().getColumn(4).setMaxWidth(40);
             tblHoaDon.getColumnModel().getColumn(6).setMinWidth(0);
             tblHoaDon.getColumnModel().getColumn(6).setPreferredWidth(0);
             tblHoaDon.getColumnModel().getColumn(6).setMaxWidth(0);
@@ -720,15 +720,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblSanPham.setRowHeight(64);
+        tblSanPham.setRowHeight(80);
         jScrollPane2.setViewportView(tblSanPham);
         if (tblSanPham.getColumnModel().getColumnCount() > 0) {
             tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(100);
             tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(100);
             tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(70);
             tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(70);
-            tblSanPham.getColumnModel().getColumn(5).setMinWidth(120);
-            tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tblSanPham.getColumnModel().getColumn(5).setMinWidth(70);
+            tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(70);
             tblSanPham.getColumnModel().getColumn(6).setMinWidth(48);
             tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(70);
         }
@@ -787,12 +787,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblKhachHang.setRowHeight(40);
+        tblKhachHang.setRowHeight(72);
         jScrollPane3.setViewportView(tblKhachHang);
         if (tblKhachHang.getColumnModel().getColumnCount() > 0) {
-            tblKhachHang.getColumnModel().getColumn(9).setMinWidth(120);
-            tblKhachHang.getColumnModel().getColumn(9).setPreferredWidth(120);
-            tblKhachHang.getColumnModel().getColumn(9).setMaxWidth(120);
+            tblKhachHang.getColumnModel().getColumn(9).setPreferredWidth(72);
         }
 
         jPanel11.setBackground(new java.awt.Color(0, 153, 51));

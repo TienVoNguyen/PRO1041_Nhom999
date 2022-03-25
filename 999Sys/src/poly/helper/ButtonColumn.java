@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.table.*;
 
 /**
@@ -22,6 +23,7 @@ import javax.swing.table.*;
 public class ButtonColumn extends AbstractCellEditor
 	implements TableCellRenderer, TableCellEditor, ActionListener, MouseListener
 {
+        private ImageIcon icon;
         private String name;
 	private JTable table;
 	private Action action;
@@ -43,15 +45,20 @@ public class ButtonColumn extends AbstractCellEditor
 	 *  @param action the Action to be invoked when the button is invoked
 	 *  @param column the column to which the button renderer/editor is added
 	 */
-	public ButtonColumn(JTable table, Action action, int column, String name)
+	public ButtonColumn(JTable table, Action action, int column, String name, ImageIcon icon)
 	{
+                this.icon = icon;
                 this.name = name;
 		this.table = table;
 		this.action = action;
 
 		renderButton = new JButton();
                 renderButton.setText(name);
+                renderButton.setBackground(Color.WHITE);
+                renderButton.setUI(new BasicButtonUI());
 		editButton = new JButton();
+		editButton.setBackground(Color.WHITE);
+		editButton.setUI(new BasicButtonUI());
                 editButton.setText(name);
 		editButton.setFocusPainted( false );
 		editButton.addActionListener( this );
@@ -110,17 +117,17 @@ public class ButtonColumn extends AbstractCellEditor
 		if (value == null)
 		{
 			editButton.setText( name );
-			editButton.setIcon( null );
+			editButton.setIcon( icon );
 		}
 		else if (value instanceof Icon)
 		{
 			editButton.setText( name );
-			editButton.setIcon( (Icon)value );
+			editButton.setIcon( icon );
 		}
 		else
 		{
 			editButton.setText( value.toString() );
-			editButton.setIcon( null );
+			editButton.setIcon( icon );
 		}
 
 		this.editorValue = value;
@@ -163,17 +170,17 @@ public class ButtonColumn extends AbstractCellEditor
 		if (value == null)
 		{
 			renderButton.setText( name );
-			renderButton.setIcon( null );
+			renderButton.setIcon( icon );
 		}
 		else if (value instanceof Icon)
 		{
 			renderButton.setText( name );
-			renderButton.setIcon( (Icon)value );
+			renderButton.setIcon( icon );
 		}
 		else
 		{
 			renderButton.setText( value.toString() );
-			renderButton.setIcon( null );
+			renderButton.setIcon( icon );
 		}
 
 		return renderButton;

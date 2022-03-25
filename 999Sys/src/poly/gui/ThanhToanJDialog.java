@@ -86,7 +86,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 153, 51)));
-        jPanel1.setPreferredSize(new java.awt.Dimension(620, 425));
+        jPanel1.setPreferredSize(new java.awt.Dimension(620, 525));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
@@ -138,6 +138,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(153, 255, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 0, new java.awt.Color(255, 153, 51)));
+        jPanel3.setPreferredSize(new java.awt.Dimension(366, 535));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         txtTongTien.setEditable(false);
@@ -168,6 +169,8 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
 
         jPanel8.setBackground(new java.awt.Color(0, 153, 153));
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 153, 153)));
+        jPanel8.setMinimumSize(new java.awt.Dimension(181, 194));
+        jPanel8.setPreferredSize(new java.awt.Dimension(296, 244));
         jPanel8.setLayout(new java.awt.GridLayout(0, 1, 0, 10));
 
         jPanel10.setBackground(new java.awt.Color(0, 153, 153));
@@ -199,14 +202,14 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Nhập voucher:");
+        jLabel5.setText("Point:");
         jLabel5.setPreferredSize(new java.awt.Dimension(168, 12));
         jPanel13.add(jLabel5, java.awt.BorderLayout.LINE_START);
 
         jButton3.setBackground(new java.awt.Color(255, 102, 51));
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Áp Dụng");
+        jButton3.setText("Sử Dụng");
         jPanel13.add(jButton3, java.awt.BorderLayout.LINE_END);
 
         txtNhapVoucher.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N

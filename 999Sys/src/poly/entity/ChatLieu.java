@@ -22,6 +22,10 @@ public class ChatLieu {
         this.tenChatLieu = tenChatLieu;
         this.trangThai = trangThai;
     }
+    public ChatLieu(String tenChatLieu, boolean trangThai) {
+        this.tenChatLieu = tenChatLieu;
+        this.trangThai = trangThai;
+    }
 
     public int getMaChatLieu() {
         return maChatLieu;

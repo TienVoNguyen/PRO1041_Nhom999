@@ -67,7 +67,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         };
         
         //khởi tạo buttonColum để tạo button có sự kiện xóa vào bảng sản phẩm ở cột 12 đặt tên là xóa
-        ButtonColumn buttonColumn = new ButtonColumn(tblSanPham, delete, 12,"Xóa");
+        ButtonColumn buttonColumn = new ButtonColumn(tblSanPham, delete, 12,"Xóa",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/qr.png")));
         buttonColumn.setMnemonic(KeyEvent.VK_D);
 
     }

@@ -5,8 +5,6 @@
  */
 package poly.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -77,6 +75,18 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblYear = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        cbxSanPham = new javax.swing.JComboBox<>();
+        jPanel24 = new javax.swing.JPanel();
+        jPanel25 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblSP = new javax.swing.JTable();
+        jPanel27 = new javax.swing.JPanel();
+        btnXuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1800, 1000));
@@ -442,15 +452,126 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Doanh thu năm", jPanel3);
 
+        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 51, 51))); // NOI18N
+        jPanel22.setLayout(new java.awt.BorderLayout());
+
+        jPanel23.setMaximumSize(new java.awt.Dimension(468, 103));
+        jPanel23.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Bộ Lọc:");
+        jPanel23.add(jLabel4);
+
+        cbxSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doanh thu Sản phẩm", "Doanh thu Danh Mục", "Sản phẩm sắp hết" }));
+        cbxSanPham.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxSanPhamItemStateChanged(evt);
+            }
+        });
+        jPanel23.add(cbxSanPham);
+
+        jPanel22.add(jPanel23, java.awt.BorderLayout.CENTER);
+
+        jPanel24.setPreferredSize(new java.awt.Dimension(485, 54));
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel22.add(jPanel24, java.awt.BorderLayout.EAST);
+
+        jPanel25.setPreferredSize(new java.awt.Dimension(385, 54));
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 385, Short.MAX_VALUE)
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 54, Short.MAX_VALUE)
+        );
+
+        jPanel22.add(jPanel25, java.awt.BorderLayout.WEST);
+
+        jPanel26.setLayout(new java.awt.GridLayout(1, 0));
+
+        tblSP.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblSP.setEnabled(false);
+        tblSP.setFocusable(false);
+        tblSP.setRowHeight(24);
+        tblSP.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(tblSP);
+
+        jPanel26.add(jScrollPane4);
+
+        jPanel27.setLayout(new java.awt.BorderLayout());
+
+        btnXuat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnXuat.setText("Xuất File Excel");
+        btnXuat.setMaximumSize(new java.awt.Dimension(333, 39));
+        btnXuat.setMinimumSize(new java.awt.Dimension(333, 39));
+        btnXuat.setPreferredSize(new java.awt.Dimension(333, 39));
+        btnXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatActionPerformed(evt);
+            }
+        });
+        jPanel27.add(btnXuat, java.awt.BorderLayout.EAST);
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
+            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1027, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Doanh thu theo sản phẩm", jPanel4);
@@ -492,6 +613,14 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         addChartDays();
         loadDataDoanhThuDays();
     }//GEN-LAST:event_cbxMonthItemStateChanged
+
+    private void btnXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXuatActionPerformed
+
+    private void cbxSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxSanPhamItemStateChanged
+        loadDataToTableSP();
+    }//GEN-LAST:event_cbxSanPhamItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -536,13 +665,16 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnXuat;
     private javax.swing.JComboBox<String> cbxMonth;
     private javax.swing.JComboBox<String> cbxMonthInYear;
+    private javax.swing.JComboBox<String> cbxSanPham;
     private javax.swing.JComboBox<String> cbxYear;
     private javax.swing.JPanel doanhThuChart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -556,6 +688,13 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -566,11 +705,13 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnDTMonth;
     private javax.swing.JPanel pnYear;
     private javax.swing.JTable tblDTNgay;
     private javax.swing.JTable tblMonthInYear;
+    private javax.swing.JTable tblSP;
     private javax.swing.JTable tblYear;
     // End of variables declaration//GEN-END:variables
 
@@ -597,6 +738,7 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
         loadYears();
         addChartYear();
         loadDataDoanhThuYear();
+        loadDataToTableSP();
     }
 
     private void loadYears() {
@@ -669,26 +811,61 @@ public class DoanhThuJDialog extends javax.swing.JDialog {
             }
         }
     }
-    
+
     private void addChartYear() {
-            try {
-                pnYear.removeAll();
-                ChartPanel chartPanel = new ChartPanel(dt_dao.createChartYear());
-                chartPanel.setMouseZoomable(false);
-                pnYear.add(chartPanel);
-                this.pack();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            pnYear.removeAll();
+            ChartPanel chartPanel = new ChartPanel(dt_dao.createChartYear());
+            chartPanel.setMouseZoomable(false);
+            pnYear.add(chartPanel);
+            this.pack();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadDataDoanhThuYear() {
         DefaultTableModel model = (DefaultTableModel) tblYear.getModel();
         model.setRowCount(0);
-            List<Object[]> list = dt_dao.getThongKeYear();
-            for (Object[] row : list) {
-                model.addRow(row);
-            }
+        List<Object[]> list = dt_dao.getThongKeYear();
+        for (Object[] row : list) {
+            model.addRow(row);
         }
-    
+    }
+
+    private void loadDataToTableSP() {
+        DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
+       
+        int index = cbxSanPham.getSelectedIndex();
+        List<Object[]> lst;
+        try {
+            lst = dt_dao.getThongKeSP(index);
+            switch (index) {
+                case 0:
+                    model.setRowCount(0);
+                    model.setColumnCount(0);
+                    
+                    Object columns[] = {"Mã SP", "Tên SP", "Số HD", "Thấp Nhất", "Cao Nhất", "Trung Bình", "Doanh Thu"};
+                    for (Object o : columns) {
+                        model.addColumn(o);
+                    }
+                    for (Object[] ob : lst) {
+                        model.addRow(ob);
+                    }
+                case 1:
+                    model.setRowCount(0);
+                    model.setColumnCount(0);
+                    
+                    Object columns1[] = {"Mã DM", "Tên DM", "Số HD", "Thấp Nhất", "Cao Nhất", "Trung Bình", "Doanh Thu"};
+                    for (Object o : columns1) {
+                        model.addColumn(o);
+                    }
+                    for (Object[] ob : lst) {
+                        model.addRow(ob);
+                    }
+                case 2:
+            }
+        } catch (Exception ex) {
+        }
+    }
 }
