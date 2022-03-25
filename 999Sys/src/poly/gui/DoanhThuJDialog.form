@@ -24,6 +24,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,113,0,0,3,-2"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -73,7 +74,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="174" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="doanhThuChart" pref="506" max="32767" attributes="0"/>
+                      <Component id="doanhThuChart" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -311,7 +312,7 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="pnDTMonth" max="32767" attributes="0"/>
                               <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel17" alignment="0" pref="1027" max="32767" attributes="0"/>
+                              <Component id="jPanel17" alignment="0" pref="997" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -325,7 +326,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel17" min="-2" pref="219" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pnDTMonth" pref="469" max="32767" attributes="0"/>
+                          <Component id="pnDTMonth" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -371,7 +372,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -386,7 +387,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -401,7 +402,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -441,7 +442,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -456,7 +457,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -471,7 +472,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -619,7 +620,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="pnYear" alignment="1" max="32767" attributes="0"/>
                               <Component id="jPanel19" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jPanel20" alignment="0" pref="997" max="32767" attributes="0"/>
+                              <Component id="jPanel20" alignment="0" pref="977" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -633,7 +634,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel20" min="-2" pref="177" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pnYear" pref="478" max="32767" attributes="0"/>
+                          <Component id="pnYear" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -776,7 +777,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel22" pref="1027" max="32767" attributes="0"/>
+                      <Component id="jPanel22" pref="997" max="32767" attributes="0"/>
                       <Component id="jPanel26" alignment="0" max="32767" attributes="0"/>
                       <Component id="jPanel27" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -786,7 +787,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel22" min="-2" pref="85" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel26" pref="612" max="32767" attributes="0"/>
+                          <Component id="jPanel26" pref="169" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -991,7 +992,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="335" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="datePicker2" min="-2" max="-2" attributes="0"/>
@@ -1012,7 +1013,7 @@
                       <Component id="datePicker1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       <Component id="datePicker2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="461" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

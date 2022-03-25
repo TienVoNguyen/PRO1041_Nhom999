@@ -98,7 +98,7 @@ public class MainFrm extends javax.swing.JFrame {
         btnKhuyenMai = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnDoanhThu = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
@@ -280,6 +280,11 @@ public class MainFrm extends javax.swing.JFrame {
 
         btnKhoaManHinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/password32.png"))); // NOI18N
         btnKhoaManHinh.setToolTipText("Khóa Màn Hình");
+        btnKhoaManHinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhoaManHinhActionPerformed(evt);
+            }
+        });
         pnlFooter.add(btnKhoaManHinh, java.awt.BorderLayout.LINE_START);
 
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/checklist.png"))); // NOI18N
@@ -313,8 +318,8 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel1.add(btnThongKe);
 
-        jButton3.setText("jButton1");
-        jButton3.setPreferredSize(new java.awt.Dimension(73, 40));
+        jButton3.setText("Quản lý chi tiết sản phẩm");
+        jButton3.setPreferredSize(new java.awt.Dimension(173, 40));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -322,9 +327,14 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3);
 
-        jButton4.setText("jButton1");
-        jButton4.setPreferredSize(new java.awt.Dimension(73, 40));
-        jPanel1.add(jButton4);
+        btnDoanhThu.setText("Doanh thu");
+        btnDoanhThu.setPreferredSize(new java.awt.Dimension(93, 40));
+        btnDoanhThu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoanhThuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDoanhThu);
 
         jButton5.setText("jButton1");
         jButton5.setPreferredSize(new java.awt.Dimension(73, 40));
@@ -377,7 +387,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniQLChiTietSPActionPerformed
 
     private void mniThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThongKeActionPerformed
-        new DoanhThuJDialog(this, true).setVisible(true);
+        new ThongKeJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_mniThongKeActionPerformed
 
     private void mniQLKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLKMActionPerformed
@@ -396,6 +406,14 @@ public class MainFrm extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         checkPreExit();
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnKhoaManHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaManHinhActionPerformed
+        new KhoaManHinh(this, true).setVisible(true);
+    }//GEN-LAST:event_btnKhoaManHinhActionPerformed
+
+    private void btnDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoanhThuActionPerformed
+        new DoanhThuJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_btnDoanhThuActionPerformed
 
 
     /**
@@ -435,13 +453,13 @@ public class MainFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnDoanhThu;
     private javax.swing.JButton btnKhoaManHinh;
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMinimise;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

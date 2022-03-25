@@ -40,8 +40,11 @@ import poly.entity.LoaiKhachHang;
 import poly.entity.SanPham;
 import poly.helper.Auth;
 import poly.helper.ButtonColumn;
+import poly.helper.CustomDatePicker;
 import poly.helper.ImageColumn;
+import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XValidate;
 
 /**
  *
@@ -103,6 +106,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         loadDataToCBBDM();
         loadDataToCBBLKH();
 
+        dpkNgaySinh.setSettings(CustomDatePicker.customsDatePicker(dpkNgaySinh));
+        dpkNgaySinh.setDateToToday();
     }
 
     private void addButtonToTable() {
@@ -205,13 +210,13 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         };
 
         //khởi tạo buttonColum để tạo button có sự kiện xóa vào bảng sản phẩm ở cột 12 đặt tên là xóa
-        ButtonColumn btnDeleteHoaDon = new ButtonColumn(tblHoaDon, delete, 0, "Xóa",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/cancel-40.png")));
+        ButtonColumn btnDeleteHoaDon = new ButtonColumn(tblHoaDon, delete, 0, "Xóa", new javax.swing.ImageIcon(getClass().getResource("/poly/icons/cancel-40.png")));
         btnDeleteHoaDon.setMnemonic(KeyEvent.VK_D);
         //khởi tạo buttonColum để tạo button có sự kiện Giảm số lượng vào bảng sản phẩm ở cột 3 đặt tên là Giảm
-        ButtonColumn btnTangHoaDon = new ButtonColumn(tblHoaDon, giam, 3, "Giảm",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/giam-40.png")));
+        ButtonColumn btnTangHoaDon = new ButtonColumn(tblHoaDon, giam, 3, "Giảm", new javax.swing.ImageIcon(getClass().getResource("/poly/icons/giam-40.png")));
         btnTangHoaDon.setMnemonic(KeyEvent.VK_D);
         //khởi tạo buttonColum để tạo button có sự kiện Tăng số lượng vào bảng sản phẩm ở cột 4 đặt tên là Tăng
-        ButtonColumn btnGiamHoaDon = new ButtonColumn(tblHoaDon, tang, 4, "Tăng",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/tang-40.png")));
+        ButtonColumn btnGiamHoaDon = new ButtonColumn(tblHoaDon, tang, 4, "Tăng", new javax.swing.ImageIcon(getClass().getResource("/poly/icons/tang-40.png")));
         btnGiamHoaDon.setMnemonic(KeyEvent.VK_D);
         //Bảng Sản Phẩm
         //Viết mã sử lỹ cho sự kiện thêm sản phẩm vào hóa đơn ở đây
@@ -273,7 +278,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         };
         //khởi tạo buttonColum để tạo button có sự kiện 'thêm sản phẩm vào bảng hóa đơn' ở cột 4 đặt tên là Thêm vào hóa đơn
-        ButtonColumn btnThemSPVaoHD = new ButtonColumn(tblSanPham, ThemSPVaoHD, 5, "thêm sản phẩm vào bảng hóa đơn",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-to-basket-64.png")));
+        ButtonColumn btnThemSPVaoHD = new ButtonColumn(tblSanPham, ThemSPVaoHD, 5, "thêm sản phẩm vào bảng hóa đơn", new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-to-basket-64.png")));
         btnThemSPVaoHD.setMnemonic(KeyEvent.VK_D);
 
         //Bảng Khách hàng
@@ -304,7 +309,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         };
         //khởi tạo buttonColum để tạo button có sự kiện 'thêm khách hàng vào bảng hóa đơn' ở cột 9 đặt tên là Thêm vào hóa đơn
-        ButtonColumn btnThemKHVaoHD = new ButtonColumn(tblKhachHang, ThemKHVaoHD, 9, "thêm khách hàng vào hóa đơn",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-user-70.png")));
+        ButtonColumn btnThemKHVaoHD = new ButtonColumn(tblKhachHang, ThemKHVaoHD, 9, "thêm khách hàng vào hóa đơn", new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add-user-70.png")));
         btnThemKHVaoHD.setMnemonic(KeyEvent.VK_D);
     }
 
@@ -381,10 +386,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         txtNgayThamGia = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txtNgaySinh = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         rdoNu = new javax.swing.JRadioButton();
         rdoNam = new javax.swing.JRadioButton();
+        dpkNgaySinh = new com.github.lgooddatepicker.components.DatePicker();
         btnLuuKH = new javax.swing.JButton();
         btnMoiKH = new javax.swing.JButton();
 
@@ -449,8 +454,27 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jPanel10.add(btnTimKiem, java.awt.BorderLayout.LINE_END);
 
         txtTimKiem.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtTimKiem.setText("Tìm Kiếm");
+        txtTimKiem.setForeground(new java.awt.Color(255, 0, 0));
+        txtTimKiem.setText("Tìm Kiếm Sản Phẩm");
         txtTimKiem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        txtTimKiem.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTimKiemFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTimKiemFocusLost(evt);
+            }
+        });
+        txtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimKiemMouseClicked(evt);
+            }
+        });
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiemActionPerformed(evt);
+            }
+        });
         jPanel10.add(txtTimKiem, java.awt.BorderLayout.CENTER);
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 51));
@@ -849,8 +873,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jLabel14.setText("Ngày sinh");
         jLabel14.setPreferredSize(new java.awt.Dimension(60, 0));
 
-        txtNgaySinh.setPreferredSize(new java.awt.Dimension(180, 18));
-
         jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Giới tính");
@@ -862,6 +884,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         buttonGroup1.add(rdoNam);
         rdoNam.setForeground(new java.awt.Color(255, 255, 255));
+        rdoNam.setSelected(true);
         rdoNam.setText("Nam");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -870,7 +893,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
@@ -909,7 +932,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dpkNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(rdoNu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -946,11 +969,11 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                             .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgayThamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(txtNgayThamGia, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(dpkNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -1086,9 +1109,30 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiKHActionPerformed
 
     private void btnLuuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuKHActionPerformed
-        
+        if (themKH()) return;
     }//GEN-LAST:event_btnLuuKHActionPerformed
 
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemActionPerformed
+
+    private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
+    }//GEN-LAST:event_txtTimKiemMouseClicked
+
+    private void txtTimKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusGained
+        if (txtTimKiem.getText().equalsIgnoreCase("Tìm Kiếm Khách Hàng") || txtTimKiem.getText().equalsIgnoreCase("Tìm Kiếm Sản Phẩm") ){
+            txtTimKiem.setText("");
+            txtTimKiem.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtTimKiemFocusGained
+
+    private void txtTimKiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusLost
+        if (txtTimKiem.getText().trim().isEmpty()) {
+            txtTimKiem.setForeground(new Color(255, 0, 0));
+            changeBackgroud_SP_KH();
+        }
+    }//GEN-LAST:event_txtTimKiemFocusLost
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHoaDonMoi;
     private javax.swing.JButton btnKhachHang;
@@ -1102,6 +1146,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbDanhMucSP;
     private javax.swing.JComboBox<String> cbbLoaKH;
+    private com.github.lgooddatepicker.components.DatePicker dpkNgaySinh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1154,7 +1199,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaKH;
-    private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtNgayThamGia;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKH;
@@ -1166,9 +1210,11 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         if (isSanPhamSelected == true) {
             btnSanPham.setBackground(new Color(153, 255, 153));
             btnKhachHang.setBackground(new Color(255, 204, 102));
+            txtTimKiem.setText("Tìm Kiếm Sản Phẩm");
         } else {
             btnSanPham.setBackground(new Color(255, 204, 102));
             btnKhachHang.setBackground(new Color(153, 255, 153));
+            txtTimKiem.setText("Tìm Kiếm Khách Hàng");
         }
     }
 
@@ -1396,27 +1442,81 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         this.txtDiaChi.setText("");
         this.txtEmail.setText("");
         this.txtMaKH.setText("");
-        this.txtNgaySinh.setText("");
+        this.dpkNgaySinh.setText("15/01/2022");
         this.txtNgayThamGia.setText("");
         this.txtSDT.setText("");
         this.txtTimKiem.setText("");
         this.txtTongTien.setText("");
     }
-    
-    public KhachHang getFormKH(){
+
+    public KhachHang getFormKH() {
         KhachHang kh = new KhachHang();
         kh.setMaKH(txtMaKH.getText());
         kh.setHoTen(txtTenKH.getText());
         kh.setDiaChi(txtDiaChi.getText());
         kh.setEmail(txtEmail.getText());
         kh.setGioiTinh(rdoNam.isSelected());
-        DanhMuc d = (DanhMuc) cbbLoaKH.getSelectedItem();
-        kh.setMaLoaiKH(d.getMaDM());
+        LoaiKhachHang d = (LoaiKhachHang) cbbLoaKH.getSelectedItem();
+        kh.setMaLoaiKH(d.getMaLoaiKH());
         kh.setSDT(txtSDT.getText());
-        kh.setNgayTao(XDate.toDate(XDate.toString(new Date(),"MM/dd/yyyy"), "MM/dd/YYYY"));
-        
-        
+
+        Date ngaysinh = XDate.toDate(dpkNgaySinh.getText(), "dd/MM/yyyy");
+        kh.setNgaySinh(ngaysinh);
+        kh.setNgayTao(XDate.toDate(XDate.toString(new Date(), "dd/MM/yyyy"), "MM/dd/YYYY"));
         return kh;
     }
 
+    private boolean CheckFormKH() {
+        StringBuilder sp = new StringBuilder();
+        if (XValidate.isEmpty(txtMaKH)) {
+            sp.append("Không để trống Mã Khách Hàng!\n");
+        }
+        if (XValidate.isEmpty(txtTenKH)) {
+            sp.append("Không để trống Họ Tên Khách Hàng!\n");
+        }
+        if (XValidate.isEmpty(txtDiaChi)) {
+            sp.append("Không để trống Địa Chỉ Khách Hàng!\n");
+        }
+        if (XValidate.isEmpty(txtSDT)) {
+            sp.append("Không để trống Số Điện Thoại Khách Hàng!\n");
+        } else if (XValidate.isNotNumber(txtSDT)) {
+            sp.append("Số Điện Thoại Không hợp lệ!\n");
+        }
+        if (XValidate.isEmpty(txtEmail)) {
+            sp.append("Không để trống Email Khách Hàng!\n");
+        } else if (XValidate.isNotEmail(txtMaKH)) {
+            sp.append("Email không hợp lệ!\n");
+        }
+        if (sp.length() > 0) {
+            Messeger.showErrorDialog(this, sp.toString(), "Lỗi");
+            return true;
+        }
+        return false;
+    }
+    
+    
+    private boolean themKH() {
+        if (CheckFormKH()) {
+            return true;
+        }
+        try {
+            if (this.daoKH.selectById(getFormKH().getMaKH()) != null) {
+                Messeger.alert(this, "Đã tồn tại mã khách hàng này");
+                return true;
+            }
+        }catch (Exception ex) {
+            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            KhachHang kh = getFormKH();
+            this.daoKH.insert(kh);
+            Messeger.alert(this, "Đã thêm thành công");
+            loadDataToTableKhachHang(kh);
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi truy vấn", "Hệ thống ORANGE");
+            Logger.getLogger(HoaDonJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
+        }
+        return false;
+    }
 }
