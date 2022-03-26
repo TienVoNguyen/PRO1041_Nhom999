@@ -97,9 +97,9 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnKhuyenMai = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnQLCTSP = new javax.swing.JButton();
+        btnQLSP = new javax.swing.JButton();
         btnDoanhThu = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -318,14 +318,23 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel1.add(btnThongKe);
 
-        jButton3.setText("Quản lý chi tiết sản phẩm");
-        jButton3.setPreferredSize(new java.awt.Dimension(173, 40));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnQLCTSP.setText("Quản lý chi tiết sản phẩm");
+        btnQLCTSP.setPreferredSize(new java.awt.Dimension(173, 40));
+        btnQLCTSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnQLCTSPActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
+        jPanel1.add(btnQLCTSP);
+
+        btnQLSP.setText("Quản lý sản phẩm");
+        btnQLSP.setPreferredSize(new java.awt.Dimension(133, 40));
+        btnQLSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLSPActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnQLSP);
 
         btnDoanhThu.setText("Doanh thu");
         btnDoanhThu.setPreferredSize(new java.awt.Dimension(93, 40));
@@ -335,10 +344,6 @@ public class MainFrm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDoanhThu);
-
-        jButton5.setText("jButton1");
-        jButton5.setPreferredSize(new java.awt.Dimension(73, 40));
-        jPanel1.add(jButton5);
 
         pnlFooter.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -366,9 +371,9 @@ public class MainFrm extends javax.swing.JFrame {
         new QLSanPhamJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_mniQLSanPhamActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnQLCTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLCTSPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnQLCTSPActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         new QL_KhuyenMaiJDiaLog(this, true).setVisible(true);
@@ -415,6 +420,10 @@ public class MainFrm extends javax.swing.JFrame {
         new DoanhThuJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnDoanhThuActionPerformed
 
+    private void btnQLSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSPActionPerformed
+        new QLSanPhamJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_btnQLSPActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -458,9 +467,9 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMinimise;
+    private javax.swing.JButton btnQLCTSP;
+    private javax.swing.JButton btnQLSP;
     private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;

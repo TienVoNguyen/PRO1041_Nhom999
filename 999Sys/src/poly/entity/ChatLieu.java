@@ -50,5 +50,10 @@ public class ChatLieu {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    @Override
+    public String toString() {
+        return this.tenChatLieu;
+    }
     
 }
