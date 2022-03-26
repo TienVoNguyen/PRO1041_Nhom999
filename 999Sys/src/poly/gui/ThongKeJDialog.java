@@ -5,26 +5,23 @@
  */
 package poly.gui;
 
-import com.sun.java.swing.plaf.motif.MotifTabbedPaneUI;
 import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.plaf.TabbedPaneUI;
-import javax.swing.plaf.metal.MetalTabbedPaneUI;
-import javax.swing.plaf.multi.MultiTabbedPaneUI;
+import javax.swing.JTable;
 import javax.swing.plaf.synth.SynthTabbedPaneUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import org.jfree.chart.ChartPanel;
 import poly.dao.DoanhThuDao;
 import poly.helper.ChangeTable;
-import poly.helper.CustomTabbedPaneUI;
 
 /**
  *
@@ -38,7 +35,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
     /**
      * Creates new form ThongKeJDialog
      */
-    public ThongKeJDialog(java.awt.Frame parent, boolean modal) {
+    public ThongKeJDialog(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         initComponents();
         init();
@@ -105,6 +102,8 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        btnXuatSP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -349,6 +348,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
         jPanel18.setLayout(new java.awt.BorderLayout());
 
+        tblTK.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblTK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -360,6 +360,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblTK.setRowHeight(24);
         jScrollPane1.setViewportView(tblTK);
 
         jPanel18.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -402,6 +403,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
+        tblSP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -428,9 +430,21 @@ public class ThongKeJDialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblSP.setRowHeight(24);
         jScrollPane2.setViewportView(tblSP);
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(1469, 50));
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        btnXuatSP.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnXuatSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/excel.png"))); // NOI18N
+        btnXuatSP.setText("Xuất File");
+        btnXuatSP.setPreferredSize(new java.awt.Dimension(230, 49));
+        jPanel4.add(btnXuatSP, java.awt.BorderLayout.EAST);
+
+        jPanel2.add(jPanel4, java.awt.BorderLayout.SOUTH);
 
         jTabbedPane1.addTab("Sản Phẩm", jPanel2);
 
@@ -528,6 +542,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basecard;
     private javax.swing.JButton btnXuatExcel;
+    private javax.swing.JButton btnXuatSP;
     private javax.swing.JComboBox<String> cbxChoose;
     private javax.swing.JComboBox<String> cbxDaysMonth;
     private javax.swing.JComboBox<String> cbxDaysYear;
@@ -556,6 +571,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -581,7 +597,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void init() {
-
+        setLocationRelativeTo(null);
         dt_dao = new DoanhThuDao();
 
         jTabbedPane1.setUI(new WindowsTabbedPaneUI());
@@ -759,20 +775,36 @@ public class ThongKeJDialog extends javax.swing.JDialog {
             for (Object[] row : list) {
                 model.addRow(row);
             }
-            ChangeTable c = new ChangeTable();
-            for (int i = 0; i < model.getRowCount(); i++) {
-                int sl = Integer.parseInt(model.getValueAt(i, 8).toString());
-                if (sl < 51) {
-                    c.setRowColour(1, Color.CYAN);
-                    tblSP.setBackground(c.getRowColour(1));
-                    System.out.println(sl);
-                }
-            }
+            
+            dd();
+            
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
     
-    
+    private void dd(){
+        tblSP.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+    @Override
+    public Component getTableCellRendererComponent(JTable table,
+            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+
+        int sl = Integer.parseInt(table.getModel().getValueAt(row, 8).toString());
+        if (sl < 51) {
+            setBackground(Color.RED);
+            setForeground(Color.YELLOW);
+        } else if(sl < 101){
+            setBackground(Color.YELLOW);
+            setForeground(Color.RED);
+        }else{
+            setBackground(table.getBackground());
+            setForeground(table.getForeground());
+        }       
+        return this;
+    }   
+});
+    }
 }
