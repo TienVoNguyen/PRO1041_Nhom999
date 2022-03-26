@@ -5,24 +5,34 @@
  */
 package poly.gui;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.rmi.server.ObjID;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.event.CellEditorListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+import poly.dao.ChatLieuDao;
+import poly.dao.DanhMucDao;
+import poly.dao.DonViTinhDao;
+import poly.dao.MaMauDao;
+import poly.dao.SanPhamDao;
+import poly.dao.SizeDao;
+import poly.entity.ChatLieu;
+import poly.entity.DanhMuc;
+import poly.entity.DonViTinh;
+import poly.entity.MauSac;
+import poly.entity.SanPham;
+import poly.entity.Size;
 import poly.helper.ButtonColumn;
+import poly.helper.Messeger;
+import poly.helper.XDate;
 
 /**
  *
@@ -30,7 +40,23 @@ import poly.helper.ButtonColumn;
  */
 public class QLSanPhamJDialog extends javax.swing.JDialog {
 
-    DefaultTableModel model;
+    DefaultTableModel tableModel;
+    DefaultComboBoxModel<DanhMuc> dCBDM;
+    DefaultComboBoxModel<MauSac> dCBMS;
+    DefaultComboBoxModel<ChatLieu> dCBCL;
+    DefaultComboBoxModel<Size> dCBSize;
+    DefaultComboBoxModel<DanhMuc> dCBTimDM;
+    DefaultComboBoxModel<MauSac> dCBTimMS;
+    DefaultComboBoxModel<ChatLieu> dCBTimCL;
+    DefaultComboBoxModel<Size> dCBTimSize;
+    DefaultComboBoxModel<DonViTinh> dCBDVT;
+
+    DanhMucDao daoDM;
+    MaMauDao daoMauSac;
+    ChatLieuDao daoCL;
+    SizeDao daoSize;
+    DonViTinhDao daoDVT;
+    SanPhamDao daoSP;
 
     /**
      * Creates new form QL_SanPham
@@ -40,19 +66,51 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-        setSize(parent.getWidth(), parent.getHeight());
+//        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
-        model = (DefaultTableModel) tblSanPham.getModel();
-        //Add button vào bảng
-        addButtonToTable();
-        model.addRow(new Object[]{
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-        });
-        model.addRow(new Object[]{
-            2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-        });
-        
+        this.themDMJDialog.setModal(modal);
+
+        this.daoCL = new ChatLieuDao();
+        this.daoDM = new DanhMucDao();
+        this.daoDVT = new DonViTinhDao();
+        this.daoMauSac = new MaMauDao();
+        this.daoSize = new SizeDao();
+        this.daoSP = new SanPhamDao();
+
+        this.tableModel = new DefaultTableModel();
+        this.dCBCL = new DefaultComboBoxModel<>();
+        this.dCBDM = new DefaultComboBoxModel<>();
+        this.dCBMS = new DefaultComboBoxModel<>();
+        this.dCBSize = new DefaultComboBoxModel<>();
+        this.dCBTimCL = new DefaultComboBoxModel<>();
+        this.dCBTimDM = new DefaultComboBoxModel<>();
+        this.dCBTimMS = new DefaultComboBoxModel<>();
+        this.dCBTimSize = new DefaultComboBoxModel<>();
+        this.dCBDVT = new DefaultComboBoxModel<>();
+
+        this.tableModel = (DefaultTableModel) tblSanPham.getModel();
+        this.dCBCL = (DefaultComboBoxModel) cbbChatLieu.getModel();
+        this.dCBDM = (DefaultComboBoxModel) cbbDanhMuc.getModel();
+        this.dCBMS = (DefaultComboBoxModel) cbbMau.getModel();
+        this.dCBSize = (DefaultComboBoxModel) cbbSize.getModel();
+        this.dCBDVT = (DefaultComboBoxModel) cbbDonViTinh.getModel();
+
+        this.dCBTimCL = (DefaultComboBoxModel) cbbTimChatLieu.getModel();
+        this.dCBTimDM = (DefaultComboBoxModel) cbbTimDanhMuc.getModel();
+        this.dCBTimMS = (DefaultComboBoxModel) cbbTimMau.getModel();
+        this.dCBTimSize = (DefaultComboBoxModel) cbbTimSize.getModel();
+
+         addButtonToTable();
+        loadDataToCBBCL();
+        loadDataToCBBDM();
+        loadDataToCBBMau();
+        loadDataToCBBSize();
+        loadDataToCBBDVT();
+        Object[] objKey = {"%%", "%%", "%%", "%%", "%%", "%%", "%%"};
+        loadDataToTable(objKey);
+
+       
     }
 
     private void addButtonToTable() {
@@ -62,12 +120,20 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int modelRow = Integer.valueOf(e.getActionCommand());
-                ((DefaultTableModel) table.getModel()).removeRow(modelRow);
+                int maSP = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0)) + "");
+                
+                if (Messeger.confirm(null, "Xác nhận xóa sản phẩm có mã: "+maSP+"?")){
+                    try {
+                    daoSP.delete(maSP);
+                    ((DefaultTableModel) table.getModel()).removeRow(modelRow);
+                } catch (Exception ex) {
+                    Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }
             }
         };
-        
         //khởi tạo buttonColum để tạo button có sự kiện xóa vào bảng sản phẩm ở cột 12 đặt tên là xóa
-        ButtonColumn buttonColumn = new ButtonColumn(tblSanPham, delete, 12,"Xóa",new javax.swing.ImageIcon(getClass().getResource("/poly/icons/qr.png")));
+        ButtonColumn buttonColumn = new ButtonColumn(tblSanPham, delete, 12, "Xóa", new javax.swing.ImageIcon(getClass().getResource("/poly/icons/Exit32.png")));
         buttonColumn.setMnemonic(KeyEvent.VK_D);
 
     }
@@ -81,6 +147,18 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        themDMJDialog = new javax.swing.JDialog();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jPanel20 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
@@ -153,8 +231,49 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel13.setLayout(new java.awt.BorderLayout());
+
+        jPanel17.setPreferredSize(new java.awt.Dimension(428, 80));
+        jPanel17.setLayout(new java.awt.BorderLayout());
+
+        jPanel18.setBackground(new java.awt.Color(204, 204, 0));
+        jPanel18.setPreferredSize(new java.awt.Dimension(128, 147));
+        jPanel18.setLayout(new java.awt.GridLayout(2, 0, 0, 10));
+
+        jLabel2.setText("jLabel2");
+        jPanel18.add(jLabel2);
+
+        jLabel15.setText("jLabel15");
+        jPanel18.add(jLabel15);
+
+        jPanel17.add(jPanel18, java.awt.BorderLayout.WEST);
+
+        jPanel19.setLayout(new java.awt.GridLayout(2, 0, 0, 10));
+
+        jTextField1.setText("jTextField1");
+        jPanel19.add(jTextField1);
+
+        jTextField2.setText("jTextField2");
+        jPanel19.add(jTextField2);
+
+        jPanel17.add(jPanel19, java.awt.BorderLayout.CENTER);
+
+        jPanel13.add(jPanel17, java.awt.BorderLayout.PAGE_START);
+
+        jPanel20.setLayout(new java.awt.GridLayout(1, 0));
+
+        jToggleButton1.setText("jToggleButton1");
+        jPanel20.add(jToggleButton1);
+
+        jToggleButton2.setText("jToggleButton2");
+        jPanel20.add(jToggleButton2);
+
+        jPanel13.add(jPanel20, java.awt.BorderLayout.CENTER);
+
+        themDMJDialog.getContentPane().add(jPanel13, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(6, 6, 6, 6, new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -275,6 +394,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnMoi.setBackground(new java.awt.Color(102, 102, 255));
         btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
         jPanel15.add(btnMoi);
 
         jPanel8.add(jPanel15, java.awt.BorderLayout.WEST);
@@ -341,6 +465,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnThemDanhMuc.setText("Thêm Danh mục mới");
         btnThemDanhMuc.setPreferredSize(new java.awt.Dimension(143, 21));
+        btnThemDanhMuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemDanhMucActionPerformed(evt);
+            }
+        });
         jPanel35.add(btnThemDanhMuc, java.awt.BorderLayout.LINE_END);
 
         jPanel14.add(jPanel35);
@@ -514,17 +643,17 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.PAGE_START);
 
-        tblSanPham.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        tblSanPham.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Ma SP", "Ma Vach", "Ten SP", "Gia Ban", "Gia Nhap", "So Luong", "Danh Muc", "DVT", "Size", "Mau", "Chat Lieu", "Ngay Nhap", "tool"
+                "Ma SP", "Ma Vach", "Ten SP", "Gia Ban", "Gia Nhap", "So Luong", "Danh Muc", "DVT", "Size", "Mau", "Chat Lieu", "Ngay Nhap", "tool", "AnhSP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -533,6 +662,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         });
         tblSanPham.setGridColor(new java.awt.Color(0, 0, 0));
         tblSanPham.setRowHeight(40);
+        tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSanPham);
         if (tblSanPham.getColumnModel().getColumnCount() > 0) {
             tblSanPham.getColumnModel().getColumn(12).setMinWidth(60);
@@ -565,13 +699,72 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-        model.addRow(new Object[]{
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-        });
-        model.addRow(new Object[]{
-            2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-        });
+        if (!txtMaSanPham.getText().isEmpty()) {
+            if (Messeger.confirm(this, "Mã sản phẩm đã tồn tại!, Bạn có muốn cập nhập với mã này không?"
+                    + "\n nếu muốn tạo mới Hãy ấn nút 'Mói'")) {
+                try {
+                    this.daoSP.update(getForm());
+                } catch (Exception ex) {
+                    Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            if (Messeger.confirm(this, "Xác nhận thêm sản phẩm này?")) {
+                try {
+                    this.daoSP.insert(getForm());
+                    Messeger.alert(this, "Thêm thành công");
+                    this.loadDataToTable(new Object[]{
+                        "%" + getForm().getMaVach() + "%",
+                        "%" + getForm().getMaVach() + "%",
+                        "%" + getForm().getMaVach() + "%",
+                        "%" + getForm().getMaVach() + "%",
+                        "%" + getForm().getMaVach() + "%",
+                        "%" + getForm().getMaVach() + "%",
+                        "%" + getForm().getMaVach() + "%"
+                    });
+                } catch (Exception ex) {
+                    Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void btnThemDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemDanhMucActionPerformed
+        this.themDMJDialog.setSize(614, 200);
+        this.themDMJDialog.setLocationRelativeTo(this);
+        this.themDMJDialog.setVisible(true);
+    }//GEN-LAST:event_btnThemDanhMucActionPerformed
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        clearForm();
+    }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        int index = this.tblSanPham.getSelectedRow();
+        if (index == -1){
+            return;
+        }
+        int masp = Integer.parseInt(tblSanPham.getValueAt(index, 0)+"");
+        try {
+            SanPham sp = this.daoSP.selectById(masp);
+            this.txtMaSanPham.setText(sp.getMaSP()+"");
+            this.txtGiaBan.setValue(sp.getGiaBan());
+            this.txtGiaNhap.setValue(sp.getGiaNhap());
+            this.txtMaVach.setText(sp.getMaVach());
+            this.txtNgayNhap.setText(XDate.toString(sp.getNgayNhap(), "dd/MM/yyyy"));
+            this.txtSoLuong.setValue(sp.getSoLuong());
+            this.txtTenSP.setText(sp.getTenSanPham());
+            this.dCBDM.setSelectedItem(tblSanPham.getValueAt(index, 6)+"");
+            this.dCBDVT.setSelectedItem(tblSanPham.getValueAt(index, 7)+"");
+            this.dCBMS.setSelectedItem(tblSanPham.getValueAt(index, 9)+"");
+            this.dCBSize.setSelectedItem(tblSanPham.getValueAt(index, 8)+"");
+            this.dCBCL.setSelectedItem(tblSanPham.getValueAt(index, 10)+"");
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tblSanPhamMouseClicked
 
     /**
      * @param args the command line arguments
@@ -645,6 +838,8 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -656,10 +851,15 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
@@ -680,8 +880,13 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JTable tblSanPham;
+    private javax.swing.JDialog themDMJDialog;
     private javax.swing.JSpinner txtGiaBan;
     private javax.swing.JSpinner txtGiaNhap;
     private javax.swing.JTextField txtMaSanPham;
@@ -692,4 +897,128 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
+    private void loadDataToCBBCL() {
+        this.dCBCL.removeAllElements();
+        this.dCBTimCL.removeAllElements();
+        List<ChatLieu> list = new ArrayList<>();
+        try {
+            list = this.daoCL.selectAll();
+            this.cbbTimChatLieu.addItem("ALL");
+            for (ChatLieu cl : list) {
+                this.dCBCL.addElement(cl);
+                this.dCBTimCL.addElement(cl);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadDataToCBBDM() {
+        this.dCBDM.removeAllElements();
+        this.dCBTimDM.removeAllElements();
+        List<DanhMuc> list = new ArrayList<>();
+        try {
+            list = this.daoDM.selectAll();
+            this.cbbTimDanhMuc.addItem("All");
+            for (DanhMuc dm : list) {
+                this.dCBDM.addElement(dm);
+                this.dCBTimDM.addElement(dm);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void loadDataToCBBMau() {
+        this.dCBMS.removeAllElements();
+        this.dCBTimMS.removeAllElements();
+        List<MauSac> list = new ArrayList<>();
+        try {
+            list = this.daoMauSac.selectAll();
+            this.cbbTimMau.addItem("ALL");
+            for (MauSac mauSac : list) {
+                this.dCBMS.addElement(mauSac);
+                this.dCBTimMS.addElement(mauSac);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void loadDataToCBBSize() {
+        this.dCBSize.removeAllElements();
+        this.dCBTimSize.removeAllElements();
+        List<Size> list = new ArrayList<>();
+        try {
+            list = this.daoSize.selectAll();
+            this.cbbTimSize.addItem("ALL");
+            for (Size s : list) {
+                this.dCBSize.addElement(s);
+                this.dCBTimSize.addElement(s);
+            }
+            this.dCBSize.setSelectedItem("XXL");
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void loadDataToCBBDVT() {
+        this.dCBDVT.removeAllElements();
+        List<DonViTinh> list = new ArrayList<>();
+        try {
+            list = this.daoDVT.selectAll();
+            for (DonViTinh donViTinh : list) {
+                this.dCBDVT.addElement(donViTinh);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadDataToTable(Object[] objKey) {
+        this.tableModel.setRowCount(0);
+        List<Object[]> listSP = new ArrayList<>();
+        listSP = this.daoSP.getListSanPhamByListKey(objKey);
+        for (Object[] o : listSP) {
+            this.tableModel.addRow(o);
+        }
+    }
+
+    public SanPham getForm() {
+        SanPham sp = new SanPham();
+        sp.setAnhSanPham(lblAnh.getToolTipText());
+        sp.setGiaBan(Double.parseDouble(txtGiaBan.getValue() + ""));
+        sp.setGiaNhap(Double.parseDouble(txtGiaNhap.getValue() + ""));
+        ChatLieu c = (ChatLieu) cbbChatLieu.getSelectedItem();
+        sp.setMaChatLieu(c.getMaChatLieu());
+        DonViTinh dvt = (DonViTinh) cbbDonViTinh.getSelectedItem();
+        sp.setMaDVT(dvt.getMaDVT());
+        DanhMuc dm = (DanhMuc) cbbDanhMuc.getSelectedItem();
+        sp.setMaDanhMuc(dm.getMaDM());
+        MauSac mau = (MauSac) cbbMau.getSelectedItem();
+        sp.setMaMau(mau.getMaMau());
+        if (!txtMaSanPham.getText().isEmpty()) {
+            sp.setMaSP(Integer.parseInt(txtMaSanPham.getText()));
+        }
+        Size s = (Size) cbbSize.getSelectedItem();
+        sp.setMaSize(s.getMaSize());
+        sp.setMaVach(txtMaVach.getText());
+        sp.setNgayNhap(XDate.toDate(XDate.toString(new Date(), "MM/dd/yyyy"), "MM/dd/yyyy"));
+        sp.setSoLuong(Integer.parseInt(txtSoLuong.getValue() + ""));
+        sp.setTenSanPham(txtTenSP.getText());
+        return sp;
+    }
+
+    private void clearForm() {
+        this.txtMaSanPham.setText("");
+        this.txtGiaBan.setValue(0);
+        this.txtGiaNhap.setValue(0);
+        this.txtMaVach.setText("");
+        this.txtNgayNhap.setText("");
+        this.txtSoLuong.setValue(0);
+        this.txtTenSP.setText("");
+    }
 }

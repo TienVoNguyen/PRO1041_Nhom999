@@ -8,6 +8,7 @@ package poly.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import poly.entity.SanPham;
 import poly.helper.XJDBC;
 
@@ -21,7 +22,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
     public String getQuery(String action) {
         switch (action) {
             case "INSERT":
-                return "INSERT INTO SANPHAM (MADM, MAVACH, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, APDUNGKM, MADVT, MAMAU, MASIZE, MACHATLIEU) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                return "INSERT INTO SANPHAM (MADM, MAVACH,TENSP, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, MADVT, MAMAU, MASIZE, MACHATLIEU) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
                 return "UPDATE SANPHAM SET MADM =?, MAVACH =?, ANHSANPHAM =?, GIANHAP =?, GIABAN =?, SOLUONG =?, NGAYNHAP =?, APDUNGKM =?, MADVT =?, MAMAU =?, MASIZE =?, MACHATLIEU =?, TRANGTHAI =? WHERE MASP = ?";
             case "DELETE":
@@ -45,12 +46,12 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                 return new Object[]{
                     obj.getMaDanhMuc(),
                     obj.getMaVach(),
+                    obj.getTenSanPham(),
                     obj.getAnhSanPham(),
                     obj.getGiaNhap(),
                     obj.getGiaBan(),
                     obj.getSoLuong(),
                     obj.getNgayNhap(),
-                    obj.isApDungKM(),
                     obj.getMaDVT(),
                     obj.getMaMau(),
                     obj.getMaSize(),
@@ -133,4 +134,31 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
         return XJDBC.update(this.getQuery("UPDATEMASP"), this.getParams("UPDATEMASP", e)) > 0;
     }
 
+    public List<Object[]> getListSanPhamByListKey(Object[] listKey){
+        String sql = "{CALL sp_timkiem(?,?,?,?,?,?,?)}";
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJDBC.query(sql, listKey);
+            while (rs.next()) {
+                list.add(new Object[]{
+                    rs.getObject(1),
+                    rs.getObject(2),
+                    rs.getObject(3),
+                    rs.getObject(4),
+                    rs.getObject(5),
+                    rs.getObject(6),
+                    rs.getObject(7),
+                    rs.getObject(8),
+                    rs.getObject(9),
+                    rs.getObject(10),
+                    rs.getObject(11),
+                    rs.getObject(12)
+                });
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }
