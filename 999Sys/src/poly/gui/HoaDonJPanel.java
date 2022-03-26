@@ -106,7 +106,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         loadDataToCBBDM();
         loadDataToCBBLKH();
 
-        dpkNgaySinh.setSettings(CustomDatePicker.customsDatePicker(dpkNgaySinh));
+        dpkNgaySinh.setSettings(CustomDatePicker.customsDatePicker(dpkNgaySinh, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
         dpkNgaySinh.setDateToToday();
     }
 

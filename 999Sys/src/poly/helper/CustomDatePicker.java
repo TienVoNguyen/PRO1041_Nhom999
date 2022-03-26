@@ -9,19 +9,26 @@ import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.plaf.IconUIResource;
+import sun.swing.ImageIconUIResource;
 
 /**
  *
  * @author NTV
  */
-public class CustomDatePicker {
-    public static DatePickerSettings customsDatePicker( DatePicker datePicker) {
+public  class CustomDatePicker {
+    public static DatePickerSettings customsDatePicker( DatePicker datePicker, ImageIcon icon ) {
         DatePickerSettings dateSettings = new DatePickerSettings();
         JButton datePickerButton = datePicker.getComponentToggleCalendarButton();
         datePickerButton.setText("");
-        datePickerButton.setIcon(new ImageIcon("E:\\Learn\\Git\\PRO1041_Nhom999\\999Sys\\src\\poly\\icons\\calendar.png"));
+        datePickerButton.setIcon( icon );
         dateSettings.setColor(DatePickerSettings.DateArea.CalendarBackgroundNormalDates, Color.ORANGE);
         dateSettings.setColor(DatePickerSettings.DateArea.BackgroundOverallCalendarPanel, Color.GREEN);
         dateSettings.setColor(DatePickerSettings.DateArea.BackgroundMonthAndYearMenuLabels, Color.YELLOW);

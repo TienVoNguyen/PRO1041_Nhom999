@@ -99,7 +99,6 @@ public class MainFrm extends javax.swing.JFrame {
         btnThongKe = new javax.swing.JButton();
         btnQLCTSP = new javax.swing.JButton();
         btnQLSP = new javax.swing.JButton();
-        btnDoanhThu = new javax.swing.JButton();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -336,15 +335,6 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel1.add(btnQLSP);
 
-        btnDoanhThu.setText("Doanh thu");
-        btnDoanhThu.setPreferredSize(new java.awt.Dimension(93, 40));
-        btnDoanhThu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoanhThuActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnDoanhThu);
-
         pnlFooter.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pnlMain.add(pnlFooter, java.awt.BorderLayout.PAGE_END);
@@ -380,7 +370,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        new DoanhThuJDialog(this, true).setVisible(true);
+        new ThongKeJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
@@ -415,10 +405,6 @@ public class MainFrm extends javax.swing.JFrame {
     private void btnKhoaManHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaManHinhActionPerformed
         new KhoaManHinh(this, true).setVisible(true);
     }//GEN-LAST:event_btnKhoaManHinhActionPerformed
-
-    private void btnDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoanhThuActionPerformed
-        new DoanhThuJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_btnDoanhThuActionPerformed
 
     private void btnQLSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSPActionPerformed
         new QLSanPhamJDialog(this, true).setVisible(true);
@@ -462,7 +448,6 @@ public class MainFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnDoanhThu;
     private javax.swing.JButton btnKhoaManHinh;
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;
