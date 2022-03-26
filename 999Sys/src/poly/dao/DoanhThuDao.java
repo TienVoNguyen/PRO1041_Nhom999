@@ -121,9 +121,9 @@ public class DoanhThuDao {
                     da,
                     rs.getInt("SOHD"),
                     rs.getInt("SOLUONG"),
-                    rs.getInt("GIABAN"),
-                    rs.getInt("GIAMGIA"),
-                    rs.getInt("DOANHTHU")});
+                    rs.getString("GIABAN"),
+                    rs.getString("GIAMGIA"),
+                    rs.getString("DOANHTHU")});
 
             }
             rs.getStatement().getConnection().close();
@@ -138,12 +138,47 @@ public class DoanhThuDao {
 
         List<Object> lst = new ArrayList<>();
         String sql = "SELECT * FROM FNDTTD(?)";
-        ResultSet rs = XJDBC.query(sql, "2022-03-21");
+        ResultSet rs = XJDBC.query(sql, new Date());
 
         while (rs.next()) {
-            lst.add(rs.getString("TONGTIEN"));
-            lst.add(rs.getInt("THANHCONG"));
-            lst.add(rs.getInt("BIHUY"));
+            String tongtien = rs.getString("TONGTIEN")==null? "0 VNĐ" : rs.getString("TONGTIEN");
+            lst.add(tongtien);
+            lst.add(rs.getString("THANHCONG"));
+            lst.add(rs.getString("BIHUY"));
+        }
+        rs.getStatement().getConnection().close();
+        return lst;
+
+    }
+    
+    public List<Object> getThongKeToMonth() throws Exception {
+
+        List<Object> lst = new ArrayList<>();
+        String sql = "SELECT * FROM FNDTMONTH(?)";
+        ResultSet rs = XJDBC.query(sql, new Date());
+
+        while (rs.next()) {
+            String tongtien = rs.getString("TONGTIEN")==null? "0 VNĐ" : rs.getString("TONGTIEN");
+            lst.add(tongtien);
+            lst.add(rs.getString("THANHCONG"));
+            lst.add(rs.getString("BIHUY"));
+        }
+        rs.getStatement().getConnection().close();
+        return lst;
+
+    }
+    
+    public List<Object> getThongKeToYear() throws Exception {
+
+        List<Object> lst = new ArrayList<>();
+        String sql = "SELECT * FROM FNDTYEAR(?)";
+        ResultSet rs = XJDBC.query(sql, new Date());
+
+        while (rs.next()) {
+            String tongtien = rs.getString("TONGTIEN")==null? "0 VNĐ" : rs.getString("TONGTIEN");
+            lst.add(tongtien);
+            lst.add(rs.getString("THANHCONG"));
+            lst.add(rs.getString("BIHUY"));
         }
         rs.getStatement().getConnection().close();
         return lst;
@@ -194,9 +229,9 @@ public class DoanhThuDao {
                     rs.getString("THANG"),
                     rs.getInt("SOHD"),
                     rs.getInt("SOLUONG"),
-                    rs.getInt("GIABAN"),
-                    rs.getInt("GIAMGIA"),
-                    rs.getInt("DOANHTHU")});
+                    rs.getString("GIABAN"),
+                    rs.getString("GIAMGIA"),
+                    rs.getString("DOANHTHU")});
 
             }
             rs.getStatement().getConnection().close();
@@ -251,9 +286,9 @@ public class DoanhThuDao {
                     rs.getString("NAM"),
                     rs.getInt("SOHD"),
                     rs.getInt("SOLUONG"),
-                    rs.getInt("GIABAN"),
-                    rs.getInt("GIAMGIA"),
-                    rs.getInt("DOANHTHU")});
+                    rs.getString("GIABAN"),
+                    rs.getString("GIAMGIA"),
+                    rs.getString("DOANHTHU")});
 
             }
             rs.getStatement().getConnection().close();
@@ -264,47 +299,24 @@ public class DoanhThuDao {
         return null;
     }
 
-    public List<Object[]> getThongKeSP(int index) throws Exception {
-        List<Object[]> lst = new ArrayList<>();
-        switch (index) {
-            case 0:
-                String sql = "{Call SP_DTSP}";
+    public List<Object[]> getThongKeSP() throws Exception {
+        List<Object[]> lst = new ArrayList<>();        
+                String sql = "{Call SP_SP}";
                 ResultSet rs = XJDBC.query(sql);
-
                 while (rs.next()) {
                     lst.add(new Object[]{
                         rs.getString("MASP"),
                         rs.getString("TENSP"),
-                        rs.getInt("CONLAI"),
-                        rs.getInt("DABAN"),
-                        rs.getInt("SOHD"),
-                        rs.getInt("TBHOADON"),
-                        rs.getInt("SOTIENGIAM"),
-                        rs.getInt("THANHTIEN"),});
-
+                        rs.getString("MAVACH"),
+                        rs.getString("TENDANHMUC"),
+                        rs.getString("TENMAU"),
+                        rs.getString("TENDVT"),
+                        rs.getString("MASIZE"),
+                        rs.getString("TENCHATLIEU"),
+                        rs.getInt("SOLUONG")});
                 }
                 rs.getStatement().getConnection().close();
                 return lst;
-            case 1:
-                String sql1 = "{Call SP_DTSP}";
-                ResultSet rs1 = XJDBC.query(sql1);
-
-                while (rs1.next()) {
-                    lst.add(new Object[]{
-                        rs1.getString("MASP"),
-                        rs1.getString("TENSP"),
-                        rs1.getInt("SOHD"),
-                        rs1.getInt("HDTHAPNHAT"),
-                        rs1.getInt("HDCAONHAT"),
-                        rs1.getInt("TBHOADON"),
-                        rs1.getInt("SOTIENGIAM"),
-                        rs1.getInt("THANHTIEN"),});
-
-                }
-                rs1.getStatement().getConnection().close();
-                return lst;
-            case 2:
-        }
-        return null;
+            
     }
 }
