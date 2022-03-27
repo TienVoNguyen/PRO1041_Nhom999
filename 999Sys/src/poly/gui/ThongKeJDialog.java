@@ -584,7 +584,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
         dt_dao = new DoanhThuDao();
 
-        jTabbedPane1.setUI(new WindowsTabbedPaneUI());
+        jTabbedPane1.setUI(new CustomTabbedPaneUI());
         jTabbedPane1.setForeground(Color.BLACK);
         jTabbedPane1.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/revenue.png")));
         jTabbedPane1.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/box.png")));

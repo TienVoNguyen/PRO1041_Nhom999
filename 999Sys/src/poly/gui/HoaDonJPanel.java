@@ -1484,7 +1484,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         }
         if (XValidate.isEmpty(txtEmail)) {
             sp.append("Không để trống Email Khách Hàng!\n");
-        } else if (XValidate.isNotEmail(txtMaKH)) {
+        } else if (XValidate.isNotEmail(txtEmail)) {
             sp.append("Email không hợp lệ!\n");
         }
         if (sp.length() > 0) {
