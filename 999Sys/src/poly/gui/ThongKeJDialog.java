@@ -9,7 +9,13 @@ import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,10 +24,20 @@ import javax.swing.JTable;
 import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jfree.chart.ChartPanel;
 import poly.dao.DoanhThuDao;
-import poly.helper.ChangeTable;
+import poly.helper.Messeger;
+import poly.helper.XDate;
+import poly.helper.XExcel;
 
 /**
  *
@@ -35,7 +51,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
     /**
      * Creates new form ThongKeJDialog
      */
-    public ThongKeJDialog(java.awt.Frame parent, boolean modal){
+    public ThongKeJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
@@ -325,7 +341,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         yearCard.setLayout(yearCardLayout);
         yearCardLayout.setHorizontalGroup(
             yearCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 956, Short.MAX_VALUE)
         );
         yearCardLayout.setVerticalGroup(
             yearCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,6 +458,11 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         btnXuatSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/excel.png"))); // NOI18N
         btnXuatSP.setText("Xuất File");
         btnXuatSP.setPreferredSize(new java.awt.Dimension(230, 49));
+        btnXuatSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatSPActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnXuatSP, java.awt.BorderLayout.EAST);
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.SOUTH);
@@ -494,8 +515,20 @@ public class ThongKeJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxMonthYearItemStateChanged
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
-        // TODO add your handling code here:
+        try {
+            Messeger.alert(this, "Created file: " + XExcel.xuatExcel(tblTK, "DoanhThu").getAbsolutePath());
+        } catch (Exception ex) {
+            Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnXuatExcelActionPerformed
+
+    private void btnXuatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatSPActionPerformed
+        try {
+            Messeger.alert(this, "Created file: " + XExcel.xuatExcel(tblSP, "SanPham").getAbsolutePath());
+        } catch (Exception ex) {
+            Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXuatSPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -775,36 +808,32 @@ public class ThongKeJDialog extends javax.swing.JDialog {
             for (Object[] row : list) {
                 model.addRow(row);
             }
-            
-            dd();
-            
+
+            tblSP.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table,
+                        Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+                    super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+
+                    int sl = Integer.parseInt(table.getModel().getValueAt(row, 8).toString());
+                    if (sl < 51) {
+                        setBackground(Color.RED);
+                        setForeground(Color.YELLOW);
+                    } else if (sl < 101) {
+                        setBackground(Color.YELLOW);
+                        setForeground(Color.RED);
+                    } else {
+                        setBackground(table.getBackground());
+                        setForeground(table.getForeground());
+                    }
+                    return this;
+                }
+            });
+
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-    
-    private void dd(){
-        tblSP.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-    @Override
-    public Component getTableCellRendererComponent(JTable table,
-            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-
-        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-
-        int sl = Integer.parseInt(table.getModel().getValueAt(row, 8).toString());
-        if (sl < 51) {
-            setBackground(Color.RED);
-            setForeground(Color.YELLOW);
-        } else if(sl < 101){
-            setBackground(Color.YELLOW);
-            setForeground(Color.RED);
-        }else{
-            setBackground(table.getBackground());
-            setForeground(table.getForeground());
-        }       
-        return this;
-    }   
-});
     }
 }
