@@ -9,13 +9,7 @@ import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
-import org.apache.poi.ss.usermodel.BorderStyle;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,19 +18,9 @@ import javax.swing.JTable;
 import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jfree.chart.ChartPanel;
 import poly.dao.DoanhThuDao;
 import poly.helper.Messeger;
-import poly.helper.XDate;
 import poly.helper.XExcel;
 
 /**
@@ -516,7 +500,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
-            Messeger.alert(this, "Created file: " + XExcel.xuatExcel(tblTK, "DoanhThu").getAbsolutePath());
+            Messeger.alert(this, "Đã tạo xong: " + XExcel.xuatExcel(tblTK, "DoanhThu").getAbsolutePath());
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -524,7 +508,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
     private void btnXuatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatSPActionPerformed
         try {
-            Messeger.alert(this, "Created file: " + XExcel.xuatExcel(tblSP, "SanPham").getAbsolutePath());
+            Messeger.alert(this, "Đã tạo xong: " + XExcel.xuatExcel(tblSP, "SanPham").getAbsolutePath());
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
