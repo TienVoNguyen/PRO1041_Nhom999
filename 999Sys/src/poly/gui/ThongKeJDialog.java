@@ -108,6 +108,10 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTabbedPane1.setForeground(new java.awt.Color(102, 0, 153));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jTabbedPane1.setOpaque(true);
+
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -343,7 +347,10 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         jPanel14.setPreferredSize(new java.awt.Dimension(1469, 500));
         jPanel14.setLayout(new java.awt.GridLayout(1, 0));
 
+        tpBang.setForeground(new java.awt.Color(102, 0, 153));
         tpBang.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        tpBang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tpBang.setOpaque(true);
 
         jPanel15.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -622,7 +629,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         jTabbedPane1.setForeground(Color.BLACK);
         jTabbedPane1.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/revenue.png")));
         jTabbedPane1.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/box.png")));
-        tpBang.setUI(new SynthTabbedPaneUI());
+        tpBang.setUI(new CustomTabbedPaneUI());
         loadMonths();
         loadYears();
         baseCard = (CardLayout) basecard.getLayout();
@@ -716,6 +723,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         for (Object o : columns) {
             model.addColumn(o);
         }
+        
         if (cbxDaysMonth.getSelectedItem() != null & cbxDaysYear.getSelectedItem() != null) {
             int month = Integer.parseInt(cbxDaysMonth.getSelectedItem().toString());
             int year = Integer.parseInt(cbxDaysYear.getSelectedItem().toString());
