@@ -169,6 +169,10 @@ public class SanPham {
     public String toString() {
         return maSP+"";
     }
+
+    public void getMaSP(int intValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
