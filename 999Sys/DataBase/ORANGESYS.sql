@@ -436,7 +436,7 @@ GO
 --GO
 
 --TÌM KIẾM SP
-IF OBJECT_ID('sp_timkiem') IS NOT NULL
+if OBJECT_id('sp_timkiem') is not null
 	drop proc sp_timkiem
 GO
 CREATE PROC sp_timkiem 

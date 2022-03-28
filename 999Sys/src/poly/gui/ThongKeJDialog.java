@@ -723,6 +723,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         for (Object o : columns) {
             model.addColumn(o);
         }
+        
         if (cbxDaysMonth.getSelectedItem() != null & cbxDaysYear.getSelectedItem() != null) {
             int month = Integer.parseInt(cbxDaysMonth.getSelectedItem().toString());
             int year = Integer.parseInt(cbxDaysYear.getSelectedItem().toString());
