@@ -5,6 +5,7 @@
  */
 package poly.gui;
 
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.Date;
@@ -17,7 +18,9 @@ import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
 import poly.entity.HoaDon;
 import poly.entity.KhachHang;
+import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XHoaDon;
 
 /**
  *
@@ -44,13 +47,15 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         this.daoKH = new KhachHangDao();
         this.pnlTabs = pnlTabs;
         this.hd = hd;
-        if (hd.getMaKH().length() > 0 && hd.getMaKH() != null){
+        if (hd.getMaKH() != null) {
             try {
                 kh = this.daoKH.selectById(hd.getMaKH());
-                txtPoint.setText(kh.getTichDiem()+"");
+                txtPoint.setText(kh.getTichDiem() + "");
             } catch (Exception ex) {
                 Logger.getLogger(ThanhToanJDialog.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            btnSuDung.setEnabled(false);
         }
         this.txtTongTien.setText(df.format(hd.getThanhTien()));
         this.txtTongTien.setToolTipText(String.valueOf(hd.getThanhTien()));
@@ -85,7 +90,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnSuDung = new javax.swing.JButton();
         txtPoint = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -139,6 +144,11 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         btnThanhToanIn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnThanhToanIn.setText("Thanh Toán + In");
         btnThanhToanIn.setToolTipText("Thanh toán và in ra file pdf");
+        btnThanhToanIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanInActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnThanhToanIn);
 
         jPanel2.add(jPanel5, java.awt.BorderLayout.LINE_START);
@@ -219,11 +229,16 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jLabel5.setPreferredSize(new java.awt.Dimension(168, 12));
         jPanel13.add(jLabel5, java.awt.BorderLayout.LINE_START);
 
-        jButton3.setBackground(new java.awt.Color(255, 102, 51));
-        jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Sử Dụng");
-        jPanel13.add(jButton3, java.awt.BorderLayout.LINE_END);
+        btnSuDung.setBackground(new java.awt.Color(255, 102, 51));
+        btnSuDung.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnSuDung.setForeground(new java.awt.Color(255, 255, 255));
+        btnSuDung.setText("Sử Dụng");
+        btnSuDung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuDungActionPerformed(evt);
+            }
+        });
+        jPanel13.add(btnSuDung, java.awt.BorderLayout.LINE_END);
 
         txtPoint.setEditable(false);
         txtPoint.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -292,23 +307,8 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        int i = JOptionPane.showConfirmDialog(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD());
-        if (i == JOptionPane.YES_OPTION) {
-            try {
-                hd.setGiamGia(Double.parseDouble(txtGiamGia.getText()));
-                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy"));
-                hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
-                this.daoHD.update(hd);
-                this.dispose();
-                this.pnlTabs.remove(pnlTabs.getSelectedComponent());
-                if (pnlTabs.getTabCount() < 1) {
-                    HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
-                    pnlTabs.addTab("Khách lẻ", hdpnl);
-                    pnlTabs.setSelectedComponent(hdpnl);
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(ThanhToanJDialog.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (thanhToan()) {
+            return;
         }
 
     }//GEN-LAST:event_btnThanhToanActionPerformed
@@ -337,7 +337,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         } else {
             TienThua = Double.parseDouble(txtTienKhach.getText()) - Double.parseDouble(txtTongTien.getToolTipText());
         }
-        
+
         if (TienThua < 0) {
             lblTienThua.setText("Khách Còn Thiếu:");
             this.txtTienThua.setText(df.format(TienThua * -1));
@@ -347,6 +347,36 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
             this.txtTienThua.setText(df.format(TienThua));
         }
     }//GEN-LAST:event_txtTienKhachKeyReleased
+
+    private void btnThanhToanInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanInActionPerformed
+        if (thanhToan()) {
+            return;
+        }
+        XHoaDon.XuatHoaDon(hd.getMaHD());
+    }//GEN-LAST:event_btnThanhToanInActionPerformed
+
+    private void btnSuDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuDungActionPerformed
+        int diemTL = Integer.parseInt(txtPoint.getText());
+        double tongTien = Double.parseDouble(txtTongTien.getToolTipText());
+        if (btnSuDung.getText().equalsIgnoreCase("Sử Dụng")) {
+            if (Messeger.confirm(this, "Xác nhận sử dụng điểm tích lũy?")) {
+
+                this.txtTongTien.setText(df.format(tongTien - diemTL));
+                this.txtTongTien.setToolTipText(String.valueOf(tongTien - diemTL));
+                this.txtGiamGia.setText(df.format(diemTL));
+                this.txtGiamGia.setToolTipText(String.valueOf(diemTL));
+                txtPoint.setText(0+"");
+                this.btnSuDung.setText("Hoàn Tác");
+            }
+        } else {
+            this.btnSuDung.setText("Sử Dụng");
+            this.txtTongTien.setText(df.format(hd.getThanhTien()));
+            this.txtTongTien.setToolTipText(String.valueOf(hd.getThanhTien()));
+            this.txtGiamGia.setText(df.format(0));
+            this.txtGiamGia.setToolTipText(String.valueOf(0));
+            txtPoint.setText(kh.getTichDiem() + "");
+        }
+    }//GEN-LAST:event_btnSuDungActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,9 +422,9 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnSuDung;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThanhToanIn;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -421,4 +451,39 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
+
+    private boolean thanhToan() throws HeadlessException {
+        int i = JOptionPane.showConfirmDialog(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD());
+        if (i == JOptionPane.YES_OPTION) {
+            try {
+                hd.setGiamGia(Double.parseDouble(txtGiamGia.getToolTipText()));
+                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy"));
+                hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
+                this.daoHD.update(hd);
+                if (hd.getMaKH() != null) {
+                    try {
+                        kh.setTichDiem(Integer.parseInt(txtPoint.getText()));
+                        int diemTLSauThanhToan = (int) (Double.parseDouble(String.format("%.0f", txtTongTien.getToolTipText())) * 0.01);
+                        kh.setTichDiem(kh.getTichDiem() + diemTLSauThanhToan);
+                        this.daoKH.update(kh);
+                    } catch (Exception ex) {
+                        Logger.getLogger(ThanhToanJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                this.dispose();
+                this.pnlTabs.remove(pnlTabs.getSelectedComponent());
+                if (pnlTabs.getTabCount() < 1) {
+                    HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+                    pnlTabs.addTab("Khách lẻ", hdpnl);
+                    pnlTabs.setSelectedComponent(hdpnl);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ThanhToanJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                Messeger.showErrorDialog(this, "Lỗi truy vấn", "lỗi");
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

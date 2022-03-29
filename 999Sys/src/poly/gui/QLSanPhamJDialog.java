@@ -76,7 +76,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-//        setSize(parent.getWidth(), parent.getHeight());
+        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
         this.themDMJDialog.setModal(modal);

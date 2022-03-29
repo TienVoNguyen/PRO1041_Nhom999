@@ -1091,7 +1091,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         } else {
             HoaDon hd = new HoaDon();
             hd.setMaHD(Integer.parseInt(lblHoaDon.getToolTipText()));
-            hd.setMaKH(lblTenKH.getToolTipText());
+            if (lblTenKH.getToolTipText() != null){
+                hd.setMaKH(lblTenKH.getToolTipText());
+            }
             hd.setMaNV(Auth.user.getMaNV());
             hd.setMaTT(2);
             hd.setThanhTien(Double.parseDouble(lblThanhTien.getToolTipText()));
