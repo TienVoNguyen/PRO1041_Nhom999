@@ -44,16 +44,14 @@ public class XExcel {
         JFileChooser j = new JFileChooser(new File(System.getProperty("user.dir") + "\\FileExcel\\"));
         int r = j.showSaveDialog(null);
         String excelFilePath;
-            // if the user selects a file
-            if (r == JFileChooser.APPROVE_OPTION)
-            {
-                // set the label to the path of the selected file
-                excelFilePath = j.getSelectedFile().getAbsolutePath();
-            }
-            // if the user cancelled the operation
-            else{
-                return;
-            }
+        // if the user selects a file
+        if (r == JFileChooser.APPROVE_OPTION) {
+            // set the label to the path of the selected file
+            excelFilePath = j.getSelectedFile().getAbsolutePath();
+        } // if the user cancelled the operation
+        else {
+            return;
+        }
         // Get file
         InputStream inputStream = new FileInputStream(new File(excelFilePath));
         // Get workbook
@@ -83,11 +81,10 @@ public class XExcel {
             }
             model.addRow(data);
         }
-        
+
         workbook.close();
         inputStream.close();
 
-      
     }
 
     // Get Workbook
@@ -182,47 +179,47 @@ public class XExcel {
         for (int i = 0; i < jtable.getRowCount(); i++) {
             row = sheet.createRow(i + 1);
             for (int j = 0; j < jtable.getColumnCount(); j++) {
+                if (jtable.getValueAt(i, j) != null) {
+                    if (jtable.getValueAt(i, j).toString().contains(",")) {
+                        cell = row.createCell(j, CellType.NUMERIC);
+                        String a = jtable.getValueAt(i, j).toString().replaceAll(",", "");
+                        double b = Double.parseDouble(a);
+                        short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
+                        CellStyle cellStyleFormatNumber = null;
+                        cellStyleFormatNumber = workbook.createCellStyle();
+                        cellStyleFormatNumber.setDataFormat(format);
+                        cell.setCellStyle(cellStyleFormatNumber);
+                        cell.setCellValue(b);
+                    } else if (jtable.getValueAt(i, j).toString().contains(".") && jtable.getValueAt(i, j).toString().matches(pattern2)) {
+                        cell = row.createCell(j, CellType.NUMERIC);
+                        String a = jtable.getValueAt(i, j).toString().substring(0, jtable.getValueAt(i, j).toString().indexOf("."));
+                        double b = Double.parseDouble(a);
+                        short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
+                        CellStyle cellStyleFormatNumber = null;
+                        cellStyleFormatNumber = workbook.createCellStyle();
+                        cellStyleFormatNumber.setDataFormat(format);
+                        cell.setCellStyle(cellStyleFormatNumber);
+                        cell.setCellValue(b);
+                    } else if (jtable.getValueAt(i, j).toString().matches(pattern)) {
+                        cell = row.createCell(j, CellType.NUMERIC);
+                        double b = Double.parseDouble(jtable.getValueAt(i, j).toString());
+                        CellStyle cellStyleFormatNumber = null;
+                        short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
+                        cellStyleFormatNumber = workbook.createCellStyle();
+                        cellStyleFormatNumber.setDataFormat(format);
+                        cell.setCellStyle(cellStyleFormatNumber);
+                        cell.setCellValue(b);
 
-                if (jtable.getValueAt(i, j).toString().contains(",")) {
-                    cell = row.createCell(j, CellType.NUMERIC);
-                    String a = jtable.getValueAt(i, j).toString().replaceAll(",", "");
-                    double b = Double.parseDouble(a);
-                    short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
-                    CellStyle cellStyleFormatNumber = null;
-                    cellStyleFormatNumber = workbook.createCellStyle();
-                    cellStyleFormatNumber.setDataFormat(format);
-                    cell.setCellStyle(cellStyleFormatNumber);
-                    cell.setCellValue(b);
-                } else if (jtable.getValueAt(i, j).toString().contains(".") && jtable.getValueAt(i, j).toString().matches(pattern2)) {
-                    cell = row.createCell(j, CellType.NUMERIC);
-                    String a = jtable.getValueAt(i, j).toString().substring(0, jtable.getValueAt(i, j).toString().indexOf("."));
-                    double b = Double.parseDouble(a);
-                    short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
-                    CellStyle cellStyleFormatNumber = null;
-                    cellStyleFormatNumber = workbook.createCellStyle();
-                    cellStyleFormatNumber.setDataFormat(format);
-                    cell.setCellStyle(cellStyleFormatNumber);
-                    cell.setCellValue(b);
-                } else if (jtable.getValueAt(i, j).toString().matches(pattern)) {
-                    cell = row.createCell(j, CellType.NUMERIC);
-                    double b = Double.parseDouble(jtable.getValueAt(i, j).toString());
-                    CellStyle cellStyleFormatNumber = null;
-                    short format = (short) BuiltinFormats.getBuiltinFormat("#,##0");
-                    cellStyleFormatNumber = workbook.createCellStyle();
-                    cellStyleFormatNumber.setDataFormat(format);
-                    cell.setCellStyle(cellStyleFormatNumber);
-                    cell.setCellValue(b);
+                    } else {
+                        cell = row.createCell(j, CellType.STRING);
+                        String mavach = jtable.getValueAt(i, j) == null ? "Chưa có" : jtable.getValueAt(i, j).toString();
+                        cell.setCellValue(mavach);
+                    }
 
-                } else {
-                    cell = row.createCell(j, CellType.STRING);
-                    String mavach = jtable.getValueAt(i, j) == null ? "Chưa có" : jtable.getValueAt(i, j).toString();
-                    cell.setCellValue(mavach);
+                    if (name.equals("SanPham")) {
+                        cell.setCellStyle(cellStyle(workbook, i, jtable));
+                    }
                 }
-
-                if (name.equals("SanPham")) {
-                    cell.setCellStyle(cellStyle(workbook, i, jtable));
-                }
-
             }
         }
         for (int columnIndex = 0; columnIndex < jtable.getColumnCount(); columnIndex++) {
