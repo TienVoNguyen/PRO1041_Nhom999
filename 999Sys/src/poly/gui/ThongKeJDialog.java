@@ -5,7 +5,6 @@
  */
 package poly.gui;
 
-import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -15,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
-import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
