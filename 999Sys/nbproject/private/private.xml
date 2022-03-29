@@ -2,26 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-<<<<<<< HEAD
         <group>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/entity/ChatLieu.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/dao/DoanhThuDao.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/QLSanPhamJDialog.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/KhoaManHinh.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/ButtonColumn.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/ThongKeJDialog.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/XExcel.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/HoaDonJPanel.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/helper/CustomTabbedPaneUI.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/dao/MaMauDao.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/dao/SanPhamDao.java</file>
         </group>
-=======
-        <group/>
->>>>>>> 3efe4724dec12a3650a7a1d42d082d5fef2aecfd
-=======
-        <group>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/ThongKeJDialog.java</file>
-        </group>
->>>>>>> 29a8417ab6c8e114420497524ce15a5a9c4e9d7d
     </open-files>
 </project-private>
