@@ -100,14 +100,14 @@ WHERE
 				<text><![CDATA[Số hoá đơn:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="68" y="0" width="147" height="20" uuid="212e8609-9c26-4120-a691-798cf2169e50"/>
+				<reportElement x="68" y="0" width="132" height="20" uuid="212e8609-9c26-4120-a691-798cf2169e50"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{HOADON_MAHOADON}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="68" y="20" width="147" height="20" uuid="05b8e941-be7f-4972-88bc-72ad204ac64f"/>
+				<reportElement x="68" y="20" width="132" height="20" uuid="05b8e941-be7f-4972-88bc-72ad204ac64f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
@@ -121,7 +121,7 @@ WHERE
 				<text><![CDATA[Ngày tạo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="68" y="40" width="147" height="20" uuid="bf28c50c-d6de-4354-97d9-4168dae40b8b"/>
+				<reportElement x="68" y="40" width="132" height="20" uuid="bf28c50c-d6de-4354-97d9-4168dae40b8b"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
@@ -135,42 +135,42 @@ WHERE
 				<text><![CDATA[Nhân viên:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="277" y="0" width="104" height="20" uuid="c801d31c-f720-4840-8671-178e6db113bc"/>
+				<reportElement x="276" y="0" width="105" height="20" uuid="c801d31c-f720-4840-8671-178e6db113bc"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{KHACHHANG_HOTEN}==null?"":$F{KHACHHANG_HOTEN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{KHACHHANG_HOTEN}==null?"Khách lẻ":$F{KHACHHANG_HOTEN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="277" y="20" width="104" height="20" uuid="00a8c37a-7f9f-45e9-9906-3366958e5e89"/>
+				<reportElement x="276" y="20" width="105" height="20" uuid="00a8c37a-7f9f-45e9-9906-3366958e5e89"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{KHACHHANG_SDT}==null?"":$F{KHACHHANG_SDT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="277" y="40" width="104" height="20" uuid="28915039-c142-4bdd-aae0-970fa13830c7"/>
+				<reportElement x="276" y="40" width="105" height="20" uuid="28915039-c142-4bdd-aae0-970fa13830c7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{KHACHHANG_DIACHI}==null?"":$F{KHACHHANG_DIACHI}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="215" y="20" width="62" height="20" uuid="9ef5d0c7-a829-402e-af47-9afa3a72c9f6"/>
+				<reportElement x="200" y="20" width="76" height="20" uuid="9ef5d0c7-a829-402e-af47-9afa3a72c9f6"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<text><![CDATA[Số điện thoại:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="215" y="0" width="62" height="20" uuid="8ab64fa8-48bb-4ed7-8a13-965aa17adb6b"/>
+				<reportElement x="200" y="0" width="74" height="20" uuid="8ab64fa8-48bb-4ed7-8a13-965aa17adb6b"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<text><![CDATA[Khách hàng:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="215" y="40" width="62" height="20" uuid="41e63788-508a-4517-b8ca-8334a9f9329f"/>
+				<reportElement x="200" y="40" width="76" height="20" uuid="41e63788-508a-4517-b8ca-8334a9f9329f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
