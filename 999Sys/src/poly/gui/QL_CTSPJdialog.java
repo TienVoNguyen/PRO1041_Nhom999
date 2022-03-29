@@ -1747,10 +1747,9 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             Messeger.alert(this, " Vui Lòng Chọn Vào Chất Liệu Muốn Chuyển Trạng Thái");
             return;
         }
-        
+
         try {
-            dao_cl.update(new ChatLieu(Integer.parseInt(tblCLHetHan.getValueAt(viTri, 0).toString())
-                    , tblCLHetHan.getValueAt(viTri, 1).toString(), true));
+            dao_cl.update(new ChatLieu(Integer.parseInt(tblCLHetHan.getValueAt(viTri, 0).toString()), tblCLHetHan.getValueAt(viTri, 1).toString(), true));
             LoadDataToTableChatLieu();
             LoadDataToTableChatLieuHetHan();
             return;
@@ -1805,8 +1804,8 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Xoa_qlChatLieuActionPerformed
 
     private void tblCLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCLMouseClicked
-      int viTri = tblCL.getSelectedRow();
-        if (viTri< 0) {
+        int viTri = tblCL.getSelectedRow();
+        if (viTri < 0) {
             return;
         }
         Settext(tblCL, txtCL_MaCL, txtCL_TenCL, viTri);
@@ -1886,17 +1885,40 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         if (btn_Change_TableDVT.getText().trim().equalsIgnoreCase("Hết Hạn")) {
             btn_Change_TableDVT.setText("Trở Lại");
             card_DVT.show(cardGocDVT, "card_phu");
+            SetEnable(btn_Moi_qlDVT, btn_Sua_qlDVT, btn_Xoa_qlDVT, btn_Them_qlDVT, false);
+            btn_TrangThai_DonViTinh.setVisible(true);
         } else {
+            SetEnable(btn_Moi_qlDVT, btn_Sua_qlDVT, btn_Xoa_qlDVT, btn_Them_qlDVT, true);
             btn_Change_TableDVT.setText("Hết Hạn");
             card_DVT.show(cardGocDVT, "card_goc");
+            btn_TrangThai_DonViTinh.setVisible(false);
         }
     }//GEN-LAST:event_btn_Change_TableDVTActionPerformed
 
     private void btn_TrangThai_DonViTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TrangThai_DonViTinhActionPerformed
+        if (tblDVTHetHan.getRowCount() == 0) {
+            Messeger.alert(this, "Không Có Size Cần Chuyển");
+            return;
+        }
+        int viTri = tblDVTHetHan.getSelectedRow();
+        if (viTri < 0) {
+            Messeger.alert(this, " Vui Lòng Chọn Vào Chất Liệu Muốn Chuyển Trạng Thái");
+            return;
+        }
+
+        try {
+            dao_dvt.update(new DonViTinh(Integer.parseInt(String.valueOf(tblDVTHetHan.getValueAt(viTri, 0)))
+                    , String.valueOf(tblDVTHetHan.getValueAt(viTri, 1)), true));
+            LoadDataToTableDVT();
+            LoadDataToTableDVTHetHan();
+            return;
+        } catch (Exception ex) {
+            Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_TrangThai_DonViTinhActionPerformed
 
     private void tblDVTHetHanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDVTHetHanMouseClicked
-         int viTri = tblDVTHetHan.getSelectedRow();
+        int viTri = tblDVTHetHan.getSelectedRow();
         if (viTri < 0) {
             return;
         }
@@ -1909,7 +1931,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             return;
         }
         this.Settext(tblDVT, txtDVT_MaDVT, txtDVT_TenDVT, viTri);
-       
+
     }//GEN-LAST:event_tblDVTMouseClicked
 
     /**
@@ -2122,6 +2144,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         btn_TrangThai_CL.setVisible(false);
 
     }
+
     private void init_DVT() {
         dao_dvt = new DonViTinhDao();
         modelTBL_DVT = (DefaultTableModel) tblDVT.getModel();
@@ -2322,6 +2345,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void LoadDataToTableDVT() {
         try {
             modelTBL_DVT.setRowCount(0);

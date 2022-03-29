@@ -20,15 +20,15 @@ import poly.helper.XJDBC;
  * @author 98tae
  */
 public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
+
     public KhuyenMaiDAO() {
     }
-    
-    
+
     @Override
     public String getQuery(String action) {
         switch (action) {
             case "INSERT":
-                return "INSERT INTO KHUYENMAI ( MASP, TENKM, HINHTHUCAD, GIAMTOIDA, NGAYBATDAU, NGAYKETTHUC, GIATRI) VALUES (?,?,?,?,?,?,?)";
+                return "INSERT INTO KHUYENMAI (MASP, TENKM, HINHTHUCAD, GIAMTOIDA, NGAYBATDAU, NGAYKETTHUC, GIATRI,LOAIKM) VALUES (?,?,?,?,?,?,?,?)";
             case "UPDATE":
                 return "UPDATE KHUYENMAI SET MASP = ?, TENKM = ?, HINHTHUCAD = ?, GIAMTOIDA = ?, NGAYBATDAU = ?, NGAYKETTHUC = ?, GIATRI = ?, TRANGTHAI = ? WHERE MAKM = ?";
             case "DELETE":
@@ -39,6 +39,10 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                 return "SELECT * FROM KHUYENMAI";
             case "SelectMASP":
                 return "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ?";
+            case "INSERTNOMASP":
+                return "insert into KHUYENMAI(MASP,TENKM,LOAIKM,HINHTHUCAD,GIATRI,GIAMTOIDA,HDTOITHIEU,NGAYBATDAU,NGAYKETTHUC) values (null,?,?,?,?,?,?,?,?)";
+            case "UPDATENULLMASP":
+                return "UPDATE KHUYENMAI SET TENKM =?, HINHTHUCAD =?, GIATRI =?, GIAMTOIDA =?, NGAYKETTHUC =?, NGAYBATDAU =? ,TRANGTHAI = 1 WHERE MAKM = ?";
         }
         return "";
     }
@@ -54,7 +58,8 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                     obj.getGiamToiDa(),
                     obj.getNgayBD(),
                     obj.getNgayKT(),
-                    obj.getGiaTri()
+                    obj.getGiaTri(),
+                    obj.isLoaiKM()
                 };
             case "UPDATE":
                 return new Object[]{
@@ -68,6 +73,26 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                     obj.isTrangThai(),
                     obj.getMaKM()
                 };
+            case "INSERTNOMASP":
+                return new Object[]{
+                    obj.getTenKM(),
+                    obj.isLoaiKM(),
+                    obj.isHinhThucAD(),
+                    obj.getGiaTri(),
+                    obj.getGiamToiDa(),
+                    obj.getHDToiThieu(),
+                    obj.getNgayBD(),
+                    obj.getNgayKT(),};
+            case "UPDATENULLMASP":
+                return new Object[]{
+                    obj.getTenKM(),
+                    obj.isHinhThucAD(),
+                    obj.getGiaTri(),
+                    obj.getGiamToiDa(),
+                    obj.getNgayKT(),
+                    obj.getNgayBD(),
+                    obj.getMaKM()
+                };
         }
         return null;
     }
@@ -78,16 +103,18 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
         km.setMaKM(rs.getInt("MAKM"));
         km.setMaSP(rs.getInt("MASP"));
         km.setTenKM(rs.getString("TENKM"));
+        km.setLoaiKM(rs.getBoolean("LOAIKM"));
         km.setHinhThucAD(rs.getBoolean("HINHTHUCAD"));
         km.setGiaTri(rs.getDouble("GIATRI"));
         km.setGiamToiDa(rs.getDouble("GIAMTOIDA"));
         km.setNgayBD(rs.getString("NGAYBATDAU"));
         km.setNgayKT(rs.getString("NGAYKETTHUC"));
         km.setTrangThai(rs.getBoolean("TRANGTHAI"));
+        km.setHDToiThieu(rs.getDouble("HDTOITHIEU"));
         return km;
     }
 
-    public static ArrayList<String> getMaSP_InDanhMuc(int maDM){
+    public static ArrayList<String> getMaSP_InDanhMuc(int maDM) {
         String sql = "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ? AND SANPHAM.APDUNGKM = 1";
         ArrayList<String> list = new ArrayList<>();
         try {
@@ -102,4 +129,11 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
         }
     }
 
+    public boolean Insert_NoMaSp(KhuyenMai km) {
+        return XJDBC.update(this.getQuery("INSERTNOMASP"), this.getParams("INSERTNOMASP", km)) > 0;
+    }
+    
+    public boolean Update_NoMaSP(KhuyenMai km){
+    return XJDBC.update(this.getQuery("UPDATENULLMASP"), this.getParams("UPDATENULLMASP", km)) > 0;
+    }
 }
