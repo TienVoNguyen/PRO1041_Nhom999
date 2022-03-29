@@ -118,54 +118,56 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtTenKhuyenMai" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
-                                              <Component id="jLabel6" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="radiovnd" min="-2" pref="98" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="radioPT" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtGiaTri" alignment="0" pref="214" max="32767" attributes="0"/>
-                                              <Component id="jLabel2" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                                              <Component id="txtGiamToiDa" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel5" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtTenKhuyenMai" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
+                                          <Component id="jLabel6" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="radiovnd" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="radioPT" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel8" min="-2" pref="157" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel9" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="radioSanPham" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="radioDanhMuc" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtGiaTri" alignment="0" pref="214" max="32767" attributes="0"/>
+                                          <Component id="jLabel2" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                                          <Component id="txtGiamToiDa" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel5" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jlbadkm" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jlbadkm" min="-2" pref="157" max="-2" attributes="0"/>
+                                              <EmptySpace pref="283" max="32767" attributes="0"/>
+                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="radio_AD_SanPham" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="radio_AD_HoaDon" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="txthdtoithieu" min="-2" pref="176" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jLabel8" min="-2" pref="157" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel9" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="radioSanPham" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="radioDanhMuc" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jlbhdtt" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txtNgayBatDau" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
@@ -233,11 +235,22 @@
                                   <Component id="radioSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jlbadkm" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="radio_AD_HoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radio_AD_SanPham" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbadkm" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbhdtt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="radio_AD_HoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radio_AD_SanPham" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Component id="txthdtoithieu" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                           </Group>
@@ -480,6 +493,13 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xc1;p D&#x1ee5;ng Gi&#x1ea3;m Gi&#xe1;"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jlbhdtt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T&#x1ed1;i Thi&#x1ec3;u"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txthdtoithieu">
             </Component>
           </SubComponents>
         </Container>
@@ -835,17 +855,23 @@
                 <Component class="javax.swing.JTable" name="tbl_HoaDon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="0">
+                      <Table columnCount="7" rowCount="0">
                         <Column editable="false" title="M&#xe3; KM" type="java.lang.String"/>
                         <Column editable="false" title="T&#xea;n KM" type="java.lang.String"/>
                         <Column editable="false" title="Gi&#xe1; Tr&#x1ecb;" type="java.lang.String"/>
                         <Column editable="false" title="Gi&#x1ea3;m T&#x1ed1;i &#x110;a" type="java.lang.String"/>
                         <Column editable="false" title="Ng&#xe0;y BD" type="java.lang.Object"/>
-                        <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.Object"/>
+                        <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.String"/>
+                        <Column editable="false" title="HDTT" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -926,17 +952,23 @@
                 <Component class="javax.swing.JTable" name="tbl_HoaDon_HetHan">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="0">
+                      <Table columnCount="7" rowCount="0">
                         <Column editable="false" title="M&#xe3; KM" type="java.lang.String"/>
                         <Column editable="false" title="T&#xea;n KM" type="java.lang.String"/>
                         <Column editable="false" title="Gi&#xe1; Tr&#x1ecb;" type="java.lang.String"/>
                         <Column editable="false" title="Gi&#x1ea3;m T&#x1ed1;i &#x110;a" type="java.lang.String"/>
-                        <Column editable="false" title="Ng&#xe0;y BD" type="java.lang.Object"/>
-                        <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.Object"/>
+                        <Column editable="false" title="Ng&#xe0;y BD" type="java.lang.String"/>
+                        <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.String"/>
+                        <Column editable="true" title="HDTT" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>

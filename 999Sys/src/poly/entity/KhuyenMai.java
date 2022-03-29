@@ -11,7 +11,7 @@ package poly.entity;
 public class KhuyenMai {
 
     private int MaKM, MaSP;
-    private double GiamToiDa, GiaTri;
+    private double GiamToiDa, GiaTri,HDToiThieu;
     private String TenKM, NgayBD, NgayKT;
     private boolean HinhThucAD, TrangThai, LoaiKM;
 
@@ -52,6 +52,20 @@ public class KhuyenMai {
         this.HinhThucAD = HinhThucAD;
         this.LoaiKM = LoaiKM;
     }
+
+    public KhuyenMai(double GiamToiDa, double GiaTri, double HDToiThieu, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD, boolean LoaiKM) {
+        this.GiamToiDa = GiamToiDa;
+        this.GiaTri = GiaTri;
+        this.HDToiThieu = HDToiThieu;
+        this.TenKM = TenKM;
+        this.NgayBD = NgayBD;
+        this.NgayKT = NgayKT;
+        this.HinhThucAD = HinhThucAD;
+        this.LoaiKM = LoaiKM;
+    }
+
+    
+    
 
     public boolean isLoaiKM() {
         return LoaiKM;
@@ -131,6 +145,14 @@ public class KhuyenMai {
 
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public double getHDToiThieu() {
+        return HDToiThieu;
+    }
+
+    public void setHDToiThieu(double HDToiThieu) {
+        this.HDToiThieu = HDToiThieu;
     }
 
     @Override

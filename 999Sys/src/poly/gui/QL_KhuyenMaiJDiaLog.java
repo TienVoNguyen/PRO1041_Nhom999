@@ -100,6 +100,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         radio_AD_HoaDon = new javax.swing.JRadioButton();
         radio_AD_SanPham = new javax.swing.JRadioButton();
         jlbadkm = new javax.swing.JLabel();
+        jlbhdtt = new javax.swing.JLabel();
+        txthdtoithieu = new javax.swing.JTextField();
         jpncardGoctbl = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -237,6 +239,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
         jlbadkm.setText("Áp Dụng Giảm Giá");
 
+        jlbhdtt.setText("Tối Thiểu");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -250,42 +254,44 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtTenKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(radiovnd, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(radioPT)))
-                                    .addGap(41, 41, 41)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtGiaTri, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtGiamToiDa)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(100, 100, 100)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(radioSanPham)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(radioDanhMuc)))
-                                    .addGap(38, 38, 38)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(14, 14, 14)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlbadkm, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTenKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(radiovnd, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioPT)))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtGiaTri, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtGiamToiDa)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jlbadkm, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(radio_AD_SanPham)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(radio_AD_HoaDon)))))
-                        .addGap(58, 58, 58)
+                                        .addComponent(radio_AD_HoaDon)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txthdtoithieu, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(100, 100, 100)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(radioSanPham)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(radioDanhMuc))
+                                            .addComponent(jlbhdtt))))
+                                .addGap(38, 38, 38)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNgayBatDau)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,11 +344,18 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                             .addComponent(radioDanhMuc)
                             .addComponent(radioSanPham))
                         .addGap(18, 18, 18)
-                        .addComponent(jlbadkm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(radio_AD_HoaDon)
-                            .addComponent(radio_AD_SanPham))
+                            .addComponent(jlbadkm)
+                            .addComponent(jlbhdtt))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(radio_AD_HoaDon)
+                                    .addComponent(radio_AD_SanPham)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(txthdtoithieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 11, Short.MAX_VALUE))
                     .addComponent(jpnCardgoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -551,14 +564,14 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Mã KM", "Tên KM", "Giá Trị", "Giảm Tối Đa", "Ngày BD", "Ngày KT"
+                "Mã KM", "Tên KM", "Giá Trị", "Giảm Tối Đa", "Ngày BD", "Ngày KT", "HDTT"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -598,14 +611,14 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Mã KM", "Tên KM", "Giá Trị", "Giảm Tối Đa", "Ngày BD", "Ngày KT"
+                "Mã KM", "Tên KM", "Giá Trị", "Giảm Tối Đa", "Ngày BD", "Ngày KT", "HDTT"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -767,6 +780,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             KhuyenMai km = new KhuyenMai();
             km.setGiamToiDa(Double.parseDouble(txtGiamToiDa.getText()));
             km.setGiaTri(Double.parseDouble(txtGiaTri.getText()));
+            km.setHDToiThieu(Double.parseDouble(txthdtoithieu.getText()));
             km.setTenKM(txtTenKhuyenMai.getText());
             km.setNgayBD(ngaybd);
             km.setNgayKT(ngaykt);
@@ -830,7 +844,10 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         if (viTri < 0) {
             return;
         }
+
         radio_AD_SanPham.setSelected(true);
+        txthdtoithieu.setText("");
+        setGiaTriHDTT(false);
         setText(viTri);
         if (tblqlkm.getValueAt(viTri, 2).toString().trim().length() > 3) {
             radiovnd.setSelected(true);
@@ -877,11 +894,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     }//GEN-LAST:event_tblhethangMouseClicked
 
     private void radio_AD_HoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_AD_HoaDonActionPerformed
-        // TODO add your handling code here:
+        setGiaTriHDTT(true);
     }//GEN-LAST:event_radio_AD_HoaDonActionPerformed
 
     private void radio_AD_SanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_AD_SanPhamActionPerformed
-        // TODO add your handling code here:
+        setGiaTriHDTT(false);
     }//GEN-LAST:event_radio_AD_SanPhamActionPerformed
 
     private void tbl_HoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_HoaDonMouseClicked
@@ -889,6 +906,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         if (viTri == -1) {
             return;
         }
+        setGiaTriHDTT(true);
         radio_AD_HoaDon.setSelected(true);
         txtKhuyenMai.setText(String.valueOf(tbl_HoaDon.getValueAt(viTri, 0)));
         txtTenKhuyenMai.setText(String.valueOf(tbl_HoaDon.getValueAt(viTri, 1)));
@@ -905,10 +923,32 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         } else {
             radioPT.setSelected(true);
         }
+        txthdtoithieu.setText(String.valueOf(tbl_HoaDon.getValueAt(viTri, 6)).replace("đ", ""));
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void tbl_HoaDon_HetHanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_HoaDon_HetHanMouseClicked
-        // TODO add your handling code here:
+        int viTri = tbl_HoaDon_HetHan.getSelectedRow();
+        if (viTri == -1) {
+            return;
+        }
+        setGiaTriHDTT(true);
+        radio_AD_HoaDon.setSelected(true);
+        txtKhuyenMai.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 0)));
+        txtTenKhuyenMai.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 1)));
+        if (String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 2)).length() > 3) {
+            txtGiaTri.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 2)).replace("đ", ""));
+        } else {
+            txtGiaTri.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 2)).replace("%", ""));
+        }
+        txtGiamToiDa.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 3)));
+        txtNgayBatDau.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 4)));
+        txtNgayKetThuc.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 5)));
+        if (tbl_HoaDon_HetHan.getValueAt(viTri, 2).toString().trim().length() > 3) {
+            radiovnd.setSelected(true);
+        } else {
+            radioPT.setSelected(true);
+        }
+        txthdtoithieu.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 6)).replace("đ", ""));
     }//GEN-LAST:event_tbl_HoaDon_HetHanMouseClicked
 
     private void setNut(boolean boo) {
@@ -917,6 +957,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         btnThem.setVisible(boo);
         btnXoa.setVisible(boo);
 
+    }
+
+    private void setGiaTriHDTT(boolean boo) {
+        jlbhdtt.setVisible(boo);
+        txthdtoithieu.setVisible(boo);
     }
 
     /**
@@ -1023,6 +1068,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel jlbadkm;
+    private javax.swing.JLabel jlbhdtt;
     private javax.swing.JLabel jlbtenbang;
     private javax.swing.JPanel jpnCardgoc;
     private javax.swing.JPanel jpnDM;
@@ -1044,10 +1090,12 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     private javax.swing.JTextField txtNgayBatDau;
     private javax.swing.JTextField txtNgayKetThuc;
     private javax.swing.JTextField txtTenKhuyenMai;
+    private javax.swing.JTextField txthdtoithieu;
     // End of variables declaration//GEN-END:variables
 
     private void init() {
         setLocationRelativeTo(null);
+        setGiaTriHDTT(false);
         ResetForm();
         kmDao = new KhuyenMaiDAO();
         spDao = new SanPhamDao();
@@ -1125,7 +1173,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 KhuyenMai get = list_km.get(i);
                 String ngaybd = XDate.toString(XDate.toDate(get.getNgayBD(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
-                if (!get.isTrangThai()) {
+                if (!get.isTrangThai() & get.isLoaiKM()) {
                     String magaming = String.format("%.0f", get.getGiaTri());
                     if (magaming.trim().length() <= 3) {
                         magaming = magaming + "%";
@@ -1231,7 +1279,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             if (XValidate.focus_Errol(false, txtGiaTri)) {
                 x.append("Giảm Giá Phải Lớn Hơn Hoặc Bằng 10 Ngàn");
             }
-        } else if (radioPT.isSelected() == true & Integer.parseInt(txtGiaTri.getText()) > 100 | Integer.parseInt(txtGiaTri.getText()) < 0) {
+        } else if (radioPT.isSelected() == true & Double.parseDouble(txtGiaTri.getText()) > 100 | Double.parseDouble(txtGiaTri.getText()) < 0) {
             if (XValidate.focus_Errol(false, txtGiaTri)) {
                 x.append("Giá Trị Khi Giảm Giá Phần Trăm Chỉ Được Nhập Từ 0 đến 100\n");
             }
@@ -1260,24 +1308,28 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                     } else {
                         Giatri = Giatri + "đ";
                     }
+
+                    String GiatriHDTT = String.format("%.0f", get.getHDToiThieu()) + "đ";
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
                         Giatri,
                         get.getGiamToiDa(),
                         ngaybd,
-                        ngaykt
+                        ngaykt,
+                        GiatriHDTT
                     };
                     model_tbl_HoaDon.addRow(rowData);
                 }
 
             }
+            LoadDataToTable_KM_HoaDonHetHan();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
-    
+
     private void LoadDataToTable_KM_HoaDonHetHan() {
         model_tbl_HoaDonHetHan.setRowCount(0);
         try {
@@ -1293,13 +1345,16 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                     } else {
                         Giatri = Giatri + "đ";
                     }
+
+                    String GiatriHDTT = String.format("%.0f", get.getHDToiThieu()) + "đ";
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
                         Giatri,
                         get.getGiamToiDa(),
                         ngaybd,
-                        ngaykt
+                        ngaykt,
+                        GiatriHDTT
                     };
                     model_tbl_HoaDonHetHan.addRow(rowData);
                 }

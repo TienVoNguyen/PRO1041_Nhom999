@@ -40,7 +40,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
             case "SelectMASP":
                 return "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ?";
             case "INSERTNOMASP":
-                return "insert into KHUYENMAI(MASP, TENKM,LOAIKM,HINHTHUCAD,GIATRI,GIAMTOIDA,NGAYBATDAU,NGAYKETTHUC) values (null,?,?,?,?,?,?,?)";
+                return "insert into KHUYENMAI(MASP,TENKM,LOAIKM,HINHTHUCAD,GIATRI,GIAMTOIDA,HDTOITHIEU,NGAYBATDAU,NGAYKETTHUC) values (null,?,?,?,?,?,?,?,?)";
             case "UPDATENULLMASP":
                 return "UPDATE KHUYENMAI SET TENKM =?, HINHTHUCAD =?, GIATRI =?, GIAMTOIDA =?, NGAYKETTHUC =?, NGAYBATDAU =? ,TRANGTHAI = 1 WHERE MAKM = ?";
         }
@@ -80,6 +80,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                     obj.isHinhThucAD(),
                     obj.getGiaTri(),
                     obj.getGiamToiDa(),
+                    obj.getHDToiThieu(),
                     obj.getNgayBD(),
                     obj.getNgayKT(),};
             case "UPDATENULLMASP":
@@ -109,6 +110,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
         km.setNgayBD(rs.getString("NGAYBATDAU"));
         km.setNgayKT(rs.getString("NGAYKETTHUC"));
         km.setTrangThai(rs.getBoolean("TRANGTHAI"));
+        km.setHDToiThieu(rs.getDouble("HDTOITHIEU"));
         return km;
     }
 
