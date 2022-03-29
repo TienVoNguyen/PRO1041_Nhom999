@@ -7,6 +7,7 @@ package poly.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import poly.entity.KhachHang;
 
 /**
@@ -27,7 +28,10 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
             case "SELECTBYID":
                 return "SELECT * FROM KHACHHANG WHERE MAKH = ?";
             case "SELECTALL":
-                return "SELECT * FROM KHACHHANG";}
+                return "SELECT * FROM KHACHHANG";
+            case "SELECTWHERE":
+                return "SELECT * FROM   KHACHHANG WHERE MALOAIKH = ? or HOTEN like ?";//
+         }
         return "";
     }
 
@@ -58,6 +62,12 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
                     obj.getNgayTao(),
                     obj.getMaKH()
                 };
+            case "SELECTWHERE":
+                return new Object[]{
+                    obj.getMaLoaiKH(),
+//                    "%"+obj.getMaKH()+"%",
+                    "%"+obj.getHoTen()+"%"
+                };
         }
         return null;
     }
@@ -68,14 +78,17 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
         kH.setMaKH(rs.getString("MAKH"));
         kH.setMaLoaiKH(rs.getInt("MALOAIKH"));
         kH.setHoTen(rs.getString("HOTEN"));
-        kH.setNgaySinh(rs.getString("NGAYSINH"));
+        kH.setNgaySinh(rs.getDate("NGAYSINH"));
         kH.setGioiTinh(rs.getBoolean("GIOITINH"));
         kH.setEmail(rs.getString("EMAIL"));
         kH.setSDT(rs.getString("SDT"));
         kH.setDiaChi(rs.getString("DIACHI"));
-        kH.setNgayTao(rs.getString("NGAYTAO"));
+        kH.setNgayTao(rs.getDate("NGAYTAO"));
         kH.setTrangThai(rs.getBoolean("TRANGTHAI"));
         return kH;
     }
     
+    public ArrayList<KhachHang> selectWhere(KhachHang kh) throws Exception{
+        return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", kh));
+    }
 }

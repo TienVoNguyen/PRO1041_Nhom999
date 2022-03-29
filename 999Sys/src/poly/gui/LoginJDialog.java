@@ -8,6 +8,7 @@ package poly.gui;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.List;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        jpnlogo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpnCardGoc = new javax.swing.JPanel();
         jpnLogin = new javax.swing.JPanel();
@@ -61,6 +62,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         lblForgotPass = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
         jpnResetPass = new javax.swing.JPanel();
         txtMaNV = new javax.swing.JTextField();
         btnMaNV = new javax.swing.JButton();
@@ -68,7 +70,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         btnOK = new javax.swing.JButton();
         jpnCardChil = new javax.swing.JPanel();
         jpn0 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnHuy1 = new javax.swing.JButton();
         jpnCode = new javax.swing.JPanel();
         btnDongY = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
@@ -88,20 +90,22 @@ public class LoginJDialog extends javax.swing.JDialog {
         setTitle("Đăng Nhập Hệ Thống Bán Hàng");
         setUndecorated(true);
 
-        jPanel4.setBackground(new java.awt.Color(255, 102, 0));
+        jpnlogo.setBackground(new java.awt.Color(255, 102, 0));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/Logo_Chinh.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpnlogoLayout = new javax.swing.GroupLayout(jpnlogo);
+        jpnlogo.setLayout(jpnlogoLayout);
+        jpnlogoLayout.setHorizontalGroup(
+            jpnlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnlogoLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jpnlogoLayout.setVerticalGroup(
+            jpnlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnlogoLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -117,8 +121,13 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtID.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtID.setBorder(null);
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIDKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnIDLayout = new javax.swing.GroupLayout(jpnID);
         jpnID.setLayout(jpnIDLayout);
@@ -140,7 +149,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                     .addGroup(jpnIDLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtID))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -148,13 +157,19 @@ public class LoginJDialog extends javax.swing.JDialog {
         jpnPass.setBackground(new java.awt.Color(255, 255, 255));
         jpnPass.setAlignmentX(0.0F);
         jpnPass.setAlignmentY(0.0F);
+        jpnPass.setPreferredSize(new java.awt.Dimension(315, 52));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/key.png"))); // NOI18N
 
-        txtPass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPass.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtPass.setAlignmentX(0.0F);
         txtPass.setAlignmentY(0.0F);
         txtPass.setBorder(null);
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+        });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -163,24 +178,21 @@ public class LoginJDialog extends javax.swing.JDialog {
         jpnPassLayout.setHorizontalGroup(
             jpnPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPassLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPass)
-                    .addGroup(jpnPassLayout.createSequentialGroup()
-                        .addComponent(jSeparator2)
-                        .addContainerGap())))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(txtPass))
+                .addContainerGap())
         );
         jpnPassLayout.setVerticalGroup(
             jpnPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpnPassLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         btnLogin.setBackground(new java.awt.Color(102, 51, 255));
@@ -195,7 +207,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         });
 
         lblForgotPass.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblForgotPass.setText("Quên mật khẩu ?");
+        lblForgotPass.setText("Quên mật khẩu / tài khoản ?");
         lblForgotPass.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 lblForgotPassMouseDragged(evt);
@@ -218,10 +230,25 @@ public class LoginJDialog extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel9.setText("Đăng Nhập");
 
+        btnExit.setBackground(new java.awt.Color(102, 51, 255));
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setText("Thoát");
+        btnExit.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnLoginLayout = new javax.swing.GroupLayout(jpnLogin);
         jpnLogin.setLayout(jpnLoginLayout);
         jpnLoginLayout.setHorizontalGroup(
             jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnLoginLayout.createSequentialGroup()
+                .addGap(0, 83, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(74, 74, 74))
             .addGroup(jpnLoginLayout.createSequentialGroup()
                 .addGroup(jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnLoginLayout.createSequentialGroup()
@@ -230,19 +257,22 @@ public class LoginJDialog extends javax.swing.JDialog {
                             .addComponent(jpnPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jpnID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jpnLoginLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExit))
                     .addGroup(jpnLoginLayout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addGroup(jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblForgotPass))))
+                        .addGap(91, 91, 91)
+                        .addGroup(jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblForgotPass, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnLoginLayout.createSequentialGroup()
-                .addGap(0, 83, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(74, 74, 74))
         );
+
+        jpnLoginLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnExit, btnLogin});
+
+        jpnLoginLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jpnID, jpnPass});
+
         jpnLoginLayout.setVerticalGroup(
             jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnLoginLayout.createSequentialGroup()
@@ -251,15 +281,19 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addGap(35, 35, 35)
                 .addComponent(jpnID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpnPass, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addComponent(jpnPass, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblForgotPass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jpnLoginLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnExit, btnLogin});
 
         jpnCardGoc.add(jpnLogin, "cardLogin");
 
@@ -305,10 +339,10 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         jpn0.setBackground(new java.awt.Color(51, 204, 255));
 
-        jButton1.setText("Hủy");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHuy1.setText("Hủy");
+        btnHuy1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHuy1ActionPerformed(evt);
             }
         });
 
@@ -318,14 +352,14 @@ public class LoginJDialog extends javax.swing.JDialog {
             jpn0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn0Layout.createSequentialGroup()
                 .addGap(128, 128, 128)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuy1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         jpn0Layout.setVerticalGroup(
             jpn0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn0Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuy1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
@@ -511,18 +545,15 @@ public class LoginJDialog extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpnlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jpnCardGoc, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnCardGoc, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jpnlogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpnCardGoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -533,7 +564,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -655,9 +686,9 @@ try {
         
     }//GEN-LAST:event_btnDongYActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHuy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuy1ActionPerformed
        cardGoc.show(jpnCardGoc, "cardLogin");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnHuy1ActionPerformed
 
     private void txtMaNVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNVFocusGained
         txtMaNV.setText("");
@@ -677,6 +708,20 @@ lblForgotPass.setForeground(Color.red);
     private void lblForgotPassMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseExited
 lblForgotPass.setForeground(Color.black);                                              
     }//GEN-LAST:event_lblForgotPassMouseExited
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        this.enter(evt);
+    }//GEN-LAST:event_txtPassKeyPressed
+
+    private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
+        this.enter(evt);
+    }//GEN-LAST:event_txtIDKeyPressed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        if(Messeger.confirm(this, "Bạn có muốn thoát không ?")){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -722,11 +767,12 @@ lblForgotPass.setForeground(Color.black);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDongY;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnHuy1;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnMaNV;
     private javax.swing.JButton btnOK;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -737,7 +783,6 @@ lblForgotPass.setForeground(Color.black);
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -753,6 +798,7 @@ lblForgotPass.setForeground(Color.black);
     private javax.swing.JPanel jpnLogin;
     private javax.swing.JPanel jpnPass;
     private javax.swing.JPanel jpnResetPass;
+    private javax.swing.JPanel jpnlogo;
     private javax.swing.JLabel lblForgotPass;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtID;
@@ -768,5 +814,10 @@ lblForgotPass.setForeground(Color.black);
            cardGoc = (CardLayout) jpnCardGoc.getLayout();
            cardResetPass = (CardLayout) jpnCardChil.getLayout();
            cardGoc.show(jpnCardGoc, "cardLogin");
+    }
+    private void enter(KeyEvent evt){
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.btnLogin.doClick();
+        }
     }
 }
