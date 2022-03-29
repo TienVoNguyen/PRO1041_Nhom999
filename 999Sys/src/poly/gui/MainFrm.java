@@ -200,7 +200,7 @@ public class MainFrm extends javax.swing.JFrame {
         pnlTabs.setForeground(new java.awt.Color(255, 255, 255));
         pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         pnlTabs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlTabs.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        pnlTabs.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         pnlTabs.setOpaque(true);
         pnlTabs.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -362,7 +362,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniQLSanPhamActionPerformed
 
     private void btnQLCTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLCTSPActionPerformed
-        // TODO add your handling code here:
+        new QL_CTSPJdialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnQLCTSPActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed

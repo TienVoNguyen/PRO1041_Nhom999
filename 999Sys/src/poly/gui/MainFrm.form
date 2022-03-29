@@ -218,7 +218,7 @@
               <Color id="Default Cursor"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="3"/>
+              <Font name="Arial" size="24" style="3"/>
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
