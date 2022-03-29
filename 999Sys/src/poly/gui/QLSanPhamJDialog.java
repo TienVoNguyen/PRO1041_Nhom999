@@ -717,6 +717,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         jPanel7.add(jPanel10, java.awt.BorderLayout.PAGE_END);
 
+        jPanel11.setBackground(new java.awt.Color(0, 0, 0));
         jPanel11.setLayout(new java.awt.BorderLayout());
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));

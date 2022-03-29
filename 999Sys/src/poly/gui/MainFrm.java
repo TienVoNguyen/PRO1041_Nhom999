@@ -19,6 +19,7 @@ import poly.dao.SanPhamDao;
 import poly.entity.CTHoaDon;
 import poly.entity.HoaDon;
 import poly.entity.KhachHang;
+import poly.helper.Auth;
 import poly.helper.CustomTabbedPaneUI;
 import poly.helper.Messeger;
 
@@ -60,6 +61,7 @@ public class MainFrm extends javax.swing.JFrame {
         btnMinimise.setBackground(new Color(255,255,255));
         btnMinimise.setUI(new BasicButtonUI());
         pnlTabs.setUI(new CustomTabbedPaneUI());
+        phanQuyen();
     }
 
     /**
@@ -375,6 +377,7 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
         new LoginJDialog(this, true).setVisible(true);
+        phanQuyen();
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void mniQLChiTietSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLChiTietSPActionPerformed
@@ -518,6 +521,10 @@ public class MainFrm extends javax.swing.JFrame {
                 System.exit(0);
             }
         }
+    }
+
+    private void phanQuyen() {
+        this.lblTenNV.setText(Auth.user.getHoTen());
     }
 
 }

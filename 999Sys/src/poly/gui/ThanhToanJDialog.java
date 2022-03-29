@@ -14,7 +14,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import poly.dao.HoaDonDao;
+import poly.dao.KhachHangDao;
 import poly.entity.HoaDon;
+import poly.entity.KhachHang;
 import poly.helper.XDate;
 
 /**
@@ -29,18 +31,29 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     Locale localeVN = new Locale("vi", "VN");
     NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
     HoaDon hd;
+    KhachHang kh;
     JTabbedPane pnlTabs;
     HoaDonDao daoHD;
+    KhachHangDao daoKH;
 
     public ThanhToanJDialog(java.awt.Frame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(this);
+        this.daoHD = new HoaDonDao();
+        this.daoKH = new KhachHangDao();
         this.pnlTabs = pnlTabs;
         this.hd = hd;
+        if (hd.getMaKH().length() > 0 && hd.getMaKH() != null){
+            try {
+                kh = this.daoKH.selectById(hd.getMaKH());
+                txtPoint.setText(kh.getTichDiem()+"");
+            } catch (Exception ex) {
+                Logger.getLogger(ThanhToanJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         this.txtTongTien.setText(df.format(hd.getThanhTien()));
         this.txtTongTien.setToolTipText(String.valueOf(hd.getThanhTien()));
-        this.daoHD = new HoaDonDao();
     }
 
     /**
@@ -73,7 +86,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        txtNhapVoucher = new javax.swing.JTextField();
+        txtPoint = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtTienKhach = new javax.swing.JTextField();
@@ -212,8 +225,9 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jButton3.setText("Sử Dụng");
         jPanel13.add(jButton3, java.awt.BorderLayout.LINE_END);
 
-        txtNhapVoucher.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPanel13.add(txtNhapVoucher, java.awt.BorderLayout.CENTER);
+        txtPoint.setEditable(false);
+        txtPoint.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel13.add(txtPoint, java.awt.BorderLayout.CENTER);
 
         jPanel8.add(jPanel13);
 
@@ -402,7 +416,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lblTienThua;
     private javax.swing.JTextField txtGiamGia;
-    private javax.swing.JTextField txtNhapVoucher;
+    private javax.swing.JTextField txtPoint;
     private javax.swing.JTextField txtTienKhach;
     private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTongTien;

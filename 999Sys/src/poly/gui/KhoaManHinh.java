@@ -92,7 +92,7 @@ public class KhoaManHinh extends javax.swing.JDialog {
                 btnMoKhoaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMoKhoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 260, 40));
+        jPanel1.add(btnMoKhoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 260, 40));
 
         lblTenDangNhap.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         lblTenDangNhap.setForeground(new java.awt.Color(255, 255, 255));
