@@ -9,11 +9,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
@@ -44,7 +41,7 @@ import poly.entity.SanPham;
 public class XExcel {
 
     public static void readExcel(DefaultTableModel model) throws Exception {
-        JFileChooser j = new JFileChooser(new File("E:\\Learn\\Git\\PRO1041_Nhom999\\999Sys\\FileExcel\\"));
+        JFileChooser j = new JFileChooser(new File(System.getProperty("user.dir") + "\\FileExcel\\"));
         int r = j.showSaveDialog(null);
         String excelFilePath;
             // if the user selects a file
