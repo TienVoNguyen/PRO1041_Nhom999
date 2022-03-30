@@ -67,6 +67,15 @@ public class LoginJDialog extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         jpnResetPass = new javax.swing.JPanel();
+        lblDoiPASS = new javax.swing.JLabel();
+        lblMNV = new javax.swing.JLabel();
+        lblCode = new javax.swing.JLabel();
+        jpnMNV = new javax.swing.JPanel();
+        txtMaNV = new javax.swing.JTextField();
+        btnMaNV = new javax.swing.JButton();
+        jpnMXN = new javax.swing.JPanel();
+        txtCode = new javax.swing.JTextField();
+        btnOK = new javax.swing.JButton();
         jpnCardChil = new javax.swing.JPanel();
         jpn0 = new javax.swing.JPanel();
         btnHuy1 = new javax.swing.JButton();
@@ -79,15 +88,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         jpnNewPass2 = new javax.swing.JPanel();
         txtNewPass2 = new javax.swing.JPasswordField();
         btnHuy = new javax.swing.JButton();
-        lblDoiPASS = new javax.swing.JLabel();
-        lblMNV = new javax.swing.JLabel();
-        lblCode = new javax.swing.JLabel();
-        jpnMNV = new javax.swing.JPanel();
-        txtMaNV = new javax.swing.JTextField();
-        btnMaNV = new javax.swing.JButton();
-        jpnMXN = new javax.swing.JPanel();
-        txtCode = new javax.swing.JTextField();
-        btnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Đăng Nhập Hệ Thống Bán Hàng");
@@ -303,6 +303,77 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         jpnResetPass.setBackground(new java.awt.Color(51, 102, 255));
 
+        lblDoiPASS.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lblDoiPASS.setText("Đổi Mật Khẩu");
+
+        lblMNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblMNV.setForeground(new java.awt.Color(255, 255, 255));
+        lblMNV.setText("Mã Nhân Viên");
+
+        lblCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCode.setForeground(new java.awt.Color(255, 255, 255));
+        lblCode.setText("Mã Code");
+
+        jpnMNV.setLayout(new java.awt.BorderLayout());
+
+        txtMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMaNV.setForeground(new java.awt.Color(51, 153, 255));
+        txtMaNV.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 255, 255)));
+        txtMaNV.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMaNVFocusGained(evt);
+            }
+        });
+        txtMaNV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMaNVKeyPressed(evt);
+            }
+        });
+        jpnMNV.add(txtMaNV, java.awt.BorderLayout.CENTER);
+
+        btnMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnMaNV.setText("Xác Nhận");
+        btnMaNV.setBorder(null);
+        btnMaNV.setPreferredSize(new java.awt.Dimension(99, 25));
+        btnMaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaNVActionPerformed(evt);
+            }
+        });
+        jpnMNV.add(btnMaNV, java.awt.BorderLayout.LINE_END);
+
+        jpnMXN.setPreferredSize(new java.awt.Dimension(329, 71));
+        jpnMXN.setLayout(new java.awt.BorderLayout());
+
+        txtCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCode.setForeground(new java.awt.Color(51, 153, 255));
+        txtCode.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 255, 255)));
+        txtCode.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                txtCodeMouseDragged(evt);
+            }
+        });
+        txtCode.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodeFocusGained(evt);
+            }
+        });
+        jpnMXN.add(txtCode, java.awt.BorderLayout.CENTER);
+
+        btnOK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnOK.setText("OK");
+        btnOK.setBorder(null);
+        btnOK.setEnabled(false);
+        btnOK.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        btnOK.setMinimumSize(new java.awt.Dimension(0, 17));
+        btnOK.setPreferredSize(new java.awt.Dimension(99, 25));
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
+        jpnMXN.add(btnOK, java.awt.BorderLayout.LINE_END);
+
         jpnCardChil.setBackground(new java.awt.Color(51, 153, 255));
         jpnCardChil.setLayout(new java.awt.CardLayout());
 
@@ -352,6 +423,16 @@ public class LoginJDialog extends javax.swing.JDialog {
         txtNewPass.setForeground(new java.awt.Color(51, 153, 255));
         txtNewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 10, 2, 2, new java.awt.Color(255, 255, 255)));
         txtNewPass.setPreferredSize(new java.awt.Dimension(0, 17));
+        txtNewPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNewPassFocusGained(evt);
+            }
+        });
+        txtNewPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewPassKeyPressed(evt);
+            }
+        });
         jpnNewPass.add(txtNewPass, java.awt.BorderLayout.CENTER);
 
         btnDongY.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -368,6 +449,16 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         txtNewPass2.setForeground(new java.awt.Color(51, 153, 255));
         txtNewPass2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 10, 2, 2, new java.awt.Color(255, 255, 255)));
+        txtNewPass2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNewPass2FocusGained(evt);
+            }
+        });
+        txtNewPass2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewPass2KeyPressed(evt);
+            }
+        });
         jpnNewPass2.add(txtNewPass2, java.awt.BorderLayout.CENTER);
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -413,67 +504,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         jpnCodeLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jpnNewPass, jpnNewPass2});
 
         jpnCardChil.add(jpnCode, "cardCode");
-
-        lblDoiPASS.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        lblDoiPASS.setText("Đổi Mật Khẩu");
-
-        lblMNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblMNV.setForeground(new java.awt.Color(255, 255, 255));
-        lblMNV.setText("Mã Nhân Viên");
-
-        lblCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCode.setForeground(new java.awt.Color(255, 255, 255));
-        lblCode.setText("Mã Code");
-
-        jpnMNV.setLayout(new java.awt.BorderLayout());
-
-        txtMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtMaNV.setForeground(new java.awt.Color(51, 153, 255));
-        txtMaNV.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 255, 255)));
-        txtMaNV.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtMaNVFocusGained(evt);
-            }
-        });
-        jpnMNV.add(txtMaNV, java.awt.BorderLayout.CENTER);
-
-        btnMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnMaNV.setText("Xác Nhận");
-        btnMaNV.setBorder(null);
-        btnMaNV.setPreferredSize(new java.awt.Dimension(99, 25));
-        btnMaNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaNVActionPerformed(evt);
-            }
-        });
-        jpnMNV.add(btnMaNV, java.awt.BorderLayout.LINE_END);
-
-        jpnMXN.setPreferredSize(new java.awt.Dimension(329, 71));
-        jpnMXN.setLayout(new java.awt.BorderLayout());
-
-        txtCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCode.setForeground(new java.awt.Color(51, 153, 255));
-        txtCode.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 255, 255)));
-        txtCode.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCodeFocusGained(evt);
-            }
-        });
-        jpnMXN.add(txtCode, java.awt.BorderLayout.CENTER);
-
-        btnOK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnOK.setText("OK");
-        btnOK.setBorder(null);
-        btnOK.setEnabled(false);
-        btnOK.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-        btnOK.setMinimumSize(new java.awt.Dimension(0, 17));
-        btnOK.setPreferredSize(new java.awt.Dimension(99, 25));
-        btnOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOKActionPerformed(evt);
-            }
-        });
-        jpnMXN.add(btnOK, java.awt.BorderLayout.LINE_END);
 
         javax.swing.GroupLayout jpnResetPassLayout = new javax.swing.GroupLayout(jpnResetPass);
         jpnResetPass.setLayout(jpnResetPassLayout);
@@ -521,8 +551,8 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnMXN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpnCardChil, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jpnCardChil, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132))
         );
 
         jpnResetPassLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jpnMNV, jpnMXN});
@@ -590,40 +620,77 @@ public class LoginJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_lblForgotPassMouseClicked
 
     private void btnMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaNVActionPerformed
-        try {
-            String maNV = txtMaNV.getText();
-            ArrayList<NhanVien> list = dao.selectAll();
-            boolean check = false;
-            String mailAddress = "";
-            for (NhanVien nv : list) {
-                if (nv.getMaNV().trim().equals(maNV)) {
-                    mailAddress = nv.getEmail();
-                    check = true;
-                    break;
+        String maNV = txtMaNV.getText().trim();
+        String mailAddress = "";
+        if (maNV.contains("@")) {
+            try {
+                mailAddress = maNV;
+                ArrayList<NhanVien> list = dao.selectAll();
+                boolean check = false;
+                for (NhanVien nv : list) {
+                    if (nv.getEmail().trim().equals(maNV)) {
+                        maNV = nv.getMaNV();
+                        check = true;
+                        break;
+                    }
                 }
-            }
-            if (check == true) {
-                try {
-                    txtMaNV.setBackground(Color.WHITE);
-                    codeSMS = ResetPassByEmail.resetPass(mailAddress);
-                    String toMail = mailAddress.substring(0, 4) + "***" + mailAddress.substring(mailAddress.length() - 16);
-                    Messeger.alert(this, "Hãy nhập mã xác nhận được gửi tới email : " + toMail);
-                    this.Time_Run();
-                } catch (Exception e) {
-                    Messeger.showErrorDialog(this, "Mail không tồn tại", "Error!");
-                    e.printStackTrace();
+                if (check == true) {
+                    try {
+                        txtMaNV.setBackground(Color.WHITE);
+                        codeSMS = ResetPassByEmail.resetPass(mailAddress);
+                        //   String toMail = mailAddress.substring(0, 4) + "***" + mailAddress.substring(mailAddress.length() - 16);
+                        Messeger.alert(this, "Hãy nhập mã xác nhận được gửi tới email : \"" + mailAddress + "\"\nMã Nhân Viên Là: \"" + maNV + "\"");
+                        txtMaNV.setText(maNV);
+                        this.Time_Run();
+                    } catch (Exception e) {
+                        Messeger.showErrorDialog(this, "Mail không tồn tại", "Error!");
+                        e.printStackTrace();
+                    }
+                } else {
+                    Messeger.alert(this, "Email không tồn tại!");
+                    txtMaNV.setBackground(Color.YELLOW);
+                    btnOK.setEnabled(check);
+                    return;
                 }
-            } else {
-                Messeger.alert(this, "Mã nhân viên không tồn tại!");
-                txtMaNV.setBackground(Color.YELLOW);
-                btnOK.setEnabled(check);
-                return;
+                //
+            } catch (Exception ex) {
+                Messeger.showErrorDialog(this, "Lỗi tìm mail", "Error!");
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            Messeger.alert(this, "Lỗi tìm mã nhân viên!");
-            ex.printStackTrace();
-        }
+        } else {
+            try {
 
+                ArrayList<NhanVien> list = dao.selectAll();
+                boolean check = false;
+                for (NhanVien nv : list) {
+                    if (nv.getMaNV().trim().equals(maNV)) {
+                        mailAddress = nv.getEmail();
+                        check = true;
+                        break;
+                    }
+                }
+                if (check == true) {
+                    try {
+                        txtMaNV.setBackground(Color.WHITE);
+                        codeSMS = ResetPassByEmail.resetPass(mailAddress);
+                        String toMail = mailAddress.substring(0, 4) + "***" + mailAddress.substring(mailAddress.length() - 16);
+                        Messeger.alert(this, "Hãy nhập mã xác nhận được gửi tới email : \"" + toMail + "\"");
+                        this.Time_Run();
+                    } catch (Exception e) {
+                        Messeger.showErrorDialog(this, "Mail không tồn tại", "Error!");
+                        e.printStackTrace();
+                    }
+                } else {
+                    Messeger.alert(this, "Mã nhân viên không tồn tại!");
+                    txtMaNV.setBackground(Color.YELLOW);
+                    btnOK.setEnabled(check);
+                    return;
+                }
+            } catch (Exception ex) {
+                Messeger.alert(this, "Lỗi tìm mã nhân viên!");
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnMaNVActionPerformed
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
@@ -637,7 +704,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         } else {
             Messeger.showErrorDialog(this, "Sai mã xác nhận!", "Error !");
             cardResetPass.show(jpnCardChil, "card0");
-            
+
         }
     }//GEN-LAST:event_btnOKActionPerformed
 
@@ -656,7 +723,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         } else {
             try {
                 ArrayList<NhanVien> list = dao.selectAll();
-               // boolean check = false;
+                // boolean check = false;
                 for (NhanVien nv : list) {
                     if (nv.getMaNV().equalsIgnoreCase(txtMaNV.getText())) {
                         nv.setPassWord(new String(txtNewPass.getPassword()));
@@ -685,11 +752,11 @@ public class LoginJDialog extends javax.swing.JDialog {
 
 
     private void txtMaNVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNVFocusGained
-        txtMaNV.setText("");
+        txtMaNV.setBackground(Color.WHITE);
     }//GEN-LAST:event_txtMaNVFocusGained
 
     private void txtCodeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodeFocusGained
-        txtCode.setText("");
+        txtCode.setBackground(Color.WHITE);
     }//GEN-LAST:event_txtCodeFocusGained
 
     private void lblForgotPassMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotPassMouseDragged
@@ -716,6 +783,36 @@ public class LoginJDialog extends javax.swing.JDialog {
     private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
         this.enter(evt);
     }//GEN-LAST:event_txtPassKeyPressed
+
+    private void txtMaNVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaNVKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnMaNV.doClick();
+        }
+    }//GEN-LAST:event_txtMaNVKeyPressed
+
+    private void txtNewPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewPassKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.txtNewPass2.requestFocus();
+        }
+    }//GEN-LAST:event_txtNewPassKeyPressed
+
+    private void txtNewPass2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewPass2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnDongY.doClick();
+        }
+    }//GEN-LAST:event_txtNewPass2KeyPressed
+
+    private void txtCodeMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodeMouseDragged
+
+    }//GEN-LAST:event_txtCodeMouseDragged
+
+    private void txtNewPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewPassFocusGained
+        txtNewPass.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtNewPassFocusGained
+
+    private void txtNewPass2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewPass2FocusGained
+        txtNewPass2.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtNewPass2FocusGained
 
     private void EnterAcctions(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -826,7 +923,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         t = new Thread() {
             @Override
             public void run() {
-                String xacNhan = txtMaNV.getText();
+//                String xacNhan = txtMaNV.getText();
                 int time = 30;
                 while (true) {
                     try {
@@ -841,7 +938,6 @@ public class LoginJDialog extends javax.swing.JDialog {
                             btnMaNV.setText(String.valueOf(time));
                             btnOK.setEnabled(true);
                             btnMaNV.setEnabled(false);
-                            txtMaNV.setText(xacNhan);
                         }
 
                         t.sleep(1000);
