@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef41dd24-5422-4c6e-95b1-f8d80d619997">
 	<property name="ireport.zoom" value="1.7715610000000013"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="3"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -70,7 +70,12 @@ WHERE
 	<field name="KHACHHANG_MAKH" class="java.lang.String"/>
 	<field name="CT_HOADON_MASP" class="java.lang.Integer"/>
 	<background>
-		<band splitType="Stretch"/>
+		<band height="300" splitType="Stretch">
+			<image>
+				<reportElement x="2" y="0" width="379" height="300" uuid="19d5d5aa-b41c-40a7-857f-9d00c1f3568f"/>
+				<imageExpression><![CDATA["D:\\OneDrive\\Hình ảnh\\NTGT.jpg"]]></imageExpression>
+			</image>
+		</band>
 	</background>
 	<title>
 		<band height="51" splitType="Stretch">
@@ -380,9 +385,9 @@ WHERE
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band splitType="Stretch"/>
+		<band height="24" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band height="27" splitType="Stretch"/>
 	</summary>
 </jasperReport>
