@@ -30,7 +30,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
             case "SELECTALL":
                 return "SELECT * FROM KHACHHANG";
             case "SELECTWHERE":
-                return "SELECT * FROM   KHACHHANG WHERE MALOAIKH = ? or HOTEN like ?";//
+                return "SELECT * FROM   KHACHHANG WHERE MALOAIKH like ? and (MAKH like ? or HOTEN like ?)";//
          }
         return "";
     }
@@ -65,8 +65,8 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
                 };
             case "SELECTWHERE":
                 return new Object[]{
-                    obj.getMaLoaiKH(),
-//                    "%"+obj.getMaKH()+"%",
+                    "%"+(obj.getMaLoaiKH() == 0 ? "":obj.getMaLoaiKH())+"%",
+                    "%"+obj.getHoTen()+"%",
                     "%"+obj.getHoTen()+"%"
                 };
         }

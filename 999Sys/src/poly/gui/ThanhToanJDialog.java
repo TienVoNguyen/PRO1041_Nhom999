@@ -59,6 +59,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         }
         this.txtTongTien.setText(df.format(hd.getThanhTien()));
         this.txtTongTien.setToolTipText(String.valueOf(hd.getThanhTien()));
+        this.txtGiamGia.setToolTipText(0+"");
     }
 
     /**

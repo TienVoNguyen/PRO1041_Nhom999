@@ -37,7 +37,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":
-                return "SELECT * FROM   SANPHAM WHERE MADM =  ? and MASP like ? or TENSP like ?";
+                return "SELECT * FROM   SANPHAM WHERE MADM like  ? and (MASP like ? or TENSP like ?)";
             case "UPDATEMASP":
                 return "UPDATE SANPHAM SET SOLUONG =? WHERE MASP = ?";
         }
@@ -80,8 +80,8 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                 };
             case "SELECTWHERE":
                 return new Object[]{
-                    obj.getMaDanhMuc(),
-                    "%" + obj.getMaSP() + "%",
+                    "%" + (obj.getMaDanhMuc() == 0 ? "":obj.getMaDanhMuc()) + "%",
+                    "%" + obj.getTenSanPham()+ "%",
                     "%" + obj.getTenSanPham() + "%"
                 };
             case "UPDATEMASP":
