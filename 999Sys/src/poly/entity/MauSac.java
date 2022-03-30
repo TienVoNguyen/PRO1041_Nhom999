@@ -10,6 +10,7 @@ package poly.entity;
  * @author Admin
  */
 public class MauSac {
+
     private int maMau;
     private String tenMau;
     private boolean trangThai;
@@ -20,6 +21,14 @@ public class MauSac {
     public MauSac(int maMau, String tenMau, boolean trangThai) {
         this.maMau = maMau;
         this.tenMau = tenMau;
+        this.trangThai = trangThai;
+    }
+
+    public MauSac(String tenMau) {
+        this.tenMau = tenMau;
+    }
+    public MauSac(int maMau, boolean trangThai) {
+        this.maMau = maMau;
         this.trangThai = trangThai;
     }
 
@@ -46,5 +55,10 @@ public class MauSac {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
+
+    @Override
+    public String toString() {
+        return tenMau;
+    }
+
 }

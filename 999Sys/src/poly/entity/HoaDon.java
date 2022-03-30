@@ -10,7 +10,7 @@ package poly.entity;
  * @author Admin
  */
 public class HoaDon {
-    private int maHD;
+    private int maHD,maTT;
     private String maNV,maKH,ngayMua;
     private double giamGia;
     private String ngayGiaoHang;
@@ -20,8 +20,9 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int maHD, String maNV, String maKH, String ngayMua, double giamGia, String ngayGiaoHang, double tienShip, double thanhTien, boolean trangThai) {
+    public HoaDon(int maHD, int maTT, String maNV, String maKH, String ngayMua, double giamGia, String ngayGiaoHang, double tienShip, double thanhTien, boolean trangThai) {
         this.maHD = maHD;
+        this.maTT = maTT;
         this.maNV = maNV;
         this.maKH = maKH;
         this.ngayMua = ngayMua;
@@ -31,6 +32,16 @@ public class HoaDon {
         this.thanhTien = thanhTien;
         this.trangThai = trangThai;
     }
+
+    public int getMaTT() {
+        return maTT;
+    }
+
+    public void setMaTT(int maTT) {
+        this.maTT = maTT;
+    }
+
+   
 
     public int getMaHD() {
         return maHD;

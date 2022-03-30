@@ -8,6 +8,7 @@ package poly.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import poly.entity.HoaDon;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -19,15 +20,17 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO HOADON (MANV, MAKH, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN) VALUES (?,?,?,?,?,?,?)";
+                return "SET IDENTITY_INSERT [dbo].[HOADON] ON  INSERT INTO HOADON (MAHOADON, MANV, MAKH, MATT, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN) VALUES (?,?,?,?,?,?,?,?,?)  SET IDENTITY_INSERT [dbo].[HOADON] OFF";
             case "UPDATE":
-                return "UPDATE HOADON SET MANV =?, MAKH =?, NGAYMUA =?, GIAMGIA =?, NGAYGIAOHANG =?, TIENSHIP =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
+                return "UPDATE HOADON SET MANV =?, MAKH =?, MATT =?, NGAYMUA =?, GIAMGIA =?, NGAYGIAOHANG =?, TIENSHIP =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
             case "DELETE":
                 return "DELETE FROM HOADON WHERE MAHOADON =?";
             case "SELECTBYID":
                 return "SELECT * FROM HOADON WHERE MAHOADON = ?";
             case "SELECTALL":
                 return "SELECT * FROM HOADON";
+            case "SELECTMAXMAHD":
+                return "SELECT MAX(MAHOADON) AS 'MAXMAHD' FROM HOADON";
         }
         return "";
     }
@@ -40,6 +43,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
                     obj.getMaHD(),
                     obj.getMaNV(),
                     obj.getMaKH(),
+                    obj.getMaTT(),
                     obj.getNgayMua(),
                     obj.getGiamGia(),
                     obj.getNgayGiaoHang(),
@@ -50,6 +54,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
                 return new Object[]{
                     obj.getMaNV(),
                     obj.getMaKH(),
+                    obj.getMaTT(),
                     obj.getNgayMua(),
                     obj.getGiamGia(),
                     obj.getNgayGiaoHang(),
@@ -74,7 +79,12 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
         hD.setTienShip(rs.getDouble("TIENSHIP"));
         hD.setThanhTien(rs.getDouble("THANHTIEN"));
         hD.setTrangThai(rs.getBoolean("TRANGTHAI"));
+        hD.setMaTT(rs.getInt("MATT"));
         return hD;
+    }
+    
+    public int getMaxMaHD(){
+        return (int) XJDBC.value(this.getQuery("SELECTMAXMAHD"));
     }
     
 }

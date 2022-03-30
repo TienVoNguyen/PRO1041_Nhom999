@@ -23,7 +23,7 @@ public class ChatLieuDao extends BaseDao<ChatLieu, String>{
             case "UPDATE":
                 return "UPDATE CHATLIEU SET TENCHATLIEU =?, TRANGTHAI =? WHERE MACHATLIEU = ?";
             case "DELETE":
-                return "DELETE FROM CHATLIEU WHERE MACHATLIEU = ?";
+                return "UPDATE CHATLIEU SET TRANGTHAI =0 WHERE MACHATLIEU = ?";
             case "SELECTBYID":
                 return "SELECT * FROM CHATLIEU	WHERE MACHATLIEU = ?";
             case "SELECTALL":

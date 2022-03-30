@@ -13,7 +13,7 @@ import poly.entity.MauSac;
  *
  * @author Admin
  */
-public class MauSacDao extends BaseDao<MauSac, String>{
+public class MaMauDao extends BaseDao<MauSac, String>{
 
     @Override
     public String getQuery(String action) {
@@ -23,7 +23,7 @@ public class MauSacDao extends BaseDao<MauSac, String>{
             case "UPDATE":
                 return "UPDATE MAUSAC SET TENMAU =?, TRANGTHAI =? WHERE MAMAU = ?";
             case "DELETE":
-                return "DELETE FROM MAUSAC WHERE MAMAU = ?";
+                return "UPDATE MAUSAC SET  TRANGTHAI = 0 WHERE MAMAU = ?";
             case "SELECTBYID":
                 return "SELECT * FROM MAUSAC WHERE (MAMAU = ?)";
             case "SELECTALL":

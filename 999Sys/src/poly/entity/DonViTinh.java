@@ -22,6 +22,10 @@ public class DonViTinh {
         this.tenDVT = tenDVT;
         this.trangThai = trangThai;
     }
+    public DonViTinh(String tenDVT, boolean trangThai) {
+        this.tenDVT = tenDVT;
+        this.trangThai = trangThai;
+    }
 
     public int getMaDVT() {
         return maDVT;
@@ -45,6 +49,11 @@ public class DonViTinh {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    @Override
+    public String toString() {
+        return tenDVT;
     }
     
 }
