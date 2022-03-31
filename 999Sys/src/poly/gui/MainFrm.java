@@ -21,6 +21,7 @@ import poly.entity.HoaDon;
 import poly.entity.KhachHang;
 import poly.helper.Auth;
 import poly.helper.CustomTabbedPaneUI;
+import poly.helper.ImageHelper;
 import poly.helper.Messeger;
 
 /**
@@ -46,7 +47,9 @@ public class MainFrm extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);//hiển thị toàn màn hình
-
+        //set icon cho app
+        this.setIconImage(ImageHelper.getAppIcon());
+        
         this.daoHD = new HoaDonDao();
         this.daoKH = new KhachHangDao();
         this.daoSP = new SanPhamDao();
@@ -55,7 +58,8 @@ public class MainFrm extends javax.swing.JFrame {
         new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
 
-        loadHoaDonChoTT();
+        new loading(this, true, pnlTabs).setVisible(true);
+//        loadHoaDonChoTT();
         btnClose.setBackground(new Color(255,255,255));
         btnClose.setUI(new BasicButtonUI());
         btnMinimise.setBackground(new Color(255,255,255));

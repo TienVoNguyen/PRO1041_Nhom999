@@ -454,8 +454,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private boolean thanhToan() throws HeadlessException {
-        int i = JOptionPane.showConfirmDialog(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD());
-        if (i == JOptionPane.YES_OPTION) {
+        if (Messeger.confirm(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD())) {
             try {
                 hd.setGiamGia(Double.parseDouble(txtGiamGia.getToolTipText()));
                 hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy"));
@@ -464,11 +463,13 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
                 if (hd.getMaKH() != null) {
                     try {
                         kh.setTichDiem(Integer.parseInt(txtPoint.getText()));
-                        int diemTLSauThanhToan = (int) (Double.parseDouble(String.format("%.0f", txtTongTien.getToolTipText())) * 0.01);
+                        int diemTLSauThanhToan = (int) (Double.parseDouble(txtTongTien.getToolTipText()) * 0.01);
                         kh.setTichDiem(kh.getTichDiem() + diemTLSauThanhToan);
                         this.daoKH.update(kh);
                     } catch (Exception ex) {
                         Logger.getLogger(ThanhToanJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                        Messeger.showErrorDialog(this, "Lỗi truy vấn", "Lỗi");
+                        return true;
                     }
                 }
                 this.dispose();
@@ -483,6 +484,8 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
                 Messeger.showErrorDialog(this, "Lỗi truy vấn", "lỗi");
                 return true;
             }
+        } else {
+            return true;
         }
         return false;
     }

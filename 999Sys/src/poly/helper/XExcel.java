@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JFileChooser;
@@ -32,7 +31,6 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import poly.entity.SanPham;
 
 /**
  *
@@ -41,8 +39,9 @@ import poly.entity.SanPham;
 public class XExcel {
 
     public static void readExcel(DefaultTableModel model) throws Exception {
-        JFileChooser j = new JFileChooser(new File(System.getProperty("user.dir") + "\\FileExcel\\"));
-        int r = j.showSaveDialog(null);
+        JFileChooser j = new JFileChooser();
+        j.setDialogTitle("Chọn File Excel nhập: ");
+        int r = j.showOpenDialog(null);
         String excelFilePath;
         // if the user selects a file
         if (r == JFileChooser.APPROVE_OPTION) {
@@ -52,6 +51,7 @@ public class XExcel {
         else {
             return;
         }
+        model.setRowCount(0);
         // Get file
         InputStream inputStream = new FileInputStream(new File(excelFilePath));
         // Get workbook
@@ -154,7 +154,20 @@ public class XExcel {
         addDataToExcel(sheet, style, jtable, workbook, name);
 
         // luu file
-        String path = System.getProperty("user.dir") + "\\FileExcel\\" + name + XDate.toString(new Date(), " ddMMyyyy hhmmssaa") + ".xlsx";
+        JFileChooser j = new JFileChooser();
+        j.setDialogTitle("Chọn thư mục lưu: ");
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int r = j.showSaveDialog(null);
+        String excelFilePath;
+        // if the user selects a file
+        if (r == JFileChooser.APPROVE_OPTION) {
+            // set the label to the path of the selected file
+            excelFilePath = j.getSelectedFile().getAbsolutePath();
+        } // if the user cancelled the operation
+        else {
+            return null;
+        }
+        String path = excelFilePath + "\\" + name + ".xlsx";
         File file = new File(path);
         file.getParentFile().mkdirs();
 
@@ -210,12 +223,20 @@ public class XExcel {
                         cell.setCellStyle(cellStyleFormatNumber);
                         cell.setCellValue(b);
 
+                    } else if (jtable.getValueAt(i, j).toString().length() <= 0) {
+                        cell = row.createCell(j, CellType.STRING);
+                        cell.setCellValue("Chưa có");
                     } else {
                         cell = row.createCell(j, CellType.STRING);
-                        String mavach = jtable.getValueAt(i, j) == null ? "Chưa có" : jtable.getValueAt(i, j).toString();
-                        cell.setCellValue(mavach);
+                        cell.setCellValue(jtable.getValueAt(i, j).toString());
                     }
 
+                    if (name.equals("SanPham")) {
+                        cell.setCellStyle(cellStyle(workbook, i, jtable));
+                    }
+                } else {
+                    cell = row.createCell(j, CellType.STRING);
+                    cell.setCellValue("Chưa có");
                     if (name.equals("SanPham")) {
                         cell.setCellStyle(cellStyle(workbook, i, jtable));
                     }

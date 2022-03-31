@@ -9,15 +9,16 @@ package poly.entity;
  * @author 98tae
  */
 public class KhuyenMai {
-    private int MaKM,MaSP;
-    private double GiamToiDa,GiaTri;
-    private String TenKM,NgayBD,NgayKT;
-    private boolean HinhThucAD,TrangThai;
+
+    private int MaKM, MaSP;
+    private double GiamToiDa, GiaTri,HDToiThieu;
+    private String TenKM, NgayBD, NgayKT;
+    private boolean HinhThucAD, TrangThai, LoaiKM;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(int MaKM, int MaSP, double GiamToiDa, double GiaTri, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD, boolean TrangThai) {
+    public KhuyenMai(int MaKM, int MaSP, double GiamToiDa, double GiaTri, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD, boolean TrangThai, boolean LoaiKM) {
         this.MaKM = MaKM;
         this.MaSP = MaSP;
         this.GiamToiDa = GiamToiDa;
@@ -27,9 +28,10 @@ public class KhuyenMai {
         this.NgayKT = NgayKT;
         this.HinhThucAD = HinhThucAD;
         this.TrangThai = TrangThai;
+        this.LoaiKM = LoaiKM;
     }
-   
-    public KhuyenMai( int MaSP, double GiamToiDa, double GiaTri, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD) {
+
+    public KhuyenMai(int MaSP, double GiamToiDa, double GiaTri, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD, boolean LoaiKM) {
         this.MaSP = MaSP;
         this.GiamToiDa = GiamToiDa;
         this.GiaTri = GiaTri;
@@ -37,6 +39,40 @@ public class KhuyenMai {
         this.NgayBD = NgayBD;
         this.NgayKT = NgayKT;
         this.HinhThucAD = HinhThucAD;
+        this.LoaiKM = LoaiKM;
+    }
+
+    public KhuyenMai(int MaKM, double GiamToiDa, double GiaTri, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD, boolean TrangThai, boolean LoaiKM) {
+        this.MaKM = MaKM;
+        this.GiamToiDa = GiamToiDa;
+        this.GiaTri = GiaTri;
+        this.TenKM = TenKM;
+        this.NgayBD = NgayBD;
+        this.NgayKT = NgayKT;
+        this.HinhThucAD = HinhThucAD;
+        this.LoaiKM = LoaiKM;
+    }
+
+    public KhuyenMai(double GiamToiDa, double GiaTri, double HDToiThieu, String TenKM, String NgayBD, String NgayKT, boolean HinhThucAD, boolean LoaiKM) {
+        this.GiamToiDa = GiamToiDa;
+        this.GiaTri = GiaTri;
+        this.HDToiThieu = HDToiThieu;
+        this.TenKM = TenKM;
+        this.NgayBD = NgayBD;
+        this.NgayKT = NgayKT;
+        this.HinhThucAD = HinhThucAD;
+        this.LoaiKM = LoaiKM;
+    }
+
+    
+    
+
+    public boolean isLoaiKM() {
+        return LoaiKM;
+    }
+
+    public void setLoaiKM(boolean LoaiKM) {
+        this.LoaiKM = LoaiKM;
     }
 
     public int getMaKM() {
@@ -110,10 +146,18 @@ public class KhuyenMai {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
+    public double getHDToiThieu() {
+        return HDToiThieu;
+    }
+
+    public void setHDToiThieu(double HDToiThieu) {
+        this.HDToiThieu = HDToiThieu;
+    }
+
     @Override
     public String toString() {
-        return this.MaKM +" "+ this.TenKM;
-   }
-    
+        return this.MaKM + " " + this.TenKM;
+    }
+
 }
