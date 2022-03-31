@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/entity/KhuyenMai.java</file>
-            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/dao/KhuyenMaiDAO.java</file>
+            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/helper/XValidate.java</file>
             <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QL_KhuyenMaiJDiaLog.java</file>
-=======
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/helper/XExcel.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/ThongKeJDialog.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/helper/XJDBC.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/helper/XHoaDon.java</file>
->>>>>>> 1f68b6fbdbb20a8581f8ccab8e00d983bf2ec0cd
         </group>
     </open-files>
 </project-private>
