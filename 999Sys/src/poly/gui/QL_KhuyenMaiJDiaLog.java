@@ -775,6 +775,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
         String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
 
+        
+        
         if (radio_AD_HoaDon.isSelected()) {
 
             KhuyenMai km = new KhuyenMai();
@@ -1248,7 +1250,6 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 }
             }
         }
-
     }
 
     private boolean Validate_QLKhuyenMai() {
@@ -1261,11 +1262,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             if (XValidate.focus_Errol(false, txtGiaTri)) {
                 x.append("Giá Trị Phải Lớn Hơn 0 \n");
             }
-        } else if (XValidate.isNotNumber(txtGiaTri)) {
+        } else if (XValidate.isNotNumber_Double(txtGiaTri)) {
             x.append("Giá Trị Phải Nhập Số \n");
         } else if (XValidate.isEmpty(txtGiamToiDa)) {
             x.append("Không Để Trống Giảm Giá Tối Đa\n");
-        } else if (XValidate.isNotNumber(txtGiamToiDa)) {
+        } else if (XValidate.isNotNumber_Double(txtGiamToiDa)) {
             x.append("Giảm Giá Tối Đa Phải Nhập Số\n");
         } else if (XValidate.isEmpty(txtNgayBatDau)) {
             x.append("Không Để Trống Ngày Bắt Đầu Khuyến Mại\n");
@@ -1275,6 +1276,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             x.append("Không Để Trống Ngày Kết Thúc Khuyến Mại\n");
         } else if (XValidate.IsNotDate(txtNgayKetThuc)) {
             x.append("Vui Lòng Nhập Đúng Định Dạng Ngày Tháng Năm(dd/MM/yyyy)\n");
+        }else if (radio_AD_HoaDon.isSelected() & XValidate.isEmpty(txthdtoithieu)){
+             x.append("Vui Lòng Nhập Giá Trị Tối Thiểu Của Hóa Đơn\n");
         } else if (radiovnd.isSelected() == true & Double.parseDouble(txtGiaTri.getText()) < 10000) {
             if (XValidate.focus_Errol(false, txtGiaTri)) {
                 x.append("Giảm Giá Phải Lớn Hơn Hoặc Bằng 10 Ngàn");
