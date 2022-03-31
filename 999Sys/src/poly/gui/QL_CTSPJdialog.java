@@ -2093,6 +2093,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_Size() {
+        txtSize_MaSize.setEditable(false);
         btn_TrangThai_Size.setVisible(false);
         dao_size = new SizeDao();
         modelTBL_Size = (DefaultTableModel) tblSize.getModel();
@@ -2104,6 +2105,8 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_DanhMuc() {
+        txtDanhMuc_MaDM.setEditable(false);
+        txtDanhMuc_NgayThem.setEditable(false);
         btn_TrangThai_DanhMuc.setVisible(false);
         String startDateString = java.time.LocalDate.now().toString();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -2124,6 +2127,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_MauSac() {
+        txtMauSac_MaMau.setEditable(false);
         dao_ms = new MaMauDao();
         modelTBL_MauSac = (DefaultTableModel) tblMauSac.getModel();
         modelTBL_MauSacHetHan = (DefaultTableModel) tblMauSacHetHan.getModel();
@@ -2134,6 +2138,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_ChatLieu() {
+        txtCL_MaCL.setEditable(false);
         dao_cl = new ChatLieuDao();
         modelTBL_ChatLieu = (DefaultTableModel) tblCL.getModel();
         modelTBL_ChatLieuHetHan = (DefaultTableModel) tblCLHetHan.getModel();
@@ -2146,6 +2151,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_DVT() {
+        txtDVT_MaDVT.setEditable(false);
         dao_dvt = new DonViTinhDao();
         modelTBL_DVT = (DefaultTableModel) tblDVT.getModel();
         modelTBL_DVTHetHan = (DefaultTableModel) tblDVTHetHan.getModel();
