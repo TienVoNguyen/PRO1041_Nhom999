@@ -8,6 +8,7 @@ package poly.gui;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -506,7 +507,12 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
-            Messeger.alert(this, "Đã tạo xong: " + XExcel.xuatExcel(tblTK, "DoanhThu").getAbsolutePath());
+            File file = XExcel.xuatExcel(tblTK, "DoanhThu");
+            if (file != null) {
+                Messeger.alert(this, "Đã tạo xong: " + file.getAbsolutePath());
+            } else {
+                return;
+            }
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -514,7 +520,12 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
     private void btnXuatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatSPActionPerformed
         try {
-            Messeger.alert(this, "Đã tạo xong: " + XExcel.xuatExcel(tblSP, "SanPham").getAbsolutePath());
+            File file = XExcel.xuatExcel(tblSP, "SanPham");
+            if (file != null) {
+                Messeger.alert(this, "Đã xong: " + file.getAbsolutePath());
+            } else {
+                return;
+            }
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -721,7 +732,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
         for (Object o : columns) {
             model.addColumn(o);
         }
-        
+
         if (cbxDaysMonth.getSelectedItem() != null & cbxDaysYear.getSelectedItem() != null) {
             int month = Integer.parseInt(cbxDaysMonth.getSelectedItem().toString());
             int year = Integer.parseInt(cbxDaysYear.getSelectedItem().toString());
