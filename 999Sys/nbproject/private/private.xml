@@ -2,9 +2,25 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/thao/Documents/DUAN1/PRO1041_Nhom999/999Sys/src/poly/gui/QLSanPhamJDialog.java</file>
             <file>file:/C:/Users/thao/Documents/DUAN1/PRO1041_Nhom999/999Sys/src/poly/gui/QLHoaDonJDialog.java</file>
         </group>
+=======
+<<<<<<< HEAD
+=======
+        <group>
+<<<<<<< HEAD
+            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/QL_KhuyenMaiJDiaLog.java</file>
+        </group>
+=======
+            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/helper/XValidate.java</file>
+            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QL_CTSPJdialog.java</file>
+            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/dao/KhuyenMaiDAO.java</file>
+            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QL_KhuyenMaiJDiaLog.java</file>
+>>>>>>> 9850c7306c76e7851eff8a5b1c3c694a904cacf0
+        <group/>
+>>>>>>> dd561b632baba6433b598f734d2ffea09d5c7715
     </open-files>
 </project-private>
