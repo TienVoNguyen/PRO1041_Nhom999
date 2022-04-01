@@ -5,10 +5,10 @@
  */
 package poly.gui;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.rmi.server.ObjID;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,7 +76,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-        setSize(parent.getWidth(), parent.getHeight());
+//        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
         this.themDMJDialog.setModal(modal);
@@ -123,7 +123,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.fileChooser = new JFileChooser();
 
         addButtonToTable();
-        tblSanPham.getColumn("AnhSP").setCellRenderer(new ImageColumn());
+        tblSanPham.getColumn("AnhSP").setCellRenderer( new ImageColumn());
         tblDaXoa.getColumn("AnhSP").setCellRenderer(new ImageColumn());
         loadDataToCBBCL();
         loadDataToCBBDM();
@@ -764,6 +764,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         jPanel22.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         jButton1.setText("Nhập từ EXCEL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel22.add(jButton1);
 
         btnXuatExcel.setText("Xuất ra EXCEL");
@@ -1394,6 +1399,14 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.themChatLieuJDialog.dispose();
     }//GEN-LAST:event_btnHuyThemChatLieuMoiActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            XExcel.readExcel(tableModel);
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1757,6 +1770,10 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
             if (tooltip != null) {
                 this.lblAnh.setToolTipText(tooltip);
                 this.lblAnh.setIcon(ImageHelper.read(tooltip));
+            } else {
+                ImageIcon icon = new ImageIcon(".\\AnhSP\\noImage.jpg");
+                Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
+                this.lblAnh.setIcon(new ImageIcon(img));
             }
 
         } catch (Exception ex) {

@@ -189,11 +189,12 @@ public class XExcel {
         }
         String pattern = "^[0-9]{1,}$";
         String pattern2 = "^[0-9]{1,}.{0,1}[0-9]{0,}$";
+        String pattern3 = "^[0-9]{1,},{0,1}[0-9]{1,},{0,1}[0-9]{1,},{0,1}[0-9]{0,}$";
         for (int i = 0; i < jtable.getRowCount(); i++) {
             row = sheet.createRow(i + 1);
             for (int j = 0; j < jtable.getColumnCount(); j++) {
                 if (jtable.getValueAt(i, j) != null) {
-                    if (jtable.getValueAt(i, j).toString().contains(",")) {
+                    if (jtable.getValueAt(i, j).toString().contains(",") && jtable.getValueAt(i, j).toString().matches(pattern3)) {
                         cell = row.createCell(j, CellType.NUMERIC);
                         String a = jtable.getValueAt(i, j).toString().replaceAll(",", "");
                         double b = Double.parseDouble(a);
