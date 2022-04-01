@@ -8,9 +8,10 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.sql.Connection;
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -774,9 +775,40 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
         String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
         String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        for (int i = 0; i < tblqlkm.getRowCount(); i++) {
+            if (String.valueOf(cbbSP.getSelectedItem()).equals(String.valueOf(tblqlkm.getValueAt(i, 6)))) {
+                try {
+                    Date date1 = sdf.parse(tblqlkm.getValueAt(i, 5).toString());
+                    Date date2 = sdf.parse(txtNgayBatDau.getText());
+                    if (date1.before(date2)) { //d1>d2
+                        try {
+                            kmDao.insert(new KhuyenMai(
+                                    Integer.parseInt(cbbSP.getSelectedItem().toString()),
+                                    Double.parseDouble(txtGiamToiDa.getText()),
+                                    Double.parseDouble(txtGiaTri.getText()),
+                                    txtTenKhuyenMai.getText(),
+                                    ngaybd,
+                                    ngaykt,
+                                    hinhthucAD,
+                                    LoaiApDung));
+                            LoadDataToTable_KM();
+                            ResetForm();
+                            return;
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        Messeger.alert(this, "Đã Có Khuyến Mại Cho Sản Phẩm Trong Khoảng Thời Gian Này , Bạn Không Thể Thêm Mới Khuyến Mãi");
+                        return;
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(QL_KhuyenMaiJDiaLog.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-        
-        
+            }
+        }
+
         if (radio_AD_HoaDon.isSelected()) {
 
             KhuyenMai km = new KhuyenMai();
@@ -884,7 +916,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         txtKhuyenMai.setText(String.valueOf(tblhethang.getValueAt(viTri, 0)));
         txtTenKhuyenMai.setText(String.valueOf(tblhethang.getValueAt(viTri, 1)));
         if (String.valueOf(tblhethang.getValueAt(viTri, 2)).length() > 3) {
-            txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("đ", ""));
+            txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)).replace("đ", ""));
         } else {
             txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)).replace("%", ""));
         }
@@ -1228,26 +1260,29 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
     private void Auto_HetHan_KhuyenMai() {
         for (int i = 0; i < tblqlkm.getRowCount(); i++) {
-            String ngaykt = XDate.toString(XDate.toDate(
-                    String.valueOf(tblqlkm.getValueAt(i, 5)), "dd/MM/yyyy"), "yyyy-MM-dd");
-            Date date1 = Date.valueOf(java.time.LocalDate.now());
-            Date date2 = Date.valueOf(ngaykt);
-            String relation;
-            if (date1.equals(date2)) {
-                relation = "Hai ngày trùng nhau";
-            } else if (date1.before(date2)) // Hoặc  else if (date1.after(date2)== false)
-            {
-                relation = "Trước";
-            } else {
-                relation = "Sau";
-            }
-            if (relation.equals("Sau")) {
-                try {
-                    kmDao.delete(String.valueOf(tblqlkm.getValueAt(i, 0)));
-                    LoadDataToTable_KM();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+            try {
+                String ngaykt = XDate.toString(XDate.toDate(
+                        String.valueOf(tblqlkm.getValueAt(i, 5)), "dd/MM/yyyy"), "yyyy-MM-dd");
+                Date date1 = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date2 = sdf.parse(ngaykt);
+                String relation;
+                if (date1.before(date2)) // Hoặc  else if (date1.after(date2)== false)
+                {
+                    relation = "Trước";
+                } else {
+                    relation = "Sau";
                 }
+                if (relation.equals("Sau")) {
+                    try {
+                        kmDao.delete(String.valueOf(tblqlkm.getValueAt(i, 0)));
+                        LoadDataToTable_KM();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(QL_KhuyenMaiJDiaLog.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -1276,8 +1311,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             x.append("Không Để Trống Ngày Kết Thúc Khuyến Mại\n");
         } else if (XValidate.IsNotDate(txtNgayKetThuc)) {
             x.append("Vui Lòng Nhập Đúng Định Dạng Ngày Tháng Năm(dd/MM/yyyy)\n");
-        }else if (radio_AD_HoaDon.isSelected() & XValidate.isEmpty(txthdtoithieu)){
-             x.append("Vui Lòng Nhập Giá Trị Tối Thiểu Của Hóa Đơn\n");
+        } else if (radio_AD_HoaDon.isSelected() & XValidate.isEmpty(txthdtoithieu)) {
+            x.append("Vui Lòng Nhập Giá Trị Tối Thiểu Của Hóa Đơn\n");
         } else if (radiovnd.isSelected() == true & Double.parseDouble(txtGiaTri.getText()) < 10000) {
             if (XValidate.focus_Errol(false, txtGiaTri)) {
                 x.append("Giảm Giá Phải Lớn Hơn Hoặc Bằng 10 Ngàn");
