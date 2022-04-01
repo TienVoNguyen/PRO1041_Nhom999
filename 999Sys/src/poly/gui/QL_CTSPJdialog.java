@@ -134,6 +134,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         btn_Them_qlMauSac = new javax.swing.JButton();
         btn_Xoa_qlMauSac = new javax.swing.JButton();
         btn_Sua_qlMauSac = new javax.swing.JButton();
+        btn_TrangThai_MS = new javax.swing.JButton();
         btn_Change_TableMauSac = new javax.swing.JButton();
         cardGocMauSac = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -754,6 +755,13 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             }
         });
 
+        btn_TrangThai_MS.setText("Chuyển Trạng Thái");
+        btn_TrangThai_MS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TrangThai_MSActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -767,17 +775,21 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addComponent(btn_Sua_qlMauSac)
                 .addGap(18, 18, 18)
                 .addComponent(btn_Xoa_qlMauSac)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_TrangThai_MS)
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Moi_qlMauSac)
-                    .addComponent(btn_Them_qlMauSac)
-                    .addComponent(btn_Sua_qlMauSac)
-                    .addComponent(btn_Xoa_qlMauSac))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_Moi_qlMauSac)
+                        .addComponent(btn_Them_qlMauSac)
+                        .addComponent(btn_Sua_qlMauSac)
+                        .addComponent(btn_Xoa_qlMauSac))
+                    .addComponent(btn_TrangThai_MS, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -833,7 +845,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -889,15 +901,12 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             MauSacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MauSacLayout.createSequentialGroup()
                 .addGroup(MauSacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MauSacLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(cardGocMauSac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(MauSacLayout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Change_TableMauSac)))
+                        .addComponent(btn_Change_TableMauSac))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MauSacLayout.setVerticalGroup(
@@ -909,7 +918,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(btn_Change_TableMauSac, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cardGocMauSac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -2013,6 +2022,23 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tblDVTMouseClicked
 
+    private void btn_TrangThai_MSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TrangThai_MSActionPerformed
+        int viTri = tblMauSacHetHan.getSelectedRow();
+        if (viTri == -1) {
+            Messeger.alert(this, "Vui Lòng Chọn Sản Phẩm Muốn Chuyển");
+            return;
+        }
+        try {
+            dao_ms.update(new MauSac(Integer.parseInt(tblMauSacHetHan.getValueAt(viTri, 0).toString()), tblMauSacHetHan.getValueAt(viTri, 1).toString(), true));
+            LoadDataToTableMauSac();
+            LoadDataToTableMauSacHetHan();
+            Messeger.alert(this, "Chuyển Đổi Trạng Thái Thành Công");
+        } catch (Exception ex) {
+            Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_TrangThai_MSActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2085,6 +2111,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JButton btn_TrangThai_CL;
     private javax.swing.JButton btn_TrangThai_DanhMuc;
     private javax.swing.JButton btn_TrangThai_DonViTinh;
+    private javax.swing.JButton btn_TrangThai_MS;
     private javax.swing.JButton btn_TrangThai_Size;
     private javax.swing.JButton btn_Xoa_qlChatLieu;
     private javax.swing.JButton btn_Xoa_qlDVT;
