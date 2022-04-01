@@ -1089,7 +1089,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1217,7 +1217,12 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
-            Messeger.alert(this, "Đã tạo xong: " + XExcel.xuatExcel(tblSanPham, "San_Pham").getAbsolutePath());
+            File file = XExcel.xuatExcel(tblSanPham, "San_Pham");
+            if (file != null) {
+                Messeger.alert(this, "Đã xong: " + file.getAbsolutePath());
+            } else {
+                return;
+            }
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }

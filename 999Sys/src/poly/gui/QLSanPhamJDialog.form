@@ -2201,7 +2201,7 @@
                             <Column editable="false" title="Mau" type="java.lang.Object"/>
                             <Column editable="false" title="Chat Lieu" type="java.lang.Object"/>
                             <Column editable="false" title="Ngay Nhap" type="java.lang.Object"/>
-                            <Column editable="true" title="AnhSP" type="java.lang.Object"/>
+                            <Column editable="false" title="AnhSP" type="java.lang.Object"/>
                             <Column editable="true" title="tool" type="java.lang.Object"/>
                           </Table>
                         </Property>

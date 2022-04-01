@@ -81,28 +81,13 @@ public class XValidate {
 
     public static boolean isNotNumber(JTextField txtValue) {
         String Number = String.valueOf(txtValue.getText());
-        String pattern = "[0-9]{1,}.{0,1}[0-9]{0,}";
+        String pattern = "[0-9]{1,}";
         if (!Number.matches(pattern)) {
             txtValue.setBackground(Color.YELLOW);
             txtValue.requestFocus();
             return true;
         }
-        
-        String pattern2 = "^[0-9]{1,}\\.$";
-        if (Number.matches(pattern2)) {
-            txtValue.setBackground(Color.YELLOW);
-            txtValue.requestFocus();
-            return true;
-        }
-        
-        if (Double.parseDouble(Number) < 0) {
-            if (!Number.matches(pattern)) {
-                txtValue.setBackground(Color.YELLOW);
-                txtValue.requestFocus();
-                return true;
-            }
-            txtValue.setBackground(Color.white);
-        }
+        txtValue.setBackground(Color.white);
         return false;
     }
     
@@ -142,8 +127,6 @@ public class XValidate {
         return false;
     }
     
-    public static void main(String[] args) {
-        
-    }
+   
 
 }

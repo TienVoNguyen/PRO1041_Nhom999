@@ -27,6 +27,7 @@ import poly.entity.MauSac;
 import poly.entity.Size;
 import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XValidate;
 
 /**
  *
@@ -1424,6 +1425,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 return;
             }
         }
+        if (XValidate.isEmpty(txtSize_TenSize)) {
+            Messeger.showErrorDialog(this, "Không để trống tên size", "Lỗi");
+            return;
+        }
         for (int i = 0; i < tblSize_HetHan.getRowCount(); i++) {
             if (txtSize_MaSize.getText().trim().equals(tblSize_HetHan.getValueAt(i, 0))) {
                 String tensize = tblSize_HetHan.getValueAt(i, 1).toString();
@@ -1461,6 +1466,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không ?")) {
             return;
         }
+        if (XValidate.isEmpty(txtSize_MaSize)) {
+            Messeger.showErrorDialog(this, "Không để trống mã size", "Lỗi");
+            return;
+        }
+        if (XValidate.isEmpty(txtSize_TenSize)) {
+            Messeger.showErrorDialog(this, "Không để trống tên size", "Lỗi");
+            return;
+        }
         for (int i = 0; i < tblSize.getRowCount(); i++) {
             if (txtSize_MaSize.getText().trim().equals(tblSize.getValueAt(i, 0).toString().trim())) {
                 try {
@@ -1472,15 +1485,21 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 }
             }
         }
-        Messeger.alert(this, "Không Có Mã Sản Phẩm này");
+        Messeger.alert(this, "Không Có Mã Size này");
     }//GEN-LAST:event_btn_Sua_qlSizeActionPerformed
 
     private void btn_Xoa_qlSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlSizeActionPerformed
+        if (XValidate.isEmpty(txtSize_MaSize)) {
+            Messeger.showErrorDialog(this, "Không để trống mã size", "Lỗi");
+            return;
+        }
+
         for (int i = 0; i < tblSize.getRowCount(); i++) {
             if (txtSize_MaSize.getText().trim().equals(tblSize.getValueAt(i, 0))) {
                 if (!Messeger.confirm(this, "Bạn Có Xóa Không ?")) {
                     return;
                 }
+
                 try {
                     dao_size.delete(txtSize_MaSize.getText());
                     ResetText(txtSize_MaSize, txtSize_TenSize);
@@ -1492,7 +1511,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 }
             }
         }
-        Messeger.alert(this, "Không Có Mã Sản Phẩm này để xóa");
+        Messeger.alert(this, "Không Có Mã Size này để xóa");
     }//GEN-LAST:event_btn_Xoa_qlSizeActionPerformed
 
     private void btn_Change_Table_SizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Change_Table_SizeActionPerformed
@@ -1548,7 +1567,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 }
             }
         }
-        Messeger.alert(this, "Không Có Mã Sản Phẩm này để xóa");
+        Messeger.alert(this, "Không Có Mã Size này để xóa");
     }//GEN-LAST:event_btn_Xoa_qlDanhMucActionPerformed
 
     private void btn_Sua_qlDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlDanhMucActionPerformed
@@ -1632,6 +1651,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
                 return;
             }
+            if(XValidate.isEmpty(txtMauSac_TenMau)){
+                Messeger.showErrorDialog(this, "Không để trống tên màu sắc", "Lỗi");
+                return;
+            }
             dao_ms.insert(new MauSac(txtMauSac_TenMau.getText()));
             LoadDataToTableMauSac();
             ResetText(txtMauSac_MaMau, txtMauSac_TenMau);
@@ -1644,6 +1667,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         if (!Messeger.confirm(this, "Bạn Có Xóa Không ?")) {
             return;
         }
+        if(XValidate.isEmpty(txtMauSac_MaMau)){
+                Messeger.showErrorDialog(this, "Không để trống mã màu sắc", "Lỗi");
+                return;
+            }
         try {
             dao_ms.delete(txtMauSac_MaMau.getText());
             LoadDataToTableMauSac();
@@ -1660,6 +1687,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không ?")) {
             return;
         }
+        if(XValidate.isEmpty(txtMauSac_MaMau)){
+                Messeger.showErrorDialog(this, "Không để trống mã màu sắc", "Lỗi");
+                return;
+            }
+        if(XValidate.isEmpty(txtMauSac_TenMau)){
+                Messeger.showErrorDialog(this, "Không để trống tên màu sắc", "Lỗi");
+                return;
+            }
         try {
             dao_ms.update(new MauSac(Integer.parseInt(txtMauSac_MaMau.getText()), txtMauSac_TenMau.getText(), true));
             LoadDataToTableMauSac();
@@ -1767,6 +1802,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
                 return;
             }
+            if(XValidate .isEmpty(txtCL_TenCL)){
+                Messeger.showErrorDialog(this, "Không để trống tên chất liệu", "Lỗi");
+                return;
+            }
             dao_cl.insert(new ChatLieu(txtCL_TenCL.getText(), true));
             LoadDataToTableChatLieu();
             ResetText(txtCL_MaCL, txtCL_TenCL);
@@ -1780,6 +1819,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn Có Muốn Sửa  Không")) {
                 return;
             }
+            if(XValidate .isEmpty(txtCL_MaCL)){
+                Messeger.showErrorDialog(this, "Không để trống mã chất liệu", "Lỗi");
+                return;
+            }
+            if(XValidate .isEmpty(txtCL_TenCL)){
+                Messeger.showErrorDialog(this, "Không để trống tên chất liệu", "Lỗi");
+                return;
+            }
             dao_cl.update(new ChatLieu(Integer.parseInt(txtCL_MaCL.getText()), txtCL_TenCL.getText(), true));
             LoadDataToTableChatLieu();
             return;
@@ -1791,6 +1838,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private void btn_Xoa_qlChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlChatLieuActionPerformed
         try {
             if (!Messeger.confirm(this, "Bạn Có Muốn Xóa  Không")) {
+                return;
+            }
+            if(XValidate .isEmpty(txtCL_MaCL)){
+                Messeger.showErrorDialog(this, "Không để trống mã chất liệu", "Lỗi");
                 return;
             }
             dao_cl.delete(txtCL_MaCL.getText());
@@ -1834,6 +1885,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn có muốn thêm không?")) {
                 return;
             }
+            if(XValidate .isEmpty(txtDVT_TenDVT)){
+                Messeger.showErrorDialog(this, "Không để trống tên đơn vị tính", "Lỗi");
+                return;
+            }
             dao_dvt.insert(new DonViTinh(txtDVT_TenDVT.getText(), true));
             this.LoadDataToTableDVT();
             this.ResetText(txtDVT_MaDVT, txtDVT_TenDVT);
@@ -1845,6 +1900,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private void btn_Sua_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlDVTActionPerformed
         try {
             if (!Messeger.confirm(this, "Bạn có muốn sửa không?")) {
+                return;
+            }
+            if(XValidate .isEmpty(txtDVT_MaDVT)){
+                Messeger.showErrorDialog(this, "Không để trống mã đơn vị tính", "Lỗi");
+                return;
+            }
+            if(XValidate .isEmpty(txtDVT_TenDVT)){
+                Messeger.showErrorDialog(this, "Không để trống tên đơn vị tính", "Lỗi");
                 return;
             }
             if (!this.checkMa()) {
@@ -1865,6 +1928,10 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private void btn_Xoa_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlDVTActionPerformed
         try {
             if (!Messeger.confirm(this, "Bạn có muốn xóa không?")) {
+                return;
+            }
+            if(XValidate .isEmpty(txtDVT_MaDVT)){
+                Messeger.showErrorDialog(this, "Không để trống mã đơn vị tính", "Lỗi");
                 return;
             }
             if (!this.checkMa()) {
@@ -1907,8 +1974,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         }
 
         try {
-            dao_dvt.update(new DonViTinh(Integer.parseInt(String.valueOf(tblDVTHetHan.getValueAt(viTri, 0)))
-                    , String.valueOf(tblDVTHetHan.getValueAt(viTri, 1)), true));
+            dao_dvt.update(new DonViTinh(Integer.parseInt(String.valueOf(tblDVTHetHan.getValueAt(viTri, 0))), String.valueOf(tblDVTHetHan.getValueAt(viTri, 1)), true));
             LoadDataToTableDVT();
             LoadDataToTableDVTHetHan();
             return;
@@ -2093,6 +2159,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_Size() {
+        txtSize_MaSize.setEditable(false);
         btn_TrangThai_Size.setVisible(false);
         dao_size = new SizeDao();
         modelTBL_Size = (DefaultTableModel) tblSize.getModel();
@@ -2104,6 +2171,8 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_DanhMuc() {
+        txtDanhMuc_MaDM.setEditable(false);
+        txtDanhMuc_NgayThem.setEditable(false);
         btn_TrangThai_DanhMuc.setVisible(false);
         String startDateString = java.time.LocalDate.now().toString();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -2124,6 +2193,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_MauSac() {
+        txtMauSac_MaMau.setEditable(false);
         dao_ms = new MaMauDao();
         modelTBL_MauSac = (DefaultTableModel) tblMauSac.getModel();
         modelTBL_MauSacHetHan = (DefaultTableModel) tblMauSacHetHan.getModel();
@@ -2134,6 +2204,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_ChatLieu() {
+        txtCL_MaCL.setEditable(false);
         dao_cl = new ChatLieuDao();
         modelTBL_ChatLieu = (DefaultTableModel) tblCL.getModel();
         modelTBL_ChatLieuHetHan = (DefaultTableModel) tblCLHetHan.getModel();
@@ -2146,6 +2217,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_DVT() {
+        txtDVT_MaDVT.setEditable(false);
         dao_dvt = new DonViTinhDao();
         modelTBL_DVT = (DefaultTableModel) tblDVT.getModel();
         modelTBL_DVTHetHan = (DefaultTableModel) tblDVTHetHan.getModel();
