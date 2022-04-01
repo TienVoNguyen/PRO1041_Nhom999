@@ -763,6 +763,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         jPanel22.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         jButton1.setText("Nhập từ EXCEL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel22.add(jButton1);
 
         btnXuatExcel.setText("Xuất ra EXCEL");
@@ -1387,6 +1392,15 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private void btnHuyThemChatLieuMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyThemChatLieuMoiActionPerformed
         this.themChatLieuJDialog.dispose();
     }//GEN-LAST:event_btnHuyThemChatLieuMoiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            XExcel.readExcel(tableModel);
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

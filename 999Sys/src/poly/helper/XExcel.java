@@ -5,6 +5,7 @@
  */
 package poly.helper;
 
+import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -60,6 +61,7 @@ public class XExcel {
         Sheet sheet = workbook.getSheetAt(0);
         // Get all rows
         Iterator<Row> iterator = sheet.iterator();
+        int i = 0;
         while (iterator.hasNext()) {
             Row nextRow = iterator.next();
             if (nextRow.getRowNum() == 0) {
@@ -74,10 +76,16 @@ public class XExcel {
                 //Read cell
                 Cell cell = cellIterator.next();
                 Object cellValue = getCellValue(cell);
-                data.add(cellValue);
                 if (cellValue == null || cellValue.toString().isEmpty()) {
                     continue;
                 }
+                if (cell.getColumnIndex() == 12) {
+                    Component cpm = new java.awt.Component() {
+                    };
+                    cellValue = cpm;
+                }
+
+                data.add(cellValue);
             }
             model.addRow(data);
         }
