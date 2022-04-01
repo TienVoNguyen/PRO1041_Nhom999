@@ -19,21 +19,22 @@ public class KhachHang {
     private boolean gioiTinh;
     private String email,SDT,diaChi;
     private boolean trangThai;
-
+    private int tichDiem;
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, int maLoaiKH, String hoTen, Date ngaySinh, boolean gioiTinh, String email, String SDT, String diaChi, Date ngayTao, boolean trangThai) {
+    public KhachHang(String maKH, int maLoaiKH, String hoTen, Date ngaySinh, Date ngayTao, boolean gioiTinh, String email, String SDT, String diaChi, boolean trangThai, int tichDiem) {
         this.maKH = maKH;
         this.maLoaiKH = maLoaiKH;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
+        this.ngayTao = ngayTao;
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.SDT = SDT;
         this.diaChi = diaChi;
-        this.ngayTao = ngayTao;
         this.trangThai = trangThai;
+        this.tichDiem = tichDiem;
     }
 
     public String getMaKH() {
@@ -68,6 +69,14 @@ public class KhachHang {
         this.ngaySinh = ngaySinh;
     }
 
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
     public boolean isGioiTinh() {
         return gioiTinh;
     }
@@ -100,14 +109,6 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public Date getNgayTao() {
-        return ngayTao;
-    }
-
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
-    }
-
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -115,5 +116,14 @@ public class KhachHang {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    public int getTichDiem() {
+        return tichDiem;
+    }
+
+    public void setTichDiem(int tichDiem) {
+        this.tichDiem = tichDiem;
+    }
+    
 
 }

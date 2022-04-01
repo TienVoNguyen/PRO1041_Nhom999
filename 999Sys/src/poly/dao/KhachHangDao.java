@@ -14,30 +14,30 @@ import poly.entity.KhachHang;
  *
  * @author Admin
  */
-public class KhachHangDao extends BaseDao<KhachHang, String>{
+public class KhachHangDao extends BaseDao<KhachHang, String> {
 
     @Override
     public String getQuery(String action) {
-         switch (action) {
+        switch (action) {
             case "INSERT":
-                return "INSERT INTO KHACHHANG (MAKH, MALOAIKH, HOTEN, NGAYSINH, GIOITINH, EMAIL, SDT, DIACHI, NGAYTAO) VALUES (?,?,?,?,?,?,?,?,?)";
+                return "INSERT INTO KHACHHANG (MAKH, MALOAIKH, HOTEN ,NGAYSINH, GIOITINH, EMAIL, SDT, DIACHI, NGAYTAO) VALUES (?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
                 return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TRANGTHAI =? WHERE MAKH=?";
             case "DELETE":
-                return "DELETE FROM KHACHHANG WHERE MAKH = ?";
+                return "UPDATE KHACHHANG SET TRANGTHAI =0 WHERE MAKH = ?";
             case "SELECTBYID":
                 return "SELECT * FROM KHACHHANG WHERE MAKH = ?";
             case "SELECTALL":
                 return "SELECT * FROM KHACHHANG";
             case "SELECTWHERE":
                 return "SELECT * FROM   KHACHHANG WHERE MALOAIKH = ? or HOTEN like ?";//
-         }
+        }
         return "";
     }
 
     @Override
     public Object[] getParams(String action, KhachHang obj) {
-         switch (action) {
+        switch (action) {
             case "INSERT":
                 return new Object[]{
                     obj.getMaKH(),
@@ -60,13 +60,14 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
                     obj.getSDT(),
                     obj.getDiaChi(),
                     obj.getNgayTao(),
+                    obj.isTrangThai(),
                     obj.getMaKH()
                 };
             case "SELECTWHERE":
                 return new Object[]{
                     obj.getMaLoaiKH(),
-//                    "%"+obj.getMaKH()+"%",
-                    "%"+obj.getHoTen()+"%"
+                    //                    "%"+obj.getMaKH()+"%",
+                    "%" + obj.getHoTen() + "%"
                 };
         }
         return null;
@@ -78,6 +79,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
         kH.setMaKH(rs.getString("MAKH"));
         kH.setMaLoaiKH(rs.getInt("MALOAIKH"));
         kH.setHoTen(rs.getString("HOTEN"));
+        kH.setTichDiem(rs.getInt("TICHDIEM"));
         kH.setNgaySinh(rs.getDate("NGAYSINH"));
         kH.setGioiTinh(rs.getBoolean("GIOITINH"));
         kH.setEmail(rs.getString("EMAIL"));
@@ -87,8 +89,8 @@ public class KhachHangDao extends BaseDao<KhachHang, String>{
         kH.setTrangThai(rs.getBoolean("TRANGTHAI"));
         return kH;
     }
-    
-    public ArrayList<KhachHang> selectWhere(KhachHang kh) throws Exception{
+
+    public ArrayList<KhachHang> selectWhere(KhachHang kh) throws Exception {
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", kh));
     }
 }

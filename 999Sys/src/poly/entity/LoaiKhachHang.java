@@ -52,4 +52,6 @@ public class LoaiKhachHang {
         return tenLoaiKH;
     }
 
+   
+
 }
