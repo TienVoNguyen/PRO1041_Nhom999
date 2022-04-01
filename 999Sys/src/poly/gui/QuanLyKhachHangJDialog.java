@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.processing.Messager;
@@ -247,6 +248,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         btnSearch.setText("Sreach");
         btnSearch.setBackground(new java.awt.Color(255, 255, 255));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
         jpnSearchKH.add(btnSearch, java.awt.BorderLayout.LINE_END);
 
         jpnKH_Search.add(jpnSearchKH, java.awt.BorderLayout.CENTER);
@@ -707,10 +713,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbLoaiKHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLoaiKHItemStateChanged
+        if(cbbLoaiKH.getItemCount() > 0){
         if (lblLoaiKH.getText().equalsIgnoreCase("Khách Hàng Tương Tác")) {
             this.fillToTableKhachHang(1);
         } else if (lblLoaiKH.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
             this.fillToTableKhachHang(0);
+        }
         }
     }//GEN-LAST:event_cbbLoaiKHItemStateChanged
 
@@ -844,6 +852,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             loaiKHDao.insert(lKH);
             Messeger.alert(this, "Thêm mới loại khách hàng thành công!");
             this.fillToTableLoaiKhachHang();
+            this.fillToComBoBox();
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi thêm mới loại khách hàng!", "Error!");
             ex.printStackTrace();
@@ -870,7 +879,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             LoaiKhachHang lKH= this.getFormLoaiKH();
             loaiKHDao.update(lKH);
             Messeger.alert(this, "Update loại khách hàng thành công!");
+            this.fillToComBoBox();
             this.fillToTableLoaiKhachHang();
+            if(cbbLoaiKH.getItemCount() ==0){
+                khachHangModelTB.setRowCount(0);
+            }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi updatte loại khách hàng!", "Error!");
             ex.printStackTrace();
@@ -893,12 +906,35 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             String maLKH = txtMaLoaiKH.getText();
             loaiKHDao.delete(maLKH);
             Messeger.alert(this, "Xóa loại khách hàng thành công!");
+            this.fillToComBoBox();
             this.fillToTableLoaiKhachHang();
+            if(cbbLoaiKH.getItemCount() ==0){
+                khachHangModelTB.setRowCount(0);
+            }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi xóa loại khách hàng!", "Error!");
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnXoaLKHActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            String maKH = this.txtSearchByName.getText();
+            LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
+            int maLoaiKH = lKH.getMaLoaiKH();
+            String hoTen = this.txtSearchByName.getText();
+            String diaChi = this.txtSearchByName.getText();
+            List<Object[]> listSearchKH = khachHangDao.getThongTinKhachHang("%" + maKH +"%", maLoaiKH, "%" +hoTen+"%" ,"%" + diaChi+"%" );
+            khachHangModelTB.setRowCount(0);
+            for(Object[] KH : listSearchKH){ 
+                String GT =Boolean.parseBoolean(String.valueOf(KH[3]))? "Nam" : "Nữ";
+                khachHangModelTB.addRow(new Object[]{KH[0],KH[1],KH[2],GT,KH[4],KH[5],KH[6],KH[7],KH[8]});
+            }
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi tìm kiếm", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1046,7 +1082,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             loaiKhachHangComboBox.removeAllElements();
             ArrayList<LoaiKhachHang> listLoaiKH = loaiKHDao.selectAll();
             for (LoaiKhachHang lKH : listLoaiKH) {
+                if(lKH.isTrangThai()==true){
                 loaiKhachHangComboBox.addElement(lKH);
+            }
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load Data loại khách hàng!", "Error!");
@@ -1057,9 +1095,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private void fillToTableKhachHang(int trangThaiKH) {
         try {
             khachHangModelTB.setRowCount(0);
+            if(cbbLoaiKH.getItemCount()> 0){
             LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
             KhachHang kH = new KhachHang();
+            
             kH.setMaLoaiKH(lKH.getMaLoaiKH());
+            
             ArrayList<KhachHang> listKH = khachHangDao.selectWhere(kH);
             for (KhachHang khachHang : listKH) {
                 // 1 tương tác
@@ -1090,6 +1131,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
                             khachHang.getTichDiem(),});
                     }
                 }
+            }
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load Data Khách Hàng !", "Error!");
@@ -1233,6 +1275,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         LoaiKhachHang lKH = new LoaiKhachHang();
         lKH.setMaLoaiKH(Integer.parseInt(this.txtMaLoaiKH.getText()));
         lKH.setTenLoaiKH(this.txtTenLKH.getText());
+        lKH.setTrangThai(rdoTonTaiLKH.isSelected()? true : false);
         return lKH;
     }
 }

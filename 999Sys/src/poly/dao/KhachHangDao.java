@@ -8,7 +8,9 @@ package poly.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import poly.entity.KhachHang;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -92,5 +94,24 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
 
     public ArrayList<KhachHang> selectWhere(KhachHang kh) throws Exception {
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", kh));
+    }
+
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) throws Exception {
+        List<Object[]> list = new ArrayList();
+        ResultSet rs = XJDBC.query(sql, args);
+        while (rs.next()) {
+            Object[] vals = new Object[cols.length];
+            for (int i = 0; i < cols.length; i++) {
+                vals[i] = rs.getObject(cols[i]);
+            }
+            list.add(vals);
+        }
+        rs.getStatement().getConnection().close();
+        return list;
+    }
+    public List<Object[]> getThongTinKhachHang(String maKH,int maLoaiKH,String hoTen,String diaChi)throws Exception{
+        String sql = "{CALL SP_searchCusToms(?,?,?,?)}";
+        String[] cols = {"MAKH","HOTEN","DIACHI","GIOITINH","EMAIL","SDT","NGAYSINH","NGAYTAO","TICHDIEM"};
+        return this.getListOfArray(sql, cols, maKH,maLoaiKH,hoTen,diaChi);
     }
 }
