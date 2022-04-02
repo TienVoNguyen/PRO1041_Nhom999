@@ -291,7 +291,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 String tenKH = String.valueOf(((DefaultTableModel) table.getModel()).getValueAt(modelRow, 2));
                 for (int i = 0; i < pnlTabs.getTabCount(); i++) {
                     HoaDonJPanel hdpnl = (HoaDonJPanel) pnlTabs.getComponentAt(i);
-                    if (!hdpnl.getLblTenKH().getText().equalsIgnoreCase("Khách lẻ") && hdpnl.getLblTenKH().getToolTipText().equalsIgnoreCase(maKH)){
+                    if (hdpnl.getLblTenKH().getToolTipText().equalsIgnoreCase(maKH)){
                         if (Messeger.confirm(null, "Khách hàng này đang có hóa đơn chưa thanh toán!"
                                 + "\nBạn có muốn chuyển qua hóa đơn của khách hàng này không?")){
                             pnlTabs.setSelectedIndex(i);

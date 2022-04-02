@@ -87,6 +87,9 @@ public class MainFrm extends javax.swing.JFrame {
         mniQLKM = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         mniDangXuat = new javax.swing.JMenuItem();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
         pnlMain = new javax.swing.JPanel();
         pnlTabs = new javax.swing.JTabbedPane();
         pnlHeader = new javax.swing.JPanel();
@@ -105,6 +108,8 @@ public class MainFrm extends javax.swing.JFrame {
         btnThongKe = new javax.swing.JButton();
         btnQLCTSP = new javax.swing.JButton();
         btnQLSP = new javax.swing.JButton();
+        btnQLKhachHang = new javax.swing.JButton();
+        btnQLSP2 = new javax.swing.JButton();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,6 +195,11 @@ public class MainFrm extends javax.swing.JFrame {
             }
         });
         jpmMenu.add(mniDangXuat);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(jProgressBar1, java.awt.BorderLayout.PAGE_END);
+
+        jDialog1.getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -341,6 +351,24 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel1.add(btnQLSP);
 
+        btnQLKhachHang.setText("Quản lý khách hàng");
+        btnQLKhachHang.setPreferredSize(new java.awt.Dimension(133, 40));
+        btnQLKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLKhachHangActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnQLKhachHang);
+
+        btnQLSP2.setText("Quản lý hóa đơn");
+        btnQLSP2.setPreferredSize(new java.awt.Dimension(133, 40));
+        btnQLSP2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLSP2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnQLSP2);
+
         pnlFooter.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pnlMain.add(pnlFooter, java.awt.BorderLayout.PAGE_END);
@@ -417,6 +445,14 @@ public class MainFrm extends javax.swing.JFrame {
         new QLSanPhamJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnQLSPActionPerformed
 
+    private void btnQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhachHangActionPerformed
+
+    }//GEN-LAST:event_btnQLKhachHangActionPerformed
+
+    private void btnQLSP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSP2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQLSP2ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -460,13 +496,18 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMinimise;
     private javax.swing.JButton btnQLCTSP;
+    private javax.swing.JButton btnQLKhachHang;
     private javax.swing.JButton btnQLSP;
+    private javax.swing.JButton btnQLSP2;
     private javax.swing.JButton btnThongKe;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
