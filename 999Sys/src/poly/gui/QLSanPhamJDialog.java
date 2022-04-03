@@ -5,10 +5,10 @@
  */
 package poly.gui;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.rmi.server.ObjID;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,7 +76,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-//        setSize(parent.getWidth(), parent.getHeight());
+        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
         this.themDMJDialog.setModal(modal);
@@ -123,7 +123,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.fileChooser = new JFileChooser();
 
         addButtonToTable();
-        tblSanPham.getColumn("AnhSP").setCellRenderer(new ImageColumn());
+        tblSanPham.getColumn("AnhSP").setCellRenderer( new ImageColumn());
         tblDaXoa.getColumn("AnhSP").setCellRenderer(new ImageColumn());
         loadDataToCBBCL();
         loadDataToCBBDM();
@@ -717,6 +717,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         jPanel7.add(jPanel10, java.awt.BorderLayout.PAGE_END);
 
+        jPanel11.setBackground(new java.awt.Color(0, 0, 0));
         jPanel11.setLayout(new java.awt.BorderLayout());
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));
@@ -786,6 +787,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnLuu.setBackground(new java.awt.Color(102, 102, 255));
         btnLuu.setText("Lưu");
+        btnLuu.setToolTipText("lưu vào cơ sở dữ liệu");
         btnLuu.setPreferredSize(new java.awt.Dimension(61, 21));
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -796,6 +798,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnMoi.setBackground(new java.awt.Color(102, 102, 255));
         btnMoi.setText("Mới");
+        btnMoi.setToolTipText("Tạo mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoiActionPerformed(evt);
@@ -805,6 +808,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         btnThungRac.setBackground(new java.awt.Color(102, 102, 255));
         btnThungRac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/delete32.png"))); // NOI18N
+        btnThungRac.setToolTipText("Sản phẩm đã xóa");
         btnThungRac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThungRacActionPerformed(evt);
@@ -820,15 +824,19 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         txtTimKiem.setPreferredSize(new java.awt.Dimension(218, 40));
         jPanel16.add(txtTimKiem);
 
+        cbbTimDanhMuc.setToolTipText("Danh Mục");
         cbbTimDanhMuc.setPreferredSize(new java.awt.Dimension(154, 40));
         jPanel16.add(cbbTimDanhMuc);
 
+        cbbTimMau.setToolTipText("Màu Sắc");
         cbbTimMau.setPreferredSize(new java.awt.Dimension(154, 40));
         jPanel16.add(cbbTimMau);
 
+        cbbTimSize.setToolTipText("Size");
         cbbTimSize.setPreferredSize(new java.awt.Dimension(154, 40));
         jPanel16.add(cbbTimSize);
 
+        cbbTimChatLieu.setToolTipText("Chất Liệu");
         cbbTimChatLieu.setPreferredSize(new java.awt.Dimension(154, 40));
         jPanel16.add(cbbTimChatLieu);
 
@@ -1093,7 +1101,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1221,7 +1229,12 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
-            Messeger.alert(this, "Đã tạo xong: " + XExcel.xuatExcel(tblSanPham, "San_Pham").getAbsolutePath());
+            File file = XExcel.xuatExcel(tblSanPham, "San_Pham");
+            if (file != null) {
+                Messeger.alert(this, "Đã xong: " + file.getAbsolutePath());
+            } else {
+                return;
+            }
         } catch (Exception ex) {
             Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1395,7 +1408,6 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            // TODO add your handling code here:
             XExcel.readExcel(tableModel);
         } catch (Exception ex) {
             Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -1765,6 +1777,10 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
             if (tooltip != null) {
                 this.lblAnh.setToolTipText(tooltip);
                 this.lblAnh.setIcon(ImageHelper.read(tooltip));
+            } else {
+                ImageIcon icon = new ImageIcon(".\\AnhSP\\noImage.jpg");
+                Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
+                this.lblAnh.setIcon(new ImageIcon(img));
             }
 
         } catch (Exception ex) {

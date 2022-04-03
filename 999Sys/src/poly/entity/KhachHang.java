@@ -13,27 +13,28 @@ import java.util.Date;
  */
 public class KhachHang {
     private String maKH;
-    private int maLoaiKH;
+    private int maLoaiKH, tichDiem;
     private String hoTen;
     private Date ngaySinh,ngayTao;
     private boolean gioiTinh;
     private String email,SDT,diaChi;
     private boolean trangThai;
 
-    public KhachHang() {
-    }
-
-    public KhachHang(String maKH, int maLoaiKH, String hoTen, Date ngaySinh, boolean gioiTinh, String email, String SDT, String diaChi, Date ngayTao, boolean trangThai) {
+    public KhachHang(String maKH, int maLoaiKH, int tichDiem, String hoTen, Date ngaySinh, Date ngayTao, boolean gioiTinh, String email, String SDT, String diaChi, boolean trangThai) {
         this.maKH = maKH;
         this.maLoaiKH = maLoaiKH;
+        this.tichDiem = tichDiem;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
+        this.ngayTao = ngayTao;
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.SDT = SDT;
         this.diaChi = diaChi;
-        this.ngayTao = ngayTao;
         this.trangThai = trangThai;
+    }
+
+    public KhachHang() {
     }
 
     public String getMaKH() {
@@ -115,5 +116,12 @@ public class KhachHang {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+    
+    public int getTichDiem() {
+        return tichDiem;
+    }
 
+    public void setTichDiem(int tichDiem) {
+        this.tichDiem = tichDiem;
+    }
 }
