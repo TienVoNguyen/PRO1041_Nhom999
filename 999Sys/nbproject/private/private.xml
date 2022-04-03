@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/HoaDonJPanel.java</file>
+=======
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/ThanhToanJDialog.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/QLSanPhamJDialog.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/QuanLyKhachHangJDialog.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/dao/KhachHangDao.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/entity/KhachHang.java</file>
+>>>>>>> 09631fd9f9c657d507c9808e5cdfeed83415e98c
         </group>
     </open-files>
 </project-private>
