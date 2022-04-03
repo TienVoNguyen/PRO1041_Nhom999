@@ -126,6 +126,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         tbl_HoaDon_HetHan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quản Lý Khuyến Mại");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Mã Khuyến Mãi");
@@ -697,7 +698,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        ResetForm();
+//        ResetForm();
+        Validate_Day();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -1154,9 +1156,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         LoadDataToTable_KM();
         LoadDataToTable_KM_HoaDon();
         txtKhuyenMai.setEnabled(false);
-        if (tblqlkm.getRowCount() > 0) {
-            setText(0);
-        }
+       
     }
 
     private void LoadDataToTable_KM() {
@@ -1311,6 +1311,10 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             x.append("Không Để Trống Ngày Kết Thúc Khuyến Mại\n");
         } else if (XValidate.IsNotDate(txtNgayKetThuc)) {
             x.append("Vui Lòng Nhập Đúng Định Dạng Ngày Tháng Năm(dd/MM/yyyy)\n");
+        }else if (!Validate_Day()) {
+          if (XValidate.focus_Errol(false, txtNgayBatDau)) {
+                x.append("Ngày Bất Đầu Không Được Lớn Hơn Ngày Kết Thúc \n");
+            }
         } else if (radio_AD_HoaDon.isSelected() & XValidate.isEmpty(txthdtoithieu)) {
             x.append("Vui Lòng Nhập Giá Trị Tối Thiểu Của Hóa Đơn\n");
         } else if (radiovnd.isSelected() == true & Double.parseDouble(txtGiaTri.getText()) < 10000) {
@@ -1322,7 +1326,6 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 x.append("Giá Trị Khi Giảm Giá Phần Trăm Chỉ Được Nhập Từ 0 đến 100\n");
             }
         }
-
         if (x.toString().length() > 0) {
             Messeger.alert(this, x.toString());
             return true;
@@ -1403,4 +1406,19 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
 
     }
+    
+    private boolean Validate_Day(){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date date1 = sdf.parse(txtNgayBatDau.getText());
+            Date date2 = sdf.parse(txtNgayKetThuc.getText());
+            if (date1.after(date2)) {
+                return false;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(QL_KhuyenMaiJDiaLog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
 }

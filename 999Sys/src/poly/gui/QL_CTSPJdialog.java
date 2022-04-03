@@ -1276,14 +1276,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã DVT", "Tên DVT"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1300,12 +1300,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             }
         });
         jScrollPane8.setViewportView(tblDVT);
-        if (tblDVT.getColumnModel().getColumnCount() > 0) {
-            tblDVT.getColumnModel().getColumn(2).setResizable(false);
-            tblDVT.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            tblDVT.getColumnModel().getColumn(3).setResizable(false);
-            tblDVT.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-        }
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -1331,7 +1325,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã DVT", "Tên DVT", "Title 3", "Title 4"
             }
         ) {
             Class[] types = new Class [] {
@@ -1356,6 +1350,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         });
         jScrollPane9.setViewportView(tblDVTHetHan);
         if (tblDVTHetHan.getColumnModel().getColumnCount() > 0) {
+            tblDVTHetHan.getColumnModel().getColumn(2).setResizable(false);
             tblDVTHetHan.getColumnModel().getColumn(3).setResizable(false);
         }
 
@@ -1543,10 +1538,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Moi_qlDanhMucActionPerformed
 
     private void btn_Them_qlDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlDanhMucActionPerformed
-        if (txtDanhMuc_MaDM.getText().trim().length() > 0 | txtDanhMuc_NgayThem.getText().trim().length() > 0) {
-            Messeger.alert(this, "Khi Thêm Danh Mục , Không Cần Nhập Mã Danh Mục Và Ngày Thêm ");
-            txtDanhMuc_MaDM.setText("");
-            txtDanhMuc_NgayThem.setText("");
+//        if (txtDanhMuc_MaDM.getText().trim().length() > 0 | txtDanhMuc_NgayThem.getText().trim().length() > 0) {
+//            Messeger.alert(this, "Khi Thêm Danh Mục , Không Cần Nhập Mã Danh Mục Và Ngày Thêm ");
+//            txtDanhMuc_MaDM.setText("");
+//            txtDanhMuc_NgayThem.setText("");
+//            return;
+//        }
+    
+        if (!Validate_DanhMuc()) {
             return;
         }
         String x = String.valueOf(java.time.LocalDate.now());
@@ -1571,6 +1570,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                     dao_dm.delete(txtDanhMuc_MaDM.getText());
                     LoadDataToTableDanhMuc();
                     LoadDataToTableDanhMucHetHan();
+                    ResetText(txtDanhMuc_MaDM, txtDanhMuc_TenDM,txtDanhMuc_NgayThem);
                     return;
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -1940,7 +1940,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             this.LoadDataToTableDVT();
             this.LoadDataToTableDVTHetHan();
             
-            return;
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi sửa đơn vị tính!", "Error!");
             ex.printStackTrace();
@@ -1963,7 +1962,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             dao_dvt.update(new DonViTinh(Integer.parseInt(txtDVT_MaDVT.getText()), txtDVT_TenDVT.getText(), false));
             this.LoadDataToTableDVTHetHan();
             this.LoadDataToTableDVT();
-            return;
+            ResetText(txtDVT_MaDVT, txtDVT_TenDVT);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi xóa đơn vị tính!", "Error!");
             ex.printStackTrace();
@@ -2200,7 +2199,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_Size() {
-        txtSize_MaSize.setEditable(false);
         btn_TrangThai_Size.setVisible(false);
         dao_size = new SizeDao();
         modelTBL_Size = (DefaultTableModel) tblSize.getModel();
@@ -2510,5 +2508,13 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             ex.printStackTrace();
             return false;
         }
+    }
+    
+    private boolean Validate_DanhMuc(){
+        if (XValidate.isEmpty(txtDanhMuc_TenDM)) {
+            Messeger.showErrorDialog(this, "Vui Lòng Nhập Tên Danh Mục", "lỗi");
+            return false;
+        }
+    return true;
     }
 }
