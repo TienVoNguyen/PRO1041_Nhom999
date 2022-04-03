@@ -1242,7 +1242,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             if (cbbLoaiKH.getItemCount() > 0) {
                 LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
                 KhachHang kH = new KhachHang();
-
+                kH.setHoTen("");
                 kH.setMaLoaiKH(lKH.getMaLoaiKH());
 
                 ArrayList<KhachHang> listKH = khachHangDao.selectWhere(kH);
@@ -1276,10 +1276,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
                         }
                     }
                 }
-            }
             this.row = 0;
            this.changeIndex(row);
-
+            }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load Data Khách Hàng !", "Error!");
             ex.printStackTrace();

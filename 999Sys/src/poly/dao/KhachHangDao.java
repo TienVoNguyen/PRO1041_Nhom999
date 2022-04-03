@@ -24,7 +24,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
             case "INSERT":
                 return "INSERT INTO KHACHHANG (MAKH, MALOAIKH, HOTEN ,NGAYSINH, GIOITINH, EMAIL, SDT, DIACHI, NGAYTAO) VALUES (?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TRANGTHAI =? WHERE MAKH=?";
+                return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TICHDIEM =? WHERE MAKH=?";
             case "DELETE":
                 return "UPDATE KHACHHANG SET TRANGTHAI =0 WHERE MAKH = ?";
             case "SELECTBYID":
@@ -32,8 +32,8 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
             case "SELECTALL":
                 return "SELECT * FROM KHACHHANG";
             case "SELECTWHERE":
-                return "SELECT * FROM   KHACHHANG WHERE MALOAIKH = ? or HOTEN like ?";//
-        }
+                return "SELECT * FROM   KHACHHANG WHERE MALOAIKH like ? and (MAKH like ? or HOTEN like ?)";//
+         }
         return "";
     }
 
@@ -62,14 +62,15 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
                     obj.getSDT(),
                     obj.getDiaChi(),
                     obj.getNgayTao(),
+                    obj.getTichDiem(),
                     obj.isTrangThai(),
                     obj.getMaKH()
                 };
             case "SELECTWHERE":
                 return new Object[]{
-                    obj.getMaLoaiKH(),
-                    //                    "%"+obj.getMaKH()+"%",
-                    "%" + obj.getHoTen() + "%"
+                    "%"+(obj.getMaLoaiKH() == 0 ? "":obj.getMaLoaiKH())+"%",
+                    "%"+obj.getHoTen()+"%",
+                    "%"+obj.getHoTen()+"%"
                 };
         }
         return null;
@@ -89,6 +90,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
         kH.setDiaChi(rs.getString("DIACHI"));
         kH.setNgayTao(rs.getDate("NGAYTAO"));
         kH.setTrangThai(rs.getBoolean("TRANGTHAI"));
+        kH.setTichDiem(rs.getInt("TICHDIEM"));
         return kH;
     }
 
