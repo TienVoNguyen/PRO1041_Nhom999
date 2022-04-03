@@ -446,11 +446,11 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLSPActionPerformed
 
     private void btnQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhachHangActionPerformed
-
+        new QuanLyKhachHangJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnQLKhachHangActionPerformed
 
     private void btnQLSP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSP2ActionPerformed
-        // TODO add your handling code here:
+        new QLHoaDonJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnQLSP2ActionPerformed
 
 

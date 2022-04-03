@@ -23,7 +23,7 @@ public class LoaiKhachHangDao extends BaseDao<LoaiKhachHang, String>{
             case "UPDATE":
                 return "UPDATE LOAIKHACHHANG SET TENLOAIKH =?, TRANGTHAI =? WHERE MALOAIKH = ?";
             case "DELETE":
-                return "DELETE FROM LOAIKHACHHANG WHERE MALOAIKH = ?";
+                return "UPDATE LOAIKHACHHANG SET TRANGTHAI = 0 WHERE MALOAIKH = ?";
             case "SELECTBYID":
                 return "SELECT  * FROM LOAIKHACHHANG WHERE MALOAIKH = ?";
             case "SELECTALL":
