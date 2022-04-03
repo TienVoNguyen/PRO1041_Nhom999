@@ -143,6 +143,9 @@
                     <Property name="text" type="java.lang.String" value="Thanh To&#xe1;n + In"/>
                     <Property name="toolTipText" type="java.lang.String" value="Thanh to&#xe1;n v&#xe0; in ra file pdf"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThanhToanInActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -384,7 +387,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton3">
+                    <Component class="javax.swing.JButton" name="btnSuDung">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="66" red="ff" type="rgb"/>
@@ -397,14 +400,18 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="S&#x1eed; D&#x1ee5;ng"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuDungActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                           <BorderConstraints direction="After"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtNhapVoucher">
+                    <Component class="javax.swing.JTextField" name="txtPoint">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial" size="18" style="1"/>
                         </Property>

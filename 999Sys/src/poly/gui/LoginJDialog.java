@@ -126,6 +126,11 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         txtID.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtID.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 0, 0, 1, new java.awt.Color(255, 255, 255)));
+        txtID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtIDFocusGained(evt);
+            }
+        });
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIDKeyPressed(evt);
@@ -168,6 +173,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         txtPass.setAlignmentY(0.0F);
         txtPass.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 0, 0, 2, new java.awt.Color(255, 255, 255)));
         txtPass.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPassFocusGained(evt);
+            }
+        });
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPassKeyPressed(evt);
@@ -777,7 +787,9 @@ public class LoginJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
-        this.enter(evt);
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.txtPass.requestFocus();
+        }
     }//GEN-LAST:event_txtIDKeyPressed
 
     private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
@@ -813,6 +825,14 @@ public class LoginJDialog extends javax.swing.JDialog {
     private void txtNewPass2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewPass2FocusGained
         txtNewPass2.setBackground(Color.WHITE);
     }//GEN-LAST:event_txtNewPass2FocusGained
+
+    private void txtIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusGained
+        txtID.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtIDFocusGained
+
+    private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
+        txtPass.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtPassFocusGained
 
     private void EnterAcctions(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
