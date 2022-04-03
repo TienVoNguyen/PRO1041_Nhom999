@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/ThongKeJDialog.java</file>
+            <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/entity/NhanVien.java</file>
+            <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/gui/LoginJDialog.java</file>
+            <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/helper/Auth.java</file>
+            <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/gui/QuanLyKhachHangJDialog.java</file>
         </group>
->>>>>>> 8094adf042098770b46f2259f5f7aafb4a2adb11
     </open-files>
-
 </project-private>
