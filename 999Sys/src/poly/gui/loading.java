@@ -199,7 +199,7 @@ public class loading extends javax.swing.JDialog implements Runnable {
                     lblText.setText("Đang tải dữ liệu ....");
                 }
                 
-                Thread.sleep(20);
+                Thread.sleep(10);
 
             }
             if (a) {

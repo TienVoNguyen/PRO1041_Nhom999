@@ -1441,11 +1441,12 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
     private void btnNhapExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExcelActionPerformed
         try {
-            tableModel.setRowCount(0);
-            XExcel.readExcel(tableModel);
-            loadDataJDialog.setSize(this.getWidth(), this.getHeight());
-            loadDataJDialog.setLocationRelativeTo(this);
-            loadDataJDialog.setVisible(true);
+            if (!XExcel.readExcel(tableModel)) {
+                loadDataJDialog.setSize(this.getWidth(), this.getHeight());
+                loadDataJDialog.setLocationRelativeTo(this);
+                loadDataJDialog.setVisible(true);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
