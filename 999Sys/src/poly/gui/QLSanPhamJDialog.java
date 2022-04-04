@@ -68,6 +68,8 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     DonViTinhDao daoDVT;
     SanPhamDao daoSP;
 
+    Thread loadData;
+
     /**
      * Creates new form QL_SanPham
      */
@@ -76,7 +78,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-        setSize(parent.getWidth(), parent.getHeight());
+//        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
         this.themDMJDialog.setModal(modal);
@@ -85,6 +87,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.themMauSacJDialog.setModal(modal);
         this.themSizeJDialog.setModal(modal);
         this.DaXoaJDialog.setModal(modal);
+        this.loadDataJDialog.setModal(modal);
 
         this.daoCL = new ChatLieuDao();
         this.daoDM = new DanhMucDao();
@@ -123,7 +126,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.fileChooser = new JFileChooser();
 
         addButtonToTable();
-        tblSanPham.getColumn("AnhSP").setCellRenderer( new ImageColumn());
+        tblSanPham.getColumn("AnhSP").setCellRenderer(new ImageColumn());
         tblDaXoa.getColumn("AnhSP").setCellRenderer(new ImageColumn());
         loadDataToCBBCL();
         loadDataToCBBDM();
@@ -231,6 +234,10 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         jPanel56 = new javax.swing.JPanel();
         btnThemChatLieuMoi = new javax.swing.JButton();
         btnHuyThemChatLieuMoi = new javax.swing.JButton();
+        loadDataJDialog = new javax.swing.JDialog();
+        jPanel57 = new javax.swing.JPanel();
+        pgbLoadingData = new javax.swing.JProgressBar();
+        lblStatus = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
@@ -247,7 +254,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         lblAnh = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnNhapExcel = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         btnLuu = new javax.swing.JButton();
@@ -644,6 +651,32 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
 
         themChatLieuJDialog.getContentPane().add(jPanel52, java.awt.BorderLayout.CENTER);
 
+        loadDataJDialog.setMinimumSize(new java.awt.Dimension(819, 140));
+        loadDataJDialog.setPreferredSize(new java.awt.Dimension(819, 200));
+        loadDataJDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                loadDataJDialogWindowClosed(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                loadDataJDialogWindowOpened(evt);
+            }
+        });
+
+        jPanel57.setMinimumSize(new java.awt.Dimension(656, 200));
+        jPanel57.setPreferredSize(new java.awt.Dimension(656, 200));
+        jPanel57.setLayout(new java.awt.BorderLayout());
+
+        pgbLoadingData.setPreferredSize(new java.awt.Dimension(146, 21));
+        pgbLoadingData.setStringPainted(true);
+        jPanel57.add(pgbLoadingData, java.awt.BorderLayout.PAGE_END);
+
+        lblStatus.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblStatus.setText("Đang tải dữ liệu ....");
+        jPanel57.add(lblStatus, java.awt.BorderLayout.CENTER);
+
+        loadDataJDialog.getContentPane().add(jPanel57, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
@@ -763,13 +796,13 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         jPanel22.setPreferredSize(new java.awt.Dimension(300, 0));
         jPanel22.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        jButton1.setText("Nhập từ EXCEL");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNhapExcel.setText("Nhập từ EXCEL");
+        btnNhapExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNhapExcelActionPerformed(evt);
             }
         });
-        jPanel22.add(jButton1);
+        jPanel22.add(btnNhapExcel);
 
         btnXuatExcel.setText("Xuất ra EXCEL");
         btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
@@ -1295,7 +1328,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnKhoiPhucTatCaActionPerformed
 
     private void btnThemDMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemDMActionPerformed
-        if (XValidate.isEmpty(txtTenDanhMucMoi)){
+        if (XValidate.isEmpty(txtTenDanhMucMoi)) {
             Messeger.showErrorDialog(themDMJDialog, "Không để trống tên danh mục!", "lỗi");
             return;
         }
@@ -1310,7 +1343,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnThemDMActionPerformed
 
     private void btnHuyThemDMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyThemDMActionPerformed
@@ -1318,7 +1351,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyThemDMActionPerformed
 
     private void btnThemDVTMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemDVTMoiActionPerformed
-        if (XValidate.isEmpty(txtTenDVTMoi)){
+        if (XValidate.isEmpty(txtTenDVTMoi)) {
             Messeger.showErrorDialog(themDVTJDialog, "Không để trống tên đơn vị tính!", "lỗi");
             return;
         }
@@ -1339,11 +1372,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyThemDVTMoiActionPerformed
 
     private void btnThemSizeMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSizeMoiActionPerformed
-        if (XValidate.isEmpty(txtMaSize)){
+        if (XValidate.isEmpty(txtMaSize)) {
             Messeger.showErrorDialog(themSizeJDialog, "Không để trống Size!", "lỗi");
             return;
         }
-        if (XValidate.isEmpty(txtLoaiSize)){
+        if (XValidate.isEmpty(txtLoaiSize)) {
             Messeger.showErrorDialog(themSizeJDialog, "Không để trống loại Size!", "lỗi");
             return;
         }
@@ -1365,7 +1398,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyThemSizeMoiActionPerformed
 
     private void btnThemMauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMauMoiActionPerformed
-        if (XValidate.isEmpty(txtMauMoi)){
+        if (XValidate.isEmpty(txtMauMoi)) {
             Messeger.showErrorDialog(themMauSacJDialog, "Không để trống tên màu!", "lỗi");
             return;
         }
@@ -1386,7 +1419,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyThemMauActionPerformed
 
     private void btnThemChatLieuMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemChatLieuMoiActionPerformed
-        if (XValidate.isEmpty(txtTenChatLieuMoi)){
+        if (XValidate.isEmpty(txtTenChatLieuMoi)) {
             Messeger.showErrorDialog(themChatLieuJDialog, "Không để trống tên chất liệu!", "lỗi");
             return;
         }
@@ -1406,13 +1439,50 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.themChatLieuJDialog.dispose();
     }//GEN-LAST:event_btnHuyThemChatLieuMoiActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnNhapExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExcelActionPerformed
         try {
+            tableModel.setRowCount(0);
             XExcel.readExcel(tableModel);
+            loadDataJDialog.setSize(this.getWidth(), this.getHeight());
+            loadDataJDialog.setLocationRelativeTo(this);
+            loadDataJDialog.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnNhapExcelActionPerformed
+
+    private void loadDataJDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loadDataJDialogWindowOpened
+        this.pgbLoadingData.setMaximum(tableModel.getRowCount() - 1);
+
+        loadData = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < tableModel.getRowCount(); i++) {
+                    if (i == pgbLoadingData.getMaximum()) {
+                        loadDataJDialog.dispose();
+                    }
+                    tblSanPham.setRowSelectionInterval(i, i);
+                    mouseClicked();
+                    clearImage();
+                    insertSP();
+                    pgbLoadingData.setValue(i);
+                    try {
+                        Thread.sleep(30);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        loadData.start();
+    }//GEN-LAST:event_loadDataJDialogWindowOpened
+
+    private void loadDataJDialogWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loadDataJDialogWindowClosed
+        this.loadData.stop();
+        Messeger.alert(null, "Thêm dữ liệu mới thành công");
+        loadDataToTable(new Object[]{"%%", "%%", "%%", "%%", "%%", "%%", "%%"});
+    }//GEN-LAST:event_loadDataJDialogWindowClosed
 
     /**
      * @param args the command line arguments
@@ -1472,6 +1542,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnKhoiPhucTatCa;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnMoi;
+    private javax.swing.JButton btnNhapExcel;
     private javax.swing.JButton btnThemChatLieu;
     private javax.swing.JButton btnThemChatLieuMoi;
     private javax.swing.JButton btnThemDM;
@@ -1495,7 +1566,6 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbbTimDanhMuc;
     private javax.swing.JComboBox<String> cbbTimMau;
     private javax.swing.JComboBox<String> cbbTimSize;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1568,6 +1638,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel54;
     private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel56;
+    private javax.swing.JPanel jPanel57;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -1575,6 +1646,9 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblAnh;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JDialog loadDataJDialog;
+    private javax.swing.JProgressBar pgbLoadingData;
     private javax.swing.JTable tblDaXoa;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JDialog themChatLieuJDialog;
@@ -1708,7 +1782,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         sp.setMaSize(s.getMaSize());
         sp.setMaVach(txtMaVach.getText());
         sp.setNgayNhap(XDate.toDate(XDate.toString(new Date(), "MM/dd/yyyy"), "MM/dd/yyyy"));
-        sp.setSoLuong((int) Double.parseDouble(txtSoLuong.getValue()+""));
+        sp.setSoLuong((int) Double.parseDouble(txtSoLuong.getValue() + ""));
         sp.setTenSanPham(txtTenSP.getText());
         return sp;
     }
@@ -1721,6 +1795,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         this.txtNgayNhap.setText("");
         this.txtSoLuong.setValue(0);
         this.txtTenSP.setText("");
+        clearImage();
     }
 
     private boolean mouseClicked() throws NumberFormatException {
@@ -1731,40 +1806,40 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         int masp = Integer.parseInt(tblSanPham.getValueAt(index, 0) + "");
         try {
             SanPham sp = this.daoSP.selectById(masp);
-            this.txtMaSanPham.setText(sp.getMaSP() + "");
-            this.txtGiaBan.setValue(sp.getGiaBan());
-            this.txtGiaNhap.setValue(sp.getGiaNhap());
-            this.txtMaVach.setText(sp.getMaVach());
-            this.txtNgayNhap.setText(XDate.toString(sp.getNgayNhap(), "dd/MM/yyyy"));
-            this.txtSoLuong.setValue(sp.getSoLuong());
-            this.txtTenSP.setText(sp.getTenSanPham());
+            this.txtMaSanPham.setText(tblSanPham.getValueAt(index, 0) + "");
+            this.txtMaVach.setText(tblSanPham.getValueAt(index, 1) + "");
+            this.txtTenSP.setText(tblSanPham.getValueAt(index, 2) + "");
+            this.txtGiaBan.setValue(Double.parseDouble(tblSanPham.getValueAt(index, 3) + ""));
+            this.txtGiaNhap.setValue(Double.parseDouble(tblSanPham.getValueAt(index, 4) + ""));
+            this.txtSoLuong.setValue(Integer.parseInt(tblSanPham.getValueAt(index, 5) + ""));
+            this.txtNgayNhap.setText(tblSanPham.getValueAt(index, 11) + "");
             for (int i = 0; i < dCBDM.getSize(); i++) {
                 DanhMuc d = (DanhMuc) dCBDM.getElementAt(i);
-                if (d.getTenDanhMuc().equals(tblSanPham.getValueAt(index, 6) + "")){
+                if (d.getTenDanhMuc().equals(tblSanPham.getValueAt(index, 6) + "")) {
                     cbbDanhMuc.setSelectedIndex(i);
                 }
             }
             for (int i = 0; i < dCBDVT.getSize(); i++) {
                 DonViTinh d = (DonViTinh) dCBDVT.getElementAt(i);
-                if (d.getTenDVT().equals(tblSanPham.getValueAt(index, 7) + "")){
+                if (d.getTenDVT().equals(tblSanPham.getValueAt(index, 7) + "")) {
                     cbbDonViTinh.setSelectedIndex(i);
-                }
-            }
-            for (int i = 0; i < dCBMS.getSize(); i++) {
-                MauSac d = (MauSac) dCBMS.getElementAt(i);
-                if (d.getTenMau().equals(tblSanPham.getValueAt(index, 9) + "")){
-                    cbbMau.setSelectedIndex(i);
                 }
             }
             for (int i = 0; i < dCBSize.getSize(); i++) {
                 Size d = (Size) dCBSize.getElementAt(i);
-                if (d.getMaSize().equals(tblSanPham.getValueAt(index, 8) + "")){
+                if (d.getMaSize().equals(tblSanPham.getValueAt(index, 8) + "")) {
                     cbbSize.setSelectedIndex(i);
+                }
+            }
+            for (int i = 0; i < dCBMS.getSize(); i++) {
+                MauSac d = (MauSac) dCBMS.getElementAt(i);
+                if (d.getTenMau().equals(tblSanPham.getValueAt(index, 9) + "")) {
+                    cbbMau.setSelectedIndex(i);
                 }
             }
             for (int i = 0; i < dCBCL.getSize(); i++) {
                 ChatLieu d = (ChatLieu) dCBCL.getElementAt(i);
-                if (d.getTenChatLieu().equals(tblSanPham.getValueAt(index, 10) + "")){
+                if (d.getTenChatLieu().equals(tblSanPham.getValueAt(index, 10) + "")) {
                     cbbChatLieu.setSelectedIndex(i);
                 }
             }
@@ -1778,9 +1853,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
                 this.lblAnh.setToolTipText(tooltip);
                 this.lblAnh.setIcon(ImageHelper.read(tooltip));
             } else {
-                ImageIcon icon = new ImageIcon(".\\AnhSP\\noImage.jpg");
-                Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
-                this.lblAnh.setIcon(new ImageIcon(img));
+                clearImage();
             }
 
         } catch (Exception ex) {
@@ -1789,43 +1862,62 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         return false;
     }
 
+    private void clearImage() {
+        ImageIcon icon = new ImageIcon(".\\AnhSP\\noImage.jpg");
+        Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
+        this.lblAnh.setIcon(new ImageIcon(img));
+        this.lblAnh.setToolTipText("noImage.jpg");
+    }
+
     private void saveSP() {
         if (!txtMaSanPham.getText().isEmpty()) {
             if (Messeger.confirm(this, "Mã sản phẩm đã tồn tại!, Bạn có muốn cập nhập với mã này không?"
                     + "\n nếu muốn tạo mới Hãy ấn nút 'Mói'")) {
-                try {
-                    this.daoSP.update(getForm());
-                    this.loadDataToTable(new Object[]{
-                        "%" + getForm().getMaSP() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getTenSanPham() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%"
-                    });
-                } catch (Exception ex) {
-                    Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                updateSP();
+                Messeger.alert(this, "Cập nhật thành công");
+
+                this.loadDataToTable(new Object[]{
+                    "%" + getForm().getMaSP() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getTenSanPham() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%"
+                });
             }
         } else {
             if (Messeger.confirm(this, "Xác nhận thêm sản phẩm này?")) {
-                try {
-                    this.daoSP.insert(getForm());
-                    Messeger.alert(this, "Thêm thành công");
-                    this.loadDataToTable(new Object[]{
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getTenSanPham() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%",
-                        "%" + getForm().getMaVach() + "%"
-                    });
-                } catch (Exception ex) {
-                    Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                insertSP();
+                Messeger.alert(this, "Thêm thành công");
+                this.loadDataToTable(new Object[]{
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getTenSanPham() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%",
+                    "%" + getForm().getMaVach() + "%"
+                });
             }
+        }
+    }
+
+    private void insertSP() {
+        try {
+            this.daoSP.insert(getForm());
+
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void updateSP() {
+        try {
+            this.daoSP.update(getForm());
+
+        } catch (Exception ex) {
+            Logger.getLogger(QLSanPhamJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
