@@ -27,7 +27,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "INSERT":
                 return "INSERT INTO SANPHAM (MADM, MAVACH,TENSP, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, MADVT, MAMAU, MASIZE, MACHATLIEU) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE SANPHAM SET MADM =?, MAVACH =?, ANHSANPHAM =?, GIANHAP =?, GIABAN =?, SOLUONG =?, NGAYNHAP =?, APDUNGKM =?, MADVT =?, MAMAU =?, MASIZE =?, MACHATLIEU =? WHERE MASP = ?";
+                return "UPDATE SANPHAM SET MADM =?, TENSP = ?, MAVACH =?, ANHSANPHAM =?, GIANHAP =?, GIABAN =?, SOLUONG =?, NGAYNHAP =?, APDUNGKM =?, MADVT =?, MAMAU =?, MASIZE =?, MACHATLIEU =? WHERE MASP = ?";
             case "DELETE":
                 return "UPDATE SANPHAM SET TRANGTHAI = 0 WHERE MASP = ?";
             case "RESTORE":
@@ -65,6 +65,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "UPDATE":
                 return new Object[]{
                     obj.getMaDanhMuc(),
+                    obj.getTenSanPham(),
                     obj.getMaVach(),
                     obj.getAnhSanPham(),
                     obj.getGiaNhap(),

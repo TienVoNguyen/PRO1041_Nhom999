@@ -20,6 +20,7 @@ import poly.dao.KhachHangDao;
 import poly.dao.LoaiKhachHangDao;
 import poly.entity.KhachHang;
 import poly.entity.LoaiKhachHang;
+import poly.helper.Auth;
 import poly.helper.CustomDatePicker;
 import poly.helper.Messeger;
 import poly.helper.XDate;
@@ -87,7 +88,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
         jpnLoaiBangKH = new javax.swing.JPanel();
-        lblLoaiKH = new javax.swing.JLabel();
+        lblKHHoatDong = new javax.swing.JLabel();
         jpnFormKH = new javax.swing.JPanel();
         jpnFormKH_Btn = new javax.swing.JPanel();
         jpnNAUD = new javax.swing.JPanel();
@@ -96,10 +97,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         btnSuaKH = new javax.swing.JButton();
         btnXoaKH = new javax.swing.JButton();
         jpnFPNL = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnFirst = new javax.swing.JButton();
+        btnPrev = new javax.swing.JButton();
+        lblSoLuong = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
         jpnFormTextField = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         txtMaKhachHang = new javax.swing.JTextField();
@@ -212,10 +214,10 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(95, 20));
         jpnCBBLoaiKH.add(jLabel15, java.awt.BorderLayout.LINE_START);
 
-        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
-        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnTrangThai.setText("Tương Tác");
+        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
         btnTrangThai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnTrangThai.setMaximumSize(new java.awt.Dimension(110, 15));
         btnTrangThai.setPreferredSize(new java.awt.Dimension(110, 15));
         btnTrangThai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -242,6 +244,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnSearchKH.setLayout(new java.awt.BorderLayout());
 
         txtSearchByName.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(255, 255, 255)));
+        txtSearchByName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchByNameKeyReleased(evt);
+            }
+        });
         jpnSearchKH.add(txtSearchByName, java.awt.BorderLayout.CENTER);
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
@@ -303,12 +310,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnLoaiBangKH.setBackground(new java.awt.Color(102, 153, 255));
         jpnLoaiBangKH.setPreferredSize(new java.awt.Dimension(877, 30));
 
-        lblLoaiKH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLoaiKH.setText("Khách Hàng Tương Tác");
-        lblLoaiKH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        lblLoaiKH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblLoaiKH.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jpnLoaiBangKH.add(lblLoaiKH);
+        lblKHHoatDong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblKHHoatDong.setText("Khách Hàng Tương Tác");
+        lblKHHoatDong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblKHHoatDong.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jpnLoaiBangKH.add(lblKHHoatDong);
 
         jpnTableKhachHang.add(jpnLoaiBangKH, java.awt.BorderLayout.PAGE_START);
 
@@ -356,6 +363,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
 
         btnXoaKH.setText("Xóa");
         btnXoaKH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnXoaKH.setToolTipText("Xoa");
         btnXoaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaKHActionPerformed(evt);
@@ -366,23 +374,50 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnFormKH_Btn.add(jpnNAUD);
 
         jpnFPNL.setBackground(new java.awt.Color(102, 153, 255));
-        jpnFPNL.setLayout(new java.awt.GridLayout(1, 4, 5, 5));
+        jpnFPNL.setLayout(new java.awt.GridLayout(1, 5, 5, 5));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/firtsicon.png"))); // NOI18N
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jpnFPNL.add(jButton1);
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/firtsicon.png"))); // NOI18N
+        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
+        btnFirst.setToolTipText("");
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
+        jpnFPNL.add(btnFirst);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/preicon.png"))); // NOI18N
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jpnFPNL.add(jButton5);
+        btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/preicon.png"))); // NOI18N
+        btnPrev.setBackground(new java.awt.Color(255, 255, 255));
+        btnPrev.setToolTipText("Prevous");
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
+        jpnFPNL.add(btnPrev);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/nexticon.png"))); // NOI18N
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jpnFPNL.add(jButton6);
+        lblSoLuong.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoLuong.setText("0 / N");
+        jpnFPNL.add(lblSoLuong);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/lasticon.png"))); // NOI18N
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jpnFPNL.add(jButton7);
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/nexticon.png"))); // NOI18N
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+        jpnFPNL.add(btnNext);
+
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/lasticon.png"))); // NOI18N
+        btnLast.setBackground(new java.awt.Color(255, 255, 255));
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
+        jpnFPNL.add(btnLast);
 
         jpnFormKH_Btn.add(jpnFPNL);
 
@@ -444,6 +479,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnFormTextField.add(jPanel19);
 
         jPanel18.setLayout(new java.awt.BorderLayout());
+
+        txtNgTao.setEnabled(false);
         jPanel18.add(txtNgTao, java.awt.BorderLayout.CENTER);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -713,12 +750,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbLoaiKHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLoaiKHItemStateChanged
-        if(cbbLoaiKH.getItemCount() > 0){
-        if (lblLoaiKH.getText().equalsIgnoreCase("Khách Hàng Tương Tác")) {
-            this.fillToTableKhachHang(1);
-        } else if (lblLoaiKH.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
-            this.fillToTableKhachHang(0);
-        }
+        if (cbbLoaiKH.getItemCount() > 0) {
+            if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Tương Tác")) {
+                this.fillToTableKhachHang(1);
+            } else if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
+                this.fillToTableKhachHang(0);
+            }
         }
     }//GEN-LAST:event_cbbLoaiKHItemStateChanged
 
@@ -727,6 +764,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
+        if (this.checkFormKhachHang()) {
+            return;
+        }
         if (this.checkMaKH()) {
             Messeger.showErrorDialog(this, "Mã khách hàng đã tồn tại!", "Error!");
             return;
@@ -743,6 +783,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnThemKHActionPerformed
 
     private void btnSuaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaKHActionPerformed
+        if (this.checkFormKhachHang()) {
+            return;
+        }
         try {
             if (!this.checkMaKH()) {
                 Messeger.showErrorDialog(this, "Mã khách hàng chưa tồn tại!", "Error!");
@@ -767,6 +810,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
+
+        row = this.tblKhachHang.getSelectedRow();
+        if (row == -1) {
+            Messeger.showErrorDialog(this, "Chọn vị trí bạn muốn xóa/ hãy nhập mã muốn xóa", "Error!");
+            return;
+        }
         if (!Messeger.confirm(this, "Bạn có chắc muốn xóa khách hàng này?")) {
             return;
         }
@@ -779,7 +828,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             KhachHang kH = this.getFormKhachHang();
             khachHangDao.delete(kH.getMaKH());
             Messeger.alert(this, "Xóa thành công!");
-            this.fillToTableKhachHang(0);
+            this.fillToTableKhachHang(1);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi xóa khách hàng!", "Error!");
             ex.printStackTrace();
@@ -801,9 +850,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private void btnTrangThaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseExited
         //changeColorTitleLoaiKH("Exit");
         btnTrangThai.setBackground(Color.YELLOW);
-        if (lblLoaiKH.getText().trim().equalsIgnoreCase("Khách Hàng Tương Tác")) {
+        if (lblKHHoatDong.getText().trim().equalsIgnoreCase("Khách Hàng Tương Tác")) {
             btnTrangThai.setText("Tương Tác");
-        } else if (lblLoaiKH.getText().trim().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
+        } else if (lblKHHoatDong.getText().trim().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
             btnTrangThai.setText("Không Tương Tác");
         }
     }//GEN-LAST:event_btnTrangThaiMouseExited
@@ -817,11 +866,16 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         if (btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
             this.fillToTableKhachHang(1);
             jpnLoaiBangKH.setBackground(Color.red);
-            lblLoaiKH.setText("Khách Hàng Tương Tác");
+            lblKHHoatDong.setText("Khách Hàng Tương Tác");
         } else if (btnTrangThai.getText().equalsIgnoreCase("Không Tương Tác")) {
             this.fillToTableKhachHang(0);
             jpnLoaiBangKH.setBackground(Color.BLUE);
-            lblLoaiKH.setText("Khách Hàng Không Tương Tác");
+            lblKHHoatDong.setText("Khách Hàng Không Tương Tác");
+        }
+        if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
+            btnXoaKH.setEnabled(false);
+        } else {
+            btnXoaKH.setEnabled(true);
         }
     }//GEN-LAST:event_btnTrangThaiMouseClicked
 
@@ -834,21 +888,25 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         if (rowLKH == -1) {
             return;
         }
-        
-       this.showDetailLoaiKH();
+
+        this.showDetailLoaiKH();
     }//GEN-LAST:event_tblLoaiKHMouseClicked
 
     private void btnThemLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLKHActionPerformed
+        if (!Auth.isManager()) {
+            Messeger.showErrorDialog(this, "Bạn không có quyền thêm mới!", "Error!");
+            return;
+        }
         try {
-            if(this.checkMaLoaiKH()){
+            if (this.checkMaLoaiKH()) {
                 Messeger.showErrorDialog(this, "Mã loại khách hàng đã tồn tại!", "Error!");
                 return;
             }
-            if(XValidate.isEmpty(this.txtTenLKH)){
+            if (XValidate.isEmpty(this.txtTenLKH)) {
                 Messeger.showErrorDialog(this, "Không để trống tên loại khách hàng !", "Error!");
                 return;
             }
-            LoaiKhachHang lKH= this.getFormLoaiKH();
+            LoaiKhachHang lKH = this.getFormLoaiKH();
             loaiKHDao.insert(lKH);
             Messeger.alert(this, "Thêm mới loại khách hàng thành công!");
             this.fillToTableLoaiKhachHang();
@@ -860,28 +918,32 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnThemLKHActionPerformed
 
     private void btnSuaLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaLKHActionPerformed
+        if (!Auth.isManager()) {
+            Messeger.showErrorDialog(this, "Bạn không có quyền thêm mới!", "Error!");
+            return;
+        }
         try {
-            if(!Messeger.confirm(this, "Bạn có chắc muốn sửa không?")){
+            if (!Messeger.confirm(this, "Bạn có chắc muốn sửa không?")) {
                 return;
             }
-            if(!this.checkMaLoaiKH()){
+            if (!this.checkMaLoaiKH()) {
                 Messeger.showErrorDialog(this, "Mã loại khách hàng chưa tồn tại!", "Error!");
                 return;
             }
-            if(XValidate.isEmpty(this.txtMaLoaiKH)){
+            if (XValidate.isEmpty(this.txtMaLoaiKH)) {
                 Messeger.showErrorDialog(this, "Không để trống mã loại khách hàng !", "Error!");
                 return;
             }
-            if(XValidate.isEmpty(this.txtTenLKH)){
+            if (XValidate.isEmpty(this.txtTenLKH)) {
                 Messeger.showErrorDialog(this, "Không để trống tên loại khách hàng !", "Error!");
                 return;
             }
-            LoaiKhachHang lKH= this.getFormLoaiKH();
+            LoaiKhachHang lKH = this.getFormLoaiKH();
             loaiKHDao.update(lKH);
             Messeger.alert(this, "Update loại khách hàng thành công!");
             this.fillToComBoBox();
             this.fillToTableLoaiKhachHang();
-            if(cbbLoaiKH.getItemCount() ==0){
+            if (cbbLoaiKH.getItemCount() == 0) {
                 khachHangModelTB.setRowCount(0);
             }
         } catch (Exception ex) {
@@ -891,15 +953,19 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSuaLKHActionPerformed
 
     private void btnXoaLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLKHActionPerformed
-         try {
-            if(!Messeger.confirm(this, "Bạn có chắc muốn xóa không?")){
+        if (!Auth.isManager()) {
+            Messeger.showErrorDialog(this, "Bạn không có quyền thêm mới!", "Error!");
+            return;
+        }
+        try {
+            if (!Messeger.confirm(this, "Bạn có chắc muốn xóa không?")) {
                 return;
             }
-            if(!this.checkMaLoaiKH()){
+            if (!this.checkMaLoaiKH()) {
                 Messeger.showErrorDialog(this, "Mã loại khách hàng chưa tồn tại!", "Error!");
                 return;
             }
-            if(XValidate.isEmpty(this.txtMaLoaiKH)){
+            if (XValidate.isEmpty(this.txtMaLoaiKH)) {
                 Messeger.showErrorDialog(this, "Không để trống mã loại khách hàng !", "Error!");
                 return;
             }
@@ -908,7 +974,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             Messeger.alert(this, "Xóa loại khách hàng thành công!");
             this.fillToComBoBox();
             this.fillToTableLoaiKhachHang();
-            if(cbbLoaiKH.getItemCount() ==0){
+            if (cbbLoaiKH.getItemCount() == 0) {
                 khachHangModelTB.setRowCount(0);
             }
         } catch (Exception ex) {
@@ -924,17 +990,94 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             int maLoaiKH = lKH.getMaLoaiKH();
             String hoTen = this.txtSearchByName.getText();
             String diaChi = this.txtSearchByName.getText();
-            List<Object[]> listSearchKH = khachHangDao.getThongTinKhachHang("%" + maKH +"%", maLoaiKH, "%" +hoTen+"%" ,"%" + diaChi+"%" );
+            List<Object[]> listSearchKH = khachHangDao.getThongTinKhachHang("%" + maKH + "%", maLoaiKH, "%" + hoTen + "%", "%" + diaChi + "%");
             khachHangModelTB.setRowCount(0);
-            for(Object[] KH : listSearchKH){ 
-                String GT =Boolean.parseBoolean(String.valueOf(KH[3]))? "Nam" : "Nữ";
-                khachHangModelTB.addRow(new Object[]{KH[0],KH[1],KH[2],GT,KH[4],KH[5],KH[6],KH[7],KH[8]});
+            for (Object[] KH : listSearchKH) {
+                String GT = Boolean.parseBoolean(String.valueOf(KH[3])) ? "Nam" : "Nữ";
+                khachHangModelTB.addRow(new Object[]{KH[0], KH[1], KH[2], GT, KH[4], KH[5], KH[6], KH[7], KH[8]});
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi tìm kiếm", "Error!");
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        try {
+            if (this.row <= 0) {
+                this.row = tblKhachHang.getRowCount();
+            }
+            this.row--;
+            String maKH = tblKhachHang.getValueAt(row, 0).toString();
+            KhachHang kH = khachHangDao.selectById(maKH);
+            this.setFormKhachHang(kH);
+            this.changeIndex(row + 1);
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng trước!", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPrevActionPerformed
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        try {
+            row = 0;
+            String maKH = tblKhachHang.getValueAt(row, 0).toString();
+            KhachHang kH = khachHangDao.selectById(maKH);
+            this.setFormKhachHang(kH);
+            this.changeIndex(row+1);
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng đầu tiên!", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        try {
+            this.row = tblKhachHang.getRowCount() - 1;
+            String maKH = tblKhachHang.getValueAt(row, 0).toString();
+            KhachHang kH = khachHangDao.selectById(maKH);
+            this.setFormKhachHang(kH);
+              this.changeIndex(row+1);
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng cuối cùng!", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        try {
+            if (this.row >= tblKhachHang.getRowCount()-1) {
+                this.row = -1;
+            }
+            this.row++;
+            String maKH = tblKhachHang.getValueAt(row, 0).toString();
+            KhachHang kH = khachHangDao.selectById(maKH);
+            this.setFormKhachHang(kH);
+            this.changeIndex(row+1);
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng tiếp theo!", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void txtSearchByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchByNameKeyReleased
+                try {
+            String maKH = this.txtSearchByName.getText();
+            LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
+            int maLoaiKH = lKH.getMaLoaiKH();
+            String hoTen = this.txtSearchByName.getText();
+            String diaChi = this.txtSearchByName.getText();
+            List<Object[]> listSearchKH = khachHangDao.getThongTinKhachHang("%" + maKH + "%", maLoaiKH, "%" + hoTen + "%", "%" + diaChi + "%");
+            khachHangModelTB.setRowCount(0);
+            for (Object[] KH : listSearchKH) {
+                String GT = Boolean.parseBoolean(String.valueOf(KH[3])) ? "Nam" : "Nữ";
+                khachHangModelTB.addRow(new Object[]{KH[0], KH[1], KH[2], GT, KH[4], KH[5], KH[6], KH[7], KH[8]});
+            }
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi tìm kiếm", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSearchByNameKeyReleased
 
     /**
      * @param args the command line arguments
@@ -979,8 +1122,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnNewLKH;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSuaKH;
     private javax.swing.JButton btnSuaLKH;
@@ -994,10 +1141,6 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cbbLoaiKH;
     private com.github.lgooddatepicker.components.DatePicker dateTime;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1056,8 +1199,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jpnTableLoaiKH;
     private javax.swing.JPanel jpnTitle;
     private javax.swing.JPanel jpnTitleLoaiKhachHang;
-    private javax.swing.JLabel lblLoaiKH;
+    private javax.swing.JLabel lblKHHoatDong;
     private javax.swing.JLabel lblMaKH;
+    private javax.swing.JLabel lblSoLuong;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JRadioButton rdoKhongTonTaiLKH;
     private javax.swing.JRadioButton rdoNam;
@@ -1082,9 +1226,9 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             loaiKhachHangComboBox.removeAllElements();
             ArrayList<LoaiKhachHang> listLoaiKH = loaiKHDao.selectAll();
             for (LoaiKhachHang lKH : listLoaiKH) {
-                if(lKH.isTrangThai()==true){
-                loaiKhachHangComboBox.addElement(lKH);
-            }
+                if (lKH.isTrangThai() == true) {
+                    loaiKhachHangComboBox.addElement(lKH);
+                }
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load Data loại khách hàng!", "Error!");
@@ -1095,44 +1239,45 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private void fillToTableKhachHang(int trangThaiKH) {
         try {
             khachHangModelTB.setRowCount(0);
-            if(cbbLoaiKH.getItemCount()> 0){
-            LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
-            KhachHang kH = new KhachHang();
-            
-            kH.setMaLoaiKH(lKH.getMaLoaiKH());
-            kH.setHoTen("");
-            
-            ArrayList<KhachHang> listKH = khachHangDao.selectWhere(kH);
-            for (KhachHang khachHang : listKH) {
-                // 1 tương tác
-                if (trangThaiKH == 1) {
-                    if (khachHang.isTrangThai()) {
-                        khachHangModelTB.addRow(new Object[]{
-                            khachHang.getMaKH(),
-                            khachHang.getHoTen(),
-                            khachHang.getDiaChi(),
-                            khachHang.isGioiTinh() ? "Nam" : "Nữ",
-                            khachHang.getEmail(),
-                            khachHang.getSDT(),
-                            XDate.toString(khachHang.getNgaySinh(), "dd/MM/yyyy"),
-                            XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
-                            khachHang.getTichDiem(),});
-                    }
-                } else if (trangThaiKH == 0) {  // 0 khách hàng k tương tác
-                    if (!khachHang.isTrangThai()) {
-                        khachHangModelTB.addRow(new Object[]{
-                            khachHang.getMaKH(),
-                            khachHang.getHoTen(),
-                            khachHang.getDiaChi(),
-                            khachHang.isGioiTinh() ? "Nam" : "Nữ",
-                            khachHang.getEmail(),
-                            khachHang.getSDT(),
-                            XDate.toString(khachHang.getNgaySinh(), "dd/MM/yyyy"),
-                            XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
-                            khachHang.getTichDiem(),});
+            if (cbbLoaiKH.getItemCount() > 0) {
+                LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
+                KhachHang kH = new KhachHang();
+                kH.setHoTen("");
+                kH.setMaLoaiKH(lKH.getMaLoaiKH());
+
+                ArrayList<KhachHang> listKH = khachHangDao.selectWhere(kH);
+                for (KhachHang khachHang : listKH) {
+                    // 1 tương tác
+                    if (trangThaiKH == 1) {
+                        if (khachHang.isTrangThai()) {
+                            khachHangModelTB.addRow(new Object[]{
+                                khachHang.getMaKH(),
+                                khachHang.getHoTen(),
+                                khachHang.getDiaChi(),
+                                khachHang.isGioiTinh() ? "Nam" : "Nữ",
+                                khachHang.getEmail(),
+                                khachHang.getSDT(),
+                                XDate.toString(khachHang.getNgaySinh(), "dd/MM/yyyy"),
+                                XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
+                                khachHang.getTichDiem(),});
+                        }
+                    } else if (trangThaiKH == 0) {  // 0 khách hàng k tương tác
+                        if (!khachHang.isTrangThai()) {
+                            khachHangModelTB.addRow(new Object[]{
+                                khachHang.getMaKH(),
+                                khachHang.getHoTen(),
+                                khachHang.getDiaChi(),
+                                khachHang.isGioiTinh() ? "Nam" : "Nữ",
+                                khachHang.getEmail(),
+                                khachHang.getSDT(),
+                                XDate.toString(khachHang.getNgaySinh(), "dd/MM/yyyy"),
+                                XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
+                                khachHang.getTichDiem(),});
+                        }
                     }
                 }
-            }
+            this.row = 0;
+           this.changeIndex(row);
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load Data Khách Hàng !", "Error!");
@@ -1158,6 +1303,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         }
         this.txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
+        tblKhachHang.setRowSelectionInterval(row, row);
     }
 
     private KhachHang getFormKhachHang() {
@@ -1245,7 +1391,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }
 
     private void showDetailLoaiKH() {
-         txtMaLoaiKH.setText(tblLoaiKH.getValueAt(rowLKH, 0).toString());
+        txtMaLoaiKH.setText(tblLoaiKH.getValueAt(rowLKH, 0).toString());
         txtTenLKH.setText(tblLoaiKH.getValueAt(rowLKH, 1).toString());
         if (tblLoaiKH.getValueAt(rowLKH, 2).toString().equalsIgnoreCase("Tồn Tại")) {
             this.rdoTonTaiLKH.setSelected(true);
@@ -1259,8 +1405,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         int maLKH = Integer.parseInt(this.txtMaLoaiKH.getText());
         try {
             ArrayList<LoaiKhachHang> listLoaiKH = loaiKHDao.selectAll();
-            for(LoaiKhachHang lKH : listLoaiKH){
-                if(lKH.getMaLoaiKH() == maLKH){
+            for (LoaiKhachHang lKH : listLoaiKH) {
+                if (lKH.getMaLoaiKH() == maLKH) {
                     return true;
                 }
             }
@@ -1276,7 +1422,38 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         LoaiKhachHang lKH = new LoaiKhachHang();
         lKH.setMaLoaiKH(Integer.parseInt(this.txtMaLoaiKH.getText()));
         lKH.setTenLoaiKH(this.txtTenLKH.getText());
-        lKH.setTrangThai(rdoTonTaiLKH.isSelected()? true : false);
+        lKH.setTrangThai(rdoTonTaiLKH.isSelected() ? true : false);
         return lKH;
+    }
+
+    private boolean checkFormKhachHang() {
+        StringBuilder sb = new StringBuilder();
+        if (XValidate.isEmpty(txtMaKhachHang)) {
+            sb.append("Không để trống mã khách hàng!\n");
+        }
+        if (XValidate.isEmpty(txtHoTen)) {
+            sb.append("Không để trống họ tên!\n");
+        }
+        if (XValidate.isEmpty(txtDiaChi)) {
+            sb.append("Không để trống địa chỉ!\n");
+        }
+        if (XValidate.isEmpty(txtSDT)) {
+            sb.append("Không để trống SDT!\n");
+        }
+        if (XValidate.isEmpty(txtEmailKhachHang)) {
+            sb.append("Không để trống Email!\n");
+        }
+        if (sb.length() > 0) {
+            Messeger.showErrorDialog(this, sb.toString(), "Error!");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void changeIndex(int row) {
+         if(tblKhachHang.getRowCount() > 0){
+                this.lblSoLuong.setText( row + " / "+tblKhachHang.getRowCount());
+            }
     }
 }

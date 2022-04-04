@@ -78,7 +78,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         initComponents();
 
         //full màn hình
-//        setSize(parent.getWidth(), parent.getHeight());
+        setSize(parent.getWidth(), parent.getHeight());
         setLocationRelativeTo(null);
 
         this.themDMJDialog.setModal(modal);
@@ -1185,7 +1185,7 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         StringBuilder sp = new StringBuilder();
         if (XValidate.isEmpty(txtTenSP)) {
-            sp.append("Không để trống tên sản phẩm!\n");
+            Messeger.showErrorDialog(this, "Không để trống tên sản phẩm!\n", "Lỗi");
             return;
         }
         saveSP();
