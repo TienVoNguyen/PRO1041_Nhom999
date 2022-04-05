@@ -7,11 +7,6 @@
 =======
         <group>
 <<<<<<< HEAD
-            <file>file:/C:/Users/maihuong/Desktop/PRO1041_Nhom999/999Sys/src/poly/helper/XValidate.java</file>
-            <file>file:/C:/Users/maihuong/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QL_CTSPJdialog.java</file>
-            <file>file:/C:/Users/maihuong/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QLSanPhamJDialog.java</file>
-=======
-<<<<<<< HEAD
             <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/entity/NhanVien.java</file>
             <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/gui/LoginJDialog.java</file>
             <file>file:/D:/Orange_Team/PRO1041_Nhom999/999Sys/src/poly/helper/Auth.java</file>
@@ -28,7 +23,6 @@
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/entity/KhachHang.java</file>
 >>>>>>> 09631fd9f9c657d507c9808e5cdfeed83415e98c
 >>>>>>> 5613752189b2dc5ab72a4de65252a8a3c47e83cc
->>>>>>> 5758bf6cda75bb4e297937fe72c1f3189638edd2
         </group>
 >>>>>>> 5758bf6cda75bb4e297937fe72c1f3189638edd2
     </open-files>
