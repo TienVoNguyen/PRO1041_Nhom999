@@ -12,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -38,8 +40,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author NTV
  */
 public class XExcel {
+    
 
-    public static void readExcel(DefaultTableModel model) throws Exception {
+    public static boolean readExcel(DefaultTableModel model) throws Exception {
         JFileChooser j = new JFileChooser();
         j.setDialogTitle("Chọn File Excel nhập: ");
         int r = j.showOpenDialog(null);
@@ -50,7 +53,7 @@ public class XExcel {
             excelFilePath = j.getSelectedFile().getAbsolutePath();
         } // if the user cancelled the operation
         else {
-            return;
+            return true;
         }
         model.setRowCount(0);
         // Get file
@@ -92,6 +95,7 @@ public class XExcel {
 
         workbook.close();
         inputStream.close();
+        return false;
 
     }
 
