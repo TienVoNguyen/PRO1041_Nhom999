@@ -291,7 +291,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 String tenKH = String.valueOf(((DefaultTableModel) table.getModel()).getValueAt(modelRow, 2));
                 for (int i = 0; i < pnlTabs.getTabCount(); i++) {
                     HoaDonJPanel hdpnl = (HoaDonJPanel) pnlTabs.getComponentAt(i);
-                    if (hdpnl.getLblTenKH().getToolTipText().equalsIgnoreCase(maKH)) {
+                    if (hdpnl.getLblTenKH().getToolTipText() != null && hdpnl.getLblTenKH().getToolTipText().equalsIgnoreCase(maKH)) {
                         if (Messeger.confirm(null, "Khách hàng này đang có hóa đơn chưa thanh toán!"
                                 + "\nBạn có muốn chuyển qua hóa đơn của khách hàng này không?")) {
                             pnlTabs.setSelectedIndex(i);
@@ -1092,7 +1092,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cbbDanhMucSPItemStateChanged
 
     private void btnThanhToamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToamActionPerformed
-        if (lblHoaDon.getToolTipText() == null) {
+        if (tblHoaDon.getRowCount() <= 0) {
             JOptionPane.showMessageDialog(this, "Không có sản phẩm để thanh toán");
             return;
         } else {
@@ -1422,6 +1422,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         this.dtmHoaDon.setRowCount(0);
         ArrayList<CTHoaDon> list = MainFrm.listCTHD;
         KhachHang kh = MainFrm.k;
+        if (kh != null) {
+            lblTenKH.setText(kh.getHoTen());
+            lblTenKH.setToolTipText(kh.getMaKH());
+        }
         for (CTHoaDon c : list) {
             try {
                 SanPham s = this.daoSP.selectById(c.getMaSP());
@@ -1436,10 +1440,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                     c.getSoLuong() * s.getGiaBan(),
                     c.getMaSP()
                 });
-                if (kh != null) {
-                    lblTenKH.setText(kh.getHoTen());
-                    lblTenKH.setToolTipText(kh.getMaKH());
-                }
 
                 tongTien();
             } catch (Exception ex) {
