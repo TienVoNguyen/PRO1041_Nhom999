@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import poly.entity.SanPham;
@@ -217,5 +219,20 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+    }
+    public SanPham getSanPhamByMaVach(String MaVach){
+    SanPham sp = new SanPham();
+    String sql = "select * from SANPHAM where TRANGTHAI = 1 and MAVACH = ? ";
+        try {
+            ResultSet rs = XJDBC.query(sql, MaVach);
+            if (rs.next()) {
+                sp = this.createEntity(rs);
+            }
+            rs.getStatement().getConnection().close();
+            return sp;
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
