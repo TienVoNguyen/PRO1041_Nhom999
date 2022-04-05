@@ -13,11 +13,15 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author XUÂN THÀNH
  */
-public class ImageColumn implements TableCellRenderer{
+public class ImageColumn implements TableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        return (Component) value;
+        try {
+            return (Component) value;
+        } catch (Exception e) {
+        }
+        return null;
     }
-    
+
 }

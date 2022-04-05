@@ -23,6 +23,8 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
                 return "SET IDENTITY_INSERT [dbo].[HOADON] ON  INSERT INTO HOADON (MAHOADON, MANV, MAKH, MATT, NGAYMUA, GIAMGIA, NGAYGIAOHANG, TIENSHIP, THANHTIEN) VALUES (?,?,?,?,?,?,?,?,?)  SET IDENTITY_INSERT [dbo].[HOADON] OFF";
             case "UPDATE":
                 return "UPDATE HOADON SET MANV =?, MAKH =?, MATT =?, NGAYMUA =?, GIAMGIA =?, NGAYGIAOHANG =?, TIENSHIP =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
+            case "UPDATEXOAMAKH":
+                return "UPDATE [dbo].[HOADON] SET [MAKH] = null WHERE [MAHOADON] = ?";
             case "DELETE":
                 return "DELETE FROM HOADON WHERE MAHOADON =?";
             case "SELECTBYID":
@@ -87,4 +89,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
         return (int) XJDBC.value(this.getQuery("SELECTMAXMAHD"));
     }
     
+    public boolean updateMaKH(int key) throws Exception {
+        return XJDBC.update(this.getQuery("UPDATEXOAMAKH"), key) > 0;
+    }
 }

@@ -5,12 +5,15 @@
  */
 package poly.helper;
 
+import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -37,8 +40,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author NTV
  */
 public class XExcel {
+    
 
-    public static void readExcel(DefaultTableModel model) throws Exception {
+    public static boolean readExcel(DefaultTableModel model) throws Exception {
         JFileChooser j = new JFileChooser();
         j.setDialogTitle("Chọn File Excel nhập: ");
         int r = j.showOpenDialog(null);
@@ -49,7 +53,7 @@ public class XExcel {
             excelFilePath = j.getSelectedFile().getAbsolutePath();
         } // if the user cancelled the operation
         else {
-            return;
+            return true;
         }
         model.setRowCount(0);
         // Get file
@@ -60,6 +64,7 @@ public class XExcel {
         Sheet sheet = workbook.getSheetAt(0);
         // Get all rows
         Iterator<Row> iterator = sheet.iterator();
+        int i = 0;
         while (iterator.hasNext()) {
             Row nextRow = iterator.next();
             if (nextRow.getRowNum() == 0) {
@@ -74,16 +79,23 @@ public class XExcel {
                 //Read cell
                 Cell cell = cellIterator.next();
                 Object cellValue = getCellValue(cell);
-                data.add(cellValue);
                 if (cellValue == null || cellValue.toString().isEmpty()) {
                     continue;
                 }
+                if (cell.getColumnIndex() == 12) {
+                    Component cpm = new java.awt.Component() {
+                    };
+                    cellValue = cpm;
+                }
+
+                data.add(cellValue);
             }
             model.addRow(data);
         }
 
         workbook.close();
         inputStream.close();
+        return false;
 
     }
 
@@ -189,11 +201,12 @@ public class XExcel {
         }
         String pattern = "^[0-9]{1,}$";
         String pattern2 = "^[0-9]{1,}.{0,1}[0-9]{0,}$";
+        String pattern3 = "^[0-9]{1,},{0,1}[0-9]{1,},{0,1}[0-9]{1,},{0,1}[0-9]{0,}$";
         for (int i = 0; i < jtable.getRowCount(); i++) {
             row = sheet.createRow(i + 1);
             for (int j = 0; j < jtable.getColumnCount(); j++) {
                 if (jtable.getValueAt(i, j) != null) {
-                    if (jtable.getValueAt(i, j).toString().contains(",")) {
+                    if (jtable.getValueAt(i, j).toString().contains(",") && jtable.getValueAt(i, j).toString().matches(pattern3)) {
                         cell = row.createCell(j, CellType.NUMERIC);
                         String a = jtable.getValueAt(i, j).toString().replaceAll(",", "");
                         double b = Double.parseDouble(a);
