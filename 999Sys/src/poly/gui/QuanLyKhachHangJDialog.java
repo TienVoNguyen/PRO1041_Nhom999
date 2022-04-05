@@ -6,6 +6,7 @@
 package poly.gui;
 
 import java.awt.Color;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,7 @@ import poly.helper.Auth;
 import poly.helper.CustomDatePicker;
 import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XExcel;
 import poly.helper.XValidate;
 
 /**
@@ -83,7 +85,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         txtSearchByName = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
+        btnXuatExcel = new javax.swing.JButton();
         jpnTableKhachHang = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
@@ -266,11 +268,16 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
 
         jPanel9.setLayout(new java.awt.BorderLayout());
 
-        jButton8.setText("Xuất Exel");
-        jButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton8.setPreferredSize(new java.awt.Dimension(80, 17));
-        jPanel9.add(jButton8, java.awt.BorderLayout.CENTER);
+        btnXuatExcel.setText("Xuất Exel");
+        btnXuatExcel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnXuatExcel.setPreferredSize(new java.awt.Dimension(80, 17));
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
+        jPanel9.add(btnXuatExcel, java.awt.BorderLayout.CENTER);
 
         jpnKH_Search.add(jPanel9, java.awt.BorderLayout.LINE_END);
 
@@ -427,6 +434,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnFormTextField.setLayout(new java.awt.GridLayout(5, 2, 15, 5));
 
         jPanel14.setLayout(new java.awt.BorderLayout());
+
+        txtMaKhachHang.setNextFocusableComponent(txtHoTen);
         jPanel14.add(txtMaKhachHang, java.awt.BorderLayout.CENTER);
 
         lblMaKH.setText("  Mã KH :");
@@ -448,6 +457,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnFormTextField.add(jPanel13);
 
         jPanel21.setLayout(new java.awt.BorderLayout());
+
+        txtHoTen.setNextFocusableComponent(txtDiaChi);
         jPanel21.add(txtHoTen, java.awt.BorderLayout.CENTER);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -469,6 +480,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnFormTextField.add(jPanel20);
 
         jPanel19.setLayout(new java.awt.BorderLayout());
+
+        txtDiaChi.setNextFocusableComponent(txtSDT);
         jPanel19.add(txtDiaChi, java.awt.BorderLayout.CENTER);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -810,7 +823,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
-        if(!Auth.isManager()){
+        if (!Auth.isManager()) {
             Messeger.showErrorDialog(this, "Bạn không có quyền xóa!", "Error!");
             return;
         }
@@ -819,8 +832,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             this.txtMaKhachHang.setBackground(Color.YELLOW);
             Messeger.showErrorDialog(this, "Chọn vị trí bạn muốn xóa/ hãy nhập mã muốn xóa", "Error!");
             return;
-        }else{
-             this.txtMaKhachHang.setBackground(Color.WHITE);
+        } else {
+            this.txtMaKhachHang.setBackground(Color.WHITE);
         }
         if (!Messeger.confirm(this, "Bạn có chắc muốn xóa khách hàng này?")) {
             return;
@@ -908,13 +921,13 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             Messeger.showErrorDialog(this, "Bạn không có quyền thêm mới!", "Error!");
             return;
         }
+        if (XValidate.isEmpty(this.txtTenLKH)) {
+            Messeger.showErrorDialog(this, "Không để trống tên loại khách hàng !", "Error!");
+            return;
+        }
         try {
             if (this.checkMaLoaiKH()) {
                 Messeger.showErrorDialog(this, "Mã loại khách hàng đã tồn tại!", "Error!");
-                return;
-            }
-            if (XValidate.isEmpty(this.txtTenLKH)) {
-                Messeger.showErrorDialog(this, "Không để trống tên loại khách hàng !", "Error!");
                 return;
             }
             LoaiKhachHang lKH = this.getFormLoaiKH();
@@ -933,22 +946,24 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             Messeger.showErrorDialog(this, "Bạn không có quyền thêm mới!", "Error!");
             return;
         }
+        if (XValidate.isEmpty(this.txtMaLoaiKH)) {
+            Messeger.showErrorDialog(this, "Không để trống mã loại khách hàng !", "Error!");
+            return;
+        }
+        if (XValidate.isEmpty(this.txtTenLKH)) {
+            Messeger.showErrorDialog(this, "Không để trống tên loại khách hàng !", "Error!");
+            return;
+        }
         try {
             if (!Messeger.confirm(this, "Bạn có chắc muốn sửa không?")) {
                 return;
             }
+
             if (!this.checkMaLoaiKH()) {
                 Messeger.showErrorDialog(this, "Mã loại khách hàng chưa tồn tại!", "Error!");
                 return;
             }
-            if (XValidate.isEmpty(this.txtMaLoaiKH)) {
-                Messeger.showErrorDialog(this, "Không để trống mã loại khách hàng !", "Error!");
-                return;
-            }
-            if (XValidate.isEmpty(this.txtTenLKH)) {
-                Messeger.showErrorDialog(this, "Không để trống tên loại khách hàng !", "Error!");
-                return;
-            }
+
             LoaiKhachHang lKH = this.getFormLoaiKH();
             loaiKHDao.update(lKH);
             Messeger.alert(this, "Update loại khách hàng thành công!");
@@ -968,6 +983,10 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             Messeger.showErrorDialog(this, "Bạn không có quyền thêm mới!", "Error!");
             return;
         }
+        if (XValidate.isEmpty(this.txtMaLoaiKH)) {
+            Messeger.showErrorDialog(this, "Không để trống mã loại khách hàng !", "Error!");
+            return;
+        }
         try {
             if (!Messeger.confirm(this, "Bạn có chắc muốn xóa không?")) {
                 return;
@@ -976,10 +995,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
                 Messeger.showErrorDialog(this, "Mã loại khách hàng chưa tồn tại!", "Error!");
                 return;
             }
-            if (XValidate.isEmpty(this.txtMaLoaiKH)) {
-                Messeger.showErrorDialog(this, "Không để trống mã loại khách hàng !", "Error!");
-                return;
-            }
+
             String maLKH = txtMaLoaiKH.getText();
             loaiKHDao.delete(maLKH);
             Messeger.alert(this, "Xóa loại khách hàng thành công!");
@@ -1035,7 +1051,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-            this.changeIndex(row+1);
+            this.changeIndex(row + 1);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng đầu tiên!", "Error!");
             ex.printStackTrace();
@@ -1048,7 +1064,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-              this.changeIndex(row+1);
+            this.changeIndex(row + 1);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng cuối cùng!", "Error!");
             ex.printStackTrace();
@@ -1057,14 +1073,14 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         try {
-            if (this.row >= tblKhachHang.getRowCount()-1) {
+            if (this.row >= tblKhachHang.getRowCount() - 1) {
                 this.row = -1;
             }
             this.row++;
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-            this.changeIndex(row+1);
+            this.changeIndex(row + 1);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng tiếp theo!", "Error!");
             ex.printStackTrace();
@@ -1072,7 +1088,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void txtSearchByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchByNameKeyReleased
-                try {
+        try {
             String maKH = this.txtSearchByName.getText();
             LoaiKhachHang lKH = (LoaiKhachHang) cbbLoaiKH.getSelectedItem();
             int maLoaiKH = lKH.getMaLoaiKH();
@@ -1089,6 +1105,20 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_txtSearchByNameKeyReleased
+
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        try {
+            File file = XExcel.xuatExcel(this.tblKhachHang, "KhachHang" + XDate.toString(new Date(), "ddMMyyyyhhmmss"));
+            if(file == null){
+                return;
+            }
+            Messeger.alert(this,"Xuất file Excel thành công!");
+            
+        } catch (Exception ex) {
+            Messeger.showErrorDialog( this, "Lỗi xuất file Excel !", "Error!");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1147,12 +1177,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnTrangThai;
     private javax.swing.JButton btnXoaKH;
     private javax.swing.JButton btnXoaLKH;
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cbbLoaiKH;
     private com.github.lgooddatepicker.components.DatePicker dateTime;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1287,8 +1317,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
                         }
                     }
                 }
-            this.row = 0;
-           this.changeIndex(row);
+                this.row = 0;
+                this.changeIndex(row);
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load Data Khách Hàng !", "Error!");
@@ -1353,7 +1383,6 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         this.txtDiaChi.setBackground(Color.WHITE);
         this.txtEmailKhachHang.setBackground(Color.WHITE);
         this.txtSDT.setBackground(Color.WHITE);
-      
     }
 
     private boolean checkMaKH() {
@@ -1405,6 +1434,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         txtMaLoaiKH.setText("");
         txtTenLKH.setText("");
         rdoTonTaiLKH.setSelected(true);
+        txtMaLoaiKH.setBackground(Color.WHITE);
+        txtTenLKH.setBackground(Color.WHITE);
     }
 
     private void showDetailLoaiKH() {
@@ -1457,11 +1488,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         if (XValidate.isEmpty(txtSDT)) {
             sb.append("Không để trống SDT!\n");
         }
-        
+
         if (XValidate.isEmpty(txtEmailKhachHang)) {
             sb.append("Không để trống Email!\n");
         }
-       // if(XValidate.isNotEmail(txtDiaChi))
+        // if(XValidate.isNotEmail(txtDiaChi))
         if (sb.length() > 0) {
             Messeger.showErrorDialog(this, sb.toString(), "Error!");
             return true;
@@ -1471,8 +1502,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }
 
     private void changeIndex(int row) {
-         if(tblKhachHang.getRowCount() > 0){
-                this.lblSoLuong.setText( row + " / "+tblKhachHang.getRowCount());
-            }
+        if (tblKhachHang.getRowCount() > 0) {
+            this.lblSoLuong.setText(row + " / " + tblKhachHang.getRowCount());
+        }
     }
 }

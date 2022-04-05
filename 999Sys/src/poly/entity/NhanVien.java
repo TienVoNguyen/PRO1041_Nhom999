@@ -14,14 +14,14 @@ public class NhanVien {
     private String maNV, passWord, hoTen, ngSinh;
     private boolean gioiTinh;
     private String Email, SDT, diaChi, hinhAnh;
-    private String vaiTro;
+    private int vaiTro;
     private String ngayTao;
     private boolean trangThai;
 
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String passWord, String hoTen, String ngSinh, boolean gioiTinh, String Email, String SDT, String diaChi, String hinhAnh, String vaiTro, String ngayTao, boolean trangThai) {
+    public NhanVien(String maNV, String passWord, String hoTen, String ngSinh, boolean gioiTinh, String Email, String SDT, String diaChi, String hinhAnh, int vaiTro, String ngayTao, boolean trangThai) {
         this.maNV = maNV;
         this.passWord = passWord;
         this.hoTen = hoTen;
@@ -108,11 +108,11 @@ public class NhanVien {
         this.hinhAnh = hinhAnh;
     }
 
-    public String getVaiTro() {
+    public int getVaiTro() {
         return vaiTro;
     }
 
-    public void setVaiTro(String vaiTro) {
+    public void setVaiTro(int vaiTro) {
         this.vaiTro = vaiTro;
     }
     
