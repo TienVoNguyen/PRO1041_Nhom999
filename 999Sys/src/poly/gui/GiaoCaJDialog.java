@@ -296,6 +296,11 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnHuy.setText("Huỷ");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
         jPanel7.add(btnHuy);
 
         jPanel6.add(jPanel7, java.awt.BorderLayout.EAST);
@@ -359,18 +364,38 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
                     + Double.parseDouble(txtTienPhatSinh.getText());
         }
         lblTongTien.setText(df.format(tongtien));
-    }//GEN-LAST:event_txtTienPhatSinhKeyReleased
-
-    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO add your handling code here:
-        if (!txtTienPhatSinh.getText().isEmpty()) {
-            if (txtGhiChu.getText().isEmpty()) {
-                Messeger.showErrorDialog(null, "Mời điền lí do phát sinh", "Lỗi");
+        if (tongtien <= 1000000) {
+            if (Messeger.confirm(null, "Khoản tiền duy trì hoạt động không đủ, tiếp tục?")) {
                 return;
             }
         }
 
+    }//GEN-LAST:event_txtTienPhatSinhKeyReleased
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        try {
+            // TODO add your handling code here:
+            if (!txtTienPhatSinh.getText().isEmpty()) {
+                if (txtGhiChu.getText().isEmpty()) {
+                    Messeger.showErrorDialog(null, "Mời điền lí do phát sinh", "Lỗi");
+                    return;
+                }
+            }
+            if (gcDAO.update(setEntity())) {
+                Messeger.alert(null, "Giao ca thành công!");
+            } else {
+                Messeger.showErrorDialog(null, "Giao ca thất bại!", "Lỗi giao ca");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnOkActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,6 +484,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         nvDAO = new NhanVienDao();
         gcDAO = new GiaoCaDAO();
+        setText();
         fillToCBBNV();
     }
 
@@ -471,7 +497,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
                 model.addElement(nhanVien);
             }
         } catch (Exception ex) {
-            Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -486,12 +512,11 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
             lblDTCa.setText(df.format(gc.getDoanhThuCa()));
             lblTongTien.setText(df.format(gc.getDoanhThuCa() + gc.getTienCoSo() - gc.getTienDaThuHoi()));
         } catch (Exception ex) {
-            Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
     private GiaoCa setEntity() {
-        NumberFormat df = NumberFormat.getInstance();
         GiaoCa gc = new GiaoCa();
         NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
         String endTime = XDate.toString(XDate.toDate(lblEndTime.getText(), "yyyy-MM-dd hh:mm"), "yyyy-MM-dd hh:mm");
