@@ -13,19 +13,17 @@ import java.util.Date;
  */
 public class KhachHang {
     private String maKH;
-    private int maLoaiKH;
+    private int maLoaiKH, tichDiem;
     private String hoTen;
     private Date ngaySinh,ngayTao;
     private boolean gioiTinh;
     private String email,SDT,diaChi;
     private boolean trangThai;
-    private int tichDiem;
-    public KhachHang() {
-    }
 
-    public KhachHang(String maKH, int maLoaiKH, String hoTen, Date ngaySinh, Date ngayTao, boolean gioiTinh, String email, String SDT, String diaChi, boolean trangThai, int tichDiem) {
+    public KhachHang(String maKH, int maLoaiKH, int tichDiem, String hoTen, Date ngaySinh, Date ngayTao, boolean gioiTinh, String email, String SDT, String diaChi, boolean trangThai) {
         this.maKH = maKH;
         this.maLoaiKH = maLoaiKH;
+        this.tichDiem = tichDiem;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.ngayTao = ngayTao;
@@ -34,7 +32,9 @@ public class KhachHang {
         this.SDT = SDT;
         this.diaChi = diaChi;
         this.trangThai = trangThai;
-        this.tichDiem = tichDiem;
+    }
+
+    public KhachHang() {
     }
 
     public String getMaKH() {
@@ -69,14 +69,6 @@ public class KhachHang {
         this.ngaySinh = ngaySinh;
     }
 
-    public Date getNgayTao() {
-        return ngayTao;
-    }
-
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
-    }
-
     public boolean isGioiTinh() {
         return gioiTinh;
     }
@@ -109,6 +101,14 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -116,7 +116,7 @@ public class KhachHang {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
+    
     public int getTichDiem() {
         return tichDiem;
     }
@@ -124,6 +124,4 @@ public class KhachHang {
     public void setTichDiem(int tichDiem) {
         this.tichDiem = tichDiem;
     }
-    
-
 }

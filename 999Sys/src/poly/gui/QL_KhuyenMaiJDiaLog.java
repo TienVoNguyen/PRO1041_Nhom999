@@ -8,6 +8,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.sql.Connection;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -698,8 +699,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-//        ResetForm();
-        Validate_Day();
+        ResetForm();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -716,21 +716,31 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
         if (radio_AD_HoaDon.isSelected()) {
             LoaiApDung = false;
-            kmDao.Update_NoMaSP(new KhuyenMai(
-                    Integer.parseInt(txtKhuyenMai.getText()),
-                    Double.parseDouble(txtGiamToiDa.getText()),
-                    Double.parseDouble(txtGiaTri.getText()),
-                    txtTenKhuyenMai.getText(),
-                    ngaybd,
-                    ngaykt,
-                    hinhthucAD,
-                    true,
-                    true));
-            LoadDataToTable_KM_HoaDon();
-            return;
+            KhuyenMai km = new KhuyenMai();
+            km.setMaKM(Integer.parseInt(txtKhuyenMai.getText()));
+            km.setGiamToiDa(Double.parseDouble(txtGiamToiDa.getText()));
+            km.setGiaTri(Double.parseDouble(txtGiaTri.getText()));
+            km.setHDToiThieu(Double.parseDouble(txthdtoithieu.getText()));
+            km.setTenKM(txtTenKhuyenMai.getText());
+            km.setNgayBD(ngaybd);
+            km.setNgayKT(ngaykt);
+            km.setHinhThucAD(hinhthucAD);
+            try {
+                if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không")) {
+                    return;
+                }
+                kmDao.Update_NoMaSP(km);
+                LoadDataToTable_KM_HoaDon();
+                return;
+            } catch (Exception ex) {
+                Logger.getLogger(QL_KhuyenMaiJDiaLog.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         try {
+            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không")) {
+                return;
+            }
             kmDao.update(new KhuyenMai(
                     Integer.parseInt(txtKhuyenMai.getText()),
                     Integer.parseInt(cbbSP.getSelectedItem().toString()),
@@ -765,7 +775,6 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 return;
             }
         }
-
         boolean hinhthucAD = true;
         boolean LoaiApDung = true;
         if (radioPT.isSelected()) {
@@ -785,6 +794,9 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                     Date date2 = sdf.parse(txtNgayBatDau.getText());
                     if (date1.before(date2)) { //d1>d2
                         try {
+                            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                                return;
+                            }
                             kmDao.insert(new KhuyenMai(
                                     Integer.parseInt(cbbSP.getSelectedItem().toString()),
                                     Double.parseDouble(txtGiamToiDa.getText()),
@@ -812,7 +824,6 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
 
         if (radio_AD_HoaDon.isSelected()) {
-
             KhuyenMai km = new KhuyenMai();
             km.setGiamToiDa(Double.parseDouble(txtGiamToiDa.getText()));
             km.setGiaTri(Double.parseDouble(txtGiaTri.getText()));
@@ -823,6 +834,9 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             km.setHinhThucAD(hinhthucAD);
             km.setLoaiKM(LoaiApDung);
             try {
+                if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                    return;
+                }
                 kmDao.Insert_NoMaSp(km);
                 LoadDataToTable_KM_HoaDon();
                 return;
@@ -832,6 +846,9 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
 
         try {
+            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                return;
+            }
             kmDao.insert(new KhuyenMai(
                     Integer.parseInt(cbbSP.getSelectedItem().toString()),
                     Double.parseDouble(txtGiamToiDa.getText()),
@@ -855,6 +872,9 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
 
         try {
+            if (!Messeger.confirm(this, "Bạn Có Muốn Xóa Không")) {
+                return;
+            }
             kmDao.delete(txtKhuyenMai.getText());
             LoadDataToTable_KM();
             LoadDataToTable_KM_HoaDon();
@@ -922,7 +942,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         } else {
             txtGiaTri.setText(String.valueOf(tblhethang.getValueAt(viTri, 2)).replace("%", ""));
         }
-        txtGiamToiDa.setText(String.valueOf(tblhethang.getValueAt(viTri, 3)));
+        txtGiamToiDa.setText(String.valueOf(tblhethang.getValueAt(viTri, 3)).replace("đ", ""));
         txtNgayBatDau.setText(String.valueOf(tblhethang.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tblhethang.getValueAt(viTri, 5)));
         model_sp.setSelectedItem(String.valueOf(String.valueOf(tblhethang.getValueAt(viTri, 6))));
@@ -1052,7 +1072,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         } else {
             txtGiaTri.setText(String.valueOf(tblqlkm.getValueAt(viTri, 2)).replace("%", ""));
         }
-        txtGiamToiDa.setText(String.valueOf(tblqlkm.getValueAt(viTri, 3)));
+        txtGiamToiDa.setText(String.valueOf(tblqlkm.getValueAt(viTri, 3)).replace("đ", ""));
         txtNgayBatDau.setText(String.valueOf(tblqlkm.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tblqlkm.getValueAt(viTri, 5)));
         model_sp.setSelectedItem(String.valueOf(String.valueOf(tblqlkm.getValueAt(viTri, 6))));
@@ -1156,7 +1176,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         LoadDataToTable_KM();
         LoadDataToTable_KM_HoaDon();
         txtKhuyenMai.setEnabled(false);
-       
+
     }
 
     private void LoadDataToTable_KM() {
@@ -1168,12 +1188,13 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                 String ngaybd = XDate.toString(XDate.toDate(get.getNgayBD(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 if (get.isTrangThai() & get.isLoaiKM()) {
-                    String Giatri = String.format("%.0f", get.getGiaTri());
+                    String Giatri = new DecimalFormat("0.####").format(get.getGiaTri());
                     if (Giatri.trim().length() <= 3) {
                         Giatri = Giatri + "%";
                     } else {
                         Giatri = Giatri + "đ";
                     }
+                   String giamgiatoida = new DecimalFormat("0.####").format(get.getGiamToiDa()) + "đ";
                     String LoaiKM = "Hóa Đơn";
                     if (get.isLoaiKM()) {
                         LoaiKM = "Sản Phẩm";
@@ -1182,7 +1203,7 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
                         get.getMaKM(),
                         get.getTenKM(),
                         Giatri,
-                        get.getGiamToiDa(),
+                        giamgiatoida,
                         ngaybd,
                         ngaykt,
                         get.getMaSP(),
@@ -1201,34 +1222,42 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
     private void LoadDataToTable_hethan() {
         model_tbl_HetHan.setRowCount(0);
-        try {
+         try {
             ArrayList<KhuyenMai> list_km = kmDao.selectAll();
             for (int i = 0; i < list_km.size(); i++) {
                 KhuyenMai get = list_km.get(i);
                 String ngaybd = XDate.toString(XDate.toDate(get.getNgayBD(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 String ngaykt = XDate.toString(XDate.toDate(get.getNgayKT(), "yyyy-MM-dd"), "dd/MM/yyyy");
                 if (!get.isTrangThai() & get.isLoaiKM()) {
-                    String magaming = String.format("%.0f", get.getGiaTri());
-                    if (magaming.trim().length() <= 3) {
-                        magaming = magaming + "%";
+                    String Giatri = new DecimalFormat("0.####").format(get.getGiaTri());
+                    if (Giatri.trim().length() <= 3) {
+                        Giatri = Giatri + "%";
                     } else {
-                        magaming = magaming + "đ";
+                        Giatri = Giatri + "đ";
+                    }
+                   String giamgiatoida = new DecimalFormat("0.####").format(get.getGiamToiDa()) + "đ";
+                    String LoaiKM = "Hóa Đơn";
+                    if (get.isLoaiKM()) {
+                        LoaiKM = "Sản Phẩm";
                     }
                     Object[] rowData = new Object[]{
                         get.getMaKM(),
                         get.getTenKM(),
-                        magaming,
-                        get.getGiamToiDa(),
+                        Giatri,
+                        giamgiatoida,
                         ngaybd,
                         ngaykt,
-                        get.getMaSP()
+                        get.getMaSP(),
+                        LoaiKM
                     };
                     model_tbl_HetHan.addRow(rowData);
                 }
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
 
     }
 
@@ -1303,6 +1332,10 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             x.append("Không Để Trống Giảm Giá Tối Đa\n");
         } else if (XValidate.isNotNumber_Double(txtGiamToiDa)) {
             x.append("Giảm Giá Tối Đa Phải Nhập Số\n");
+        } else if (radiovnd.isSelected() & !(Double.parseDouble(txtGiaTri.getText()) == Double.parseDouble(txtGiamToiDa.getText()))) {
+            if (XValidate.focus_Errol(false, txtGiamToiDa)) {
+                x.append("Khi Giảm Giá Bằng VND Giảm Giá Tối Đa Phải Bằng Giá Trị \n");
+            }
         } else if (XValidate.isEmpty(txtNgayBatDau)) {
             x.append("Không Để Trống Ngày Bắt Đầu Khuyến Mại\n");
         } else if (XValidate.IsNotDate(txtNgayBatDau)) {
@@ -1311,8 +1344,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
             x.append("Không Để Trống Ngày Kết Thúc Khuyến Mại\n");
         } else if (XValidate.IsNotDate(txtNgayKetThuc)) {
             x.append("Vui Lòng Nhập Đúng Định Dạng Ngày Tháng Năm(dd/MM/yyyy)\n");
-        }else if (!Validate_Day()) {
-          if (XValidate.focus_Errol(false, txtNgayBatDau)) {
+        } else if (!Validate_Day()) {
+            if (XValidate.focus_Errol(false, txtNgayBatDau)) {
                 x.append("Ngày Bất Đầu Không Được Lớn Hơn Ngày Kết Thúc \n");
             }
         } else if (radio_AD_HoaDon.isSelected() & XValidate.isEmpty(txthdtoithieu)) {
@@ -1406,8 +1439,8 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
 
     }
-    
-    private boolean Validate_Day(){
+
+    private boolean Validate_Day() {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date date1 = sdf.parse(txtNgayBatDau.getText());
@@ -1420,5 +1453,5 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
         return true;
     }
-    
+
 }

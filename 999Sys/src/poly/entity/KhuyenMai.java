@@ -64,8 +64,6 @@ public class KhuyenMai {
         this.LoaiKM = LoaiKM;
     }
 
-    
-    
 
     public boolean isLoaiKM() {
         return LoaiKM;

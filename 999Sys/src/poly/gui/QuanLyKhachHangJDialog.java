@@ -1100,6 +1100,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
             KhachHang kH = new KhachHang();
             
             kH.setMaLoaiKH(lKH.getMaLoaiKH());
+            kH.setHoTen("");
             
             ArrayList<KhachHang> listKH = khachHangDao.selectWhere(kH);
             for (KhachHang khachHang : listKH) {

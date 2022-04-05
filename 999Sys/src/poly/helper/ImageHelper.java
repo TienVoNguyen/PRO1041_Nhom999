@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
  */
 public class ImageHelper {
     public static Image getAppIcon(){
-        URL url = ImageHelper.class.getResource("/com/edusys/icons/logo-fpt16.png");
+        URL url = ImageHelper.class.getResource("/poly/icons/appIcon20.png");
         return new ImageIcon(url).getImage();
     }
     
