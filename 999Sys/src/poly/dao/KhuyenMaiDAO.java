@@ -42,7 +42,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
             case "INSERTNOMASP":
                 return "insert into KHUYENMAI(MASP,TENKM,LOAIKM,HINHTHUCAD,GIATRI,GIAMTOIDA,HDTOITHIEU,NGAYBATDAU,NGAYKETTHUC) values (null,?,?,?,?,?,?,?,?)";
             case "UPDATENULLMASP":
-                return "UPDATE KHUYENMAI SET TENKM =?, HINHTHUCAD =?, GIATRI =?, GIAMTOIDA =?, NGAYKETTHUC =?, NGAYBATDAU =? ,TRANGTHAI = 1 WHERE MAKM = ?";
+                return "UPDATE KHUYENMAI SET TENKM =?, HINHTHUCAD =?, GIATRI =?, GIAMTOIDA =?, NGAYKETTHUC =?, NGAYBATDAU =? ,HDTOITHIEU = ? ,TRANGTHAI = 1 WHERE MAKM = ?";
         }
         return "";
     }
@@ -91,6 +91,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                     obj.getGiamToiDa(),
                     obj.getNgayKT(),
                     obj.getNgayBD(),
+                    obj.getHDToiThieu(),
                     obj.getMaKM()
                 };
         }
