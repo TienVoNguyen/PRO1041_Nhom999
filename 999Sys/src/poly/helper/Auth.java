@@ -20,6 +20,6 @@ public class Auth {
         return Auth.user != null;
     }
     public static boolean isManager(){
-        return Auth.isLogin() && user.getVaiTro().substring(0, 2).equals("GD"); //lấy 2 ký tự đầu so sánh
+        return Auth.isLogin() && (user.getVaiTro()==101); //lấy 2 ký tự đầu so sánh
     }
 }
