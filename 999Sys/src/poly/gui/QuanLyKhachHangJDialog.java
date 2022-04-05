@@ -571,7 +571,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         );
         jpnSeparatorLayout.setVerticalGroup(
             jpnSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+            .addGap(0, 677, Short.MAX_VALUE)
         );
 
         jpnLoaiKH.add(jpnSeparator, java.awt.BorderLayout.LINE_START);
@@ -810,11 +810,17 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
-
+        if(!Auth.isManager()){
+            Messeger.showErrorDialog(this, "Bạn không có quyền xóa!", "Error!");
+            return;
+        }
         row = this.tblKhachHang.getSelectedRow();
-        if (row == -1) {
+        if (this.txtMaKhachHang.getText().isEmpty()) {
+            this.txtMaKhachHang.setBackground(Color.YELLOW);
             Messeger.showErrorDialog(this, "Chọn vị trí bạn muốn xóa/ hãy nhập mã muốn xóa", "Error!");
             return;
+        }else{
+             this.txtMaKhachHang.setBackground(Color.WHITE);
         }
         if (!Messeger.confirm(this, "Bạn có chắc muốn xóa khách hàng này?")) {
             return;
@@ -863,6 +869,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnTrangThaiActionPerformed
 
     private void btnTrangThaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseClicked
+        this.setFormKhachHang(new KhachHang());
         if (btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
             this.fillToTableKhachHang(1);
             jpnLoaiBangKH.setBackground(Color.red);
@@ -874,8 +881,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         }
         if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
             btnXoaKH.setEnabled(false);
+            btnThemKH.setEnabled(false);
+            btnNew.setEnabled(false);
         } else {
             btnXoaKH.setEnabled(true);
+            btnThemKH.setEnabled(true);
+            btnNew.setEnabled(true);
         }
     }//GEN-LAST:event_btnTrangThaiMouseClicked
 
@@ -1337,6 +1348,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private void clearFormKH() {
         KhachHang kH = new KhachHang();
         this.setFormKhachHang(kH);
+        this.txtMaKhachHang.setBackground(Color.WHITE);
+        this.txtHoTen.setBackground(Color.WHITE);
+        this.txtDiaChi.setBackground(Color.WHITE);
+        this.txtEmailKhachHang.setBackground(Color.WHITE);
+        this.txtSDT.setBackground(Color.WHITE);
+      
     }
 
     private boolean checkMaKH() {
@@ -1440,9 +1457,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         if (XValidate.isEmpty(txtSDT)) {
             sb.append("Không để trống SDT!\n");
         }
+        
         if (XValidate.isEmpty(txtEmailKhachHang)) {
             sb.append("Không để trống Email!\n");
         }
+       // if(XValidate.isNotEmail(txtDiaChi))
         if (sb.length() > 0) {
             Messeger.showErrorDialog(this, sb.toString(), "Error!");
             return true;

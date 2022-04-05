@@ -966,7 +966,6 @@ public class LoginJDialog extends javax.swing.JDialog {
                         ex.printStackTrace();
                     }
                 }
-
             }
         };
         t.start();

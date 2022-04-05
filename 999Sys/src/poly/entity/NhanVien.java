@@ -115,9 +115,7 @@ public class NhanVien {
     public void setVaiTro(String vaiTro) {
         this.vaiTro = vaiTro;
     }
-
- 
-
+    
     public String getNgayTao() {
         return ngayTao;
     }
@@ -133,5 +131,4 @@ public class NhanVien {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
 }
