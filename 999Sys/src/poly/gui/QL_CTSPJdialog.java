@@ -134,6 +134,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         btn_Them_qlMauSac = new javax.swing.JButton();
         btn_Xoa_qlMauSac = new javax.swing.JButton();
         btn_Sua_qlMauSac = new javax.swing.JButton();
+        btn_TrangThai_MS = new javax.swing.JButton();
         btn_Change_TableMauSac = new javax.swing.JButton();
         cardGocMauSac = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -754,6 +755,13 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             }
         });
 
+        btn_TrangThai_MS.setText("Chuyển Trạng Thái");
+        btn_TrangThai_MS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TrangThai_MSActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -767,17 +775,21 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 .addComponent(btn_Sua_qlMauSac)
                 .addGap(18, 18, 18)
                 .addComponent(btn_Xoa_qlMauSac)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_TrangThai_MS)
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Moi_qlMauSac)
-                    .addComponent(btn_Them_qlMauSac)
-                    .addComponent(btn_Sua_qlMauSac)
-                    .addComponent(btn_Xoa_qlMauSac))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_Moi_qlMauSac)
+                        .addComponent(btn_Them_qlMauSac)
+                        .addComponent(btn_Sua_qlMauSac)
+                        .addComponent(btn_Xoa_qlMauSac))
+                    .addComponent(btn_TrangThai_MS, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -833,7 +845,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -889,15 +901,12 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             MauSacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MauSacLayout.createSequentialGroup()
                 .addGroup(MauSacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MauSacLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(cardGocMauSac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(MauSacLayout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Change_TableMauSac)))
+                        .addComponent(btn_Change_TableMauSac))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MauSacLayout.setVerticalGroup(
@@ -909,7 +918,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(btn_Change_TableMauSac, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cardGocMauSac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1267,14 +1276,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã DVT", "Tên DVT"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1291,12 +1300,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             }
         });
         jScrollPane8.setViewportView(tblDVT);
-        if (tblDVT.getColumnModel().getColumnCount() > 0) {
-            tblDVT.getColumnModel().getColumn(2).setResizable(false);
-            tblDVT.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            tblDVT.getColumnModel().getColumn(3).setResizable(false);
-            tblDVT.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-        }
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -1322,7 +1325,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã DVT", "Tên DVT", "Title 3", "Title 4"
             }
         ) {
             Class[] types = new Class [] {
@@ -1347,6 +1350,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         });
         jScrollPane9.setViewportView(tblDVTHetHan);
         if (tblDVTHetHan.getColumnModel().getColumnCount() > 0) {
+            tblDVTHetHan.getColumnModel().getColumn(2).setResizable(false);
             tblDVTHetHan.getColumnModel().getColumn(3).setResizable(false);
         }
 
@@ -1419,16 +1423,17 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Moi_qlSizeActionPerformed
 
     private void btn_Them_qlSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlSizeActionPerformed
+        if (XValidate.isEmpty(txtSize_TenSize)) { // validate 
+            Messeger.showErrorDialog(this, "Không để trống tên size", "Lỗi");
+            return;
+        }
         for (int i = 0; i < tblSize.getRowCount(); i++) {
             if (tblSize.getValueAt(i, 0).toString().trim().equals(txtSize_MaSize.getText().trim())) {
                 Messeger.alert(this, "Đã Có Mã Trên");
                 return;
             }
         }
-        if (XValidate.isEmpty(txtSize_TenSize)) {
-            Messeger.showErrorDialog(this, "Không để trống tên size", "Lỗi");
-            return;
-        }
+
         for (int i = 0; i < tblSize_HetHan.getRowCount(); i++) {
             if (txtSize_MaSize.getText().trim().equals(tblSize_HetHan.getValueAt(i, 0))) {
                 String tensize = tblSize_HetHan.getValueAt(i, 1).toString();
@@ -1533,10 +1538,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Moi_qlDanhMucActionPerformed
 
     private void btn_Them_qlDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlDanhMucActionPerformed
-        if (txtDanhMuc_MaDM.getText().trim().length() > 0 | txtDanhMuc_NgayThem.getText().trim().length() > 0) {
-            Messeger.alert(this, "Khi Thêm Danh Mục , Không Cần Nhập Mã Danh Mục Và Ngày Thêm ");
-            txtDanhMuc_MaDM.setText("");
-            txtDanhMuc_NgayThem.setText("");
+//        if (txtDanhMuc_MaDM.getText().trim().length() > 0 | txtDanhMuc_NgayThem.getText().trim().length() > 0) {
+//            Messeger.alert(this, "Khi Thêm Danh Mục , Không Cần Nhập Mã Danh Mục Và Ngày Thêm ");
+//            txtDanhMuc_MaDM.setText("");
+//            txtDanhMuc_NgayThem.setText("");
+//            return;
+//        }
+    
+        if (!Validate_DanhMuc()) {
             return;
         }
         String x = String.valueOf(java.time.LocalDate.now());
@@ -1561,6 +1570,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                     dao_dm.delete(txtDanhMuc_MaDM.getText());
                     LoadDataToTableDanhMuc();
                     LoadDataToTableDanhMucHetHan();
+                    ResetText(txtDanhMuc_MaDM, txtDanhMuc_TenDM,txtDanhMuc_NgayThem);
                     return;
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -1651,7 +1661,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
                 return;
             }
-            if(XValidate.isEmpty(txtMauSac_TenMau)){
+            if (XValidate.isEmpty(txtMauSac_TenMau)) {
                 Messeger.showErrorDialog(this, "Không để trống tên màu sắc", "Lỗi");
                 return;
             }
@@ -1664,17 +1674,23 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Them_qlMauSacActionPerformed
 
     private void btn_Xoa_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlMauSacActionPerformed
-        if (!Messeger.confirm(this, "Bạn Có Xóa Không ?")) {
+        if (tblMauSac.getSelectedRow() == -1) {
+            Messeger.alert(this, " Vui Lòng Chọn Trên table Để Xóa");
             return;
         }
-        if(XValidate.isEmpty(txtMauSac_MaMau)){
-                Messeger.showErrorDialog(this, "Không để trống mã màu sắc", "Lỗi");
+
+        if (XValidate.isEmpty(txtMauSac_MaMau)) {
+            Messeger.showErrorDialog(this, "Không để trống mã màu sắc", "Lỗi");
+            return;
+        }
+        try {
+            if (!Messeger.confirm(this, "Bạn Có Xóa Không ?")) {
                 return;
             }
-        try {
             dao_ms.delete(txtMauSac_MaMau.getText());
             LoadDataToTableMauSac();
             LoadDataToTableMauSacHetHan();
+            ResetText(txtMauSac_MaMau, txtMauSac_TenMau);
             return;
         } catch (Exception ex) {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -1684,18 +1700,18 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_Xoa_qlMauSacActionPerformed
 
     private void btn_Sua_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlMauSacActionPerformed
-        if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không ?")) {
+        if (tblMauSac.getSelectedRow() == -1) {
+            Messeger.alert(this, " Vui Lòng Chọn Trên table Để Sửa");
             return;
         }
-        if(XValidate.isEmpty(txtMauSac_MaMau)){
-                Messeger.showErrorDialog(this, "Không để trống mã màu sắc", "Lỗi");
-                return;
-            }
-        if(XValidate.isEmpty(txtMauSac_TenMau)){
-                Messeger.showErrorDialog(this, "Không để trống tên màu sắc", "Lỗi");
-                return;
-            }
+        if (XValidate.isEmpty(txtMauSac_TenMau)) {
+            Messeger.showErrorDialog(this, "Không để trống tên màu sắc", "Lỗi");
+            return;
+        }
         try {
+            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không ?")) {
+                return;
+            }
             dao_ms.update(new MauSac(Integer.parseInt(txtMauSac_MaMau.getText()), txtMauSac_TenMau.getText(), true));
             LoadDataToTableMauSac();
             return;
@@ -1766,7 +1782,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                     true));
             LoadDataToTableDanhMuc();
             LoadDataToTableDanhMucHetHan();
-            return;
+            Messeger.alert(this, "Chuyển Trạng Thái Thành Công");
         } catch (Exception ex) {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1787,7 +1803,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             dao_cl.update(new ChatLieu(Integer.parseInt(tblCLHetHan.getValueAt(viTri, 0).toString()), tblCLHetHan.getValueAt(viTri, 1).toString(), true));
             LoadDataToTableChatLieu();
             LoadDataToTableChatLieuHetHan();
-            return;
+            Messeger.alert(this, "Chuyển Trạng Thái Thành Công");
         } catch (Exception ex) {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1799,11 +1815,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
     private void btn_Them_qlChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlChatLieuActionPerformed
         try {
-            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+            if (XValidate.isEmpty(txtCL_TenCL)) {
+                Messeger.showErrorDialog(this, "Không để trống tên chất liệu", "Lỗi");
                 return;
             }
-            if(XValidate .isEmpty(txtCL_TenCL)){
-                Messeger.showErrorDialog(this, "Không để trống tên chất liệu", "Lỗi");
+            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
                 return;
             }
             dao_cl.insert(new ChatLieu(txtCL_TenCL.getText(), true));
@@ -1816,15 +1832,20 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
     private void btn_Sua_qlChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlChatLieuActionPerformed
         try {
-            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa  Không")) {
+            if (tblCL.getSelectedRow() == -1) {
+                Messeger.alert(this, " Vui Lòng Chọn Trên table Để Sửa");
                 return;
             }
-            if(XValidate .isEmpty(txtCL_MaCL)){
+
+            if (XValidate.isEmpty(txtCL_MaCL)) {
                 Messeger.showErrorDialog(this, "Không để trống mã chất liệu", "Lỗi");
                 return;
             }
-            if(XValidate .isEmpty(txtCL_TenCL)){
+            if (XValidate.isEmpty(txtCL_TenCL)) {
                 Messeger.showErrorDialog(this, "Không để trống tên chất liệu", "Lỗi");
+                return;
+            }
+            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa  Không")) {
                 return;
             }
             dao_cl.update(new ChatLieu(Integer.parseInt(txtCL_MaCL.getText()), txtCL_TenCL.getText(), true));
@@ -1837,11 +1858,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
     private void btn_Xoa_qlChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Xoa_qlChatLieuActionPerformed
         try {
-            if (!Messeger.confirm(this, "Bạn Có Muốn Xóa  Không")) {
+            if (tblCL.getSelectedRow() == -1) {
+                Messeger.alert(this, " Vui Lòng Chọn Trên table Để Xóa");
                 return;
             }
-            if(XValidate .isEmpty(txtCL_MaCL)){
-                Messeger.showErrorDialog(this, "Không để trống mã chất liệu", "Lỗi");
+            if (!Messeger.confirm(this, "Bạn Có Muốn Xóa  Không")) {
                 return;
             }
             dao_cl.delete(txtCL_MaCL.getText());
@@ -1885,7 +1906,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn có muốn thêm không?")) {
                 return;
             }
-            if(XValidate .isEmpty(txtDVT_TenDVT)){
+            if (XValidate.isEmpty(txtDVT_TenDVT)) {
                 Messeger.showErrorDialog(this, "Không để trống tên đơn vị tính", "Lỗi");
                 return;
             }
@@ -1899,14 +1920,11 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
     private void btn_Sua_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sua_qlDVTActionPerformed
         try {
-            if (!Messeger.confirm(this, "Bạn có muốn sửa không?")) {
+            if (tblDVT.getSelectedRow() == -1) {
+                Messeger.alert(this, " Vui Lòng Chọn Trên table Để Sửa");
                 return;
             }
-            if(XValidate .isEmpty(txtDVT_MaDVT)){
-                Messeger.showErrorDialog(this, "Không để trống mã đơn vị tính", "Lỗi");
-                return;
-            }
-            if(XValidate .isEmpty(txtDVT_TenDVT)){
+            if (XValidate.isEmpty(txtDVT_TenDVT)) {
                 Messeger.showErrorDialog(this, "Không để trống tên đơn vị tính", "Lỗi");
                 return;
             }
@@ -1914,11 +1932,14 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
                 Messeger.showErrorDialog(this, "Mã không tồn tại", "Error!");
                 return;
             }
+            if (!Messeger.confirm(this, "Bạn có muốn sửa không?")) {
+                return;
+            }
             boolean trangThai = btn_Change_TableDVT.getText().trim().equalsIgnoreCase("Hết Hạn") ? true : false;
             dao_dvt.update(new DonViTinh(Integer.parseInt(txtDVT_MaDVT.getText()), txtDVT_TenDVT.getText(), trangThai));
             this.LoadDataToTableDVT();
             this.LoadDataToTableDVTHetHan();
-            return;
+            
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi sửa đơn vị tính!", "Error!");
             ex.printStackTrace();
@@ -1930,7 +1951,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             if (!Messeger.confirm(this, "Bạn có muốn xóa không?")) {
                 return;
             }
-            if(XValidate .isEmpty(txtDVT_MaDVT)){
+            if (XValidate.isEmpty(txtDVT_MaDVT)) {
                 Messeger.showErrorDialog(this, "Không để trống mã đơn vị tính", "Lỗi");
                 return;
             }
@@ -1941,7 +1962,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             dao_dvt.update(new DonViTinh(Integer.parseInt(txtDVT_MaDVT.getText()), txtDVT_TenDVT.getText(), false));
             this.LoadDataToTableDVTHetHan();
             this.LoadDataToTableDVT();
-            return;
+            ResetText(txtDVT_MaDVT, txtDVT_TenDVT);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi xóa đơn vị tính!", "Error!");
             ex.printStackTrace();
@@ -1977,7 +1998,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             dao_dvt.update(new DonViTinh(Integer.parseInt(String.valueOf(tblDVTHetHan.getValueAt(viTri, 0))), String.valueOf(tblDVTHetHan.getValueAt(viTri, 1)), true));
             LoadDataToTableDVT();
             LoadDataToTableDVTHetHan();
-            return;
+            Messeger.alert(this, "Chuyển Trạng Thái Thành Công");
         } catch (Exception ex) {
             Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1999,6 +2020,23 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
         this.Settext(tblDVT, txtDVT_MaDVT, txtDVT_TenDVT, viTri);
 
     }//GEN-LAST:event_tblDVTMouseClicked
+
+    private void btn_TrangThai_MSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TrangThai_MSActionPerformed
+        int viTri = tblMauSacHetHan.getSelectedRow();
+        if (viTri == -1) {
+            Messeger.alert(this, "Vui Lòng Chọn Sản Phẩm Muốn Chuyển");
+            return;
+        }
+        try {
+            dao_ms.update(new MauSac(Integer.parseInt(tblMauSacHetHan.getValueAt(viTri, 0).toString()), tblMauSacHetHan.getValueAt(viTri, 1).toString(), true));
+            LoadDataToTableMauSac();
+            LoadDataToTableMauSacHetHan();
+            Messeger.alert(this, "Chuyển Đổi Trạng Thái Thành Công");
+        } catch (Exception ex) {
+            Logger.getLogger(QL_CTSPJdialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_TrangThai_MSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2029,6 +2067,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 QL_CTSPJdialog dialog = new QL_CTSPJdialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -2071,6 +2110,7 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     private javax.swing.JButton btn_TrangThai_CL;
     private javax.swing.JButton btn_TrangThai_DanhMuc;
     private javax.swing.JButton btn_TrangThai_DonViTinh;
+    private javax.swing.JButton btn_TrangThai_MS;
     private javax.swing.JButton btn_TrangThai_Size;
     private javax.swing.JButton btn_Xoa_qlChatLieu;
     private javax.swing.JButton btn_Xoa_qlDVT;
@@ -2159,7 +2199,6 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
     }
 
     private void init_Size() {
-        txtSize_MaSize.setEditable(false);
         btn_TrangThai_Size.setVisible(false);
         dao_size = new SizeDao();
         modelTBL_Size = (DefaultTableModel) tblSize.getModel();
@@ -2469,5 +2508,13 @@ public class QL_CTSPJdialog extends javax.swing.JDialog {
             ex.printStackTrace();
             return false;
         }
+    }
+    
+    private boolean Validate_DanhMuc(){
+        if (XValidate.isEmpty(txtDanhMuc_TenDM)) {
+            Messeger.showErrorDialog(this, "Vui Lòng Nhập Tên Danh Mục", "lỗi");
+            return false;
+        }
+    return true;
     }
 }

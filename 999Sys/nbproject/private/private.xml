@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
 <<<<<<< HEAD
             <file>file:/C:/Users/maihuong/Desktop/PRO1041_Nhom999/999Sys/src/poly/helper/XValidate.java</file>
@@ -27,5 +30,6 @@
 >>>>>>> 5613752189b2dc5ab72a4de65252a8a3c47e83cc
 >>>>>>> 5758bf6cda75bb4e297937fe72c1f3189638edd2
         </group>
+>>>>>>> 5758bf6cda75bb4e297937fe72c1f3189638edd2
     </open-files>
 </project-private>
