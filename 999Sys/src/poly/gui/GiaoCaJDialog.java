@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,7 +34,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private NhanVienDao nvDAO;
     private GiaoCaDAO gcDAO;
     private CardLayout gcCard;
-    
+    private List<NhanVien> lst;
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
 
@@ -122,6 +123,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         lblCardNCTongTien = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
+        btnCardNCOK = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
@@ -471,8 +473,18 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         jPanel13.setLayout(new java.awt.BorderLayout());
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 15, new java.awt.Color(255, 255, 255)));
         jPanel17.setPreferredSize(new java.awt.Dimension(1090, 80));
         jPanel17.setLayout(new java.awt.BorderLayout());
+
+        btnCardNCOK.setText("Xác nhận");
+        btnCardNCOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCardNCOKActionPerformed(evt);
+            }
+        });
+        jPanel17.add(btnCardNCOK, java.awt.BorderLayout.LINE_END);
+
         jPanel13.add(jPanel17, java.awt.BorderLayout.PAGE_END);
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -576,9 +588,22 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCardNCOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardNCOKActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if (gcDAO.update(setEntity())) {
+                Messeger.alert(null, "Nhận ca thành công!");
+            } else {
+                Messeger.showErrorDialog(null, "Nhận ca thất bại!", "Lỗi giao ca");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCardNCOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -623,6 +648,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCardNCOK;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -701,8 +727,8 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         
         nvDAO = new NhanVienDao();
         gcDAO = new GiaoCaDAO();
+        lst = new ArrayList<>();
         gcCard = (CardLayout) faCard.getLayout();
-        
 //        setText();
 //        fillToCBBNV();
     }
@@ -710,7 +736,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private void fillToCBBNV() {
         try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbxNV.getModel();
-            List<NhanVien> lst = nvDAO.selectAll();
+            lst = nvDAO.selectAll();
             model.removeAllElements();
             for (NhanVien nhanVien : lst) {
                 model.addElement(nhanVien);
@@ -740,24 +766,48 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
         String endTime = XDate.toString(XDate.toDate(lblEndTime.getText(), "yyyy-MM-dd hh:mm"), "yyyy-MM-dd hh:mm");
         gc.setMaNVGiaoCa(Auth.user.getMaNV());
-        gc.setGhiChu(txtGhiChu.getText());
+        gc.setGhiChuGC(txtGhiChu.getText());
+        gc.setGhiChuNC(txtCardNCGhiChu.getText());
         gc.setMaNVNhan(nv.getMaNV());
         gc.setGioGiaoCa(endTime);
         gc.setTienCoSo(df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue());
         gc.setTienPhatSinh(df.parse(txtTienPhatSinh.getText(), new ParsePosition(0)).doubleValue());
         gc.setDoanhThuCa(df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue());
         gc.setTienDaThuHoi(df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue());
+        gc.setTongTien(df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue());
         return gc;
     }
     
-    public void nhanCa(){
+    public boolean nhanCa(){
         try {
-            gcCard.show(faCard, "cardNC");
             GiaoCa gc = gcDAO.selectByIDNC();
+            if (gc != null) {
+            lblNCcardNVNC.setText(Auth.user.getHoTen());
+            for (NhanVien nv : lst) {
+                if (gc.getMaNVGiaoCa().equals(nv.getMaNV())) {
+                    lblcardNCNVGC.setText(nv.getHoTen());
+                }
+            }
+            lblStartTime.setText(gc.getGioNhanCa());
+            lblcardNCStartTime.setText(XDate.toString(new Date(), "hh:mm aa dd/MM/yyyy"));
+            lblCardNCTienCoSo.setText(df.format(gc.getTienCoSo()));
+            lblCardNCTienThuHoi.setText(df.format(gc.getTienDaThuHoi()));
+            lblCardNCDoanhThuCa.setText(df.format(gc.getDoanhThuCa()));
+            lblCardNCTongTien.setText(df.format(gc.getTongTien()));
             
+            gcCard.show(faCard, "cardNC");
+            return false;
+            }else {
+                try {
+                    gcDAO.insert(new GiaoCa(Auth.user.getMaNV()));
+                } catch (Exception ex) {
+                    Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return true;
     }
     
     public void giaoCa(){
