@@ -10,23 +10,24 @@ package poly.entity;
  * @author Admin
  */
 public class VaiTro {
-    private String maVaiTro,tenVaiTro;
+    private int maVaiTro;
+    private String tenVaiTro;
     private boolean trangThai;
 
     public VaiTro() {
     }
 
-    public VaiTro(String maVaiTro, String tenVaiTro, boolean trangThai) {
+    public VaiTro(int maVaiTro, String tenVaiTro, boolean trangThai) {
         this.maVaiTro = maVaiTro;
         this.tenVaiTro = tenVaiTro;
         this.trangThai = trangThai;
     }
 
-    public String getMaVaiTro() {
+    public int getMaVaiTro() {
         return maVaiTro;
     }
 
-    public void setMaVaiTro(String maVaiTro) {
+    public void setMaVaiTro(int maVaiTro) {
         this.maVaiTro = maVaiTro;
     }
 
@@ -45,9 +46,9 @@ public class VaiTro {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
-   
-    
-    
+    @Override
+    public String toString() {
+        return tenVaiTro;
+    }
     
 }

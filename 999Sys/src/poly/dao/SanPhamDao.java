@@ -29,7 +29,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "INSERT":
                 return "INSERT INTO SANPHAM (MADM, MAVACH,TENSP, ANHSANPHAM, GIANHAP, GIABAN, SOLUONG, NGAYNHAP, MADVT, MAMAU, MASIZE, MACHATLIEU) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE SANPHAM SET MADM =?, MAVACH =?, ANHSANPHAM =?, GIANHAP =?, GIABAN =?, SOLUONG =?, NGAYNHAP =?, APDUNGKM =?, MADVT =?, MAMAU =?, MASIZE =?, MACHATLIEU =? WHERE MASP = ?";
+                return "UPDATE SANPHAM SET MADM =?, TENSP = ?, MAVACH =?, ANHSANPHAM =?, GIANHAP =?, GIABAN =?, SOLUONG =?, NGAYNHAP =?, APDUNGKM =?, MADVT =?, MAMAU =?, MASIZE =?, MACHATLIEU =? WHERE MASP = ?";
             case "DELETE":
                 return "UPDATE SANPHAM SET TRANGTHAI = 0 WHERE MASP = ?";
             case "RESTORE":
@@ -67,6 +67,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "UPDATE":
                 return new Object[]{
                     obj.getMaDanhMuc(),
+                    obj.getTenSanPham(),
                     obj.getMaVach(),
                     obj.getAnhSanPham(),
                     obj.getGiaNhap(),
@@ -161,10 +162,10 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                 ImgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 list.add(new Object[]{
                     rs.getObject(1),
-                    rs.getObject(2),
                     rs.getObject(3),
-                    rs.getObject(4),
-                    rs.getObject(5),
+                    rs.getObject(2),
+                    String.format("%.0f", rs.getObject(4)),
+                    String.format("%.0f", rs.getObject(5)),
                     rs.getObject(6),
                     rs.getObject(7),
                     rs.getObject(8),

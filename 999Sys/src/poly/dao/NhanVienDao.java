@@ -75,7 +75,7 @@ public class NhanVienDao extends BaseDao<NhanVien, String> {
         NhanVien nv = new NhanVien();
         nv.setMaNV(rs.getString("MANV"));
         nv.setPassWord(rs.getString("MATKHAU"));
-        nv.setVaiTro(rs.getString("MAVAITRO"));
+        nv.setVaiTro(rs.getInt("MAVAITRO"));
         nv.setHoTen(rs.getString("HOTEN"));
         nv.setNgSinh(rs.getString("NGAYSINH"));
         nv.setGioiTinh(rs.getBoolean("GIOITINH"));
