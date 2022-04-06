@@ -1196,7 +1196,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaKHActionPerformed
 
     private void btnDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatHangActionPerformed
-        // TODO add your handling code here:
+        new DatHangJDialog(null, true).setVisible(true);
     }//GEN-LAST:event_btnDatHangActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -20,7 +20,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "SET IDENTITY_INSERT [dbo].[HOADON] ON  INSERT INTO HOADON (MAHOADON, MANV, MAKH, MATT, NGAYMUA, GIAMGIA, THANHTIEN) VALUES (?,?,?,?,?,?,?,?,?)  SET IDENTITY_INSERT [dbo].[HOADON] OFF";
+                return "SET IDENTITY_INSERT [dbo].[HOADON] ON  INSERT INTO HOADON (MAHOADON, MANV, MAKH, MATT, NGAYMUA, GIAMGIA, THANHTIEN) VALUES (?,?,?,?,?,?,?)  SET IDENTITY_INSERT [dbo].[HOADON] OFF";
             case "UPDATE":
                 return "UPDATE HOADON SET MANV =?, MAKH =?, MATT =?, NGAYMUA =?, GIAMGIA =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
             case "UPDATEXOAMAKH":

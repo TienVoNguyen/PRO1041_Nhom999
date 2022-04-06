@@ -5,18 +5,22 @@
  */
 package poly.gui;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author XUÂN THÀNH
  */
 public class GiaoHangJDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form GiaoHangJDialog
-     */
+    CardLayout cardTable;
+    CardLayout cardButton;
+    
     public GiaoHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        init();
     }
 
     /**
@@ -28,21 +32,189 @@ public class GiaoHangJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        pnlCTHD = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        pnlTTHD = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        btnChoGH = new javax.swing.JButton();
+        btnDangGH = new javax.swing.JButton();
+        pnlButtonCard = new javax.swing.JPanel();
+        pnlGiaoHang = new javax.swing.JPanel();
+        btnGiaoHang = new javax.swing.JButton();
+        pnlHuyGH = new javax.swing.JPanel();
+        btnHuyGH = new javax.swing.JButton();
+        pnlTableCard = new javax.swing.JPanel();
+        pnlHoaDonChoGH = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        pnlHoaDonDangGH = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        pnlCTHD.setBackground(new java.awt.Color(0, 128, 128));
+        pnlCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)), "Danh sách sản phẩm", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        pnlCTHD.setPreferredSize(new java.awt.Dimension(700, 652));
+        pnlCTHD.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 672, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+
+        pnlCTHD.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        pnlCTHD.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(pnlCTHD, java.awt.BorderLayout.LINE_END);
+
+        pnlTTHD.setLayout(new java.awt.BorderLayout());
+
+        jPanel4.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 80, new java.awt.Color(0, 128, 128)));
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jPanel6.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)));
+        jPanel6.setPreferredSize(new java.awt.Dimension(340, 100));
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
+
+        btnChoGH.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        btnChoGH.setText("Chờ Giao Hàng");
+        btnChoGH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChoGHActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnChoGH);
+
+        btnDangGH.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        btnDangGH.setText("Đang Giao Hàng");
+        btnDangGH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangGHActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnDangGH);
+
+        jPanel4.add(jPanel6, java.awt.BorderLayout.WEST);
+
+        pnlButtonCard.setBackground(new java.awt.Color(255, 204, 204));
+        pnlButtonCard.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)));
+        pnlButtonCard.setPreferredSize(new java.awt.Dimension(200, 100));
+        pnlButtonCard.setLayout(new java.awt.CardLayout());
+
+        pnlGiaoHang.setLayout(new java.awt.BorderLayout());
+
+        btnGiaoHang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnGiaoHang.setText("Giao Hàng");
+        pnlGiaoHang.add(btnGiaoHang, java.awt.BorderLayout.CENTER);
+
+        pnlButtonCard.add(pnlGiaoHang, "giaoHang");
+
+        pnlHuyGH.setBackground(new java.awt.Color(255, 204, 204));
+        pnlHuyGH.setLayout(new java.awt.BorderLayout());
+
+        btnHuyGH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnHuyGH.setText("Hủy Giao");
+        pnlHuyGH.add(btnHuyGH, java.awt.BorderLayout.CENTER);
+
+        pnlButtonCard.add(pnlHuyGH, "huyGH");
+
+        jPanel4.add(pnlButtonCard, java.awt.BorderLayout.EAST);
+
+        pnlTTHD.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        pnlTableCard.setBackground(new java.awt.Color(0, 128, 128));
+        pnlTableCard.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 10, 10, 0, new java.awt.Color(0, 128, 128)));
+        pnlTableCard.setLayout(new java.awt.CardLayout());
+
+        pnlHoaDonChoGH.setLayout(new java.awt.BorderLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        pnlHoaDonChoGH.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        pnlTableCard.add(pnlHoaDonChoGH, "choGH");
+
+        pnlHoaDonDangGH.setBackground(new java.awt.Color(0, 128, 128));
+        pnlHoaDonDangGH.setLayout(new java.awt.BorderLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        pnlHoaDonDangGH.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        pnlTableCard.add(pnlHoaDonDangGH, "dangGH");
+
+        pnlTTHD.add(pnlTableCard, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(pnlTTHD, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnChoGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoGHActionPerformed
+        this.cardButton.show(pnlButtonCard, "giaoHang");
+        this.cardTable.show(pnlTableCard, "choGH");
+    }//GEN-LAST:event_btnChoGHActionPerformed
+
+    private void btnDangGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangGHActionPerformed
+        this.cardButton.show(pnlButtonCard, "huyGH");
+        this.cardTable.show(pnlTableCard, "dangGH");
+    }//GEN-LAST:event_btnDangGHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +259,34 @@ public class GiaoHangJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChoGH;
+    private javax.swing.JButton btnDangGH;
+    private javax.swing.JButton btnGiaoHang;
+    private javax.swing.JButton btnHuyGH;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JPanel pnlButtonCard;
+    private javax.swing.JPanel pnlCTHD;
+    private javax.swing.JPanel pnlGiaoHang;
+    private javax.swing.JPanel pnlHoaDonChoGH;
+    private javax.swing.JPanel pnlHoaDonDangGH;
+    private javax.swing.JPanel pnlHuyGH;
+    private javax.swing.JPanel pnlTTHD;
+    private javax.swing.JPanel pnlTableCard;
     // End of variables declaration//GEN-END:variables
+
+    private void init() {
+        this.cardButton = (CardLayout) this.pnlButtonCard.getLayout();
+        this.cardTable = (CardLayout) this.pnlTableCard.getLayout();
+        this.cardButton.show(pnlButtonCard, "giaoHang");
+        this.cardTable.show(pnlTableCard, "choGH");
+    }
 }

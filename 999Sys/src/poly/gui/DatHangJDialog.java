@@ -17,6 +17,7 @@ public class DatHangJDialog extends javax.swing.JDialog {
     public DatHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,20 +31,184 @@ public class DatHangJDialog extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtGhiChu = new javax.swing.JTextArea();
+        jPanel9 = new javax.swing.JPanel();
+        txtTenKhachHang = new javax.swing.JTextField();
+        txtSDT = new javax.swing.JTextField();
+        txtDiaChi = new javax.swing.JTextField();
+        txtTienHang = new javax.swing.JTextField();
+        txtTienShip = new javax.swing.JTextField();
+        txtTongTien = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btnHuy = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        btnGiaoHang = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 204, 102)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 15, 15, 15, new java.awt.Color(0, 153, 153)));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("XÁC NHẬN ĐƠN HÀNG");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 1, 1, 1, new java.awt.Color(0, 153, 153)));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setPreferredSize(new java.awt.Dimension(536, 100));
         jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel7.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel7.setPreferredSize(new java.awt.Dimension(200, 100));
+        jPanel7.setLayout(new java.awt.GridLayout(0, 1, 10, 10));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Tên Khách Hàng:");
+        jPanel7.add(jLabel3);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Số điện thoại:");
+        jPanel7.add(jLabel2);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Địa chỉ:");
+        jPanel7.add(jLabel4);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Tiền hàng:");
+        jPanel7.add(jLabel5);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Tiền ship:");
+        jPanel7.add(jLabel6);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Tổng tiền:");
+        jPanel7.add(jLabel7);
+
+        jPanel2.add(jPanel7, java.awt.BorderLayout.LINE_START);
+
+        jPanel8.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 0, 10, 0, new java.awt.Color(0, 153, 153)));
+        jPanel8.setPreferredSize(new java.awt.Dimension(100, 120));
+        jPanel8.setLayout(new java.awt.BorderLayout());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Ghi chú:");
+        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel8.setPreferredSize(new java.awt.Dimension(200, 16));
+        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jPanel8.add(jLabel8, java.awt.BorderLayout.LINE_START);
+
+        txtGhiChu.setColumns(20);
+        txtGhiChu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtGhiChu.setRows(5);
+        jScrollPane1.setViewportView(txtGhiChu);
+
+        jPanel8.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(jPanel8, java.awt.BorderLayout.PAGE_END);
+
+        jPanel9.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel9.setLayout(new java.awt.GridLayout(0, 1, 0, 10));
+
+        txtTenKhachHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel9.add(txtTenKhachHang);
+
+        txtSDT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel9.add(txtSDT);
+
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel9.add(txtDiaChi);
+
+        txtTienHang.setEditable(false);
+        txtTienHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel9.add(txtTienHang);
+
+        txtTienShip.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel9.add(txtTienShip);
+
+        txtTongTien.setEditable(false);
+        txtTongTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel9.add(txtTongTien);
+
+        jPanel2.add(jPanel9, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 153, 153)));
+        jPanel3.setPreferredSize(new java.awt.Dimension(400, 80));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        btnHuy.setBackground(new java.awt.Color(255, 51, 51));
+        btnHuy.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnHuy.setForeground(new java.awt.Color(255, 255, 0));
+        btnHuy.setText("Hủy");
+        btnHuy.setPreferredSize(new java.awt.Dimension(79, 25));
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnHuy, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+
+        btnGiaoHang.setBackground(new java.awt.Color(102, 255, 102));
+        btnGiaoHang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnGiaoHang.setText("Giao Hàng");
+        btnGiaoHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGiaoHangActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnGiaoHang);
+
+        jPanel3.add(jPanel5, java.awt.BorderLayout.LINE_START);
+
+        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel6.setLayout(new java.awt.GridLayout());
+        jPanel3.add(jPanel6, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void btnGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangActionPerformed
+        
+    }//GEN-LAST:event_btnGiaoHangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -88,7 +253,32 @@ public class DatHangJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGiaoHang;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextField txtSDT;
+    private javax.swing.JTextField txtTenKhachHang;
+    private javax.swing.JTextField txtTienHang;
+    private javax.swing.JTextField txtTienShip;
+    private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }
