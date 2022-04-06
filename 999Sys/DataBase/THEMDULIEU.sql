@@ -46,6 +46,8 @@ INSERT [dbo].[TT_HOADON] ([MATT], [TENTT]) VALUES (4, N'Hoàn Trả')
 GO
 INSERT [dbo].[TT_HOADON] ([MATT], [TENTT]) VALUES (5, N'Đang giao hàng')
 GO
+INSERT [dbo].[TT_HOADON] ([MATT], [TENTT]) VALUES (6, N'Chờ giao hàng')
+GO
 SET IDENTITY_INSERT [dbo].[TT_HOADON] OFF
 GO
 SET IDENTITY_INSERT [dbo].[HOADON] ON 

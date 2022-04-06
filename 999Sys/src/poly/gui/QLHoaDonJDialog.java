@@ -242,8 +242,6 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         HD.setMaKH(txtMaKH.getText());
         HD.setNgayMua(txtNgayMua.getText());
         HD.setGiamGia(Double.parseDouble(txtGiamGia.getText()));
-       // HD.setNgayGiaoHang((txtNgayGH.getText()));
-        HD.setTienShip(Double.parseDouble(txtTienShip.getText()));
         HD.setThanhTien(Double.parseDouble(txtThanhTien.getText()));
         try {
             HDD.update(HD);
@@ -384,8 +382,6 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
                     HD.getMaKH(),
                     HD.getNgayMua(),
                     HD.getGiamGia(),
-                    HD.getNgayGiaoHang(),
-                    HD.getTienShip(),
                     HD.getThanhTien()
                 });
             }

@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import javax.swing.JTable;
 import poly.dao.SanPhamDao;
 import poly.entity.SanPham;
 
@@ -26,13 +27,15 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
     private Executor executor = Executors.newSingleThreadExecutor(this);
     public static SanPham sp;
     SanPhamDao sp_dao;
-    public Code_Reader() {
+    JTable tblHoaDon;
+    public Code_Reader(JTable tblHoaDon) {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initWebcam();
         setLocationRelativeTo(null);
         sp_dao = new SanPhamDao();
         sp = new SanPham();
+        this.tblHoaDon = tblHoaDon;
     }
 
     @SuppressWarnings("unchecked")
@@ -74,34 +77,34 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
 //        System.out.println(MASP_QUETQR);
     }//GEN-LAST:event_formWindowOpened
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Code_Reader().setVisible(true);
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Windows".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new Code_Reader().setVisible(true);
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
@@ -147,6 +150,7 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
             if (result != null) {
                sp = sp_dao.getSanPhamByMaVach(result.getText());
                 if (sp != null & sp.getMaSP() != 0) {
+                    
                     this.dispose();
                     webcam.close();
                 }

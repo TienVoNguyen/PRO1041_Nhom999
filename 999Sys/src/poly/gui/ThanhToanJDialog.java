@@ -457,7 +457,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         if (Messeger.confirm(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD())) {
             try {
                 hd.setGiamGia(Double.parseDouble(txtGiamGia.getToolTipText()));
-                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy"));
+                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"));
                 hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
                 this.daoHD.update(hd);
                 if (hd.getMaKH() != null) {
