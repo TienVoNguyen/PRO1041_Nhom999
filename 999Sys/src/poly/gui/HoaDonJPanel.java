@@ -367,6 +367,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         btnThanhToam = new javax.swing.JButton();
         btnHoaDonMoi = new javax.swing.JButton();
         btnXoaKH = new javax.swing.JButton();
+        btnDatHang = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
@@ -465,7 +466,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
         btnTimKiem.setBackground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setBorder(null);
-        btnTimKiem.setPreferredSize(new java.awt.Dimension(55, 15));
+        btnTimKiem.setPreferredSize(new java.awt.Dimension(55, 25));
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -473,10 +474,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         });
         jPanel10.add(btnTimKiem, java.awt.BorderLayout.LINE_END);
 
+        txtTimKiem.setText("Tìm Kiếm Sản Phẩm");
+        txtTimKiem.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
         txtTimKiem.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtTimKiem.setForeground(new java.awt.Color(255, 0, 0));
-        txtTimKiem.setText("Tìm Kiếm Sản Phẩm");
-        txtTimKiem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTimKiem.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtTimKiemFocusGained(evt);
@@ -669,15 +670,25 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         });
         jPanel3.add(btnHoaDonMoi);
 
+        btnXoaKH.setText("Xóa Khách Hàng");
         btnXoaKH.setBackground(new java.awt.Color(255, 51, 51));
         btnXoaKH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnXoaKH.setText("Xóa Khách Hàng");
         btnXoaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaKHActionPerformed(evt);
             }
         });
         jPanel3.add(btnXoaKH);
+
+        btnDatHang.setBackground(new java.awt.Color(0, 204, 153));
+        btnDatHang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnDatHang.setText("Đặt Hàng");
+        btnDatHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatHangActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnDatHang);
 
         jPanel2.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
@@ -738,6 +749,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         pnlSanPham.setBackground(new java.awt.Color(0, 153, 51));
 
+        tblSanPham.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -754,7 +766,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblSanPham.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         tblSanPham.setRowHeight(80);
         jScrollPane2.setViewportView(tblSanPham);
         if (tblSanPham.getColumnModel().getColumnCount() > 0) {
@@ -1184,7 +1195,12 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         tongTien();
     }//GEN-LAST:event_btnXoaKHActionPerformed
 
+    private void btnDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDatHangActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDatHang;
     private javax.swing.JButton btnHoaDonMoi;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnLuuKH;

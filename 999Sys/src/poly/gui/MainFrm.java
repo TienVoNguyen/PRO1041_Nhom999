@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.plaf.basic.BasicButtonUI;
 import poly.dao.CTHoaDonDao;
+import poly.dao.GiaoCaDAO;
 import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
 import poly.dao.SanPhamDao;
@@ -45,6 +46,8 @@ public class MainFrm extends javax.swing.JFrame {
     private KhachHangDao daoKH;
     private SanPhamDao daoSP;
     private CTHoaDonDao daoCTHD;
+    private GiaoCaDAO gcDAO;
+    private GiaoCaJDialog gcDialog;
 
     static ArrayList<CTHoaDon> listCTHD;
     static KhachHang k;
@@ -64,6 +67,8 @@ public class MainFrm extends javax.swing.JFrame {
         this.daoKH = new KhachHangDao();
         this.daoSP = new SanPhamDao();
         this.daoCTHD = new CTHoaDonDao();
+        gcDialog = new GiaoCaJDialog(this, true);
+
         // Đăng nhập
         new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
@@ -106,6 +111,12 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        lblSoLuongDonHang = new javax.swing.JLabel();
+        btnGiaoHang = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        btnGC = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnMinimise = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
@@ -205,6 +216,8 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jpmMenu.add(mniDangXuat);
 
+        jDialog1.getContentPane().setLayout(new java.awt.BorderLayout());
+
         jPanel2.setLayout(new java.awt.BorderLayout());
         jPanel2.add(jProgressBar1, java.awt.BorderLayout.PAGE_END);
 
@@ -217,6 +230,7 @@ public class MainFrm extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         pnlMain.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(51, 51, 51)));
         pnlMain.setLayout(new java.awt.BorderLayout());
@@ -264,6 +278,43 @@ public class MainFrm extends javax.swing.JFrame {
         lblDongHo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDongHo.setText("10");
         jPanel8.add(lblDongHo, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setPreferredSize(new java.awt.Dimension(240, 100));
+        jPanel3.setLayout(new java.awt.GridLayout(0, 2));
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSoLuongDonHang.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        lblSoLuongDonHang.setForeground(new java.awt.Color(255, 0, 0));
+        lblSoLuongDonHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoLuongDonHang.setText("6");
+        jPanel4.add(lblSoLuongDonHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 30, 30));
+
+        btnGiaoHang.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnGiaoHang.setText("Giao Hàng");
+        btnGiaoHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnGiaoHang.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jPanel4.add(btnGiaoHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+
+        jPanel3.add(jPanel4);
+
+        jPanel7.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel7.setLayout(new java.awt.BorderLayout());
+
+        btnGC.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnGC.setText("Giao Ca");
+        btnGC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGCActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btnGC, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel7);
+
+        jPanel8.add(jPanel3, java.awt.BorderLayout.LINE_END);
 
         jPanel6.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -333,7 +384,7 @@ public class MainFrm extends javax.swing.JFrame {
         pnlFooter.add(btnMenu, java.awt.BorderLayout.LINE_END);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
+        jPanel1.setLayout(new java.awt.FlowLayout(1, 5, 0));
 
         btnKhuyenMai.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnKhuyenMai.setForeground(new java.awt.Color(255, 255, 255));
@@ -500,6 +551,13 @@ public class MainFrm extends javax.swing.JFrame {
         new QLHoaDonJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnQLHoaDonActionPerformed
 
+    private void btnGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGCActionPerformed
+        // TODO add your handling code here:
+        gcDialog.nhanCa();
+        gcDialog.setVisible(true);
+
+    }//GEN-LAST:event_btnGCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,6 +595,8 @@ public class MainFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnGC;
+    private javax.swing.JButton btnGiaoHang;
     private javax.swing.JButton btnKhoaManHinh;
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;
@@ -549,8 +609,11 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -560,6 +623,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jpmMenu;
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblSoLuongDonHang;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JMenuItem mniDangXuat;
     private javax.swing.JMenuItem mniQLChiTietSP;

@@ -125,6 +125,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
         txtID.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtID.setText("admin");
         txtID.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 0, 0, 1, new java.awt.Color(255, 255, 255)));
         txtID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -169,6 +170,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/key.png"))); // NOI18N
 
         txtPass.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtPass.setText("1234");
         txtPass.setAlignmentX(0.0F);
         txtPass.setAlignmentY(0.0F);
         txtPass.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 0, 0, 2, new java.awt.Color(255, 255, 255)));
@@ -196,7 +198,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(txtPass))
+                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpnPassLayout.setVerticalGroup(
@@ -260,7 +262,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         jpnLoginLayout.setHorizontalGroup(
             jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnLoginLayout.createSequentialGroup()
-                .addGap(0, 83, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(74, 74, 74))
             .addGroup(jpnLoginLayout.createSequentialGroup()
@@ -268,7 +270,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                     .addGroup(jpnLoginLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jpnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jpnPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpnPass, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                             .addComponent(jpnID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jpnLoginLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -966,7 +968,6 @@ public class LoginJDialog extends javax.swing.JDialog {
                         ex.printStackTrace();
                     }
                 }
-
             }
         };
         t.start();
