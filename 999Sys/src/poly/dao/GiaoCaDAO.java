@@ -8,6 +8,8 @@ package poly.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import poly.entity.GiaoCa;
+import poly.helper.Auth;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -28,9 +30,11 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
             case "DELETE":
                 return "UPDATE GIAOCA SET MATT = ? WHERE MAGIAOCA = ?";
             case "SELECTBYID":
-                return "SELECT * FROM GIAOCA where MANVGIAOCA = ? AND MATT = 2";
+                return "SELECT * FROM GIAOCA WHERE MANVGIAOCA = ? AND MATT = 2";
             case "SELECTALL":
                 return "SELECT * FROM GIAOCA";
+            case "SELECTBYIDNC":
+                return "SELECT * FROM GIAOCA WHERE MANVNHANCA = ? AND MATT = 2";
         }
         return "";
     }
@@ -71,5 +75,9 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
         gc.setTienDaThuHoi(rs.getDouble("TIENDATHUHOI"));
         return gc;
     }
-
+    
+    public GiaoCa selectByIDNC() throws SQLException{
+        
+        return createEntity(XJDBC.query(getQuery("SELECTBYIDNC"), Auth.user.getMaNV()));
+    }
 }
