@@ -29,7 +29,7 @@ import poly.helper.XJDBC;
 public class DoanhThuDao {
 
     public List<Integer> selectYears() throws SQLException {
-        String sql = "SELECT DISTINCT YEAR(NGAYMUA) as [YEAR] FROM HOADON ORDER BY [YEAR] DESC";
+        String sql = "SELECT DISTINCT YEAR(NGAYMUA) as [YEAR] FROM HOADON WHERE NGAYMUA IS NOT NULL ORDER BY [YEAR] DESC";
         List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql);
@@ -45,7 +45,7 @@ public class DoanhThuDao {
     }
 
     public List<Integer> selectYDays() throws SQLException {
-        String sql = "SELECT DISTINCT DAY(NGAYMUA) as [DAY] FROM HOADON ORDER BY [DAY]";
+        String sql = "SELECT DISTINCT DAY(NGAYMUA) as [DAY] FROM HOADON WHERE NGAYMUA IS NOT NULL ORDER BY [DAY]";
         List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql);
@@ -61,7 +61,7 @@ public class DoanhThuDao {
     }
 
     public List<Integer> selectMonths() throws SQLException {
-        String sql = "SELECT DISTINCT MONTH(NGAYMUA) as [MONTH] FROM HOADON ORDER BY [MONTH]";
+        String sql = "SELECT DISTINCT MONTH(NGAYMUA)  as [MONTH] FROM HOADON WHERE MONTH(NGAYMUA) IS NOT NULL ORDER BY [MONTH]";
         List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql);

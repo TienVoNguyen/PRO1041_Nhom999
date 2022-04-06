@@ -54,10 +54,10 @@ public class ButtonColumn extends AbstractCellEditor
         renderButton = new JButton();
         renderButton.setToolTipText(name);
         renderButton.setBackground(Color.WHITE);
-        renderButton.setUI(new BasicButtonUI());
+//        renderButton.setUI(new BasicButtonUI());
         editButton = new JButton();
         editButton.setBackground(Color.WHITE);
-        editButton.setUI(new BasicButtonUI());
+//        editButton.setUI(new BasicButtonUI());
         editButton.setToolTipText(name);
         editButton.setFocusPainted(false);
         editButton.addActionListener(this);
@@ -177,6 +177,31 @@ public class ButtonColumn extends AbstractCellEditor
 //			renderButton.setBackground(UIManager.getColor("Button.background"));
 //		}
 //
+        renderButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                renderButton.setBackground(Color.WHITE);
+                renderButton.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                renderButton.setBackground(new Color(21, 25, 28));
+                renderButton.setHorizontalAlignment(SwingConstants.LEFT);
+            }
+        });
         if (hasFocus) {
             renderButton.setBorder(focusBorder);
         } else {
@@ -244,16 +269,8 @@ public class ButtonColumn extends AbstractCellEditor
     }
 
     public void mouseEntered(MouseEvent e) {
-        editButton.setBackground(Color.WHITE);
-        editButton.setHorizontalAlignment(SwingConstants.CENTER);
-        renderButton.setBackground(Color.WHITE);
-        renderButton.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     public void mouseExited(MouseEvent e) {
-        editButton.setBackground(new Color(21, 25, 28));
-        editButton.setHorizontalAlignment(SwingConstants.LEFT);
-        renderButton.setBackground(new Color(21, 25, 28));
-        renderButton.setHorizontalAlignment(SwingConstants.LEFT);
     }
 }

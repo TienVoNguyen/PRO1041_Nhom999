@@ -12,8 +12,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -238,7 +236,7 @@ public class XExcel {
 
                     } else if (jtable.getValueAt(i, j).toString().length() <= 0) {
                         cell = row.createCell(j, CellType.STRING);
-                        cell.setCellValue("Chưa có");
+                        cell.setCellValue("");
                     } else {
                         cell = row.createCell(j, CellType.STRING);
                         cell.setCellValue(jtable.getValueAt(i, j).toString());
