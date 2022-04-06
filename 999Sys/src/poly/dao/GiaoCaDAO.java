@@ -8,6 +8,8 @@ package poly.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import poly.entity.GiaoCa;
+import poly.helper.Auth;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -24,13 +26,16 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                 return "UPDATE GIAOCA SET "
                         + "MANVNHANCA = ?, GIOGIAOCA = ?, "
                         + "TIENPHATSINH = ?, DOANHTHUCA = ?, "
-                        + "GHICHU = ? WHERE MAGIAOCA = ?";
+                        + "GHICHUGIAO = ?, GHICHUNHAN = ?, TONGTIEN = ?"
+                        + " WHERE MAGIAOCA = ?";
             case "DELETE":
                 return "UPDATE GIAOCA SET MATT = ? WHERE MAGIAOCA = ?";
             case "SELECTBYID":
-                return "SELECT * FROM GIAOCA where MANVGIAOCA = ? AND MATT = 2";
+                return "SELECT * FROM GIAOCA WHERE MANVGIAOCA = ? AND MATT = 2";
             case "SELECTALL":
                 return "SELECT * FROM GIAOCA";
+            case "SELECTBYIDNC":
+                return "SELECT * FROM GIAOCA WHERE MATT = 2 AND MANVNHANCA LIKE ?";
         }
         return "";
     }
@@ -48,7 +53,9 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                     obj.getGioGiaoCa(),
                     obj.getTienPhatSinh(),
                     obj.getDoanhThuCa(),
-                    obj.getGhiChu(),
+                    obj.getGhiChuGC(),
+                    obj.getGhiChuNC(),
+                    obj.getTongTien(),
                     obj.getMaGiaoCa()
                 };
         }
@@ -61,7 +68,8 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
         gc.setMaGiaoCa(rs.getInt("MAGIAOCA"));
         gc.setMaTT(rs.getInt("MATT"));
         gc.setMaNVGiaoCa(rs.getString("MANVGIAOCA"));
-        gc.setGhiChu(rs.getString("GHICHU"));
+        gc.setGhiChuGC(rs.getString("GHICHUGIAO"));
+        gc.setGhiChuNC(rs.getString("GHICHUNHAN"));
         gc.setMaNVNhan(rs.getString("MANVNHANCA"));
         gc.setGioGiaoCa(rs.getString("GIOGIAOCA"));
         gc.setGioNhanCa(rs.getString("GIONHANCA"));
@@ -71,5 +79,12 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
         gc.setTienDaThuHoi(rs.getDouble("TIENDATHUHOI"));
         return gc;
     }
-
+    
+    public GiaoCa selectByIDNC() throws SQLException{
+        ResultSet rs = XJDBC.query(getQuery("SELECTBYIDNC"), Auth.user.getMaNV());
+        if (rs.next()) {
+            return createEntity(rs);
+        }
+        return null;
+    }
 }

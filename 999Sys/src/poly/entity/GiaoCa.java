@@ -11,39 +11,48 @@ package poly.entity;
  */
 public class GiaoCa {
     private int maGiaoCa, maTT;
-    private String maNVGiaoCa, maNVNhan, gioNhanCa, gioGiaoCa, ghiChu;
-    private double tienCoSo, tienPhatSinh, doanhThuCa, tienDaThuHoi;
+    private String maNVGiaoCa, maNVNhan, gioNhanCa, gioGiaoCa, ghiChuGC, ghiChuNC;
+    private double tienCoSo, tienPhatSinh, doanhThuCa, tienDaThuHoi, tongTien;
 
     public GiaoCa() {
     }
 
-    public GiaoCa(int maGiaoCa, int maTT, String maNVGiaoCa, String maNVNhan, String gioNhanCa, String gioGiaoCa, String ghiChu, double tienCoSo, double tienPhatSinh, double doanhThuCa, double tienDaThuHoi) {
+    public GiaoCa(int maGiaoCa, int maTT, String maNVGiaoCa, String maNVNhan, String gioNhanCa, String gioGiaoCa, String ghiChuGC, String ghiChuNC, double tienCoSo, double tienPhatSinh, double doanhThuCa, double tienDaThuHoi, double tongTien) {
         this.maGiaoCa = maGiaoCa;
         this.maTT = maTT;
         this.maNVGiaoCa = maNVGiaoCa;
         this.maNVNhan = maNVNhan;
         this.gioNhanCa = gioNhanCa;
         this.gioGiaoCa = gioGiaoCa;
-        this.ghiChu = ghiChu;
+        this.ghiChuGC = ghiChuGC;
+        this.ghiChuNC = ghiChuNC;
         this.tienCoSo = tienCoSo;
         this.tienPhatSinh = tienPhatSinh;
         this.doanhThuCa = doanhThuCa;
         this.tienDaThuHoi = tienDaThuHoi;
+        this.tongTien = tongTien;
     }
     
-    public GiaoCa(int maTT, String maNVGiaoCa, String maNVNhan, String gioNhanCa, String gioGiaoCa, String ghiChu, double tienCoSo, double tienPhatSinh, double doanhThuCa, double tienDaThuHoi) {
+    public GiaoCa(int maTT, String maNVGiaoCa, String maNVNhan, String gioNhanCa, String gioGiaoCa, String ghiChuGC, String ghiChuNC, double tienCoSo, double tienPhatSinh, double doanhThuCa, double tienDaThuHoi, double tongTien) {
         this.maTT = maTT;
         this.maNVGiaoCa = maNVGiaoCa;
         this.maNVNhan = maNVNhan;
         this.gioNhanCa = gioNhanCa;
         this.gioGiaoCa = gioGiaoCa;
-        this.ghiChu = ghiChu;
+        this.ghiChuGC = ghiChuGC;
+        this.ghiChuNC = ghiChuNC;
         this.tienCoSo = tienCoSo;
         this.tienPhatSinh = tienPhatSinh;
         this.doanhThuCa = doanhThuCa;
         this.tienDaThuHoi = tienDaThuHoi;
+        this.tongTien = tongTien;
     }
 
+    public GiaoCa(String maNVGiaoCa) {
+        this.maNVGiaoCa = maNVGiaoCa;
+    }
+    
+    
     public int getMaGiaoCa() {
         return maGiaoCa;
     }
@@ -92,12 +101,28 @@ public class GiaoCa {
         this.gioGiaoCa = gioGiaoCa;
     }
 
-    public String getGhiChu() {
-        return ghiChu;
+    public String getGhiChuGC() {
+        return ghiChuGC;
     }
 
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
+    public void setGhiChuGC(String ghiChuGC) {
+        this.ghiChuGC = ghiChuGC;
+    }
+
+    public String getGhiChuNC() {
+        return ghiChuNC;
+    }
+
+    public void setGhiChuNC(String ghiChuNC) {
+        this.ghiChuNC = ghiChuNC;
+    }
+
+    public double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
     }
 
     public double getTienCoSo() {

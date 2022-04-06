@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.plaf.basic.BasicButtonUI;
 import poly.dao.CTHoaDonDao;
+import poly.dao.GiaoCaDAO;
 import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
 import poly.dao.SanPhamDao;
@@ -45,6 +46,8 @@ public class MainFrm extends javax.swing.JFrame {
     private KhachHangDao daoKH;
     private SanPhamDao daoSP;
     private CTHoaDonDao daoCTHD;
+    private GiaoCaDAO gcDAO;
+    private GiaoCaJDialog gcDialog;
 
     static ArrayList<CTHoaDon> listCTHD;
     static KhachHang k;
@@ -64,6 +67,8 @@ public class MainFrm extends javax.swing.JFrame {
         this.daoKH = new KhachHangDao();
         this.daoSP = new SanPhamDao();
         this.daoCTHD = new CTHoaDonDao();
+        gcDialog = new GiaoCaJDialog(this, true);
+
         // Đăng nhập
         new LoginJDialog(this, true).setVisible(true);
         //Add HoaDọnPanel vào jtabpen
@@ -106,6 +111,7 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
+        btnGC = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnMinimise = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
@@ -264,6 +270,14 @@ public class MainFrm extends javax.swing.JFrame {
         lblDongHo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDongHo.setText("10");
         jPanel8.add(lblDongHo, java.awt.BorderLayout.CENTER);
+
+        btnGC.setText("Giao Ca");
+        btnGC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGCActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btnGC, java.awt.BorderLayout.LINE_END);
 
         jPanel6.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -500,6 +514,13 @@ public class MainFrm extends javax.swing.JFrame {
         new QLHoaDonJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btnQLHoaDonActionPerformed
 
+    private void btnGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGCActionPerformed
+        // TODO add your handling code here:
+        gcDialog.nhanCa();
+        gcDialog.setVisible(true);
+
+    }//GEN-LAST:event_btnGCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,6 +558,7 @@ public class MainFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnGC;
     private javax.swing.JButton btnKhoaManHinh;
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;

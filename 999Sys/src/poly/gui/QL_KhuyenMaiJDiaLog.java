@@ -231,12 +231,6 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
 
         jLabel4.setText("Ngày Kết Thúc");
         jPanel11.add(jLabel4);
-
-        txtGiaTri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGiaTriActionPerformed(evt);
-            }
-        });
         jPanel11.add(txtGiaTri);
         jPanel11.add(txtGiamToiDa);
         jPanel11.add(txtNgayKetThuc);
@@ -919,10 +913,6 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         }
         txthdtoithieu.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 6)).replace("đ", ""));
     }//GEN-LAST:event_tbl_HoaDon_HetHanMouseClicked
-
-    private void txtGiaTriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGiaTriActionPerformed
 
     private void setNut(boolean boo) {
         btnMoi.setVisible(boo);
