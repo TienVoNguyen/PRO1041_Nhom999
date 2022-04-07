@@ -20,7 +20,6 @@ import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
 import poly.dao.SanPhamDao;
 import poly.entity.HoaDon;
-import static poly.gui.MainFrm.k;
 import static poly.gui.MainFrm.listCTHD;
 
 /**
@@ -177,10 +176,10 @@ public class loading extends javax.swing.JDialog implements Runnable {
             for (HoaDon h : list) {
                 if (h.getMaTT() == 1) {
                     lblText.setText("Đang tải hóa đơn chờ ....");
-                    k = daoKH.selectById(h.getMaKH());
+                    MainFrm.k = daoKH.selectById(h.getMaKH());
                     listCTHD = daoCTHD.selectCTHD(h.getMaHD());
                     HoaDonJPanel hdpnl = new HoaDonJPanel(loading.this.pnlTabs);
-                    loading.this.pnlTabs.addTab(k == null ? "Khách lẻ: " : k.getHoTen(), hdpnl);
+                    loading.this.pnlTabs.addTab(MainFrm.k == null ? "Khách lẻ: " : MainFrm.k.getHoTen(), hdpnl);
                     loading.this.pnlTabs.setSelectedComponent(hdpnl);
                     hdpnl.loadDataToHoaDon();
                     hdpnl.setLabelHoaDon(h);

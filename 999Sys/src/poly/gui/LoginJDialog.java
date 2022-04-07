@@ -7,11 +7,8 @@ package poly.gui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import poly.dao.NhanVienDao;
 import poly.entity.NhanVien;
 import poly.helper.Auth;

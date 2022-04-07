@@ -13,22 +13,19 @@ public class HoaDon {
     private int maHD,maTT;
     private String maNV,maKH,ngayMua;
     private double giamGia;
-    private String ngayGiaoHang;
-    private double tienShip,thanhTien;
+    private double thanhTien;
     private boolean trangThai;
 
     public HoaDon() {
     }
 
-    public HoaDon(int maHD, int maTT, String maNV, String maKH, String ngayMua, double giamGia, String ngayGiaoHang, double tienShip, double thanhTien, boolean trangThai) {
+    public HoaDon(int maHD, int maTT, String maNV, String maKH, String ngayMua, double giamGia, double thanhTien, boolean trangThai) {
         this.maHD = maHD;
         this.maTT = maTT;
         this.maNV = maNV;
         this.maKH = maKH;
         this.ngayMua = ngayMua;
         this.giamGia = giamGia;
-        this.ngayGiaoHang = ngayGiaoHang;
-        this.tienShip = tienShip;
         this.thanhTien = thanhTien;
         this.trangThai = trangThai;
     }
@@ -81,22 +78,6 @@ public class HoaDon {
 
     public void setGiamGia(double giamGia) {
         this.giamGia = giamGia;
-    }
-
-    public String getNgayGiaoHang() {
-        return ngayGiaoHang;
-    }
-
-    public void setNgayGiaoHang(String ngayGiaoHang) {
-        this.ngayGiaoHang = ngayGiaoHang;
-    }
-
-    public double getTienShip() {
-        return tienShip;
-    }
-
-    public void setTienShip(double tienShip) {
-        this.tienShip = tienShip;
     }
 
     public double getThanhTien() {

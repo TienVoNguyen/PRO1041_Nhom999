@@ -5,6 +5,7 @@
  */
 package poly.gui;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -51,6 +52,10 @@ public class MainFrm extends javax.swing.JFrame {
 
     static ArrayList<CTHoaDon> listCTHD;
     static KhachHang k;
+    
+    CardLayout cardTable;
+    CardLayout cardButton;
+    CardLayout cardGH_BH;
 
     /**
      * Creates new form MainFrm
@@ -79,6 +84,12 @@ public class MainFrm extends javax.swing.JFrame {
         phanQuyen();
         startDongHo();
         mouseHover();
+        this.cardButton = (CardLayout) this.pnlButtonCard.getLayout();
+        this.cardTable = (CardLayout) this.pnlTableCard.getLayout();
+        this.cardGH_BH = (CardLayout) this.pnlCardGH_BH.getLayout();
+        this.cardGH_BH.show(pnlCardGH_BH, "banHang");
+        this.cardButton.show(pnlButtonCard, "giaoHang");
+        this.cardTable.show(pnlTableCard, "choGH");
     }
 
     /**
@@ -104,13 +115,17 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         pnlMain = new javax.swing.JPanel();
-        pnlTabs = new javax.swing.JTabbedPane();
         pnlHeader = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblTenNV = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        lblSoLuongDonHang = new javax.swing.JLabel();
+        btnGiaoHang_BanHang = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
         btnGC = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnMinimise = new javax.swing.JButton();
@@ -125,6 +140,31 @@ public class MainFrm extends javax.swing.JFrame {
         btnQLSP = new javax.swing.JButton();
         btnQLKhachHang = new javax.swing.JButton();
         btnQLHoaDon = new javax.swing.JButton();
+        pnlCardGH_BH = new javax.swing.JPanel();
+        pnlTabs = new javax.swing.JTabbedPane();
+        pnlGiaoHang = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        pnlCTHD = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        pnlTTHD = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        btnChoGH = new javax.swing.JButton();
+        btnDangGH = new javax.swing.JButton();
+        pnlButtonCard = new javax.swing.JPanel();
+        pnlGiaoHangButton = new javax.swing.JPanel();
+        btnGiaoHangTT = new javax.swing.JButton();
+        pnlHuyGH = new javax.swing.JPanel();
+        btnHuyGH = new javax.swing.JButton();
+        pnlTableCard = new javax.swing.JPanel();
+        pnlHoaDonChoGH = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        pnlHoaDonDangGH = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jpmMenu.setBackground(new java.awt.Color(102, 51, 0));
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,19 +267,6 @@ public class MainFrm extends javax.swing.JFrame {
         pnlMain.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(51, 51, 51)));
         pnlMain.setLayout(new java.awt.BorderLayout());
 
-        pnlTabs.setBackground(new java.awt.Color(0, 204, 102));
-        pnlTabs.setForeground(new java.awt.Color(255, 255, 255));
-        pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        pnlTabs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlTabs.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        pnlTabs.setOpaque(true);
-        pnlTabs.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                pnlTabsStateChanged(evt);
-            }
-        });
-        pnlMain.add(pnlTabs, java.awt.BorderLayout.CENTER);
-
         pnlHeader.setBackground(new java.awt.Color(0, 0, 0));
         pnlHeader.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 153, 153)));
         pnlHeader.setPreferredSize(new java.awt.Dimension(1068, 50));
@@ -271,13 +298,47 @@ public class MainFrm extends javax.swing.JFrame {
         lblDongHo.setText("10");
         jPanel8.add(lblDongHo, java.awt.BorderLayout.CENTER);
 
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setPreferredSize(new java.awt.Dimension(240, 100));
+        jPanel3.setLayout(new java.awt.GridLayout(0, 2));
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSoLuongDonHang.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        lblSoLuongDonHang.setForeground(new java.awt.Color(255, 0, 0));
+        lblSoLuongDonHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSoLuongDonHang.setText("6");
+        jPanel4.add(lblSoLuongDonHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 30, 30));
+
+        btnGiaoHang_BanHang.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnGiaoHang_BanHang.setText("Giao Hàng");
+        btnGiaoHang_BanHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnGiaoHang_BanHang.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnGiaoHang_BanHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGiaoHang_BanHangActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnGiaoHang_BanHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+
+        jPanel3.add(jPanel4);
+
+        jPanel7.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel7.setLayout(new java.awt.BorderLayout());
+
+        btnGC.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnGC.setText("Giao Ca");
         btnGC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGCActionPerformed(evt);
             }
         });
-        jPanel8.add(btnGC, java.awt.BorderLayout.LINE_END);
+        jPanel7.add(btnGC, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel7);
+
+        jPanel8.add(jPanel3, java.awt.BorderLayout.LINE_END);
 
         jPanel6.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -434,6 +495,173 @@ public class MainFrm extends javax.swing.JFrame {
 
         pnlMain.add(pnlFooter, java.awt.BorderLayout.PAGE_END);
 
+        pnlCardGH_BH.setLayout(new java.awt.CardLayout());
+
+        pnlTabs.setBackground(new java.awt.Color(0, 204, 102));
+        pnlTabs.setForeground(new java.awt.Color(255, 255, 255));
+        pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        pnlTabs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlTabs.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        pnlTabs.setOpaque(true);
+        pnlTabs.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                pnlTabsStateChanged(evt);
+            }
+        });
+        pnlCardGH_BH.add(pnlTabs, "banHang");
+
+        pnlGiaoHang.setLayout(new java.awt.BorderLayout());
+
+        jPanel9.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel9.setLayout(new java.awt.BorderLayout());
+
+        pnlCTHD.setBackground(new java.awt.Color(0, 128, 128));
+        pnlCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)), "Danh sách sản phẩm", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        pnlCTHD.setPreferredSize(new java.awt.Dimension(700, 652));
+        pnlCTHD.setLayout(new java.awt.BorderLayout());
+
+        jPanel10.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 672, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+
+        pnlCTHD.add(jPanel10, java.awt.BorderLayout.PAGE_END);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        pnlCTHD.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPanel9.add(pnlCTHD, java.awt.BorderLayout.LINE_END);
+
+        pnlTTHD.setLayout(new java.awt.BorderLayout());
+
+        jPanel11.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 80, new java.awt.Color(0, 128, 128)));
+        jPanel11.setLayout(new java.awt.BorderLayout());
+
+        jPanel12.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel12.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)));
+        jPanel12.setPreferredSize(new java.awt.Dimension(340, 100));
+        jPanel12.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
+
+        btnChoGH.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        btnChoGH.setText("Chờ Giao Hàng");
+        btnChoGH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChoGHActionPerformed(evt);
+            }
+        });
+        jPanel12.add(btnChoGH);
+
+        btnDangGH.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        btnDangGH.setText("Đang Giao Hàng");
+        btnDangGH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangGHActionPerformed(evt);
+            }
+        });
+        jPanel12.add(btnDangGH);
+
+        jPanel11.add(jPanel12, java.awt.BorderLayout.WEST);
+
+        pnlButtonCard.setBackground(new java.awt.Color(255, 204, 204));
+        pnlButtonCard.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)));
+        pnlButtonCard.setPreferredSize(new java.awt.Dimension(200, 100));
+        pnlButtonCard.setLayout(new java.awt.CardLayout());
+
+        pnlGiaoHangButton.setLayout(new java.awt.BorderLayout());
+
+        btnGiaoHangTT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnGiaoHangTT.setText("Giao Hàng");
+        pnlGiaoHangButton.add(btnGiaoHangTT, java.awt.BorderLayout.CENTER);
+
+        pnlButtonCard.add(pnlGiaoHangButton, "giaoHang");
+
+        pnlHuyGH.setBackground(new java.awt.Color(255, 204, 204));
+        pnlHuyGH.setLayout(new java.awt.BorderLayout());
+
+        btnHuyGH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnHuyGH.setText("Hủy Giao");
+        pnlHuyGH.add(btnHuyGH, java.awt.BorderLayout.CENTER);
+
+        pnlButtonCard.add(pnlHuyGH, "huyGH");
+
+        jPanel11.add(pnlButtonCard, java.awt.BorderLayout.EAST);
+
+        pnlTTHD.add(jPanel11, java.awt.BorderLayout.PAGE_START);
+
+        pnlTableCard.setBackground(new java.awt.Color(0, 128, 128));
+        pnlTableCard.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 10, 10, 0, new java.awt.Color(0, 128, 128)));
+        pnlTableCard.setLayout(new java.awt.CardLayout());
+
+        pnlHoaDonChoGH.setLayout(new java.awt.BorderLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        pnlHoaDonChoGH.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        pnlTableCard.add(pnlHoaDonChoGH, "choGH");
+
+        pnlHoaDonDangGH.setBackground(new java.awt.Color(0, 128, 128));
+        pnlHoaDonDangGH.setLayout(new java.awt.BorderLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        pnlHoaDonDangGH.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        pnlTableCard.add(pnlHoaDonDangGH, "dangGH");
+
+        pnlTTHD.add(pnlTableCard, java.awt.BorderLayout.CENTER);
+
+        jPanel9.add(pnlTTHD, java.awt.BorderLayout.CENTER);
+
+        pnlGiaoHang.add(jPanel9, java.awt.BorderLayout.CENTER);
+
+        pnlCardGH_BH.add(pnlGiaoHang, "giaoHang");
+
+        pnlMain.add(pnlCardGH_BH, java.awt.BorderLayout.CENTER);
+
         getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -516,10 +744,30 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void btnGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGCActionPerformed
         // TODO add your handling code here:
-        gcDialog.nhanCa();
+        gcDialog.giaoCa();
         gcDialog.setVisible(true);
 
     }//GEN-LAST:event_btnGCActionPerformed
+
+    private void btnGiaoHang_BanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHang_BanHangActionPerformed
+        if (btnGiaoHang_BanHang.getText().equalsIgnoreCase("Giao Hàng")){
+            this.cardGH_BH.show(pnlCardGH_BH, "giaoHang");
+            btnGiaoHang_BanHang.setText("Bán Hàng");
+        } else {
+            this.cardGH_BH.show(pnlCardGH_BH, "banHang");
+            btnGiaoHang_BanHang.setText("Giao Hàng");
+        }
+    }//GEN-LAST:event_btnGiaoHang_BanHangActionPerformed
+
+    private void btnChoGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoGHActionPerformed
+        this.cardButton.show(pnlButtonCard, "giaoHang");
+        this.cardTable.show(pnlTableCard, "choGH");
+    }//GEN-LAST:event_btnChoGHActionPerformed
+
+    private void btnDangGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangGHActionPerformed
+        this.cardButton.show(pnlButtonCard, "huyGH");
+        this.cardTable.show(pnlTableCard, "dangGH");
+    }//GEN-LAST:event_btnDangGHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -557,8 +805,13 @@ public class MainFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChoGH;
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnDangGH;
     private javax.swing.JButton btnGC;
+    private javax.swing.JButton btnGiaoHangTT;
+    private javax.swing.JButton btnGiaoHang_BanHang;
+    private javax.swing.JButton btnHuyGH;
     private javax.swing.JButton btnKhoaManHinh;
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnMenu;
@@ -570,27 +823,51 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnThongKe;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JPopupMenu jpmMenu;
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblSoLuongDonHang;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JMenuItem mniDangXuat;
     private javax.swing.JMenuItem mniQLChiTietSP;
     private javax.swing.JMenuItem mniQLKM;
     private javax.swing.JMenuItem mniQLSanPham;
     private javax.swing.JMenuItem mniThongKe;
+    private javax.swing.JPanel pnlButtonCard;
+    private javax.swing.JPanel pnlCTHD;
+    private javax.swing.JPanel pnlCardGH_BH;
     private javax.swing.JPanel pnlFooter;
+    private javax.swing.JPanel pnlGiaoHang;
+    private javax.swing.JPanel pnlGiaoHangButton;
     private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlHoaDonChoGH;
+    private javax.swing.JPanel pnlHoaDonDangGH;
+    private javax.swing.JPanel pnlHuyGH;
     private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlTTHD;
+    private javax.swing.JPanel pnlTableCard;
     private javax.swing.JTabbedPane pnlTabs;
     // End of variables declaration//GEN-END:variables
 

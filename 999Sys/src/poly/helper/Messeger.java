@@ -24,6 +24,6 @@ public class Messeger {
         return result == JOptionPane.YES_OPTION;
     }
     public static String prompt(Component parent,String message){
-        return JOptionPane.showInputDialog(parent, message, "Hệ thống bán hàng", JOptionPane.INFORMATION_MESSAGE);
+        return JOptionPane.showInputDialog(parent, message, "Hệ thống bán hàng", JOptionPane.WARNING_MESSAGE);
     }
 }
