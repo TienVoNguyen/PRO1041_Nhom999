@@ -802,7 +802,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDangGHActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        new GiaoCaJDialog(this, true).setVisible(true);
+        gcDialog = new GiaoCaJDialog(this, true);
     }//GEN-LAST:event_formWindowOpened
 
     /**
