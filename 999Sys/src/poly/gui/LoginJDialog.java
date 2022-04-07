@@ -7,11 +7,8 @@ package poly.gui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import poly.dao.NhanVienDao;
 import poly.entity.NhanVien;
 import poly.helper.Auth;
@@ -27,6 +24,7 @@ import poly.myinterface.BaseDaoInterFace;
 public class LoginJDialog extends javax.swing.JDialog {
 
     private BaseDaoInterFace dao;
+    private GiaoCaJDialog gcFrm;
     CardLayout cardGoc;
     CardLayout cardResetPass;
     int codeSMS;
@@ -618,6 +616,9 @@ public class LoginJDialog extends javax.swing.JDialog {
             } else {
                 Auth.user = nv;
                 Messeger.alert(this, "Bạn đã đăng nhập thành công");
+                if(!gcFrm.nhanCa()) {
+                    gcFrm.setVisible(true);
+                }
                 this.dispose();
             }
         } catch (Exception ex) {
@@ -930,6 +931,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     private void init() {
         setLocationRelativeTo(null);
         this.dao = new NhanVienDao();
+        gcFrm = new GiaoCaJDialog(null, true);
         cardGoc = (CardLayout) jpnCardGoc.getLayout();
         cardResetPass = (CardLayout) jpnCardChil.getLayout();
         cardGoc.show(jpnCardGoc, "cardLogin");

@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,7 +34,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private NhanVienDao nvDAO;
     private GiaoCaDAO gcDAO;
     private CardLayout gcCard;
-    
+    private List<NhanVien> lst;
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
 
@@ -114,14 +115,12 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         lblCardNCTienCoSo = new javax.swing.JLabel();
         lblCardNCTienThuHoi = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        radCardNCThu = new javax.swing.JRadioButton();
-        radCardNCChi = new javax.swing.JRadioButton();
         lblCardNCTienPhatSinh = new javax.swing.JLabel();
         lblCardNCDoanhThuCa = new javax.swing.JLabel();
         lblCardNCTongTien = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
+        btnCardNCOK = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
@@ -133,7 +132,6 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridLayout());
 
         faCard.setLayout(new java.awt.CardLayout());
 
@@ -153,12 +151,12 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1090, Short.MAX_VALUE)
+            .addGap(0, 1206, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 58, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 58, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,9 +170,11 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
 
         cardGC.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.BorderLayout(50, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 25, new java.awt.Color(255, 255, 255)));
         jPanel3.setPreferredSize(new java.awt.Dimension(290, 577));
         jPanel3.setLayout(new java.awt.GridLayout(9, 0, 0, 10));
 
@@ -235,7 +235,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         jPanel1.add(jPanel3, java.awt.BorderLayout.WEST);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 15, new java.awt.Color(255, 255, 255)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 100, 0, 15, new java.awt.Color(255, 255, 255)));
         jPanel4.setMaximumSize(new java.awt.Dimension(600, 439));
         jPanel4.setPreferredSize(new java.awt.Dimension(600, 439));
         jPanel4.setLayout(new java.awt.GridLayout(9, 0, 0, 10));
@@ -279,6 +279,9 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
 
         txtTienPhatSinh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtTienPhatSinh.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTienPhatSinhFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTienPhatSinhFocusLost(evt);
             }
@@ -310,7 +313,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Ghi chú:");
-        jLabel3.setPreferredSize(new java.awt.Dimension(277, 20));
+        jLabel3.setPreferredSize(new java.awt.Dimension(426, 20));
         jPanel5.add(jLabel3, java.awt.BorderLayout.WEST);
 
         txtGhiChu.setColumns(20);
@@ -413,6 +416,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         jPanel11.add(jPanel12, java.awt.BorderLayout.LINE_START);
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 55, 0, 0, new java.awt.Color(255, 255, 255)));
         jPanel14.setLayout(new java.awt.GridLayout(8, 0, 0, 10));
 
         lblNCcardNVNC.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -433,26 +437,6 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel16.setPreferredSize(new java.awt.Dimension(250, 64));
-        jPanel16.setLayout(new java.awt.GridLayout(1, 2));
-
-        radCardNCThu.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup2.add(radCardNCThu);
-        radCardNCThu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        radCardNCThu.setText("Thu");
-        radCardNCThu.setEnabled(false);
-        jPanel16.add(radCardNCThu);
-
-        radCardNCChi.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup2.add(radCardNCChi);
-        radCardNCChi.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        radCardNCChi.setText("Chi");
-        radCardNCChi.setEnabled(false);
-        jPanel16.add(radCardNCChi);
-
-        jPanel15.add(jPanel16, java.awt.BorderLayout.LINE_START);
-
         lblCardNCTienPhatSinh.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel15.add(lblCardNCTienPhatSinh, java.awt.BorderLayout.CENTER);
 
@@ -471,8 +455,19 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         jPanel13.setLayout(new java.awt.BorderLayout());
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 15, new java.awt.Color(255, 255, 255)));
         jPanel17.setPreferredSize(new java.awt.Dimension(1090, 80));
         jPanel17.setLayout(new java.awt.BorderLayout());
+
+        btnCardNCOK.setText("Xác nhận");
+        btnCardNCOK.setPreferredSize(new java.awt.Dimension(125, 29));
+        btnCardNCOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCardNCOKActionPerformed(evt);
+            }
+        });
+        jPanel17.add(btnCardNCOK, java.awt.BorderLayout.LINE_END);
+
         jPanel13.add(jPanel17, java.awt.BorderLayout.PAGE_END);
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -502,15 +497,17 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
 
         faCard.add(cardNC, "cardNC");
 
-        getContentPane().add(faCard);
+        getContentPane().add(faCard, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTienPhatSinhFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTienPhatSinhFocusLost
         // TODO add your handling code here:
-        String t = df.format(Double.parseDouble(txtTienPhatSinh.getText()));
-        txtTienPhatSinh.setText(t);
+        if (!txtTienPhatSinh.getText().isEmpty()) {
+            String t = df.format(Double.parseDouble(txtTienPhatSinh.getText()));
+            txtTienPhatSinh.setText(t);
+        }
     }//GEN-LAST:event_txtTienPhatSinhFocusLost
 
     private void txtTienPhatSinhKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatSinhKeyPressed
@@ -528,23 +525,32 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private void txtTienPhatSinhKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatSinhKeyReleased
         // TODO add your handling code here:
         double tongtien;
-        if (radChi.isSelected()) {
+//        if(txtTienPhatSinh.getText().isEmpty()) {
+//            txtTienPhatSinh.setText("0");
+//        }
+        if (!txtTienPhatSinh.getText().isEmpty()) {
+            if (radChi.isSelected()) {
 
-            tongtien = Double.parseDouble(lblTienCS.getText())
-                    + Double.parseDouble(lblDTCa.getText())
-                    - Double.parseDouble(lblTienThuHoi.getText())
-                    - Double.parseDouble(txtTienPhatSinh.getText());
+                tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
+                        + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
+                        - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue()
+                        - Double.parseDouble(txtTienPhatSinh.getText());
 
+            } else {
+                tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
+                        + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
+                        - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue()
+                        + Double.parseDouble(txtTienPhatSinh.getText());
+            }
         } else {
-            tongtien = Double.parseDouble(lblTienCS.getText())
-                    + Double.parseDouble(lblDTCa.getText())
-                    - Double.parseDouble(lblTienThuHoi.getText())
-                    + Double.parseDouble(txtTienPhatSinh.getText());
+            tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
+                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
+                    - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue();
         }
         lblTongTien.setText(df.format(tongtien));
-        if (tongtien <= 1000000) {
-            if (Messeger.confirm(null, "Khoản tiền duy trì hoạt động không đủ, tiếp tục?")) {
-                return;
+        if (tongtien < 1000000) {
+            if (!Messeger.confirm(null, "Khoản tiền duy trì hoạt động không đủ!")) {
+                txtTienPhatSinh.setText("0");
             }
         }
 
@@ -576,9 +582,29 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCardNCOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardNCOKActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if (gcDAO.update(setEntity())) {
+                Messeger.alert(null, "Nhận ca thành công!");
+            } else {
+                Messeger.showErrorDialog(null, "Nhận ca thất bại!", "Lỗi giao ca");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCardNCOKActionPerformed
+
+    private void txtTienPhatSinhFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTienPhatSinhFocusGained
+        // TODO add your handling code here:
+        if (!txtTienPhatSinh.getText().isEmpty()) {
+            txtTienPhatSinh.setText(df.parse(txtTienPhatSinh.getText(), new ParsePosition(0)).toString());
+        }
+    }//GEN-LAST:event_txtTienPhatSinhFocusGained
 
     /**
      * @param args the command line arguments
@@ -623,6 +649,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCardNCOK;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -659,7 +686,6 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
@@ -686,8 +712,6 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JLabel lblcardNCNVGC;
     private javax.swing.JLabel lblcardNCStartTime;
-    private javax.swing.JRadioButton radCardNCChi;
-    private javax.swing.JRadioButton radCardNCThu;
     private javax.swing.JRadioButton radChi;
     private javax.swing.JRadioButton radThu;
     private javax.swing.JScrollPane sp;
@@ -698,19 +722,19 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
 
     private void init() {
         setLocationRelativeTo(null);
-        
+
         nvDAO = new NhanVienDao();
         gcDAO = new GiaoCaDAO();
+        lst = new ArrayList<>();
         gcCard = (CardLayout) faCard.getLayout();
-        
 //        setText();
-//        fillToCBBNV();
+        fillToCBBNV();
     }
 
     private void fillToCBBNV() {
         try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbxNV.getModel();
-            List<NhanVien> lst = nvDAO.selectAll();
+            lst = nvDAO.selectAll();
             model.removeAllElements();
             for (NhanVien nhanVien : lst) {
                 model.addElement(nhanVien);
@@ -724,8 +748,8 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         try {
             lblNVGiao.setText(Auth.user.getHoTen());
             GiaoCa gc = gcDAO.selectById(Auth.user.getMaNV());
-            lblStartTime.setText(gc.getGioNhanCa());
-            lblEndTime.setText(XDate.toString(new Date(), "hh:mm aa dd/MM/yyyy"));
+            lblStartTime.setText(XDate.toString(XDate.toDate(gc.getGioNhanCa(), "hh:mm dd/MM/yyyy"), "hh:mm dd/MM/yyyy"));
+            lblEndTime.setText(XDate.toString(new Date(), "hh:mm dd/MM/yyyy"));
             lblTienCS.setText(df.format(gc.getTienCoSo()));
             lblTienThuHoi.setText(df.format(gc.getTienDaThuHoi()));
             lblDTCa.setText(df.format(gc.getDoanhThuCa()));
@@ -738,32 +762,63 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
     private GiaoCa setEntity() {
         GiaoCa gc = new GiaoCa();
         NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
-        String endTime = XDate.toString(XDate.toDate(lblEndTime.getText(), "yyyy-MM-dd hh:mm"), "yyyy-MM-dd hh:mm");
+        String endTime = XDate.toString(XDate.toDate(lblEndTime.getText(), "hh:mm aa dd-MM-yyyy"), "yyyy-MM-dd hh:mm");
         gc.setMaNVGiaoCa(Auth.user.getMaNV());
-        gc.setGhiChu(txtGhiChu.getText());
+        gc.setGhiChuGC(txtGhiChu.getText());
+        gc.setGhiChuNC(txtCardNCGhiChu.getText());
         gc.setMaNVNhan(nv.getMaNV());
         gc.setGioGiaoCa(endTime);
         gc.setTienCoSo(df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue());
         gc.setTienPhatSinh(df.parse(txtTienPhatSinh.getText(), new ParsePosition(0)).doubleValue());
         gc.setDoanhThuCa(df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue());
         gc.setTienDaThuHoi(df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue());
+        gc.setTongTien(df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue());
         return gc;
     }
-    
-    public void nhanCa(){
+
+    public boolean nhanCa() {
         try {
-            gcCard.show(faCard, "cardNC");
             GiaoCa gc = gcDAO.selectByIDNC();
-            
-        } catch (SQLException ex) {
+            GiaoCa gc1 = gcDAO.selectById(Auth.user.getMaNV());
+            if (gc != null) {
+                lblNCcardNVNC.setText(Auth.user.getHoTen());
+                for (NhanVien nv : lst) {
+                    if (gc.getMaNVGiaoCa().equals(nv.getMaNV())) {
+                        lblcardNCNVGC.setText(nv.getHoTen());
+                    }
+                }
+                lblStartTime.setText(gc.getGioNhanCa());
+                lblcardNCStartTime.setText(XDate.toString(new Date(), "hh:mm aa dd/MM/yyyy"));
+                lblCardNCTienCoSo.setText(df.format(gc.getTienCoSo()));
+                lblCardNCTienThuHoi.setText(df.format(gc.getTienDaThuHoi()));
+                lblCardNCDoanhThuCa.setText(df.format(gc.getDoanhThuCa()));
+                lblCardNCTongTien.setText(df.format(gc.getTongTien()));
+
+                gcCard.show(faCard, "cardNC");
+                return false;
+            } else if (gc1 != null) {
+                return true;
+            }else {
+                try {
+                    gcDAO.insert(new GiaoCa(Auth.user.getMaNV()));
+                } catch (Exception ex) {
+                    Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (Exception ex) {
             Logger.getLogger(GiaoCaJDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return true;
     }
-    
-    public void giaoCa(){
+
+    public void giaoCa() {
         gcCard.show(faCard, "cardGC");
-        fillToCBBNV();
+//        fillToCBBNV();
         setText();
-        
+
     }
+
+//    public void taoCa() {
+//        gcDAO.insert(e);
+//    }
 }

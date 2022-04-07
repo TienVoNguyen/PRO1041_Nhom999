@@ -772,7 +772,7 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void btnGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGCActionPerformed
         // TODO add your handling code here:
-        gcDialog.nhanCa();
+        gcDialog.giaoCa();
         gcDialog.setVisible(true);
 
     }//GEN-LAST:event_btnGCActionPerformed
