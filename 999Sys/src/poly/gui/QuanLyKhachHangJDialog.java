@@ -51,7 +51,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         loaiKhachHangModelTB = (DefaultTableModel) tblLoaiKH.getModel();
         loaiKhachHangComboBox = (DefaultComboBoxModel) this.cbbLoaiKH.getModel();
         dateTime.setSettings(CustomDatePicker.customsDatePicker(dateTime, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
-        txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
+        txtNgTao.setSettings(CustomDatePicker.customsDatePicker(txtNgTao, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
+      //  txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
         khachHangDao = new KhachHangDao();
         loaiKHDao = new LoaiKhachHangDao();
         this.fillToComBoBox();
@@ -121,8 +122,8 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         txtDiaChi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        txtNgTao = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txtNgTao = new com.github.lgooddatepicker.components.DatePicker();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jpnGioiTinh = new javax.swing.JPanel();
@@ -493,14 +494,12 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
 
         jPanel18.setLayout(new java.awt.BorderLayout());
 
-        txtNgTao.setEnabled(false);
-        jPanel18.add(txtNgTao, java.awt.BorderLayout.CENTER);
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("  Ngày Tạo : ");
         jLabel8.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel18.add(jLabel8, java.awt.BorderLayout.LINE_START);
+        jPanel18.add(txtNgTao, java.awt.BorderLayout.CENTER);
 
         jpnFormTextField.add(jPanel18);
 
@@ -584,7 +583,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         );
         jpnSeparatorLayout.setVerticalGroup(
             jpnSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGap(0, 643, Short.MAX_VALUE)
         );
 
         jpnLoaiKH.add(jpnSeparator, java.awt.BorderLayout.LINE_START);
@@ -756,7 +755,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnChung, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+            .addComponent(jpnChung, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         pack();
@@ -819,6 +818,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         if (row == -1) {
             return;
         }
+        this.changeIndex(row+1);
         this.edit();
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
@@ -1255,7 +1255,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaKhachHang;
     private javax.swing.JTextField txtMaLoaiKH;
-    private javax.swing.JTextField txtNgTao;
+    private com.github.lgooddatepicker.components.DatePicker txtNgTao;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtSearchByName;
     private javax.swing.JTextField txtSoDiemTich;
@@ -1342,7 +1342,11 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         } else {
             this.dateTime.setText(XDate.toString(kH.getNgaySinh(), "dd/MM/yyyy"));
         }
-        this.txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
+        if(kH.getNgayTao() == null){
+            this.txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
+        }else{
+        this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
+        }
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
         tblKhachHang.setRowSelectionInterval(row, row);
     }
@@ -1358,7 +1362,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         kH.setEmail(txtEmailKhachHang.getText());
         kH.setSDT(txtSDT.getText());
         kH.setDiaChi(txtDiaChi.getText());
-        kH.setNgayTao(new Date());
+        kH.setNgayTao(XDate.toDate(txtNgTao.getText(), "dd/MM/yyyy"));
         kH.setTrangThai(true);
         return kH;
     }
