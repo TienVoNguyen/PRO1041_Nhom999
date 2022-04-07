@@ -1125,8 +1125,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiKHActionPerformed
 
     private void btnLuuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuKHActionPerformed
-        if (themKH())
+        if (themKH()) {
             return;
+        }
     }//GEN-LAST:event_btnLuuKHActionPerformed
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
@@ -1196,7 +1197,20 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaKHActionPerformed
 
     private void btnDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatHangActionPerformed
-        new DatHangJDialog(null, true).setVisible(true);
+        if (tblHoaDon.getRowCount() <= 0) {
+            JOptionPane.showMessageDialog(this, "Không có sản phẩm để đặt hàng");
+            return;
+        } else {
+            HoaDon hd = new HoaDon();
+            hd.setMaHD(Integer.parseInt(lblHoaDon.getToolTipText()));
+            if (lblTenKH.getToolTipText() != null && !lblTenKH.getToolTipText().isEmpty()) {
+                hd.setMaKH(lblTenKH.getToolTipText());
+            }
+            hd.setMaNV(Auth.user.getMaNV());
+            hd.setMaTT(2);
+            hd.setThanhTien(Double.parseDouble(lblThanhTien.getToolTipText()));
+            new DatHangJDialog(null, true, pnlTabs, hd).setVisible(true);
+        }
     }//GEN-LAST:event_btnDatHangActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

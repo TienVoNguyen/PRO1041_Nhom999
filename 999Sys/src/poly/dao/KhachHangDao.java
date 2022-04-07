@@ -63,7 +63,6 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
                     obj.getDiaChi(),
                     obj.getNgayTao(),
                     obj.getTichDiem(),
-                    obj.isTrangThai(),
                     obj.getMaKH()
                 };
             case "SELECTWHERE":
