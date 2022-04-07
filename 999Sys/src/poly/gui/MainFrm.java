@@ -56,6 +56,7 @@ public class MainFrm extends javax.swing.JFrame {
     CardLayout cardTable;
     CardLayout cardButton;
     CardLayout cardGH_BH;
+    boolean isChoGHSelected = true;
 
     /**
      * Creates new form MainFrm
@@ -72,7 +73,6 @@ public class MainFrm extends javax.swing.JFrame {
         this.daoKH = new KhachHangDao();
         this.daoSP = new SanPhamDao();
         this.daoCTHD = new CTHoaDonDao();
-        gcDialog = new GiaoCaJDialog(this, true);
 
         // Đăng nhập
         new LoginJDialog(this, true).setVisible(true);
@@ -148,6 +148,9 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         pnlTTHD = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -261,6 +264,9 @@ public class MainFrm extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -516,7 +522,7 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel9.setLayout(new java.awt.BorderLayout());
 
         pnlCTHD.setBackground(new java.awt.Color(0, 128, 128));
-        pnlCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)), "Danh sách sản phẩm", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Arial", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        pnlCTHD.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 128, 128)), "Danh sách sản phẩm", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Arial", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
         pnlCTHD.setPreferredSize(new java.awt.Dimension(700, 652));
         pnlCTHD.setLayout(new java.awt.BorderLayout());
 
@@ -550,6 +556,26 @@ public class MainFrm extends javax.swing.JFrame {
 
         pnlCTHD.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
+        jPanel13.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel13.setPreferredSize(new java.awt.Dimension(672, 60));
+        jPanel13.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Tên khách hàng:");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 10, 0, 0, new java.awt.Color(0, 128, 128)));
+        jPanel13.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 153, 153));
+        jLabel2.setText("Mã hóa đơn:");
+        jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 8, 0, 0, new java.awt.Color(0, 128, 128)));
+        jLabel2.setPreferredSize(new java.awt.Dimension(200, 16));
+        jPanel13.add(jLabel2, java.awt.BorderLayout.LINE_START);
+
+        pnlCTHD.add(jPanel13, java.awt.BorderLayout.PAGE_START);
+
         jPanel9.add(pnlCTHD, java.awt.BorderLayout.LINE_END);
 
         pnlTTHD.setLayout(new java.awt.BorderLayout());
@@ -563,6 +589,7 @@ public class MainFrm extends javax.swing.JFrame {
         jPanel12.setPreferredSize(new java.awt.Dimension(340, 100));
         jPanel12.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
 
+        btnChoGH.setBackground(new java.awt.Color(51, 255, 51));
         btnChoGH.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         btnChoGH.setText("Chờ Giao Hàng");
         btnChoGH.addActionListener(new java.awt.event.ActionListener() {
@@ -572,6 +599,7 @@ public class MainFrm extends javax.swing.JFrame {
         });
         jPanel12.add(btnChoGH);
 
+        btnDangGH.setBackground(new java.awt.Color(204, 153, 0));
         btnDangGH.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         btnDangGH.setText("Đang Giao Hàng");
         btnDangGH.addActionListener(new java.awt.event.ActionListener() {
@@ -762,12 +790,20 @@ public class MainFrm extends javax.swing.JFrame {
     private void btnChoGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoGHActionPerformed
         this.cardButton.show(pnlButtonCard, "giaoHang");
         this.cardTable.show(pnlTableCard, "choGH");
+        this.isChoGHSelected = true;
+        status();
     }//GEN-LAST:event_btnChoGHActionPerformed
 
     private void btnDangGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangGHActionPerformed
         this.cardButton.show(pnlButtonCard, "huyGH");
         this.cardTable.show(pnlTableCard, "dangGH");
+        this.isChoGHSelected = false;
+        status();
     }//GEN-LAST:event_btnDangGHActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        new GiaoCaJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -822,10 +858,13 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnQLSP;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -993,6 +1032,17 @@ public class MainFrm extends javax.swing.JFrame {
                     }
                 }
             });
+        }
+    }
+    
+    
+    private void status() {
+        if (isChoGHSelected){
+            this.btnChoGH.setBackground(new Color(51,255,51));
+            this.btnDangGH.setBackground(new Color(204,153,0));
+        } else {
+            this.btnChoGH.setBackground(new Color(204,153,0));
+            this.btnDangGH.setBackground(new Color(51,255,51));
         }
     }
 
