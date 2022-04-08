@@ -24,7 +24,7 @@ public class NhanVienDao extends BaseDao<NhanVien, String> {
             case "UPDATE":
                 return "UPDATE TAIKHOAN SET MAVAITRO =?, HOTEN =?, MATKHAU =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, ANHDAIDIEN =?, NGAYTAO =?, TRANGTHAI =? WHERE MANV = ?";
             case "DELETE":
-                return "DELETE FROM TAIKHOAN WHERE MANV = ?";
+                return "UPDATE TAIKHOAN SET TRANGTHAI = 0 WHERE MANV = ? ";
             case "SELECTBYID":
                 return "SELECT * FROM TAIKHOAN where MANV = ?";
             case "SELECTALL":
