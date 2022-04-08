@@ -34,7 +34,7 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                 return "SELECT MAGIAOCA, MANVGIAOCA, MANVNHANCA, GIONHANCA, "
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
                         + "dbo.FNDTC(MANVGIAOCA) AS DOANHTHUCA, TIENDATHUHOI,"
-                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MANVGIAOCA = ? AND MATT = 2";
+                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MANVGIAOCA LIKE ? AND MATT = 2";
             case "SELECTALL":
                 return "SELECT MAGIAOCA, MANVGIAOCA, MANVNHANCA, GIONHANCA, "
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
