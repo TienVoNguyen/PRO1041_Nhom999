@@ -23,6 +23,7 @@ import poly.dao.HoaDonDao;
 import poly.dao.TTHoaDonDao;
 import poly.entity.HoaDon;
 import poly.entity.TTHoaDon;
+import poly.helper.CustomDatePicker;
 import poly.helper.Messeger;
 import poly.helper.XDate;
 
@@ -41,6 +42,7 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Combo= (DefaultComboBoxModel)cbcTrangThai.getModel();
         Model= (DefaultTableModel)tblHoaDon.getModel();
+        txtNgayMua.setSettings(CustomDatePicker.customsDatePicker(txtNgayMua, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
         loadDataToCombobox();
         loadDataToTableModel();
     }
@@ -72,7 +74,7 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         cbcTrangThai = new javax.swing.JComboBox<>();
         txtMaNV = new javax.swing.JTextField();
         txtMaKH = new javax.swing.JTextField();
-        txtNgayMua = new javax.swing.JTextField();
+        txtNgayMua = new com.github.lgooddatepicker.components.DatePicker();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -90,10 +92,13 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         tblHoaDon = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 658));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 255, 0)));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(255, 204, 255)));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 250));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -131,19 +136,19 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         jPanel7.setBackground(new java.awt.Color(255, 204, 255));
         jPanel7.setLayout(new java.awt.GridLayout(0, 1));
 
-        jLabel1.setText("Mã hóa đơn");
+        jLabel1.setText(" Mã hóa đơn :");
         jPanel7.add(jLabel1);
 
-        jLabel2.setText("Trạng thái");
+        jLabel2.setText(" Trạng thái :");
         jPanel7.add(jLabel2);
 
-        jLabel3.setText("Mã nhân viên");
+        jLabel3.setText(" Mã nhân viên :");
         jPanel7.add(jLabel3);
 
-        jLabel4.setText("Mã khách hàng");
+        jLabel4.setText("Mã khách hàng :");
         jPanel7.add(jLabel4);
 
-        jLabel5.setText("Ngày mua");
+        jLabel5.setText("Ngày mua :");
         jPanel7.add(jLabel5);
 
         jPanel6.add(jPanel7, java.awt.BorderLayout.LINE_START);
@@ -166,16 +171,16 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         jPanel9.setBackground(new java.awt.Color(255, 204, 255));
         jPanel9.setLayout(new java.awt.GridLayout(0, 1));
 
-        jLabel6.setText("Giảm giá");
+        jLabel6.setText("  Giảm giá :");
         jPanel9.add(jLabel6);
 
-        jLabel7.setText("Ngày giao hàng");
+        jLabel7.setText("  Ngày giao hàng :");
         jPanel9.add(jLabel7);
 
-        jLabel8.setText("Tiền ship");
+        jLabel8.setText("  Tiền ship :");
         jPanel9.add(jLabel8);
 
-        jLabel9.setText("Thành tiền");
+        jLabel9.setText("  Thành tiền :");
         jPanel9.add(jLabel9);
         jPanel9.add(jLabel10);
 
@@ -242,8 +247,6 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         HD.setMaKH(txtMaKH.getText());
         HD.setNgayMua(txtNgayMua.getText());
         HD.setGiamGia(Double.parseDouble(txtGiamGia.getText()));
-       // HD.setNgayGiaoHang((txtNgayGH.getText()));
-        HD.setTienShip(Double.parseDouble(txtTienShip.getText()));
         HD.setThanhTien(Double.parseDouble(txtThanhTien.getText()));
         try {
             HDD.update(HD);
@@ -353,7 +356,7 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtNgayGH;
-    private javax.swing.JTextField txtNgayMua;
+    private com.github.lgooddatepicker.components.DatePicker txtNgayMua;
     private javax.swing.JTextField txtThanhTien;
     private javax.swing.JTextField txtTienShip;
     // End of variables declaration//GEN-END:variables
@@ -384,8 +387,6 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
                     HD.getMaKH(),
                     HD.getNgayMua(),
                     HD.getGiamGia(),
-                    HD.getNgayGiaoHang(),
-                    HD.getTienShip(),
                     HD.getThanhTien()
                 });
             }

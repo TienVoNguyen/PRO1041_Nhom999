@@ -89,6 +89,10 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txtGiamGia = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtApDungVou = new javax.swing.JButton();
+        txtVouCher = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnSuDung = new javax.swing.JButton();
@@ -221,6 +225,32 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
 
         jPanel8.add(jPanel10);
 
+        jPanel14.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel14.setLayout(new java.awt.BorderLayout());
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Voucher:");
+        jLabel8.setPreferredSize(new java.awt.Dimension(168, 12));
+        jPanel14.add(jLabel8, java.awt.BorderLayout.LINE_START);
+
+        txtApDungVou.setBackground(new java.awt.Color(255, 102, 51));
+        txtApDungVou.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtApDungVou.setForeground(new java.awt.Color(255, 255, 255));
+        txtApDungVou.setText("Áp Dụng");
+        txtApDungVou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApDungVouActionPerformed(evt);
+            }
+        });
+        jPanel14.add(txtApDungVou, java.awt.BorderLayout.LINE_END);
+
+        txtVouCher.setEditable(false);
+        txtVouCher.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPanel14.add(txtVouCher, java.awt.BorderLayout.CENTER);
+
+        jPanel8.add(jPanel14);
+
         jPanel13.setBackground(new java.awt.Color(0, 153, 153));
         jPanel13.setLayout(new java.awt.BorderLayout());
 
@@ -311,6 +341,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         if (thanhToan()) {
             return;
         }
+        Messeger.alert(this, "Thành công");
 
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
@@ -379,6 +410,10 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSuDungActionPerformed
 
+    private void txtApDungVouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApDungVouActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApDungVouActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -433,10 +468,12 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -446,18 +483,20 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lblTienThua;
+    private javax.swing.JButton txtApDungVou;
     private javax.swing.JTextField txtGiamGia;
     private javax.swing.JTextField txtPoint;
     private javax.swing.JTextField txtTienKhach;
     private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTongTien;
+    private javax.swing.JTextField txtVouCher;
     // End of variables declaration//GEN-END:variables
 
     private boolean thanhToan() throws HeadlessException {
         if (Messeger.confirm(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD())) {
             try {
                 hd.setGiamGia(Double.parseDouble(txtGiamGia.getToolTipText()));
-                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy"));
+                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"));
                 hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
                 this.daoHD.update(hd);
                 if (hd.getMaKH() != null) {

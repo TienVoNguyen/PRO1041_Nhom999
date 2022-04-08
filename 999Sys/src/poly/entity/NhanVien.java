@@ -131,4 +131,11 @@ public class NhanVien {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    @Override
+    public String toString() {
+        return vaiTro == 101? "Trưởng phòng: " + hoTen : "Nhân viên: " + hoTen;
+    }
+    
+    
 }
