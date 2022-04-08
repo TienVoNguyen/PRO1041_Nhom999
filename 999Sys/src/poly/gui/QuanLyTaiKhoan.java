@@ -16,6 +16,7 @@ import poly.dao.NhanVienDao;
 import poly.dao.VaiTroDao;
 import poly.entity.NhanVien;
 import poly.entity.VaiTro;
+import poly.helper.Auth;
 import poly.helper.CustomDatePicker;
 import poly.helper.ImageHelper;
 import poly.helper.Messeger;
@@ -573,9 +574,22 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     }//GEN-LAST:event_btnThemMoiActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try {
+            ArrayList<NhanVien> nv = dao_nv.selectAll();
+            for (int i = 0; i < nv.size(); i++) {
+            NhanVien get = nv.get(i);
+            if (get.getMaNV().equals(txtMaNV.getText())) {
+                Messeger.alert(this, "Đã Có Mã NV Trong Hệ Thống , Vui Lòng Chọn Mã Khác");
+                return;
+            }
+        }
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (Validate()) {
             return;
         }
+        
         try {
             boolean gioitinh = true;
             int vaitro = 101;
@@ -585,7 +599,9 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
             if (radionv.isSelected()) {
                 vaitro = 102;
             }
-
+            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                return;
+            }
             dao_nv.insert(new NhanVien(txtMaNV.getText(), txtMatKhau.getText(), txtHoTen.getText(),
                     txtngaysinh.getText(),
                     gioitinh,
@@ -603,6 +619,10 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        if (Auth.user.getMaNV().equals(txtMaNV.getText())) {
+            Messeger.showErrorDialog(this, "Tài Khoản Đang Đăng Nhập Không Thể Tự Chỉnh Sửa", "Lỗi");
+            return;
+        }
         if (Validate()) {
             return;
         }
@@ -614,6 +634,9 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
             }
             if (radionv.isSelected()) {
                 vaitro = 102;
+            }
+            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không")) {
+                return;
             }
             dao_nv.update(new NhanVien(txtMaNV.getText(), txtMatKhau.getText(), txtHoTen.getText(),
                     txtngaysinh.getText(),
@@ -632,7 +655,14 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+       if (Auth.user.getMaNV().equals(txtMaNV.getText())) {
+            Messeger.showErrorDialog(this, "Tài Khoản Đang Đăng Nhập Không Thể Tự Chỉnh Sửa", "Lỗi");
+            return;
+        }
         try {
+            if (!Messeger.confirm(this, "Bạn Có Muốn Xóa Không")) {
+                return;
+            }
             dao_nv.delete(txtMaNV.getText());
             LoadDataToTable_TaiKhoan();
         } catch (Exception ex) {

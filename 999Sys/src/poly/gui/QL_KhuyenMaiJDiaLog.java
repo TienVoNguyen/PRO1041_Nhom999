@@ -160,8 +160,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         });
         jPanel3.add(btnThungRac);
 
+        btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/new.png"))); // NOI18N
         btnMoi.setText("Mới");
-        btnMoi.setPreferredSize(new java.awt.Dimension(65, 40));
+        btnMoi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMoi.setPreferredSize(new java.awt.Dimension(85, 65));
+        btnMoi.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoiActionPerformed(evt);
@@ -169,8 +172,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         });
         jPanel3.add(btnMoi);
 
-        btnSua.setText("Sửa");
-        btnSua.setPreferredSize(new java.awt.Dimension(65, 40));
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/update.png"))); // NOI18N
+        btnSua.setText("Cập Nhật");
+        btnSua.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSua.setPreferredSize(new java.awt.Dimension(85, 65));
+        btnSua.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaActionPerformed(evt);
@@ -178,8 +184,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         });
         jPanel3.add(btnSua);
 
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
-        btnXoa.setPreferredSize(new java.awt.Dimension(65, 40));
+        btnXoa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnXoa.setPreferredSize(new java.awt.Dimension(85, 65));
+        btnXoa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -187,8 +196,11 @@ public class QL_KhuyenMaiJDiaLog extends javax.swing.JDialog {
         });
         jPanel3.add(btnXoa);
 
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/add.png"))); // NOI18N
         btnThem.setText("Thêm");
-        btnThem.setPreferredSize(new java.awt.Dimension(65, 40));
+        btnThem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnThem.setPreferredSize(new java.awt.Dimension(85, 65));
+        btnThem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
