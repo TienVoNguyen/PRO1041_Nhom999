@@ -5,9 +5,6 @@
 package poly.gui;
 
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.event.WindowAdapter;
-import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
