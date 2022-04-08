@@ -60,14 +60,14 @@ public class XValidate {
             txtValue.requestFocus();
             return true;
         }
-        
+
         String pattern2 = "^[0-9]{1,}\\.$";
         if (Number.matches(pattern2)) {
             txtValue.setBackground(Color.YELLOW);
             txtValue.requestFocus();
             return true;
         }
-        
+
         if (Double.parseDouble(Number) < 0) {
             if (!Number.matches(pattern)) {
                 txtValue.setBackground(Color.YELLOW);
@@ -90,7 +90,7 @@ public class XValidate {
         txtValue.setBackground(Color.white);
         return false;
     }
-    
+
     public static boolean isNotEmail(JTextField txtValue) {
         String Gmail = String.valueOf(txtValue.getText());
         String pattern = "^[a-zA-Z]\\w{2,}@\\w{2,}(\\.\\w{2,3}){1,2}$";
@@ -126,7 +126,17 @@ public class XValidate {
         }
         return false;
     }
-    
-   
+
+      public static boolean isNotNumberPhone(JTextField txtValue) {
+        String Gmail = String.valueOf(txtValue.getText());
+        String pattern = "((09|03|07|08|05)+[0-9]{6}";
+        if (!Gmail.matches(pattern)) {
+            txtValue.setBackground(Color.YELLOW);
+            txtValue.requestFocus();
+            return true;
+        }
+        txtValue.setBackground(Color.white);
+        return false;
+    }
 
 }

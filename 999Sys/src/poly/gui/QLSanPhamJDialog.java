@@ -652,7 +652,6 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         themChatLieuJDialog.getContentPane().add(jPanel52, java.awt.BorderLayout.CENTER);
 
         loadDataJDialog.setMinimumSize(new java.awt.Dimension(819, 140));
-        loadDataJDialog.setPreferredSize(new java.awt.Dimension(819, 200));
         loadDataJDialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 loadDataJDialogWindowClosed(evt);
@@ -776,6 +775,11 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         btnXoaAnh.setText("Xóa ảnh");
         btnXoaAnh.setBorder(null);
         btnXoaAnh.setOpaque(false);
+        btnXoaAnh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaAnhActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnXoaAnh);
 
         jPanel11.add(jPanel12, java.awt.BorderLayout.PAGE_END);
@@ -1484,6 +1488,10 @@ public class QLSanPhamJDialog extends javax.swing.JDialog {
         Messeger.alert(null, "Thêm dữ liệu mới thành công");
         loadDataToTable(new Object[]{"%%", "%%", "%%", "%%", "%%", "%%", "%%"});
     }//GEN-LAST:event_loadDataJDialogWindowClosed
+
+    private void btnXoaAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaAnhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaAnhActionPerformed
 
     /**
      * @param args the command line arguments
