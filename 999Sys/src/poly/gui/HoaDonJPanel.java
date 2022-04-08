@@ -73,8 +73,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
     boolean isSanPhamSelected = true;
     JTabbedPane pnlTabs;
+    java.awt.Frame parent;
 
-    public HoaDonJPanel(JTabbedPane pnlTabs) {
+    public HoaDonJPanel(java.awt.Frame parent, JTabbedPane pnlTabs) {
         initComponents();
         this.daoDM = new DanhMucDao();
         this.daoSP = new SanPhamDao();
@@ -83,6 +84,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         this.DAOHD = new HoaDonDao();
         this.DAOCTHD = new CTHoaDonDao();
 
+        this.parent = parent;
+        
         this.dtmHoaDon = new DefaultTableModel();
         this.dtmKhachHang = new DefaultTableModel();
         this.dtmSanPham = new DefaultTableModel();
@@ -475,7 +478,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jPanel10.add(btnTimKiem, java.awt.BorderLayout.LINE_END);
 
         txtTimKiem.setText("Tìm Kiếm Sản Phẩm");
-        txtTimKiem.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        txtTimKiem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtTimKiem.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtTimKiem.setForeground(new java.awt.Color(255, 0, 0));
         txtTimKiem.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -680,9 +683,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         });
         jPanel3.add(btnXoaKH);
 
+        btnDatHang.setText("Đặt Hàng");
         btnDatHang.setBackground(new java.awt.Color(0, 204, 153));
         btnDatHang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnDatHang.setText("Đặt Hàng");
         btnDatHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDatHangActionPerformed(evt);
@@ -1063,7 +1066,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
     private void btnHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonMoiActionPerformed
         if (!lblHoaDon.getText().equalsIgnoreCase("Hóa đơn trống")) {
-            HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+            HoaDonJPanel hdpnl = new HoaDonJPanel(parent, pnlTabs);
             pnlTabs.addTab("Khách lẻ 0" + MainFrm.hoaDonIndex, hdpnl);
             MainFrm.hoaDonIndex++;
             pnlTabs.setSelectedComponent(hdpnl);
@@ -1115,7 +1118,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             hd.setMaNV(Auth.user.getMaNV());
             hd.setMaTT(2);
             hd.setThanhTien(Double.parseDouble(lblThanhTien.getToolTipText()));
-            new ThanhToanJDialog(null, true, pnlTabs, hd).setVisible(true);
+            new ThanhToanJDialog(parent, true, pnlTabs, hd).setVisible(true);
         }
 
     }//GEN-LAST:event_btnThanhToamActionPerformed
@@ -1209,7 +1212,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             hd.setMaNV(Auth.user.getMaNV());
             hd.setMaTT(2);
             hd.setThanhTien(Double.parseDouble(lblThanhTien.getToolTipText()));
-            new DatHangJDialog(null, true, pnlTabs, hd).setVisible(true);
+            new DatHangJDialog(parent, true, pnlTabs, hd).setVisible(true);
         }
     }//GEN-LAST:event_btnDatHangActionPerformed
 

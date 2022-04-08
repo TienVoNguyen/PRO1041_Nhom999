@@ -36,11 +36,13 @@ public class DatHangJDialog extends javax.swing.JDialog {
     HoaDonDao daoHD;
     KhachHangDao daoKH;
     GiaoHangDao daoGH;
+    java.awt.Frame parent;
 
     public DatHangJDialog(java.awt.Frame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.parent = parent;
         this.daoHD = new HoaDonDao();
         this.daoKH = new KhachHangDao();
         this.daoGH = new GiaoHangDao();
@@ -357,6 +359,7 @@ public class DatHangJDialog extends javax.swing.JDialog {
             return;
         }
         Messeger.alert(this, "Thành công, Đơn hàng đang vào trại thái chờ giao hàng!");
+        
     }//GEN-LAST:event_btnGiaoHangActionPerformed
 
     private void txtTienShipKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienShipKeyPressed
@@ -523,6 +526,8 @@ public class DatHangJDialog extends javax.swing.JDialog {
                 hd.setMaTT(6);
                 this.daoHD.update(hd);
                 this.daoGH.insert(this.getFrom());
+                MainFrm main = (MainFrm) this.parent;
+                main.setLblSoLuongDonHang();
                 if (hd.getMaKH() != null) {
                     try {
                         kh.setTichDiem(Integer.parseInt(txtPoint.getText()));
@@ -538,7 +543,7 @@ public class DatHangJDialog extends javax.swing.JDialog {
                 this.dispose();
                 this.pnlTabs.remove(pnlTabs.getSelectedComponent());
                 if (pnlTabs.getTabCount() < 1) {
-                    HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+                    HoaDonJPanel hdpnl = new HoaDonJPanel(parent,pnlTabs);
                     pnlTabs.addTab("Khách lẻ", hdpnl);
                     pnlTabs.setSelectedComponent(hdpnl);
                 }
