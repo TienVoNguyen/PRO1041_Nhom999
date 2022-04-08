@@ -7,7 +7,9 @@ package poly.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import poly.entity.GiaoHang;
+import poly.helper.XJDBC;
 
 /**
  *
@@ -28,8 +30,10 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
                 return "SELECT * FROM GIAOHANG WHERE  (MAGIAOHANG = ?)";
             case "SELECTALL":
                 return "SELECT * FROM GIAOHANG";
-            case "SELECTMAXMAHD":
-                return "";
+            case "SELECT_COUNT_DANG_GIAO_HANG":
+                return "SELECT COUNT(MAGIAOHANG) FROM GIAOHANG WHERE MATT = 6 or MATT = 5";
+            case "SELECTBY_MATT":
+                return "SELECT * FROM GIAOHANG WHERE  (MATT = ?)";
         }
         return "";
     }
@@ -79,4 +83,11 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
         return gh;
     }
     
+    public int getHDDangGiao(){
+        return (int) XJDBC.value(this.getQuery("SELECT_COUNT_DANG_GIAO_HANG"));
+    }
+    
+    public ArrayList<GiaoHang> selectListGiaoHangByTrangThai(int maTT) throws Exception{
+        return this.selectByquery("SELECTBY_MATT", maTT);
+    }
 }

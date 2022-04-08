@@ -34,7 +34,7 @@ public class loading extends javax.swing.JDialog implements Runnable {
     private CTHoaDonDao daoCTHD;
     JTabbedPane pnlTabs;
     Thread t;
-
+    java.awt.Frame parent;
     /**
      * Creates new form loading
      */
@@ -43,6 +43,8 @@ public class loading extends javax.swing.JDialog implements Runnable {
         initComponents();
         setLocationRelativeTo(this);
 
+        this.parent = parent;
+        
         this.daoHD = new HoaDonDao();
         this.daoKH = new KhachHangDao();
         this.daoSP = new SanPhamDao();
@@ -178,7 +180,7 @@ public class loading extends javax.swing.JDialog implements Runnable {
                     lblText.setText("Đang tải hóa đơn chờ ....");
                     MainFrm.k = daoKH.selectById(h.getMaKH());
                     listCTHD = daoCTHD.selectCTHD(h.getMaHD());
-                    HoaDonJPanel hdpnl = new HoaDonJPanel(loading.this.pnlTabs);
+                    HoaDonJPanel hdpnl = new HoaDonJPanel(parent,loading.this.pnlTabs);
                     loading.this.pnlTabs.addTab(MainFrm.k == null ? "Khách lẻ: " : MainFrm.k.getHoTen(), hdpnl);
                     loading.this.pnlTabs.setSelectedComponent(hdpnl);
                     hdpnl.loadDataToHoaDon();
@@ -202,7 +204,7 @@ public class loading extends javax.swing.JDialog implements Runnable {
 
             }
             if (a) {
-                HoaDonJPanel hdpnl = new HoaDonJPanel(loading.this.pnlTabs);
+                HoaDonJPanel hdpnl = new HoaDonJPanel(parent,loading.this.pnlTabs);
                 loading.this.pnlTabs.addTab("Khách lẻ ", hdpnl);
                 loading.this.pnlTabs.setSelectedComponent(hdpnl);
             }

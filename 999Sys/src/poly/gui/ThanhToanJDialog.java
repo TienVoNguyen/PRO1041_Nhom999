@@ -38,11 +38,13 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     JTabbedPane pnlTabs;
     HoaDonDao daoHD;
     KhachHangDao daoKH;
-
+    java.awt.Frame parent;
+    
     public ThanhToanJDialog(java.awt.Frame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(this);
+        this.parent = parent;
         this.daoHD = new HoaDonDao();
         this.daoKH = new KhachHangDao();
         this.pnlTabs = pnlTabs;
@@ -514,7 +516,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
                 this.dispose();
                 this.pnlTabs.remove(pnlTabs.getSelectedComponent());
                 if (pnlTabs.getTabCount() < 1) {
-                    HoaDonJPanel hdpnl = new HoaDonJPanel(pnlTabs);
+                    HoaDonJPanel hdpnl = new HoaDonJPanel(parent, pnlTabs);
                     pnlTabs.addTab("Khách lẻ", hdpnl);
                     pnlTabs.setSelectedComponent(hdpnl);
                 }

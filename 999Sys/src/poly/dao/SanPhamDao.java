@@ -35,7 +35,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "RESTORE":
                 return "UPDATE SANPHAM SET TRANGTHAI = 1 WHERE MASP = ?";
             case "SELECTBYID":
-                return "SELECT * FROM   SANPHAM WHERE (MASP = ?)";
+                return "SELECT MASP, TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP))  GIABAN, GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, TRANGTHAI, MACHATLIEU, MADVT, MAMAU, MASIZE FROM   SANPHAM WHERE (MASP = ?)";
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":
