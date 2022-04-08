@@ -515,6 +515,11 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
             String t = df.format(Double.parseDouble(txtTienPhatSinh.getText()));
             txtTienPhatSinh.setText(t);
         }
+        if (df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue() < 1000000) {
+            if (!Messeger.confirm(null, "Khoản tiền duy trì hoạt động không đủ!")) {
+                txtTienPhatSinh.setText("0");
+            }
+        }
     }//GEN-LAST:event_txtTienPhatSinhFocusLost
 
     private void txtTienPhatSinhKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatSinhKeyPressed
@@ -551,11 +556,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
                     - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue();
         }
         lblTongTien.setText(df.format(tongtien));
-        if (tongtien < 1000000) {
-            if (!Messeger.confirm(null, "Khoản tiền duy trì hoạt động không đủ!")) {
-                txtTienPhatSinh.setText("0");
-            }
-        }
+        
 
     }//GEN-LAST:event_txtTienPhatSinhKeyReleased
 
@@ -589,7 +590,7 @@ public class GiaoCaJDialog extends javax.swing.JDialog {
         try {
             if (gcDAO.updateNC(setEntityNC())) {
                 Messeger.alert(null, "Nhận ca thành công!");
-                gcDAO.insert(new GiaoCa(Auth.user.getMaNV()));
+                gcDAO.insert(new GiaoCa(Auth.user.getMaNV(), df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue()));
                 this.dispose();
             } else {
                 Messeger.showErrorDialog(null, "Nhận ca thất bại!", "Lỗi giao ca");
