@@ -35,6 +35,9 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     DefaultTableModel hoaDonGiaoHangModelTB;
     DefaultTableModel cTSPmodelTB;
     DefaultComboBoxModel cbbTrangThaiModel;
+    DefaultComboBoxModel cbbTimKiemMaHD;
+    DefaultComboBoxModel cbbTimKiemMaNV;
+    DefaultComboBoxModel cbbTimKiemMaKH;
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
     int row = -1;
@@ -44,6 +47,9 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         cbbTrangThaiModel = (DefaultComboBoxModel) cbbTrangThai.getModel();
+        cbbTimKiemMaHD = (DefaultComboBoxModel) cbbHoaDon.getModel();
+        cbbTimKiemMaNV = (DefaultComboBoxModel) cbbMaNV.getModel();
+        cbbTimKiemMaKH = (DefaultComboBoxModel) cbbMaKH.getModel();
         hDDao = new HoaDonDao();
         tTHDDao = new TTHoaDonDao();
         cardGoc = (CardLayout) this.jpnCardTableHD.getLayout();
@@ -51,6 +57,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         this.fillToTableHDCuaHang();
         this.fillToTableHDGiaoHang();
         this.fillToCBBTrangThai();
+        this.fillToCBBTimKiem();
     }
 
     /**
@@ -110,6 +117,11 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         cbbLoaiThanhToan = new javax.swing.JComboBox<>();
         jpnSearch = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        txtSearch = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        cbbHoaDon = new javax.swing.JComboBox<>();
+        cbbMaNV = new javax.swing.JComboBox<>();
+        cbbMaKH = new javax.swing.JComboBox<>();
         jpnCardTableHD = new javax.swing.JPanel();
         jpnGiaoHang = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -322,20 +334,22 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         jpnSearch.setBackground(new java.awt.Color(255, 153, 0));
         jpnSearch.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 40));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
+        jPanel2.setPreferredSize(new java.awt.Dimension(200, 40));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(txtSearch, java.awt.BorderLayout.CENTER);
 
         jpnSearch.add(jPanel2, java.awt.BorderLayout.LINE_START);
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(280, 40));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 3));
+
+        jPanel3.add(cbbHoaDon);
+
+        jPanel3.add(cbbMaNV);
+
+        jPanel3.add(cbbMaKH);
+
+        jpnSearch.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         jPanel15.add(jpnSearch, java.awt.BorderLayout.CENTER);
 
@@ -551,7 +565,10 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbbHoaDon;
     private javax.swing.JComboBox<String> cbbLoaiThanhToan;
+    private javax.swing.JComboBox<String> cbbMaKH;
+    private javax.swing.JComboBox<String> cbbMaNV;
     private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -573,6 +590,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -609,6 +627,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtNgayGH;
     private javax.swing.JTextField txtNgayMua;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtThanhTien;
     private javax.swing.JTextField txtTienShip;
     // End of variables declaration//GEN-END:variables
@@ -666,6 +685,26 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
             
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
+            ex.printStackTrace();
+        }
+    }
+
+    private void fillToCBBTimKiem() {
+        try {
+            cbbTimKiemMaHD.removeAllElements();
+            cbbTimKiemMaNV.removeAllElements();
+            cbbTimKiemMaKH.removeAllElements();
+            List<HoaDon> listTimKiemHD = hDDao.selectAll();
+            cbbTimKiemMaHD.addElement("All");
+            cbbTimKiemMaNV.addElement("All");
+            cbbTimKiemMaKH.addElement("All");
+            for(HoaDon hD : listTimKiemHD){
+                cbbTimKiemMaHD.addElement(hD.getMaHD());
+                cbbTimKiemMaNV.addElement(hD.getMaNV());
+                cbbTimKiemMaKH.addElement(hD.getMaKH());
+            }
+        } catch (Exception ex) {
+             Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
             ex.printStackTrace();
         }
     }

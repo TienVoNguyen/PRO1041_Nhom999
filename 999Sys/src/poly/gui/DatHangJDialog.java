@@ -521,7 +521,7 @@ public class DatHangJDialog extends javax.swing.JDialog {
         if (Messeger.confirm(this, "Xác Nhận Yêu Cầu Đặt Hàng Cho Hóa đơn-MAHD: " + hd.getMaHD())) {
             try {
                 hd.setGiamGia(Double.parseDouble(txtGiamGia.getToolTipText()));
-                hd.setNgayMua(XDate.toDate(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"), "MM/dd/yyyy hh:mm:ss"));
+                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"));
                 hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
                 hd.setMaTT(6);
                 this.daoHD.update(hd);

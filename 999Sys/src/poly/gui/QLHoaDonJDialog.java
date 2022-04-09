@@ -244,7 +244,7 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         HD.setMaTT(TTHD.getMaTT());
         HD.setMaNV(txtMaNV.getText());
         HD.setMaKH(txtMaKH.getText());
-        HD.setNgayMua(XDate.toDate(txtNgayMua.getText(), "dd/MM/yyyy"));
+//        HD.setNgayMua(XDate.toDate(txtNgayMua.getText(), "dd/MM/yyyy"));
         HD.setGiamGia(Double.parseDouble(txtGiamGia.getText()));
         HD.setThanhTien(Double.parseDouble(txtThanhTien.getText()));
         try {

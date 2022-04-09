@@ -88,7 +88,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
         hD.setMaHD(rs.getInt("MAHOADON"));
         hD.setMaNV(rs.getString("MANV"));
         hD.setMaKH(rs.getString("MAKH"));
-        hD.setNgayMua(rs.getDate("NGAYMUA"));
+        hD.setNgayMua(rs.getString("NGAYMUA"));
         hD.setGiamGia(rs.getDouble("GIAMGIA"));
         hD.setThanhTien(rs.getDouble("THANHTIEN"));
         hD.setTrangThai(rs.getBoolean("TRANGTHAI"));

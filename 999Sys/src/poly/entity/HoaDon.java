@@ -13,8 +13,7 @@ import java.util.Date;
  */
 public class HoaDon {
     private int maHD,maTT;
-    private String maNV,maKH;
-    private Date ngayMua;
+    private String maNV,maKH,ngayMua;
     private double giamGia;
     private double thanhTien;
     private boolean trangThai;
@@ -22,7 +21,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int maHD, int maTT, String maNV, String maKH, Date ngayMua, double giamGia, double thanhTien, boolean trangThai) {
+    public HoaDon(int maHD, int maTT, String maNV, String maKH, String ngayMua, double giamGia, double thanhTien, boolean trangThai) {
         this.maHD = maHD;
         this.maTT = maTT;
         this.maNV = maNV;
@@ -67,11 +66,11 @@ public class HoaDon {
         this.maKH = maKH;
     }
 
-    public Date getNgayMua() {
+    public String getNgayMua() {
         return ngayMua;
     }
 
-    public void setNgayMua(Date ngayMua) {
+    public void setNgayMua(String ngayMua) {
         this.ngayMua = ngayMua;
     }
 
