@@ -132,6 +132,7 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
         faCard.setLayout(new java.awt.CardLayout());
 
+        cardGC.setBackground(new java.awt.Color(0, 255, 255));
         cardGC.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
@@ -139,7 +140,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
         jLabel1.setBackground(new java.awt.Color(0, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NHÂN VIÊN GIAO CA");
         jLabel1.setPreferredSize(new java.awt.Dimension(167, 30));
@@ -168,6 +168,7 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         cardGC.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 255, 255)));
         jPanel1.setLayout(new java.awt.BorderLayout(50, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));

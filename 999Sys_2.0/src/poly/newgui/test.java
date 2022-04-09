@@ -14,6 +14,7 @@ import java.awt.Toolkit;
  */
 public class test extends javax.swing.JFrame {
     QLKMFrm ql;
+    LichSuGDFrm qltk;
     /**
      * Creates new form test
      */
@@ -21,12 +22,12 @@ public class test extends javax.swing.JFrame {
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize.width, screenSize.height);
-        if (ql == null || ql.isClosed()) {
-            ql = new QLKMFrm(this);
-            jDesktopPane1.add(ql);
-            ql.setVisible(true);
+        if (qltk == null || qltk.isClosed()) {
+            qltk = new LichSuGDFrm();
+            jDesktopPane1.add(qltk);
+            qltk.setVisible(true);
         } else {
-            ql.setVisible(true);
+            qltk.setVisible(true);
         }
     }
 
