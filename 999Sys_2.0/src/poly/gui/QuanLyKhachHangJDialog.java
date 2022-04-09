@@ -569,7 +569,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         jpnCenter.add(jpnKH, java.awt.BorderLayout.CENTER);
 
         jpnLoaiKH.setBackground(new java.awt.Color(102, 153, 255));
-        jpnLoaiKH.setPreferredSize(new java.awt.Dimension(350, 708));
+        jpnLoaiKH.setPreferredSize(new java.awt.Dimension(400, 708));
         jpnLoaiKH.setLayout(new java.awt.BorderLayout());
 
         jpnSeparator.setBackground(new java.awt.Color(0, 0, 0));
@@ -1348,7 +1348,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
         }
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
-        tblKhachHang.setRowSelectionInterval(row, row);
+//        tblKhachHang.setRowSelectionInterval(row, row);
     }
 
     private KhachHang getFormKhachHang() {

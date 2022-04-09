@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <group/>
-=======
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/helper/Auth.java</file>
-            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QL_KhuyenMaiJDiaLog.java</file>
-            <file>file:/C:/Users/98tae/Desktop/PRO1041_Nhom999/999Sys/src/poly/gui/QuanLyTaiKhoan.java</file>
-=======
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/dao/BaseDao.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/LoginJDialog.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/dao/GiaoCaDAO.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/NewMain.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/MainFrm.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/gui/GiaoCaJDialog.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys/src/poly/helper/XDate.java</file>
->>>>>>> 812f189a570e5827810f5f28fe791748922baafd
-        </group>
->>>>>>> ce7f86234a2fa83f2ded078b01ecca0ca5a486d3
-=======
-        <group/>
->>>>>>> 2dc25cebcc6c6c79ca55fdbd2bfb6cb68780de7c
-    </open-files>
 </project-private>

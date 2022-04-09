@@ -54,7 +54,8 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         tTHDDao = new TTHoaDonDao();
         cardGoc = (CardLayout) this.jpnCardTableHD.getLayout();
         cardGoc.show(jpnCardTableHD, "cardTTCuaHang");
-        this.fillToTableHDCuaHang();
+        Object[] keyObj = {"%%", "%%", "%%"};
+        this.fillToTableHDCuaHang(keyObj);
         this.fillToTableHDGiaoHang();
         this.fillToCBBTrangThai();
         this.fillToCBBTimKiem();
@@ -336,6 +337,12 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
 
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 40));
         jPanel2.setLayout(new java.awt.BorderLayout());
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
         jPanel2.add(txtSearch, java.awt.BorderLayout.CENTER);
 
         jpnSearch.add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -497,8 +504,12 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         this.cbbTrangThaiModel.setSelectedItem(tblThanhToanCuaHang.getValueAt(row, 7).toString());
         this.txtMaHD.setText(tblThanhToanCuaHang.getValueAt(row, 0).toString());
         this.txtMaNV.setText(tblThanhToanCuaHang.getValueAt(row, 1).toString());
-        this.txtMaKH.setText(tblThanhToanCuaHang.getValueAt(row, 3).toString());
-        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanCuaHang.getValueAt(row, 4) , "dd/MM/yyyy"));
+        if (tblThanhToanCuaHang.getValueAt(row, 3) == null) {
+            this.txtMaKH.setText("");
+        } else {
+            this.txtMaKH.setText(tblThanhToanCuaHang.getValueAt(row, 3).toString());
+        }
+        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanCuaHang.getValueAt(row, 4), "dd/MM/yyyy"));
         this.txtGiamGia.setText(tblThanhToanCuaHang.getValueAt(row, 5).toString());
         this.txtThanhTien.setText(tblThanhToanCuaHang.getValueAt(row, 6).toString());
         this.fillToTableCTSP();
@@ -509,18 +520,38 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         if (row == -1) {
             return;
         }
-         this.cbbTrangThaiModel.setSelectedItem(tblThanhToanGiaoHang.getValueAt(row, 12).toString());
+        this.cbbTrangThaiModel.setSelectedItem(tblThanhToanGiaoHang.getValueAt(row, 12).toString());
         this.txtMaHD.setText(tblThanhToanGiaoHang.getValueAt(row, 0).toString());
         this.txtMaNV.setText(tblThanhToanGiaoHang.getValueAt(row, 1).toString());
         this.txtMaKH.setText(tblThanhToanGiaoHang.getValueAt(row, 3).toString());
-        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 7) , "dd/MM/yyyy"));
-        this.txtNgayGH.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 8) , "dd/MM/yyyy"));
+        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 7), "dd/MM/yyyy"));
+        this.txtNgayGH.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 8), "dd/MM/yyyy"));
         this.txtGiamGia.setText(tblThanhToanGiaoHang.getValueAt(row, 9).toString());
         this.txtTienShip.setText(tblThanhToanGiaoHang.getValueAt(row, 10).toString());
         this.txtThanhTien.setText(tblThanhToanGiaoHang.getValueAt(row, 11).toString());
         this.txtGhiChu.setText(tblThanhToanGiaoHang.getValueAt(row, 13).toString());
         this.fillToTableCTSP();
     }//GEN-LAST:event_tblThanhToanGiaoHangMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        String maHD, maNV, maKH;
+        
+        maHD = cbbHoaDon.getSelectedItem().toString();
+        maNV = cbbMaNV.getSelectedItem().toString();
+        maKH = cbbMaKH.getSelectedItem().toString();
+        Object[] listKey = {"%" + maHD + "%", "%" + maNV + "%", "%" + maKH + "%"};
+        try {
+
+            HoaDonCHModelTB = (DefaultTableModel) tblThanhToanCuaHang.getModel();
+            HoaDonCHModelTB.setRowCount(0);
+            List<Object[]> listHD = hDDao.getListHD(listKey);
+            for (Object[] hd : listHD) {
+                HoaDonCHModelTB.addRow(hd);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -632,12 +663,12 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTienShip;
     // End of variables declaration//GEN-END:variables
 
-    private void fillToTableHDCuaHang() {
+    private void fillToTableHDCuaHang(Object[] keyObj) {
         try {
 
             HoaDonCHModelTB = (DefaultTableModel) tblThanhToanCuaHang.getModel();
             HoaDonCHModelTB.setRowCount(0);
-            List<Object[]> listHD = hDDao.getListHD();
+            List<Object[]> listHD = hDDao.getListHD(keyObj);
             for (Object[] hd : listHD) {
                 HoaDonCHModelTB.addRow(hd);
             }
@@ -679,10 +710,10 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         try {
             cbbTrangThaiModel.removeAllElements();
             List<TTHoaDon> listTTHoaDon = tTHDDao.selectAll();
-            for(TTHoaDon tTHD : listTTHoaDon){
+            for (TTHoaDon tTHD : listTTHoaDon) {
                 cbbTrangThaiModel.addElement(tTHD);
             }
-            
+
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
             ex.printStackTrace();
@@ -698,13 +729,13 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
             cbbTimKiemMaHD.addElement("All");
             cbbTimKiemMaNV.addElement("All");
             cbbTimKiemMaKH.addElement("All");
-            for(HoaDon hD : listTimKiemHD){
+            for (HoaDon hD : listTimKiemHD) {
                 cbbTimKiemMaHD.addElement(hD.getMaHD());
                 cbbTimKiemMaNV.addElement(hD.getMaNV());
                 cbbTimKiemMaKH.addElement(hD.getMaKH());
             }
         } catch (Exception ex) {
-             Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
+            Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
             ex.printStackTrace();
         }
     }

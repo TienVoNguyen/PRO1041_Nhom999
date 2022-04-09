@@ -128,10 +128,10 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
         }
         return listGiaoHang;
     }
-    public List<Object[]> getListHD ()throws Exception{
-        String sql ="{CALL SP_TimKiemHD()}";
+    public List<Object[]> getListHD (Object[] listObject)throws Exception{
+        String sql ="{CALL SP_TimKiemHD(?,?,?)}";
         List<Object[]> listHD = new ArrayList<>();
-        ResultSet rs = XJDBC.query(sql);
+        ResultSet rs = XJDBC.query(sql,listObject);
         while(rs.next()){
             listHD.add(new Object[]{
                rs.getObject("MAHOADON"),
