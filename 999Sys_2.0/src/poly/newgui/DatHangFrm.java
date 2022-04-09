@@ -22,6 +22,7 @@ import poly.entity.HoaDon;
 import poly.entity.KhachHang;
 import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XValidate;
 
 /**
  *
@@ -356,11 +357,34 @@ public class DatHangFrm extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangActionPerformed
+        StringBuilder loi = new StringBuilder();
+        if (XValidate.isEmpty(txtTenKhachHang)) {
+            loi.append("Không để trống tên khách hàng\n");
+        } else if (XValidate.isNotVNName(txtTenKhachHang)) {
+            loi.append("Họ tên không hợp lệ\n");
+        } else if (txtTenKhachHang.getText().length() > 50) {
+            loi.append("Tên khách hàng không quá 50 ký tự\n");
+        }
+        
+        if (XValidate.isEmpty(txtSDT)) {
+            loi.append("Không để trống Số điện thoại khách hàng\n");
+        } else if (XValidate.isNotPhoneNumber(txtSDT)) {
+            loi.append("Số điện thoại không hợp lệ hoặc không đủ 10 số\n");
+        }
+        
+        if (XValidate.isEmpty(txtDiaChi)) {
+            loi.append("Không để trống địa chỉ khách hàng\n");
+        }
+
+        if (loi.length() > 0) {
+            Messeger.showErrorDialog(null, loi+"", "Lỗi");
+            return;
+        }
         if (datHang()) {
             return;
         }
         Messeger.alert(this, "Thành công, Đơn hàng đang vào trại thái chờ giao hàng!");
-        
+
     }//GEN-LAST:event_btnGiaoHangActionPerformed
 
     private void txtTienShipKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienShipKeyPressed
@@ -544,7 +568,7 @@ public class DatHangFrm extends javax.swing.JDialog {
                 this.dispose();
                 this.pnlTabs.remove(pnlTabs.getSelectedComponent());
                 if (pnlTabs.getTabCount() < 1) {
-                    HoaDonFrm hdpnl = new HoaDonFrm(parent,pnlTabs);
+                    HoaDonFrm hdpnl = new HoaDonFrm(parent, pnlTabs);
                     pnlTabs.addTab("Khách lẻ", hdpnl);
                     pnlTabs.setSelectedComponent(hdpnl);
                 }

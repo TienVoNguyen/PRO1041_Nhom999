@@ -102,7 +102,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         pnlHoaDonDangGH = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHDDangGiaoHang = new javax.swing.JTable();
-        jPanel13 = new javax.swing.JPanel();
 
         pnlMain.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(51, 51, 51)));
         pnlMain.setLayout(new java.awt.BorderLayout());
@@ -353,19 +352,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
         jPanel9.add(pnlTTHD, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1333, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel13, java.awt.BorderLayout.PAGE_END);
-
         pnlGiaoHang.add(jPanel9, java.awt.BorderLayout.CENTER);
 
         pnlCardGH_BH.add(pnlGiaoHang, "giaoHang");
@@ -444,7 +430,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel9;
