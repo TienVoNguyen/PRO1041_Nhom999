@@ -38,6 +38,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private QL_CTSPFrm qlCTSPFrm;
     private ThongKeFrm thongKeFrm;
     private QLKMFrm qlKMFrm;
+    private QLKhachHangFrm qlKHFrm;
     private GiaoHangDao daoGH;
 
     /**
@@ -427,7 +428,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void btnKhoaManHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaManHinhActionPerformed
@@ -455,7 +456,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLSPActionPerformed
 
     private void btnQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhachHangActionPerformed
-        //        new QuanLyKhachHangJDialog(this, true).setVisible(true);
+        openKhachHangFrm();
     }//GEN-LAST:event_btnQLKhachHangActionPerformed
 
     private void btnQLHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHoaDonActionPerformed
@@ -603,8 +604,8 @@ public class NewMainFrm extends javax.swing.JFrame {
         this.setIconImage(ImageHelper.getAppIcon());
         daoGH = new GiaoHangDao();
         new LoginFrm(this, true).setVisible(true);
-
         openBanHangFrm();
+        new LoadingFrm(this, true, bhFrm.getPnlTabs()).setVisible(true);
         startDongHo();
         mouseHover();
         phanQuyen();
@@ -764,11 +765,22 @@ public class NewMainFrm extends javax.swing.JFrame {
     void openThongKeFrm() {
         closeAllFrm();
         if (thongKeFrm == null || thongKeFrm.isClosed()) {
-            thongKeFrm = new ThongKeFrm(this);
+            thongKeFrm = new ThongKeFrm(dpMain);
             dpMain.add(thongKeFrm);
             thongKeFrm.setVisible(true);
         } else {
             thongKeFrm.setVisible(true);
+        }
+    }
+    
+    void openKhachHangFrm() {
+        closeAllFrm();
+        if (qlKHFrm == null || qlKHFrm.isClosed()) {
+            qlKHFrm = new QLKhachHangFrm();
+            dpMain.add(qlKHFrm);
+            qlKHFrm.setVisible(true);
+        } else {
+            qlKHFrm.setVisible(true);
         }
     }
 

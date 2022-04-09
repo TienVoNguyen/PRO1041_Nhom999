@@ -8,19 +8,17 @@ package poly.newgui;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
+import javax.swing.JDesktopPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
 import poly.dao.DoanhThuDao;
-import poly.gui.ThongKeJDialog;
 import poly.helper.CustomTabbedPaneUI;
 import poly.helper.Messeger;
 import poly.helper.XExcel;
@@ -31,15 +29,18 @@ import poly.helper.XInternal;
  * @author NTV
  */
 public class ThongKeFrm extends javax.swing.JInternalFrame {
+
     private DoanhThuDao dt_dao;
     private CardLayout baseCard;
-    private NewMainFrm mainFrm;
+    private JDesktopPane main;
+
     /**
      * Creates new form ThongKeFrm
      */
-    public ThongKeFrm(JFrame jFrame) {
+    public ThongKeFrm(JDesktopPane jFrame) {
         initComponents();
-        mainFrm = (NewMainFrm) jFrame;
+        main = jFrame;
+        
         init();
     }
 
@@ -107,7 +108,9 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         btnXuatSP = new javax.swing.JButton();
 
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        setMaximizable(true);
+        setPreferredSize(new java.awt.Dimension(1920, 960));
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jTabbedPane1.setForeground(new java.awt.Color(102, 0, 153));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -397,7 +400,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         jPanel17.setLayout(new java.awt.GridLayout(1, 0));
 
         panelChard.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(240, 240, 240)));
-        panelChard.setLayout(new java.awt.GridLayout(1, 0));
+        panelChard.setLayout(new java.awt.BorderLayout());
         jPanel17.add(panelChard);
 
         tpBang.addTab("Biểu Đồ", jPanel17);
@@ -472,20 +475,20 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         int index = cbxChoose.getSelectedIndex();
         switch (index) {
             case 0:
-            baseCard.show(basecard, "dayCard");
-            addChartDays();
-            loadDataDoanhThuDays();
-            break;
+                baseCard.show(basecard, "dayCard");
+                addChartDays();
+                loadDataDoanhThuDays();
+                break;
             case 1:
-            baseCard.show(basecard, "monthCard");
-            addChartMonths();
-            loadDataDoanhThuMonths();
-            break;
+                baseCard.show(basecard, "monthCard");
+                addChartMonths();
+                loadDataDoanhThuMonths();
+                break;
             case 2:
-            baseCard.show(basecard, "yearCard");
-            addChartYear();
-            loadDataDoanhThuYear();
-            break;
+                baseCard.show(basecard, "yearCard");
+                addChartYear();
+                loadDataDoanhThuYear();
+                break;
         }
     }//GEN-LAST:event_cbxChooseItemStateChanged
 
@@ -516,7 +519,8 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
                 return;
             }
         } catch (Exception ex) {
-            Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Messeger.showErrorDialog(null, ex.getMessage(), "Error");
         }
     }//GEN-LAST:event_btnXuatExcelActionPerformed
 
@@ -529,7 +533,8 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
                 return;
             }
         } catch (Exception ex) {
-            Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Messeger.showErrorDialog(null, ex.getMessage(), "Error");
         }
     }//GEN-LAST:event_btnXuatSPActionPerformed
 
@@ -593,8 +598,8 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
 
     private void init() {
         XInternal.uncorated(this);
+        this.setPreferredSize(new Dimension(main.getWidth(), main.getHeight()));
         dt_dao = new DoanhThuDao();
-
         jTabbedPane1.setUI(new CustomTabbedPaneUI());
         jTabbedPane1.setForeground(Color.BLACK);
         jTabbedPane1.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/revenue.png")));
@@ -757,7 +762,8 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
             lblHuyYear.setText(list2.get(2).toString());
             lblTCYear.setText(list2.get(1).toString());
         } catch (Exception ex) {
-            Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Messeger.showErrorDialog(null, ex.getMessage(), "Error");
         }
     }
 
@@ -795,7 +801,8 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
             });
 
         } catch (Exception ex) {
-            Logger.getLogger(ThongKeJDialog.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Messeger.showErrorDialog(null, ex.getMessage(), "Error");
         }
 
     }
