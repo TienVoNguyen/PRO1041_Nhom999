@@ -8,13 +8,17 @@ package poly.gui;
 import java.awt.CardLayout;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.HoaDonDao;
+import poly.dao.TTHoaDonDao;
 import poly.entity.HoaDon;
+import poly.entity.TTHoaDon;
 import poly.helper.Messeger;
 import poly.helper.XDate;
 
@@ -26,9 +30,11 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
 
     CardLayout cardGoc;
     HoaDonDao hDDao;
+    TTHoaDonDao tTHDDao;
     DefaultTableModel HoaDonCHModelTB;
     DefaultTableModel hoaDonGiaoHangModelTB;
     DefaultTableModel cTSPmodelTB;
+    DefaultComboBoxModel cbbTrangThaiModel;
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
     int row = -1;
@@ -37,11 +43,14 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        cbbTrangThaiModel = (DefaultComboBoxModel) cbbTrangThai.getModel();
         hDDao = new HoaDonDao();
+        tTHDDao = new TTHoaDonDao();
         cardGoc = (CardLayout) this.jpnCardTableHD.getLayout();
         cardGoc.show(jpnCardTableHD, "cardTTCuaHang");
         this.fillToTableHDCuaHang();
         this.fillToTableHDGiaoHang();
+        this.fillToCBBTrangThai();
     }
 
     /**
@@ -58,33 +67,36 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         jPanel11 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jpnFormTXT = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
+        jpnCBBTT = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         cbbTrangThai = new javax.swing.JComboBox<>();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
+        jpnTxtHoaDon = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtMaHD = new javax.swing.JTextField();
+        jpnTxtMaNV = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
+        txtMaNV = new javax.swing.JTextField();
+        jpnTxtMaKH = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jPanel10 = new javax.swing.JPanel();
+        txtMaKH = new javax.swing.JTextField();
+        jpnTxtNgayMua = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txtNgayMua = new javax.swing.JTextField();
+        jpnTxtGiamGia = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtGiamGia = new javax.swing.JTextField();
+        jpnTxtNgayGH = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtNgayGH = new javax.swing.JTextField();
+        jpnTxtTienShip = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txtTienShip = new javax.swing.JTextField();
+        jpnTxtThanhTien = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtThanhTien = new javax.swing.JTextField();
+        jpnTxtGhiCHu = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        txtGhiChu = new javax.swing.JTextField();
         jpnButton = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -94,8 +106,10 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         jpnTable = new javax.swing.JPanel();
         jpnTBHD = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
+        jpnLoaiHang = new javax.swing.JPanel();
         cbbLoaiThanhToan = new javax.swing.JComboBox<>();
+        jpnSearch = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jpnCardTableHD = new javax.swing.JPanel();
         jpnGiaoHang = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -136,89 +150,98 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         jpnFormTXT.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 102, 255)));
         jpnFormTXT.setMinimumSize(new java.awt.Dimension(203, 100));
         jpnFormTXT.setPreferredSize(new java.awt.Dimension(200, 300));
-        jpnFormTXT.setLayout(new java.awt.GridLayout(9, 1, 5, 5));
+        jpnFormTXT.setLayout(new java.awt.GridLayout(10, 1, 5, 5));
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
-        jLabel2.setText("  Mã Hóa Đơn :");
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel3.add(jLabel2, java.awt.BorderLayout.LINE_START);
-        jPanel3.add(jTextField2, java.awt.BorderLayout.CENTER);
-
-        jpnFormTXT.add(jPanel3);
-
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setText("  Giảm Giá :");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel2.add(jLabel1, java.awt.BorderLayout.LINE_START);
-        jPanel2.add(jTextField1, java.awt.BorderLayout.CENTER);
-
-        jpnFormTXT.add(jPanel2);
-
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        jpnCBBTT.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setText("  Trạng Thái :");
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel4.add(jLabel3, java.awt.BorderLayout.LINE_START);
+        jpnCBBTT.add(jLabel3, java.awt.BorderLayout.LINE_START);
 
-        jPanel4.add(cbbTrangThai, java.awt.BorderLayout.CENTER);
+        jpnCBBTT.add(cbbTrangThai, java.awt.BorderLayout.CENTER);
 
-        jpnFormTXT.add(jPanel4);
+        jpnFormTXT.add(jpnCBBTT);
 
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        jpnTxtHoaDon.setLayout(new java.awt.BorderLayout());
 
-        jLabel4.setText("  Ngày Giao Hàng :");
-        jLabel4.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel5.add(jLabel4, java.awt.BorderLayout.LINE_START);
-        jPanel5.add(jTextField4, java.awt.BorderLayout.CENTER);
+        jLabel2.setText("  Mã Hóa Đơn :");
+        jLabel2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jpnTxtHoaDon.add(jLabel2, java.awt.BorderLayout.LINE_START);
+        jpnTxtHoaDon.add(txtMaHD, java.awt.BorderLayout.CENTER);
 
-        jpnFormTXT.add(jPanel5);
+        jpnFormTXT.add(jpnTxtHoaDon);
 
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        jpnTxtMaNV.setLayout(new java.awt.BorderLayout());
 
         jLabel5.setText("  Mã Nhân Viên :");
         jLabel5.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel6.add(jLabel5, java.awt.BorderLayout.LINE_START);
-        jPanel6.add(jTextField5, java.awt.BorderLayout.CENTER);
+        jpnTxtMaNV.add(jLabel5, java.awt.BorderLayout.LINE_START);
+        jpnTxtMaNV.add(txtMaNV, java.awt.BorderLayout.CENTER);
 
-        jpnFormTXT.add(jPanel6);
+        jpnFormTXT.add(jpnTxtMaNV);
 
-        jPanel7.setLayout(new java.awt.BorderLayout());
-
-        jLabel6.setText("  Tiền Ship :");
-        jLabel6.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel7.add(jLabel6, java.awt.BorderLayout.LINE_START);
-        jPanel7.add(jTextField6, java.awt.BorderLayout.CENTER);
-
-        jpnFormTXT.add(jPanel7);
-
-        jPanel8.setLayout(new java.awt.BorderLayout());
+        jpnTxtMaKH.setLayout(new java.awt.BorderLayout());
 
         jLabel7.setText("  Mã Khách Hàng :");
         jLabel7.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel8.add(jLabel7, java.awt.BorderLayout.LINE_START);
-        jPanel8.add(jTextField7, java.awt.BorderLayout.CENTER);
+        jpnTxtMaKH.add(jLabel7, java.awt.BorderLayout.LINE_START);
+        jpnTxtMaKH.add(txtMaKH, java.awt.BorderLayout.CENTER);
 
-        jpnFormTXT.add(jPanel8);
+        jpnFormTXT.add(jpnTxtMaKH);
 
-        jPanel9.setLayout(new java.awt.BorderLayout());
-
-        jLabel8.setText("  Thành Tiền :");
-        jLabel8.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel9.add(jLabel8, java.awt.BorderLayout.LINE_START);
-        jPanel9.add(jTextField8, java.awt.BorderLayout.CENTER);
-
-        jpnFormTXT.add(jPanel9);
-
-        jPanel10.setLayout(new java.awt.BorderLayout());
+        jpnTxtNgayMua.setLayout(new java.awt.BorderLayout());
 
         jLabel9.setText("  Ngày Mua :");
         jLabel9.setPreferredSize(new java.awt.Dimension(100, 14));
-        jPanel10.add(jLabel9, java.awt.BorderLayout.LINE_START);
-        jPanel10.add(jTextField9, java.awt.BorderLayout.CENTER);
+        jpnTxtNgayMua.add(jLabel9, java.awt.BorderLayout.LINE_START);
+        jpnTxtNgayMua.add(txtNgayMua, java.awt.BorderLayout.CENTER);
 
-        jpnFormTXT.add(jPanel10);
+        jpnFormTXT.add(jpnTxtNgayMua);
+
+        jpnTxtGiamGia.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setText("  Giảm Giá :");
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jpnTxtGiamGia.add(jLabel1, java.awt.BorderLayout.LINE_START);
+        jpnTxtGiamGia.add(txtGiamGia, java.awt.BorderLayout.CENTER);
+
+        jpnFormTXT.add(jpnTxtGiamGia);
+
+        jpnTxtNgayGH.setLayout(new java.awt.BorderLayout());
+
+        jLabel4.setText("  Ngày Giao Hàng :");
+        jLabel4.setPreferredSize(new java.awt.Dimension(100, 14));
+        jpnTxtNgayGH.add(jLabel4, java.awt.BorderLayout.LINE_START);
+        jpnTxtNgayGH.add(txtNgayGH, java.awt.BorderLayout.CENTER);
+
+        jpnFormTXT.add(jpnTxtNgayGH);
+
+        jpnTxtTienShip.setLayout(new java.awt.BorderLayout());
+
+        jLabel6.setText("  Tiền Ship :");
+        jLabel6.setPreferredSize(new java.awt.Dimension(100, 14));
+        jpnTxtTienShip.add(jLabel6, java.awt.BorderLayout.LINE_START);
+        jpnTxtTienShip.add(txtTienShip, java.awt.BorderLayout.CENTER);
+
+        jpnFormTXT.add(jpnTxtTienShip);
+
+        jpnTxtThanhTien.setLayout(new java.awt.BorderLayout());
+
+        jLabel8.setText("  Thành Tiền :");
+        jLabel8.setPreferredSize(new java.awt.Dimension(100, 14));
+        jpnTxtThanhTien.add(jLabel8, java.awt.BorderLayout.LINE_START);
+        jpnTxtThanhTien.add(txtThanhTien, java.awt.BorderLayout.CENTER);
+
+        jpnFormTXT.add(jpnTxtThanhTien);
+
+        jpnTxtGhiCHu.setLayout(new java.awt.BorderLayout());
+
+        jLabel13.setText("  Ghi Chú :");
+        jLabel13.setPreferredSize(new java.awt.Dimension(100, 14));
+        jpnTxtGhiCHu.add(jLabel13, java.awt.BorderLayout.LINE_START);
+        jpnTxtGhiCHu.add(txtGhiChu, java.awt.BorderLayout.CENTER);
+
+        jpnFormTXT.add(jpnTxtGhiCHu);
 
         jpnFormHD.add(jpnFormTXT, java.awt.BorderLayout.CENTER);
 
@@ -281,10 +304,10 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(774, 40));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jPanel13.setBackground(new java.awt.Color(255, 102, 0));
-        jPanel13.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(255, 102, 255)));
-        jPanel13.setPreferredSize(new java.awt.Dimension(200, 40));
-        jPanel13.setLayout(new java.awt.BorderLayout());
+        jpnLoaiHang.setBackground(new java.awt.Color(255, 102, 0));
+        jpnLoaiHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(255, 102, 255)));
+        jpnLoaiHang.setPreferredSize(new java.awt.Dimension(150, 40));
+        jpnLoaiHang.setLayout(new java.awt.BorderLayout());
 
         cbbLoaiThanhToan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cửa Hàng", "Giao Hàng" }));
         cbbLoaiThanhToan.addItemListener(new java.awt.event.ItemListener() {
@@ -292,9 +315,29 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
                 cbbLoaiThanhToanItemStateChanged(evt);
             }
         });
-        jPanel13.add(cbbLoaiThanhToan, java.awt.BorderLayout.CENTER);
+        jpnLoaiHang.add(cbbLoaiThanhToan, java.awt.BorderLayout.CENTER);
 
-        jPanel15.add(jPanel13, java.awt.BorderLayout.LINE_START);
+        jPanel15.add(jpnLoaiHang, java.awt.BorderLayout.LINE_START);
+
+        jpnSearch.setBackground(new java.awt.Color(255, 153, 0));
+        jpnSearch.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 40));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        jpnSearch.add(jPanel2, java.awt.BorderLayout.LINE_START);
+
+        jPanel15.add(jpnSearch, java.awt.BorderLayout.CENTER);
 
         jpnTBHD.add(jPanel15, java.awt.BorderLayout.PAGE_START);
 
@@ -437,7 +480,13 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         if (row == -1) {
             return;
         }
-
+        this.cbbTrangThaiModel.setSelectedItem(tblThanhToanCuaHang.getValueAt(row, 7).toString());
+        this.txtMaHD.setText(tblThanhToanCuaHang.getValueAt(row, 0).toString());
+        this.txtMaNV.setText(tblThanhToanCuaHang.getValueAt(row, 1).toString());
+        this.txtMaKH.setText(tblThanhToanCuaHang.getValueAt(row, 3).toString());
+        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanCuaHang.getValueAt(row, 4) , "dd/MM/yyyy"));
+        this.txtGiamGia.setText(tblThanhToanCuaHang.getValueAt(row, 5).toString());
+        this.txtThanhTien.setText(tblThanhToanCuaHang.getValueAt(row, 6).toString());
         this.fillToTableCTSP();
     }//GEN-LAST:event_tblThanhToanCuaHangMouseClicked
 
@@ -446,7 +495,16 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         if (row == -1) {
             return;
         }
-
+         this.cbbTrangThaiModel.setSelectedItem(tblThanhToanGiaoHang.getValueAt(row, 12).toString());
+        this.txtMaHD.setText(tblThanhToanGiaoHang.getValueAt(row, 0).toString());
+        this.txtMaNV.setText(tblThanhToanGiaoHang.getValueAt(row, 1).toString());
+        this.txtMaKH.setText(tblThanhToanGiaoHang.getValueAt(row, 3).toString());
+        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 7) , "dd/MM/yyyy"));
+        this.txtNgayGH.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 8) , "dd/MM/yyyy"));
+        this.txtGiamGia.setText(tblThanhToanGiaoHang.getValueAt(row, 9).toString());
+        this.txtTienShip.setText(tblThanhToanGiaoHang.getValueAt(row, 10).toString());
+        this.txtThanhTien.setText(tblThanhToanGiaoHang.getValueAt(row, 11).toString());
+        this.txtGhiChu.setText(tblThanhToanGiaoHang.getValueAt(row, 13).toString());
         this.fillToTableCTSP();
     }//GEN-LAST:event_tblThanhToanGiaoHangMouseClicked
 
@@ -501,6 +559,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -510,44 +569,48 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel jpnButton;
+    private javax.swing.JPanel jpnCBBTT;
     private javax.swing.JPanel jpnCardTableHD;
     private javax.swing.JPanel jpnCuaHang;
     private javax.swing.JPanel jpnFormHD;
     private javax.swing.JPanel jpnFormTXT;
     private javax.swing.JPanel jpnGiaoHang;
+    private javax.swing.JPanel jpnLoaiHang;
+    private javax.swing.JPanel jpnSearch;
     private javax.swing.JPanel jpnTBCTHD;
     private javax.swing.JPanel jpnTBHD;
     private javax.swing.JPanel jpnTable;
     private javax.swing.JPanel jpnTiTleCTHD;
     private javax.swing.JPanel jpnTitle;
+    private javax.swing.JPanel jpnTxtGhiCHu;
+    private javax.swing.JPanel jpnTxtGiamGia;
+    private javax.swing.JPanel jpnTxtHoaDon;
+    private javax.swing.JPanel jpnTxtMaKH;
+    private javax.swing.JPanel jpnTxtMaNV;
+    private javax.swing.JPanel jpnTxtNgayGH;
+    private javax.swing.JPanel jpnTxtNgayMua;
+    private javax.swing.JPanel jpnTxtThanhTien;
+    private javax.swing.JPanel jpnTxtTienShip;
     private javax.swing.JTable tblCTSP;
     private javax.swing.JTable tblThanhToanCuaHang;
     private javax.swing.JTable tblThanhToanGiaoHang;
+    private javax.swing.JTextField txtGhiChu;
+    private javax.swing.JTextField txtGiamGia;
+    private javax.swing.JTextField txtMaHD;
+    private javax.swing.JTextField txtMaKH;
+    private javax.swing.JTextField txtMaNV;
+    private javax.swing.JTextField txtNgayGH;
+    private javax.swing.JTextField txtNgayMua;
+    private javax.swing.JTextField txtThanhTien;
+    private javax.swing.JTextField txtTienShip;
     // End of variables declaration//GEN-END:variables
 
     private void fillToTableHDCuaHang() {
@@ -589,6 +652,20 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi load CTSP", "ERROR!");
+            ex.printStackTrace();
+        }
+    }
+
+    private void fillToCBBTrangThai() {
+        try {
+            cbbTrangThaiModel.removeAllElements();
+            List<TTHoaDon> listTTHoaDon = tTHDDao.selectAll();
+            for(TTHoaDon tTHD : listTTHoaDon){
+                cbbTrangThaiModel.addElement(tTHD);
+            }
+            
+        } catch (Exception ex) {
+            Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
             ex.printStackTrace();
         }
     }
