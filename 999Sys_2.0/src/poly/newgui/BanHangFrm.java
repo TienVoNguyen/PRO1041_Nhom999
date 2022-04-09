@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.CTHoaDonDao;
 import poly.dao.GiaoHangDao;
@@ -31,6 +32,7 @@ import poly.helper.XInternal;
  * @author NTV
  */
 public class BanHangFrm extends javax.swing.JInternalFrame {
+
     static int hoaDonIndex = 2;
     private HoaDonDao daoHD;
     private KhachHangDao daoKH;
@@ -50,7 +52,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDangGH;
     DefaultTableModel dtmChiTietHoaDon;
     NewMainFrm jFrame;
-    
+
     /**
      * Creates new form BanHangFrm
      */
@@ -399,27 +401,37 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDangGHActionPerformed
 
     private void btnGiaoHangTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangTTActionPerformed
-        if (xacNhanGiaoHang()) return;
+        if (xacNhanGiaoHang()) {
+            return;
+        }
     }//GEN-LAST:event_btnGiaoHangTTActionPerformed
 
     private void btnDaGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGHActionPerformed
-        if (xacNhanDaGiaoHang()) return;
+        if (xacNhanDaGiaoHang()) {
+            return;
+        }
         jFrame.setLblSoLuongDonHang();
     }//GEN-LAST:event_btnDaGHActionPerformed
 
     private void btnHuyGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyGiaoHangActionPerformed
-        if (xacNhanHuyGiaoHang()) return;
-        if(jFrame != null) {
-        jFrame.setLblSoLuongDonHang();
+        if (xacNhanHuyGiaoHang()) {
+            return;
+        }
+        if (jFrame != null) {
+            jFrame.setLblSoLuongDonHang();
         }
     }//GEN-LAST:event_btnHuyGiaoHangActionPerformed
 
     private void tblHDChoGiaoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDChoGiaoHangMouseClicked
-        if (mouseClickedTblChoGH())return;
+        if (mouseClickedTblChoGH()) {
+            return;
+        }
     }//GEN-LAST:event_tblHDChoGiaoHangMouseClicked
 
     private void tblHDDangGiaoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDDangGiaoHangMouseClicked
-        if (mouseClickedTblDangGH())return;
+        if (mouseClickedTblDangGH()) {
+            return;
+        }
     }//GEN-LAST:event_tblHDDangGiaoHangMouseClicked
 
 
@@ -458,7 +470,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblHDDangGiaoHang;
     // End of variables declaration//GEN-END:variables
 
-    private void loadHoaDonChoTT() {
+    public void loadHoaDonChoTT() {
         List<HoaDon> list = new ArrayList<>();
         try {
             list = this.daoHD.selectAll();
@@ -503,7 +515,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
     private void init() {
         XInternal.uncorated(this);
-        
+
         this.daoHD = new HoaDonDao();
         this.daoKH = new KhachHangDao();
         this.daoSP = new SanPhamDao();
@@ -514,9 +526,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         this.dtmDangGH = (DefaultTableModel) tblHDDangGiaoHang.getModel();
 
         pnlTabs.setUI(new CustomTabbedPaneUI());
-        
-        
-        
+
         this.cardButton = (CardLayout) this.pnlButtonCard.getLayout();
         this.cardTable = (CardLayout) this.pnlTableCard.getLayout();
         this.cardGH_BH = (CardLayout) this.pnlCardGH_BH.getLayout();
@@ -526,24 +536,24 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 //        this.cardTable.show(pnlTableCard, "choGH");
         // Đăng nhập
 //        new LoadingFrm(this.jFrame, true, pnlTabs).setVisible(true);
-        loadHoaDonChoTT();
+//        loadHoaDonChoTT();
         loadDataToTableChoGH();
         loadDataToTableDangGH();
-        
+
     }
-    
-    
-    
+
     public void showGiaoHang(JButton btn) {
-        if (btn.getText().equalsIgnoreCase("Giao Hàng")){
+        if (btn.getText().equalsIgnoreCase("Giao Hàng")) {
             this.cardGH_BH.show(pnlCardGH_BH, "giaoHang");
             btn.setText("Bán Hàng");
+            loadDataToTableChoGH();
+            loadDataToTableDangGH();
         } else {
             this.cardGH_BH.show(pnlCardGH_BH, "banHang");
             btn.setText("Giao Hàng");
         }
     }
-    
+
     private void status() {
         if (isChoGHSelected) {
             this.btnChoGH.setBackground(new Color(51, 255, 51));
@@ -554,9 +564,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
     }
 
-    
-
-    private void loadDataToTableChoGH() {
+    public void loadDataToTableChoGH() {
         this.dtmChoGH.setRowCount(0);
         ArrayList<GiaoHang> list = new ArrayList<>();
         try {
@@ -578,7 +586,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
     }
 
-    private void loadDataToTableDangGH() {
+    public void loadDataToTableDangGH() {
         this.dtmDangGH.setRowCount(0);
         ArrayList<GiaoHang> list = new ArrayList<>();
         try {
@@ -601,14 +609,13 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
     }
 
-    
     private boolean mouseClickedTblChoGH() throws NumberFormatException {
         int index = tblHDChoGiaoHang.getSelectedRow();
         if (index == -1) {
             return true;
         }
-        int maHD = Integer.parseInt(tblHDChoGiaoHang.getValueAt(index, 1)+"");
-        String name = tblHDChoGiaoHang.getValueAt(index, 2)+"";
+        int maHD = Integer.parseInt(tblHDChoGiaoHang.getValueAt(index, 1) + "");
+        String name = tblHDChoGiaoHang.getValueAt(index, 2) + "";
         loadDataToTblChiTietHD(maHD, name);
         return false;
     }
@@ -616,39 +623,38 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     public void loadDataToTblChiTietHD(int maHD, String name) {
         dtmChiTietHoaDon.setRowCount(0);
         ArrayList<CTHoaDon> list = new ArrayList<>();
-        this.lblMaHD.setText("Mã Hóa Đơn: " + maHD +"");
+        this.lblMaHD.setText("Mã Hóa Đơn: " + maHD + "");
         this.lblTenKH.setText("Tên Khách: " + name);
         try {
             list = this.daoCTHD.selectCTHD(maHD);
             for (CTHoaDon c : list) {
-                
-                    SanPham s = this.daoSP.selectById(c.getMaSP());
-                    dtmChiTietHoaDon.addRow(new Object[]{
-                        c.getMaSP(),
-                        s.getTenSanPham(),
-                        c.getSoLuong(),
-                        s.getGiaBan(),
-                        c.getSoLuong() * s.getGiaBan()
-                    });
+
+                SanPham s = this.daoSP.selectById(c.getMaSP());
+                dtmChiTietHoaDon.addRow(new Object[]{
+                    c.getMaSP(),
+                    s.getTenSanPham(),
+                    c.getSoLuong(),
+                    s.getGiaBan(),
+                    c.getSoLuong() * s.getGiaBan()
+                });
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(null, ex.getMessage(), "Error");
             ex.printStackTrace();
         }
     }
-    
+
     private boolean mouseClickedTblDangGH() throws NumberFormatException {
         int index = tblHDDangGiaoHang.getSelectedRow();
         if (index == -1) {
             return true;
         }
-        int maHD = Integer.parseInt(tblHDDangGiaoHang.getValueAt(index, 1)+"");
-        String name = tblHDDangGiaoHang.getValueAt(index, 2)+"";
+        int maHD = Integer.parseInt(tblHDDangGiaoHang.getValueAt(index, 1) + "");
+        String name = tblHDDangGiaoHang.getValueAt(index, 2) + "";
         loadDataToTblChiTietHD(maHD, name);
         return false;
     }
 
-    
     private boolean xacNhanGiaoHang() throws NumberFormatException {
         int index = tblHDChoGiaoHang.getSelectedRow();
         if (index == -1) {
@@ -677,6 +683,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
         return false;
     }
+
     private boolean xacNhanDaGiaoHang() throws NumberFormatException {
         int index = tblHDDangGiaoHang.getSelectedRow();
         if (index == -1) {
@@ -705,9 +712,10 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
         return false;
     }
+
     private boolean xacNhanHuyGiaoHang() throws NumberFormatException {
         int index = -1;
-        if (isChoGHSelected){
+        if (isChoGHSelected) {
             index = tblHDChoGiaoHang.getSelectedRow();
         } else {
             index = tblHDDangGiaoHang.getSelectedRow();
@@ -718,7 +726,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
         String maHD;
         int maGH;
-        if (isChoGHSelected){
+        if (isChoGHSelected) {
             maHD = tblHDChoGiaoHang.getValueAt(index, 1) + "";
             maGH = Integer.parseInt(tblHDChoGiaoHang.getValueAt(index, 0) + "");
         } else {
@@ -736,8 +744,8 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                 this.daoHD.update(hd);
                 this.daoGH.update(gh);
                 for (int i = 0; i < tblHDChiTiet.getRowCount(); i++) {
-                    int maSP = Integer.parseInt(tblHDChiTiet.getValueAt(i, 0)+"");
-                    int soLuongSP = Integer.parseInt(tblHDChiTiet.getValueAt(i, 2)+"");
+                    int maSP = Integer.parseInt(tblHDChiTiet.getValueAt(i, 0) + "");
+                    int soLuongSP = Integer.parseInt(tblHDChiTiet.getValueAt(i, 2) + "");
                     SanPham sp = new SanPham();
                     sp = this.daoSP.selectById(maSP);
                     sp.setSoLuong(sp.getSoLuong() + soLuongSP);
@@ -753,5 +761,9 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
         return false;
     }
-    
+
+    public JTabbedPane getPnlTabs() {
+        return pnlTabs;
+    }
+
 }

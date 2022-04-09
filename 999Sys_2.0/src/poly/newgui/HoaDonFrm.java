@@ -753,7 +753,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
 
         pnlSanPham.setBackground(new java.awt.Color(0, 153, 51));
 
-        tblSanPham.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        tblSanPham.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -773,14 +773,19 @@ public class HoaDonFrm extends javax.swing.JPanel {
         tblSanPham.setRowHeight(80);
         jScrollPane2.setViewportView(tblSanPham);
         if (tblSanPham.getColumnModel().getColumnCount() > 0) {
-            tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(400);
             tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(70);
-            tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(70);
-            tblSanPham.getColumnModel().getColumn(5).setMinWidth(70);
-            tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(70);
+            tblSanPham.getColumnModel().getColumn(4).setMinWidth(50);
+            tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(65);
+            tblSanPham.getColumnModel().getColumn(4).setMaxWidth(80);
+            tblSanPham.getColumnModel().getColumn(5).setMinWidth(60);
+            tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(60);
+            tblSanPham.getColumnModel().getColumn(5).setMaxWidth(60);
             tblSanPham.getColumnModel().getColumn(6).setMinWidth(48);
-            tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(70);
+            tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(50);
+            tblSanPham.getColumnModel().getColumn(6).setMaxWidth(72);
         }
 
         cbbDanhMucSP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
