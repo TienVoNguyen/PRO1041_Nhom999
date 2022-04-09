@@ -494,6 +494,7 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtVouCher;
     // End of variables declaration//GEN-END:variables
 
+    
     private boolean thanhToan() throws HeadlessException {
         if (Messeger.confirm(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD())) {
             try {
