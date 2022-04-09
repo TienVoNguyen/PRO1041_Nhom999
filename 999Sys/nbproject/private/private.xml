@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/ThanhToanJDialog.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/loading.java</file>
@@ -14,5 +15,8 @@
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/gui/DatHangJDialog.java</file>
             <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys/src/poly/dao/SanPhamDao.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 2dc25cebcc6c6c79ca55fdbd2bfb6cb68780de7c
     </open-files>
 </project-private>
