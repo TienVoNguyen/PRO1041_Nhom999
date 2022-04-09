@@ -36,6 +36,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private QLSPFrm qLSPFrm;
     private GiaoCaFrm gcFrm;
     private QL_CTSPFrm qlCTSPFrm;
+    private ThongKeFrm thongKeFrm;
     private QLKMFrm qlKMFrm;
     private GiaoHangDao daoGH;
 
@@ -442,7 +443,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        //        new ThongKeJDialog(this, true).setVisible(true);
+        openThongKeFrm();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnQLCTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLCTSPActionPerformed
@@ -485,13 +486,14 @@ public class NewMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void btnGiaoHang_BanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHang_BanHangActionPerformed
-        closeAllFrm(true);
+        closeAllFrm();
         if (bhFrm == null || bhFrm.isClosed()) {
             bhFrm = new BanHangFrm(this);
             dpMain.add(bhFrm);
             bhFrm.showGiaoHang(btnGiaoHang_BanHang);
             bhFrm.setVisible(true);
         } else {
+            dpMain.add(bhFrm);
             bhFrm.showGiaoHang(btnGiaoHang_BanHang);
             bhFrm.setVisible(true);
             
@@ -543,6 +545,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewMainFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -607,19 +610,17 @@ public class NewMainFrm extends javax.swing.JFrame {
         phanQuyen();
     }
 
-    private void closeAllFrm(boolean b) {
+    private void closeAllFrm() {
         // TODO add your handling code here:
 
         for (JInternalFrame frame : dpMain.getAllFrames()) {
-            if (b) {
+            
                 if (frame == bhFrm) {
-                    frame.setVisible(false);
+                    dpMain.remove(frame);
                 } else {
                     frame.dispose();
                 }
-            } else {
-                frame.dispose();
-            }
+            
         }
     }
 
@@ -716,7 +717,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     void openQLSPFrm() {
-        closeAllFrm(false);
+        closeAllFrm();
         if (qLSPFrm == null || qLSPFrm.isClosed()) {
             qLSPFrm = new QLSPFrm(this);
             dpMain.add(qLSPFrm);
@@ -727,18 +728,19 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     void openBanHangFrm() {
-        closeAllFrm(false);
+        closeAllFrm();
         if (bhFrm == null || bhFrm.isClosed()) {
             bhFrm = new BanHangFrm(this);
             dpMain.add(bhFrm);
             bhFrm.setVisible(true);
         } else {
+            dpMain.add(bhFrm);
             bhFrm.setVisible(true);
         }
     }
 
     void openQL_CTSPFrm() {
-        closeAllFrm(false);
+        closeAllFrm();
         if (qlCTSPFrm == null || qlCTSPFrm.isClosed()) {
             qlCTSPFrm = new QL_CTSPFrm(this);
             dpMain.add(qlCTSPFrm);
@@ -749,13 +751,24 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     void openQLKMFrm() {
-        closeAllFrm(false);
+        closeAllFrm();
         if (qlKMFrm == null || qlKMFrm.isClosed()) {
             qlKMFrm = new QLKMFrm(this);
             dpMain.add(qlKMFrm);
             qlKMFrm.setVisible(true);
         } else {
             qlKMFrm.setVisible(true);
+        }
+    }
+    
+    void openThongKeFrm() {
+        closeAllFrm();
+        if (thongKeFrm == null || thongKeFrm.isClosed()) {
+            thongKeFrm = new ThongKeFrm(this);
+            dpMain.add(thongKeFrm);
+            thongKeFrm.setVisible(true);
+        } else {
+            thongKeFrm.setVisible(true);
         }
     }
 
