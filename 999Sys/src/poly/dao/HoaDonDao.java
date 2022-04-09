@@ -158,7 +158,7 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
                     rs.getObject("MAVACH"),
                    // String.format("%.0f", rs.getObject("GIABAN")),
                     df.format(rs.getObject("GIABAN")),
-                    df.format(rs.getObject("GIANHAP")),
+                   // df.format(rs.getObject("GIANHAP")),
                 //    String.format("%.0f", rs.getObject("GIANHAP")),
                     rs.getObject("SOLUONG"),
                     rs.getObject("TENDANHMUC"),

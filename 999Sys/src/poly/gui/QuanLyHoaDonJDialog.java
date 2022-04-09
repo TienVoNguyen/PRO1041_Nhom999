@@ -446,17 +446,17 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
 
         tblCTSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Tên SP", "Mã Vạch ", "Giá Bán", "Giá Nhập ", "Số Lượng", "Tên Danh Mục", "Đơn Vị Tính", "Size", "Màu Sắc", "Chất Liệu", "Ngày Nhập"
+                "Mã SP", "Tên SP", "Mã Vạch ", "Giá Bán", "Số Lượng", "Tên Danh Mục", "Đơn Vị Tính", "Size", "Màu Sắc", "Chất Liệu", "Ngày Nhập"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
