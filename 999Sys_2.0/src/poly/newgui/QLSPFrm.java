@@ -230,6 +230,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
 
+        themDMJDialog.setPreferredSize(new java.awt.Dimension(428, 219));
+
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.BorderLayout());
 
@@ -349,6 +351,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         DaXoaJDialog.getContentPane().add(jPanel23, java.awt.BorderLayout.CENTER);
 
+        themDVTJDialog.setPreferredSize(new java.awt.Dimension(428, 219));
+
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setLayout(new java.awt.BorderLayout());
 
@@ -401,6 +405,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         themDVTJDialog.getContentPane().add(jPanel26, java.awt.BorderLayout.CENTER);
 
         themSizeJDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        themSizeJDialog.setPreferredSize(new java.awt.Dimension(428, 219));
 
         jPanel42.setBackground(new java.awt.Color(255, 255, 255));
         jPanel42.setLayout(new java.awt.BorderLayout());
@@ -588,7 +593,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         loadDataJDialog.getContentPane().add(jPanel57, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(153, 255, 255));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(6, 6, 6, 6, new java.awt.Color(153, 255, 255)));
@@ -655,7 +660,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         jPanel12.setBackground(new java.awt.Color(255, 153, 102));
         jPanel12.setPreferredSize(new java.awt.Dimension(300, 50));
-        jPanel12.setLayout(new java.awt.GridLayout());
+        jPanel12.setLayout(new java.awt.GridLayout(1, 0));
 
         btnChonAnh.setBackground(new java.awt.Color(0, 0, 0));
         btnChonAnh.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -1172,7 +1177,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemDanhMucActionPerformed
-        this.themDMJDialog.setSize(614, 200);
+        this.themDMJDialog.setSize(614, 205);
         this.themDMJDialog.setLocationRelativeTo(null);
         this.themDMJDialog.setVisible(true);
     }//GEN-LAST:event_btnThemDanhMucActionPerformed
@@ -1184,7 +1189,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnThemDVTActionPerformed
 
     private void btnThemSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSizeActionPerformed
-        this.themSizeJDialog.setSize(614, 200);
+        this.themSizeJDialog.setSize(614, 230);
         this.themSizeJDialog.setLocationRelativeTo(null);
         this.themSizeJDialog.setVisible(true);
     }//GEN-LAST:event_btnThemSizeActionPerformed
@@ -1217,7 +1222,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         dm.setNgayThem(XDate.toString(new Date(), "MM/dd/yyyy"));
         try {
             this.daoDM.insert(dm);
-            Messeger.alert(themDMJDialog, "thêm thành công thành công!");
+            Messeger.alert(themDMJDialog, "Thêm thành công!");
             loadDataToCBBDM();
             this.themDMJDialog.dispose();
         } catch (Exception ex) {
@@ -1320,7 +1325,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         size.setTenSize(txtLoaiSize.getText());
         try {
             this.daoSize.insert(size);
-            Messeger.alert(themSizeJDialog, "thêm thành công thành công!");
+            Messeger.alert(themSizeJDialog, "Thêm thành công!");
             loadDataToCBBSize();
             this.themSizeJDialog.dispose();
         } catch (Exception ex) {
@@ -1342,7 +1347,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         ms.setTenMau(txtMauMoi.getText());
         try {
             this.daoMauSac.insert(ms);
-            Messeger.alert(themMauSacJDialog, "thêm thành công thành công!");
+            Messeger.alert(themMauSacJDialog, "Thêm thành công!");
             loadDataToCBBMau();
             this.themMauSacJDialog.dispose();
         } catch (Exception ex) {
@@ -1364,7 +1369,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         cl.setTenChatLieu(txtTenChatLieuMoi.getText());
         try {
             this.daoCL.insert(cl);
-            Messeger.alert(themChatLieuJDialog, "thêm thành công thành công!");
+            Messeger.alert(themChatLieuJDialog, "Thêm thành công!");
             loadDataToCBBCL();
             this.themChatLieuJDialog.dispose();
         } catch (Exception ex) {

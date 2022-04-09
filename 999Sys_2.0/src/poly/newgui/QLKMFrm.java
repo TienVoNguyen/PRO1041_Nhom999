@@ -158,15 +158,14 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(51, 255, 255));
 
         jPanel21.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 0, 0, 0, new java.awt.Color(102, 255, 255)));
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 0, 0, new java.awt.Color(102, 255, 255)));
         jPanel21.setMinimumSize(new java.awt.Dimension(274, 49));
         jPanel21.setPreferredSize(new java.awt.Dimension(2360, 35));
-        jPanel21.setLayout(new java.awt.GridLayout());
+        jPanel21.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("QUẢN LÝ KHUYẾN MẠI");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jPanel21.add(jLabel11);
 
         getContentPane().add(jPanel21, java.awt.BorderLayout.PAGE_START);
@@ -296,7 +295,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
 
         ctCard.setLayout(new java.awt.CardLayout());
 
-        vndCard.setLayout(new java.awt.GridLayout());
+        vndCard.setLayout(new java.awt.GridLayout(1, 0));
 
         txtGiaTri.setModel(new javax.swing.SpinnerNumberModel(10000, 10000, null, 1000));
         txtGiaTri.setEditor(new javax.swing.JSpinner.NumberEditor(txtGiaTri, "###,###,### VNĐ"));
@@ -304,7 +303,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
 
         ctCard.add(vndCard, "vndCard");
 
-        percentCard.setLayout(new java.awt.GridLayout());
+        percentCard.setLayout(new java.awt.GridLayout(1, 0));
 
         sppercent.setModel(new javax.swing.SpinnerNumberModel(0.2d, 0.0d, 10.0d, 0.05d));
         sppercent.setEditor(new javax.swing.JSpinner.NumberEditor(sppercent, "##%"));
