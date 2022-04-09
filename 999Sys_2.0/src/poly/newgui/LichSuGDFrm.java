@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package poly.gui;
+package poly.newgui;
 
 import java.awt.CardLayout;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.HoaDonDao;
@@ -21,44 +18,33 @@ import poly.entity.HoaDon;
 import poly.entity.TTHoaDon;
 import poly.helper.Messeger;
 import poly.helper.XDate;
+import poly.helper.XInternal;
 
 /**
  *
- * @author Admin
+ * @author NTV
  */
-public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
-
-    CardLayout cardGoc;
-    HoaDonDao hDDao;
-    TTHoaDonDao tTHDDao;
-    DefaultTableModel HoaDonCHModelTB;
-    DefaultTableModel hoaDonGiaoHangModelTB;
-    DefaultTableModel cTSPmodelTB;
-    DefaultComboBoxModel cbbTrangThaiModel;
-    DefaultComboBoxModel cbbTimKiemMaHD;
-    DefaultComboBoxModel cbbTimKiemMaNV;
-    DefaultComboBoxModel cbbTimKiemMaKH;
+public class LichSuGDFrm extends javax.swing.JInternalFrame {
+    
+    private CardLayout cardGoc;
+    private HoaDonDao hDDao;
+    private TTHoaDonDao tTHDDao;
+    private DefaultTableModel HoaDonCHModelTB;
+    private DefaultTableModel hoaDonGiaoHangModelTB;
+    private DefaultTableModel cTSPmodelTB;
+    private DefaultComboBoxModel cbbTrangThaiModel;
+    private DefaultComboBoxModel cbbTimKiemMaHD;
+    private DefaultComboBoxModel cbbTimKiemMaNV;
+    private DefaultComboBoxModel cbbTimKiemMaKH;
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
-    int row = -1;
-
-    public QuanLyHoaDonJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    private int row = -1;
+    /**
+     * Creates new form LichSuGDFrm
+     */
+    public LichSuGDFrm() {
         initComponents();
-        setLocationRelativeTo(null);
-        cbbTrangThaiModel = (DefaultComboBoxModel) cbbTrangThai.getModel();
-        cbbTimKiemMaHD = (DefaultComboBoxModel) cbbHoaDon.getModel();
-        cbbTimKiemMaNV = (DefaultComboBoxModel) cbbMaNV.getModel();
-        cbbTimKiemMaKH = (DefaultComboBoxModel) cbbMaKH.getModel();
-        hDDao = new HoaDonDao();
-        tTHDDao = new TTHoaDonDao();
-        cardGoc = (CardLayout) this.jpnCardTableHD.getLayout();
-        cardGoc.show(jpnCardTableHD, "cardTTCuaHang");
-        Object[] keyObj = {"%%", "%%", "%%"};
-        this.fillToTableHDCuaHang(keyObj);
-        this.fillToTableHDGiaoHang();
-        this.fillToCBBTrangThai();
-        this.fillToCBBTimKiem();
+        init();
     }
 
     /**
@@ -136,7 +122,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         jpnTiTleCTHD = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1227, 688));
@@ -286,7 +272,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 444, Short.MAX_VALUE)
         );
 
         jpnFormHD.add(jPanel12, java.awt.BorderLayout.WEST);
@@ -389,6 +375,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblThanhToanGiaoHang.setRowHeight(24);
         tblThanhToanGiaoHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblThanhToanGiaoHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -423,6 +410,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
             }
         });
         tblThanhToanCuaHang.setPreferredSize(new java.awt.Dimension(300, 294));
+        tblThanhToanCuaHang.setRowHeight(24);
         tblThanhToanCuaHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblThanhToanCuaHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -463,6 +451,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblCTSP.setRowHeight(24);
         tblCTSP.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tblCTSP);
 
@@ -483,7 +472,7 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
 
         jPanel1.add(jpnTable, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -495,6 +484,44 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
             cardGoc.show(this.jpnCardTableHD, "CardGiaoHang");
         }
     }//GEN-LAST:event_cbbLoaiThanhToanItemStateChanged
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        String maHD, maNV, maKH;
+
+        maHD = cbbHoaDon.getSelectedItem().toString();
+        maNV = cbbMaNV.getSelectedItem().toString();
+        maKH = cbbMaKH.getSelectedItem().toString();
+        Object[] listKey = {"%" + maHD + "%", "%" + maNV + "%", "%" + maKH + "%"};
+        try {
+
+            HoaDonCHModelTB = (DefaultTableModel) tblThanhToanCuaHang.getModel();
+            HoaDonCHModelTB.setRowCount(0);
+            List<Object[]> listHD = hDDao.getListHD(listKey);
+            for (Object[] hd : listHD) {
+                HoaDonCHModelTB.addRow(hd);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void tblThanhToanGiaoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThanhToanGiaoHangMouseClicked
+        row = tblThanhToanGiaoHang.getSelectedRow();
+        if (row == -1) {
+            return;
+        }
+        this.cbbTrangThaiModel.setSelectedItem(tblThanhToanGiaoHang.getValueAt(row, 12).toString());
+        this.txtMaHD.setText(tblThanhToanGiaoHang.getValueAt(row, 0).toString());
+        this.txtMaNV.setText(tblThanhToanGiaoHang.getValueAt(row, 1).toString());
+        this.txtMaKH.setText(tblThanhToanGiaoHang.getValueAt(row, 3).toString());
+        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 7), "dd/MM/yyyy"));
+        this.txtNgayGH.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 8), "dd/MM/yyyy"));
+        this.txtGiamGia.setText(tblThanhToanGiaoHang.getValueAt(row, 9).toString());
+        this.txtTienShip.setText(tblThanhToanGiaoHang.getValueAt(row, 10).toString());
+        this.txtThanhTien.setText(tblThanhToanGiaoHang.getValueAt(row, 11).toString());
+        this.txtGhiChu.setText(tblThanhToanGiaoHang.getValueAt(row, 13).toString());
+        this.fillToTableCTSP();
+    }//GEN-LAST:event_tblThanhToanGiaoHangMouseClicked
 
     private void tblThanhToanCuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThanhToanCuaHangMouseClicked
         row = tblThanhToanCuaHang.getSelectedRow();
@@ -515,85 +542,6 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
         this.fillToTableCTSP();
     }//GEN-LAST:event_tblThanhToanCuaHangMouseClicked
 
-    private void tblThanhToanGiaoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThanhToanGiaoHangMouseClicked
-        row = tblThanhToanGiaoHang.getSelectedRow();
-        if (row == -1) {
-            return;
-        }
-        this.cbbTrangThaiModel.setSelectedItem(tblThanhToanGiaoHang.getValueAt(row, 12).toString());
-        this.txtMaHD.setText(tblThanhToanGiaoHang.getValueAt(row, 0).toString());
-        this.txtMaNV.setText(tblThanhToanGiaoHang.getValueAt(row, 1).toString());
-        this.txtMaKH.setText(tblThanhToanGiaoHang.getValueAt(row, 3).toString());
-        this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 7), "dd/MM/yyyy"));
-        this.txtNgayGH.setText(XDate.toString((Date) tblThanhToanGiaoHang.getValueAt(row, 8), "dd/MM/yyyy"));
-        this.txtGiamGia.setText(tblThanhToanGiaoHang.getValueAt(row, 9).toString());
-        this.txtTienShip.setText(tblThanhToanGiaoHang.getValueAt(row, 10).toString());
-        this.txtThanhTien.setText(tblThanhToanGiaoHang.getValueAt(row, 11).toString());
-        this.txtGhiChu.setText(tblThanhToanGiaoHang.getValueAt(row, 13).toString());
-        this.fillToTableCTSP();
-    }//GEN-LAST:event_tblThanhToanGiaoHangMouseClicked
-
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        String maHD, maNV, maKH;
-        
-        maHD = cbbHoaDon.getSelectedItem().toString();
-        maNV = cbbMaNV.getSelectedItem().toString();
-        maKH = cbbMaKH.getSelectedItem().toString();
-        Object[] listKey = {"%" + maHD + "%", "%" + maNV + "%", "%" + maKH + "%"};
-        try {
-
-            HoaDonCHModelTB = (DefaultTableModel) tblThanhToanCuaHang.getModel();
-            HoaDonCHModelTB.setRowCount(0);
-            List<Object[]> listHD = hDDao.getListHD(listKey);
-            for (Object[] hd : listHD) {
-                HoaDonCHModelTB.addRow(hd);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_txtSearchKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuanLyHoaDonJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuanLyHoaDonJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuanLyHoaDonJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuanLyHoaDonJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                QuanLyHoaDonJDialog dialog = new QuanLyHoaDonJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbbHoaDon;
@@ -663,6 +611,23 @@ public class QuanLyHoaDonJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTienShip;
     // End of variables declaration//GEN-END:variables
 
+    private void init() {
+        XInternal.uncorated(this);
+        cbbTrangThaiModel = (DefaultComboBoxModel) cbbTrangThai.getModel();
+        cbbTimKiemMaHD = (DefaultComboBoxModel) cbbHoaDon.getModel();
+        cbbTimKiemMaNV = (DefaultComboBoxModel) cbbMaNV.getModel();
+        cbbTimKiemMaKH = (DefaultComboBoxModel) cbbMaKH.getModel();
+        hDDao = new HoaDonDao();
+        tTHDDao = new TTHoaDonDao();
+        cardGoc = (CardLayout) this.jpnCardTableHD.getLayout();
+        cardGoc.show(jpnCardTableHD, "cardTTCuaHang");
+        Object[] keyObj = {"%%", "%%", "%%"};
+        this.fillToTableHDCuaHang(keyObj);
+        this.fillToTableHDGiaoHang();
+        this.fillToCBBTrangThai();
+        this.fillToCBBTimKiem();
+    }
+    
     private void fillToTableHDCuaHang(Object[] keyObj) {
         try {
 
