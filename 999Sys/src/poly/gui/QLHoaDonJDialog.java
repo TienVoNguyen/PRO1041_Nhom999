@@ -92,7 +92,6 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         tblHoaDon = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 658));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 255, 0)));
@@ -245,7 +244,7 @@ public class QLHoaDonJDialog extends javax.swing.JDialog {
         HD.setMaTT(TTHD.getMaTT());
         HD.setMaNV(txtMaNV.getText());
         HD.setMaKH(txtMaKH.getText());
-        HD.setNgayMua(txtNgayMua.getText());
+        HD.setNgayMua(XDate.toDate(txtNgayMua.getText(), "dd/MM/yyyy"));
         HD.setGiamGia(Double.parseDouble(txtGiamGia.getText()));
         HD.setThanhTien(Double.parseDouble(txtThanhTien.getText()));
         try {

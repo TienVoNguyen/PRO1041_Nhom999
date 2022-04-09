@@ -453,11 +453,12 @@ public class ThanhToanJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 
+    
     private boolean thanhToan() throws HeadlessException {
         if (Messeger.confirm(this, "Xác Nhận Thanh Toán Hóa đơn-MAHD: " + hd.getMaHD())) {
             try {
                 hd.setGiamGia(Double.parseDouble(txtGiamGia.getToolTipText()));
-                hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"));
+                hd.setNgayMua(XDate.toDate(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"), "MM/dd/yyyy hh:mm:ss"));
                 hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
                 this.daoHD.update(hd);
                 if (hd.getMaKH() != null) {
