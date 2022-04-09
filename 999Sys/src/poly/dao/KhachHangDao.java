@@ -24,7 +24,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
             case "INSERT":
                 return "INSERT INTO KHACHHANG (MAKH, MALOAIKH, HOTEN ,NGAYSINH, GIOITINH, EMAIL, SDT, DIACHI, NGAYTAO) VALUES (?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TICHDIEM =?, TrangThai =? WHERE MAKH=?";
+                return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TICHDIEM =? WHERE MAKH=?";
             case "DELETE":
                 return "UPDATE KHACHHANG SET TRANGTHAI =0 WHERE MAKH = ?";
             case "SELECTBYID":
@@ -63,7 +63,6 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
                     obj.getDiaChi(),
                     obj.getNgayTao(),
                     obj.getTichDiem(),
-                    obj.isTrangThai(),
                     obj.getMaKH()
                 };
             case "SELECTWHERE":

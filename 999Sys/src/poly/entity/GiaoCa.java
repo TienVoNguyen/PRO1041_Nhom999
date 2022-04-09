@@ -48,10 +48,14 @@ public class GiaoCa {
         this.tongTien = tongTien;
     }
 
+    public GiaoCa(String maNVGiaoCa, double tongTien) {
+        this.maNVGiaoCa = maNVGiaoCa;
+        this.tienCoSo = tongTien;
+    }
+    
     public GiaoCa(String maNVGiaoCa) {
         this.maNVGiaoCa = maNVGiaoCa;
     }
-    
     
     public int getMaGiaoCa() {
         return maGiaoCa;

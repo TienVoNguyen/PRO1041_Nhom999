@@ -3,7 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package poly.gui;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
+import poly.dao.NhanVienDao;
+import poly.dao.VaiTroDao;
+import poly.entity.NhanVien;
+import poly.entity.VaiTro;
+import poly.helper.Auth;
+import poly.helper.CustomDatePicker;
+import poly.helper.ImageHelper;
+import poly.helper.Messeger;
+import poly.helper.XDate;
+import poly.helper.XValidate;
 
 /**
  *
@@ -11,9 +29,16 @@ package DAO;
  */
 public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
+    private JFileChooser fileChooser;
+    NhanVienDao dao_nv;
+    VaiTroDao dao_vt;
+    DefaultTableModel modelTable_nv;
+    DefaultTableModel modelTable_vt;
+
     public QuanLyTaiKhoan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        init();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +55,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jpnTaiKhoan = new javax.swing.JPanel();
         jpntableTK = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblnhanvien = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -38,6 +63,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         jpnSearch = new javax.swing.JPanel();
         btnTimKiem = new javax.swing.JButton();
+        txtTimKiem = new javax.swing.JTextField();
         jpnForm = new javax.swing.JPanel();
         jpnButton = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -52,10 +78,11 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         btnLast = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        lbanh = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtMaNV2 = new javax.swing.JTextField();
+        txtMaNV = new javax.swing.JTextField();
         jPanel21 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtHoTen = new javax.swing.JTextField();
@@ -63,11 +90,14 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtMatKhau = new javax.swing.JTextField();
         jPanel25 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        txtXacNhanMK = new javax.swing.JTextField();
+        jPanel51 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jPanel52 = new javax.swing.JPanel();
+        radioql = new javax.swing.JRadioButton();
+        radionv = new javax.swing.JRadioButton();
         jPanel23 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        txtngaysinh = new com.github.lgooddatepicker.components.DatePicker();
         jPanel24 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         txtSĐT = new javax.swing.JTextField();
@@ -84,33 +114,24 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         txtEmail = new javax.swing.JTextField();
         jPanel29 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
+        txtngaytao = new com.github.lgooddatepicker.components.DatePicker();
         jpnVaiTro = new javax.swing.JPanel();
         jpnTableVaiTro = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblvt = new javax.swing.JTable();
         jpnFormVaiTro = new javax.swing.JPanel();
         jPanel48 = new javax.swing.JPanel();
         jPanel49 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        txtMaVT2 = new javax.swing.JTextField();
+        txtMaVT = new javax.swing.JTextField();
         jPanel50 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        txtTenVT2 = new javax.swing.JTextField();
-        jPanel51 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        jPanel52 = new javax.swing.JPanel();
-        rdoQuanLy2 = new javax.swing.JRadioButton();
-        rdoNhanVien2 = new javax.swing.JRadioButton();
+        txtTenVT = new javax.swing.JTextField();
         jpnbuttonVaiTro = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
-        btnMoiVT = new javax.swing.JButton();
-        btnThemVT = new javax.swing.JButton();
-        btnSuaVT = new javax.swing.JButton();
-        btnXoaVT = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -149,18 +170,35 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
         jpntableTK.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblnhanvien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã NV", "Họ Tên", "Mật Khẩu", "Ngày Sinh", "Số ĐT", "Giới Tính", "Địa Chỉ", "Email", "Ngày Tạo", "Vai Trò", "Ảnh NV"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblnhanvien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblnhanvienMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblnhanvien);
 
         jpntableTK.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -187,6 +225,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         jpnSearch.add(btnTimKiem, java.awt.BorderLayout.EAST);
+        jpnSearch.add(txtTimKiem, java.awt.BorderLayout.CENTER);
 
         jPanel7.add(jpnSearch, java.awt.BorderLayout.CENTER);
 
@@ -208,15 +247,35 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jPanel12.setLayout(new java.awt.GridLayout(1, 4, 5, 0));
 
         btnThemMoi.setText("Mới");
+        btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemMoiActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnThemMoi);
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnThem);
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnSua);
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnXoa);
 
         jpnButton.add(jPanel12);
@@ -243,17 +302,15 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
         jPanel5.setPreferredSize(new java.awt.Dimension(200, 300));
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
+        lbanh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbanh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbanhMouseClicked(evt);
+            }
+        });
+        jPanel5.add(lbanh);
 
         jPanel4.add(jPanel5, java.awt.BorderLayout.LINE_START);
 
@@ -266,7 +323,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel6.setText("  Mã NV :");
         jLabel6.setPreferredSize(new java.awt.Dimension(95, 15));
         jPanel22.add(jLabel6, java.awt.BorderLayout.LINE_START);
-        jPanel22.add(txtMaNV2, java.awt.BorderLayout.CENTER);
+        jPanel22.add(txtMaNV, java.awt.BorderLayout.CENTER);
 
         jPanel9.add(jPanel22);
 
@@ -290,10 +347,28 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
         jPanel25.setLayout(new java.awt.BorderLayout());
 
-        jLabel9.setText("  Xác nhận MK:");
-        jLabel9.setPreferredSize(new java.awt.Dimension(95, 15));
-        jPanel25.add(jLabel9, java.awt.BorderLayout.LINE_START);
-        jPanel25.add(txtXacNhanMK, java.awt.BorderLayout.CENTER);
+        jPanel51.setLayout(new java.awt.BorderLayout());
+
+        jLabel27.setText("  Trạng Thái");
+        jLabel27.setPreferredSize(new java.awt.Dimension(100, 16));
+        jPanel51.add(jLabel27, java.awt.BorderLayout.LINE_START);
+
+        jPanel52.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
+
+        buttonGroup2.add(radioql);
+        radioql.setSelected(true);
+        radioql.setText("Quản lý");
+        radioql.setPreferredSize(new java.awt.Dimension(85, 55));
+        jPanel52.add(radioql);
+
+        buttonGroup2.add(radionv);
+        radionv.setText("Nhân viên");
+        radionv.setPreferredSize(new java.awt.Dimension(85, 55));
+        jPanel52.add(radionv);
+
+        jPanel51.add(jPanel52, java.awt.BorderLayout.CENTER);
+
+        jPanel25.add(jPanel51, java.awt.BorderLayout.CENTER);
 
         jPanel9.add(jPanel25);
 
@@ -302,7 +377,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel7.setText("  Ngày sinh :");
         jLabel7.setPreferredSize(new java.awt.Dimension(95, 15));
         jPanel23.add(jLabel7, java.awt.BorderLayout.LINE_START);
-        jPanel23.add(datePicker1, java.awt.BorderLayout.CENTER);
+        jPanel23.add(txtngaysinh, java.awt.BorderLayout.CENTER);
 
         jPanel9.add(jPanel23);
 
@@ -321,18 +396,16 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel10.setPreferredSize(new java.awt.Dimension(95, 15));
         jPanel26.add(jLabel10, java.awt.BorderLayout.LINE_START);
 
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setLayout(new java.awt.BorderLayout());
-
         buttonGroup1.add(rdoNam);
         rdoNam.setSelected(true);
         rdoNam.setText("Nam");
-        rdoNam.setPreferredSize(new java.awt.Dimension(100, 25));
-        jPanel11.add(rdoNam, java.awt.BorderLayout.LINE_START);
+        rdoNam.setPreferredSize(new java.awt.Dimension(85, 55));
+        jPanel11.add(rdoNam);
 
         buttonGroup1.add(rdoNu);
         rdoNu.setText("Nữ");
-        jPanel11.add(rdoNu, java.awt.BorderLayout.CENTER);
+        rdoNu.setPreferredSize(new java.awt.Dimension(85, 55));
+        jPanel11.add(rdoNu);
 
         jPanel26.add(jPanel11, java.awt.BorderLayout.CENTER);
 
@@ -361,7 +434,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel13.setText(" Ngày Tạo :");
         jLabel13.setPreferredSize(new java.awt.Dimension(95, 15));
         jPanel29.add(jLabel13, java.awt.BorderLayout.LINE_START);
-        jPanel29.add(datePicker2, java.awt.BorderLayout.CENTER);
+        jPanel29.add(txtngaytao, java.awt.BorderLayout.CENTER);
 
         jPanel9.add(jPanel29);
 
@@ -393,18 +466,35 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
         jPanel16.setLayout(new java.awt.BorderLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblvt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã Vai Trò", "Tên Vai Trò"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblvt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblvtMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblvt);
 
         jPanel16.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -414,7 +504,6 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
         jpnFormVaiTro.setLayout(new java.awt.BorderLayout());
 
-        jPanel48.setBackground(new java.awt.Color(204, 204, 255));
         jPanel48.setPreferredSize(new java.awt.Dimension(345, 200));
         jPanel48.setLayout(new java.awt.GridLayout(3, 1, 5, 5));
 
@@ -423,7 +512,7 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel25.setText("  Mã Vai Trò :");
         jLabel25.setPreferredSize(new java.awt.Dimension(100, 16));
         jPanel49.add(jLabel25, java.awt.BorderLayout.LINE_START);
-        jPanel49.add(txtMaVT2, java.awt.BorderLayout.CENTER);
+        jPanel49.add(txtMaVT, java.awt.BorderLayout.CENTER);
 
         jPanel48.add(jPanel49);
 
@@ -433,37 +522,9 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         jLabel26.setMaximumSize(new java.awt.Dimension(60, 16));
         jLabel26.setPreferredSize(new java.awt.Dimension(100, 16));
         jPanel50.add(jLabel26, java.awt.BorderLayout.LINE_START);
-        jPanel50.add(txtTenVT2, java.awt.BorderLayout.CENTER);
+        jPanel50.add(txtTenVT, java.awt.BorderLayout.CENTER);
 
         jPanel48.add(jPanel50);
-
-        jPanel51.setLayout(new java.awt.BorderLayout());
-
-        jLabel27.setText("  Trạng Thái");
-        jLabel27.setPreferredSize(new java.awt.Dimension(100, 16));
-        jPanel51.add(jLabel27, java.awt.BorderLayout.LINE_START);
-
-        jPanel52.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel52.setLayout(new java.awt.BorderLayout());
-
-        buttonGroup2.add(rdoQuanLy2);
-        rdoQuanLy2.setSelected(true);
-        rdoQuanLy2.setText("Quản lý");
-        rdoQuanLy2.setPreferredSize(new java.awt.Dimension(90, 25));
-        jPanel52.add(rdoQuanLy2, java.awt.BorderLayout.LINE_START);
-
-        buttonGroup2.add(rdoNhanVien2);
-        rdoNhanVien2.setText("Nhân viên");
-        rdoNhanVien2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNhanVien2ActionPerformed(evt);
-            }
-        });
-        jPanel52.add(rdoNhanVien2, java.awt.BorderLayout.CENTER);
-
-        jPanel51.add(jPanel52, java.awt.BorderLayout.CENTER);
-
-        jPanel48.add(jPanel51);
 
         jpnFormVaiTro.add(jPanel48, java.awt.BorderLayout.PAGE_START);
 
@@ -471,19 +532,6 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
 
         jPanel32.setPreferredSize(new java.awt.Dimension(345, 50));
         jPanel32.setLayout(new java.awt.GridLayout(1, 4, 5, 5));
-
-        btnMoiVT.setText("Mới");
-        jPanel32.add(btnMoiVT);
-
-        btnThemVT.setText("Thêm");
-        jPanel32.add(btnThemVT);
-
-        btnSuaVT.setText("Sửa");
-        jPanel32.add(btnSuaVT);
-
-        btnXoaVT.setText("Xóa");
-        jPanel32.add(btnXoaVT);
-
         jpnbuttonVaiTro.add(jPanel32, java.awt.BorderLayout.PAGE_START);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -521,10 +569,174 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rdoNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNhanVien2ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("My name is: ");
-    }//GEN-LAST:event_rdoNhanVien2ActionPerformed
+    private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
+        ResetText();
+    }//GEN-LAST:event_btnThemMoiActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try {
+            ArrayList<NhanVien> nv = dao_nv.selectAll();
+            for (int i = 0; i < nv.size(); i++) {
+            NhanVien get = nv.get(i);
+            if (get.getMaNV().equals(txtMaNV.getText())) {
+                Messeger.alert(this, "Đã Có Mã NV Trong Hệ Thống , Vui Lòng Chọn Mã Khác");
+                return;
+            }
+        }
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (Validate()) {
+            return;
+        }
+        
+        try {
+            boolean gioitinh = true;
+            int vaitro = 101;
+            if (rdoNu.isSelected()) {
+                gioitinh = false;
+            }
+            if (radionv.isSelected()) {
+                vaitro = 102;
+            }
+            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                return;
+            }
+            dao_nv.insert(new NhanVien(txtMaNV.getText(), txtMatKhau.getText(), txtHoTen.getText(),
+                    txtngaysinh.getText(),
+                    gioitinh,
+                    txtEmail.getText(),
+                    txtSĐT.getText(),
+                    txtDiaChi.getText(),
+                    lbanh.getToolTipText(),
+                    vaitro,
+                    txtngaytao.getText(),
+                    true));
+            LoadDataToTable_TaiKhoan();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        if (Auth.user.getMaNV().equals(txtMaNV.getText())) {
+            Messeger.showErrorDialog(this, "Tài Khoản Đang Đăng Nhập Không Thể Tự Chỉnh Sửa", "Lỗi");
+            return;
+        }
+        if (Validate()) {
+            return;
+        }
+        try {
+            boolean gioitinh = true;
+            int vaitro = 101;
+            if (rdoNu.isSelected()) {
+                gioitinh = false;
+            }
+            if (radionv.isSelected()) {
+                vaitro = 102;
+            }
+            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không")) {
+                return;
+            }
+            dao_nv.update(new NhanVien(txtMaNV.getText(), txtMatKhau.getText(), txtHoTen.getText(),
+                    txtngaysinh.getText(),
+                    gioitinh,
+                    txtEmail.getText(),
+                    txtSĐT.getText(),
+                    txtDiaChi.getText(),
+                    lbanh.getToolTipText(),
+                    vaitro,
+                    txtngaytao.getText(),
+                    true));
+            LoadDataToTable_TaiKhoan();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+       if (Auth.user.getMaNV().equals(txtMaNV.getText())) {
+            Messeger.showErrorDialog(this, "Tài Khoản Đang Đăng Nhập Không Thể Tự Chỉnh Sửa", "Lỗi");
+            return;
+        }
+        try {
+            if (!Messeger.confirm(this, "Bạn Có Muốn Xóa Không")) {
+                return;
+            }
+            dao_nv.delete(txtMaNV.getText());
+            LoadDataToTable_TaiKhoan();
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblnhanvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblnhanvienMouseClicked
+        int viTri = tblnhanvien.getSelectedRow();
+        if (viTri == -1) {
+            return;
+        }
+        txtMaNV.setText(tblnhanvien.getValueAt(viTri, 0).toString());
+        txtHoTen.setText(tblnhanvien.getValueAt(viTri, 1).toString());
+        txtMatKhau.setText(tblnhanvien.getValueAt(viTri, 2).toString());
+        txtngaysinh.setText(tblnhanvien.getValueAt(viTri, 3).toString());
+        txtSĐT.setText(tblnhanvien.getValueAt(viTri, 4).toString());
+        if (tblnhanvien.getValueAt(viTri, 5).toString().equalsIgnoreCase("Nam")) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+        }
+        txtDiaChi.setText(tblnhanvien.getValueAt(viTri, 6).toString());
+        txtEmail.setText(tblnhanvien.getValueAt(viTri, 7).toString());
+        txtngaytao.setText(tblnhanvien.getValueAt(viTri, 8).toString());
+        if (tblnhanvien.getValueAt(viTri, 9).toString().equals("Trưởng Phòng")) {
+            radioql.setSelected(true);
+        } else {
+            radionv.setSelected(true);
+        }
+        lbanh.setToolTipText(tblnhanvien.getValueAt(viTri, 10).toString());
+        lbanh.setIcon(ImageHelper.read(String.valueOf(tblnhanvien.getValueAt(viTri, 10))));
+    }//GEN-LAST:event_tblnhanvienMouseClicked
+
+    private void tblvtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblvtMouseClicked
+        int vitri = tblvt.getSelectedRow();
+        if (vitri == -1) {
+            return;
+        }
+        txtMaVT.setText(tblvt.getValueAt(vitri, 0).toString());
+        txtTenVT.setText(tblvt.getValueAt(vitri, 1).toString());
+        if (tblvt.getValueAt(vitri, 1).toString().equals("Trưởng Phòng")) {
+            radioql.setSelected(true);
+        } else {
+            radionv.setSelected(true);
+        }
+    }//GEN-LAST:event_tblvtMouseClicked
+
+    private void lbanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbanhMouseClicked
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            ImageHelper.save(file); // lưu hình ảnh vào thư mục logos
+            ImageIcon icon = ImageHelper.read(file.getName());//đọc hình từ thư mục logos
+            lbanh.setIcon(icon);
+            lbanh.setToolTipText(file.getName());//giữ tên hình trong tooltop
+        }
+    }//GEN-LAST:event_lbanhMouseClicked
+
+    private void ResetText() {
+        lbanh.setText("");
+        txtMaNV.setText("");
+        txtHoTen.setText("");
+        txtMatKhau.setText("");
+        txtngaysinh.setDateToToday();
+        txtSĐT.setText("");
+        rdoNam.setSelected(true);
+        txtDiaChi.setText("");
+        txtEmail.setText("");
+        txtngaytao.setDateToToday();
+        txtMaVT.setText("");
+        txtTenVT.setText("");
+        radioql.setEnabled(true);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -572,21 +784,15 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
-    private javax.swing.JButton btnMoiVT;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnSua;
-    private javax.swing.JButton btnSuaVT;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThemMoi;
-    private javax.swing.JButton btnThemVT;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton btnXoaVT;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
-    private com.github.lgooddatepicker.components.DatePicker datePicker2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -603,7 +809,6 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -637,8 +842,6 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JPanel jpnButton;
     private javax.swing.JPanel jpnForm;
     private javax.swing.JPanel jpnFormVaiTro;
@@ -649,18 +852,122 @@ public class QuanLyTaiKhoan extends javax.swing.JDialog {
     private javax.swing.JPanel jpnbuttonVaiTro;
     private javax.swing.JPanel jpncenter;
     private javax.swing.JPanel jpntableTK;
+    private javax.swing.JLabel lbanh;
+    private javax.swing.JRadioButton radionv;
+    private javax.swing.JRadioButton radioql;
     private javax.swing.JRadioButton rdoNam;
-    private javax.swing.JRadioButton rdoNhanVien2;
     private javax.swing.JRadioButton rdoNu;
-    private javax.swing.JRadioButton rdoQuanLy2;
+    private javax.swing.JTable tblnhanvien;
+    private javax.swing.JTable tblvt;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoTen;
-    private javax.swing.JTextField txtMaNV2;
-    private javax.swing.JTextField txtMaVT2;
+    private javax.swing.JTextField txtMaNV;
+    private javax.swing.JTextField txtMaVT;
     private javax.swing.JTextField txtMatKhau;
     private javax.swing.JTextField txtSĐT;
-    private javax.swing.JTextField txtTenVT2;
-    private javax.swing.JTextField txtXacNhanMK;
+    private javax.swing.JTextField txtTenVT;
+    private javax.swing.JTextField txtTimKiem;
+    private com.github.lgooddatepicker.components.DatePicker txtngaysinh;
+    private com.github.lgooddatepicker.components.DatePicker txtngaytao;
     // End of variables declaration//GEN-END:variables
+
+    private void init() {
+        setLocationRelativeTo(null);
+        ResetText();
+        dao_nv = new NhanVienDao();
+        modelTable_nv = (DefaultTableModel) tblnhanvien.getModel();
+        modelTable_vt = (DefaultTableModel) tblvt.getModel();
+        dao_vt = new VaiTroDao();
+        LoadDataToTable_VaiTro();
+        LoadDataToTable_TaiKhoan();
+        txtngaysinh.setSettings(CustomDatePicker.customsDatePicker(txtngaysinh, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
+        txtngaytao.setSettings(CustomDatePicker.customsDatePicker(txtngaytao, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
+        this.fileChooser = new JFileChooser();
+
+    }
+
+    private void LoadDataToTable_VaiTro() {
+        modelTable_vt.setRowCount(0);
+        try {
+            ArrayList<VaiTro> vt = dao_vt.selectAll();
+            for (int i = 0; i < vt.size(); i++) {
+                VaiTro get = vt.get(i);
+                Object[] rowData = new Object[]{
+                    get.getMaVaiTro(),
+                    get.getTenVaiTro()
+                };
+                modelTable_vt.addRow(rowData);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void LoadDataToTable_TaiKhoan() {
+        modelTable_nv.setRowCount(0);
+        try {
+            ArrayList<NhanVien> list = dao_nv.selectAll();
+            for (int i = 0; i < list.size(); i++) {
+                NhanVien get = list.get(i);
+                if (get.isTrangThai()) {
+                String gt = "Nam";
+                if (!get.isGioiTinh()) {
+                    gt = "Nữ";
+                }
+                String vaitro = "Quản Lý";
+                if (get.getVaiTro() == 102) {
+                    vaitro = "Nhân Viên";
+                }
+                String ngaysinh = XDate.toString(XDate.toDate(get.getNgSinh(), "yyyy-MM-dd"), "dd/MM/yyyy");
+                String ngaydk = XDate.toString(XDate.toDate(get.getNgayTao(), "yyyy-MM-dd"), "dd/MM/yyyy");
+                Object[] rowData = new Object[]{
+                    get.getMaNV(),
+                    get.getHoTen(),
+                    get.getPassWord(),
+                    ngaysinh,
+                    get.getSDT(),
+                    gt,
+                    get.getDiaChi(),
+                    get.getEmail(),
+                    ngaydk,
+                    vaitro,
+                    get.getHinhAnh()
+                };
+                modelTable_nv.addRow(rowData);
+            }}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private boolean Validate() {
+        StringBuilder x = new StringBuilder();
+        if (lbanh.getToolTipText() == null) {
+            x.append("Vui Lòng Chọn Ảnh");
+        }else if (XValidate.isEmpty(txtMaNV)) {
+             x.append("Vui Lòng Nhập Mã NV");
+        }else if (XValidate.isEmpty(txtHoTen)) {
+             x.append("Vui Lòng Nhập Họ Tên");
+        }else if (XValidate.isEmpty(txtMatKhau)) {
+            x.append("Vui Lòng Nhập Mật Khẩu");
+        }else if (XValidate.isEmpty(txtSĐT)) {
+            x.append("Vui Lòng Nhập Số Điện Thoại");
+        }else if (XValidate.isNotNumber(txtSĐT)) {
+            x.append("Sai Định Dạng Số Điện Thoại");
+        }else if (XValidate.isEmpty(txtDiaChi)) {
+            x.append("Vui Lòng Nhập Địa Chỉ");
+        }else if (XValidate.isEmpty(txtEmail)) {
+            x.append("Vui Lòng Nhập Email");
+        }else if(XValidate.isNotEmail(txtEmail)){
+         x.append("Sai Định Dạng Email");
+        }
+        if (x.toString().length() > 0) {
+            Messeger.alert(this, x.toString());
+            return true;
+        }
+        return false;
+
+    }
 }
