@@ -14,7 +14,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.HoaDonDao;
 import poly.dao.TTHoaDonDao;
-import poly.entity.HoaDon;
 import poly.entity.TTHoaDon;
 import poly.helper.Messeger;
 import poly.helper.XDate;
@@ -25,7 +24,7 @@ import poly.helper.XInternal;
  * @author NTV
  */
 public class LichSuGDFrm extends javax.swing.JInternalFrame {
-    
+
     private CardLayout cardGoc;
     private HoaDonDao hDDao;
     private TTHoaDonDao tTHDDao;
@@ -33,12 +32,12 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
     private DefaultTableModel hoaDonGiaoHangModelTB;
     private DefaultTableModel cTSPmodelTB;
     private DefaultComboBoxModel cbbTrangThaiModel;
-    private DefaultComboBoxModel cbbTimKiemMaHD;
     private DefaultComboBoxModel cbbTimKiemMaNV;
     private DefaultComboBoxModel cbbTimKiemMaKH;
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
     private int row = -1;
+
     /**
      * Creates new form LichSuGDFrm
      */
@@ -92,21 +91,13 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         txtGhiChu = new javax.swing.JTextField();
         jpnButton = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jpnTitle = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jpnTable = new javax.swing.JPanel();
         jpnTBHD = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jpnLoaiHang = new javax.swing.JPanel();
-        cbbLoaiThanhToan = new javax.swing.JComboBox<>();
-        jpnSearch = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        txtSearch = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        cbbHoaDon = new javax.swing.JComboBox<>();
+        cbbLoaiThanhToan = new javax.swing.JComboBox<>();
         cbbMaNV = new javax.swing.JComboBox<>();
         cbbMaKH = new javax.swing.JComboBox<>();
         jpnCardTableHD = new javax.swing.JPanel();
@@ -122,7 +113,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTiTleCTHD = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1227, 688));
@@ -248,17 +239,6 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(0, 0, 0)));
         jpnButton.setPreferredSize(new java.awt.Dimension(774, 80));
         jpnButton.setLayout(new java.awt.GridBagLayout());
-
-        jButton1.setText("Update");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 10, new java.awt.Color(255, 102, 255)));
-        jButton1.setPreferredSize(new java.awt.Dimension(90, 40));
-        jpnButton.add(jButton1, new java.awt.GridBagConstraints());
-
-        jButton2.setText("Delete");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(255, 102, 255)));
-        jButton2.setPreferredSize(new java.awt.Dimension(90, 40));
-        jpnButton.add(jButton2, new java.awt.GridBagConstraints());
-
         jpnFormHD.add(jpnButton, java.awt.BorderLayout.SOUTH);
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));
@@ -272,7 +252,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         jpnFormHD.add(jPanel12, java.awt.BorderLayout.WEST);
@@ -299,54 +279,38 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTBHD.setPreferredSize(new java.awt.Dimension(774, 150));
         jpnTBHD.setLayout(new java.awt.BorderLayout());
 
-        jPanel15.setBackground(new java.awt.Color(255, 102, 0));
-        jPanel15.setPreferredSize(new java.awt.Dimension(774, 40));
-        jPanel15.setLayout(new java.awt.BorderLayout());
+        jPanel3.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 102, 0)));
+        jPanel3.setForeground(new java.awt.Color(255, 102, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(280, 40));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 3, 5, 5));
 
-        jpnLoaiHang.setBackground(new java.awt.Color(255, 102, 0));
-        jpnLoaiHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(255, 102, 255)));
-        jpnLoaiHang.setPreferredSize(new java.awt.Dimension(150, 40));
-        jpnLoaiHang.setLayout(new java.awt.BorderLayout());
-
+        cbbLoaiThanhToan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbbLoaiThanhToan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cửa Hàng", "Giao Hàng" }));
         cbbLoaiThanhToan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbLoaiThanhToanItemStateChanged(evt);
             }
         });
-        jpnLoaiHang.add(cbbLoaiThanhToan, java.awt.BorderLayout.CENTER);
+        jPanel3.add(cbbLoaiThanhToan);
 
-        jPanel15.add(jpnLoaiHang, java.awt.BorderLayout.LINE_START);
-
-        jpnSearch.setBackground(new java.awt.Color(255, 153, 0));
-        jpnSearch.setLayout(new java.awt.BorderLayout());
-
-        jPanel2.setPreferredSize(new java.awt.Dimension(200, 40));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
+        cbbMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbbMaNV.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbMaNVItemStateChanged(evt);
             }
         });
-        jPanel2.add(txtSearch, java.awt.BorderLayout.CENTER);
-
-        jpnSearch.add(jPanel2, java.awt.BorderLayout.LINE_START);
-
-        jPanel3.setPreferredSize(new java.awt.Dimension(280, 40));
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3));
-
-        jPanel3.add(cbbHoaDon);
-
         jPanel3.add(cbbMaNV);
 
+        cbbMaKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbbMaKH.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbMaKHItemStateChanged(evt);
+            }
+        });
         jPanel3.add(cbbMaKH);
 
-        jpnSearch.add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        jPanel15.add(jpnSearch, java.awt.BorderLayout.CENTER);
-
-        jpnTBHD.add(jPanel15, java.awt.BorderLayout.PAGE_START);
+        jpnTBHD.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
         jpnCardTableHD.setBackground(new java.awt.Color(255, 102, 255));
         jpnCardTableHD.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 5, new java.awt.Color(255, 102, 255)));
@@ -461,7 +425,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTiTleCTHD.setPreferredSize(new java.awt.Dimension(621, 30));
         jpnTiTleCTHD.setLayout(new java.awt.BorderLayout());
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Chi Tiết Hóa Đơn");
         jpnTiTleCTHD.add(jLabel12, java.awt.BorderLayout.CENTER);
@@ -485,26 +449,6 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbbLoaiThanhToanItemStateChanged
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        String maHD, maNV, maKH;
-
-        maHD = cbbHoaDon.getSelectedItem().toString();
-        maNV = cbbMaNV.getSelectedItem().toString();
-        maKH = cbbMaKH.getSelectedItem().toString();
-        Object[] listKey = {"%" + maHD + "%", "%" + maNV + "%", "%" + maKH + "%"};
-        try {
-
-            HoaDonCHModelTB = (DefaultTableModel) tblThanhToanCuaHang.getModel();
-            HoaDonCHModelTB.setRowCount(0);
-            List<Object[]> listHD = hDDao.getListHD(listKey);
-            for (Object[] hd : listHD) {
-                HoaDonCHModelTB.addRow(hd);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_txtSearchKeyReleased
-
     private void tblThanhToanGiaoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThanhToanGiaoHangMouseClicked
         row = tblThanhToanGiaoHang.getSelectedRow();
         if (row == -1) {
@@ -520,7 +464,8 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         this.txtTienShip.setText(tblThanhToanGiaoHang.getValueAt(row, 10).toString());
         this.txtThanhTien.setText(tblThanhToanGiaoHang.getValueAt(row, 11).toString());
         this.txtGhiChu.setText(tblThanhToanGiaoHang.getValueAt(row, 13).toString());
-        this.fillToTableCTSP();
+        int maHD = Integer.parseInt(tblThanhToanGiaoHang.getValueAt(row, 0).toString());
+        this.fillToTableCTSP(maHD);
     }//GEN-LAST:event_tblThanhToanGiaoHangMouseClicked
 
     private void tblThanhToanCuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThanhToanCuaHangMouseClicked
@@ -539,18 +484,39 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         this.txtNgayMua.setText(XDate.toString((Date) tblThanhToanCuaHang.getValueAt(row, 4), "dd/MM/yyyy"));
         this.txtGiamGia.setText(tblThanhToanCuaHang.getValueAt(row, 5).toString());
         this.txtThanhTien.setText(tblThanhToanCuaHang.getValueAt(row, 6).toString());
-        this.fillToTableCTSP();
+        int maHD = Integer.parseInt(tblThanhToanCuaHang.getValueAt(row, 0).toString());
+        this.fillToTableCTSP(maHD);
     }//GEN-LAST:event_tblThanhToanCuaHangMouseClicked
+
+    private void cbbMaNVItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbMaNVItemStateChanged
+        String maNV, maKH;
+        maNV = (cbbMaNV.getSelectedItem().toString().equalsIgnoreCase("Mã Nhân Viên") ? "%%" : "%" + cbbMaNV.getSelectedItem().toString() + "%");
+        cbbMaKH.setSelectedItem("Mã Khách Hàng");
+        maKH = "%%";
+        Object[] listKey = {maNV, maKH};
+        this.fillToTableHDCuaHang(listKey);
+        this.fillToTableHDGiaoHang(listKey);
+        this.setTableSP();
+
+    }//GEN-LAST:event_cbbMaNVItemStateChanged
+
+    private void cbbMaKHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbMaKHItemStateChanged
+        String maNV, maKH;
+        maKH = String.valueOf(cbbMaKH.getSelectedItem().toString().equalsIgnoreCase("Mã Khách Hàng") ? "%%" : "%" + cbbMaKH.getSelectedItem().toString() + "%");
+        cbbMaNV.setSelectedIndex(0);
+        maNV = "%%";
+        Object[] listKey = {maNV, maKH};
+        this.fillToTableHDCuaHang(listKey);
+        this.fillToTableHDGiaoHang(listKey);
+        this.setTableSP();
+    }//GEN-LAST:event_cbbMaKHItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbbHoaDon;
     private javax.swing.JComboBox<String> cbbLoaiThanhToan;
     private javax.swing.JComboBox<String> cbbMaKH;
     private javax.swing.JComboBox<String> cbbMaNV;
     private javax.swing.JComboBox<String> cbbTrangThai;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -567,8 +533,6 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -580,8 +544,6 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpnFormHD;
     private javax.swing.JPanel jpnFormTXT;
     private javax.swing.JPanel jpnGiaoHang;
-    private javax.swing.JPanel jpnLoaiHang;
-    private javax.swing.JPanel jpnSearch;
     private javax.swing.JPanel jpnTBCTHD;
     private javax.swing.JPanel jpnTBHD;
     private javax.swing.JPanel jpnTable;
@@ -606,7 +568,6 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtNgayGH;
     private javax.swing.JTextField txtNgayMua;
-    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtThanhTien;
     private javax.swing.JTextField txtTienShip;
     // End of variables declaration//GEN-END:variables
@@ -614,51 +575,50 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
     private void init() {
         XInternal.uncorated(this);
         cbbTrangThaiModel = (DefaultComboBoxModel) cbbTrangThai.getModel();
-        cbbTimKiemMaHD = (DefaultComboBoxModel) cbbHoaDon.getModel();
         cbbTimKiemMaNV = (DefaultComboBoxModel) cbbMaNV.getModel();
         cbbTimKiemMaKH = (DefaultComboBoxModel) cbbMaKH.getModel();
         hDDao = new HoaDonDao();
         tTHDDao = new TTHoaDonDao();
         cardGoc = (CardLayout) this.jpnCardTableHD.getLayout();
         cardGoc.show(jpnCardTableHD, "cardTTCuaHang");
-        Object[] keyObj = {"%%", "%%", "%%"};
+        Object[] keyObj = {"%%", "%%"};
         this.fillToTableHDCuaHang(keyObj);
-        this.fillToTableHDGiaoHang();
+        this.fillToTableHDGiaoHang(keyObj);
         this.fillToCBBTrangThai();
         this.fillToCBBTimKiem();
     }
-    
+
     private void fillToTableHDCuaHang(Object[] keyObj) {
         try {
-
             HoaDonCHModelTB = (DefaultTableModel) tblThanhToanCuaHang.getModel();
             HoaDonCHModelTB.setRowCount(0);
             List<Object[]> listHD = hDDao.getListHD(keyObj);
             for (Object[] hd : listHD) {
                 HoaDonCHModelTB.addRow(hd);
             }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    private void fillToTableHDGiaoHang() {
+    private void fillToTableHDGiaoHang(Object[] listKey) {
         try {
             hoaDonGiaoHangModelTB = (DefaultTableModel) tblThanhToanGiaoHang.getModel();
             hoaDonGiaoHangModelTB.setRowCount(0);
-            List<Object[]> listGiaoHang = hDDao.getListGIAOHANG();
+            List<Object[]> listGiaoHang = hDDao.getListGIAOHANG(listKey);
             for (Object[] giaoHang : listGiaoHang) {
                 hoaDonGiaoHangModelTB.addRow(giaoHang);
             }
+
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi", "Error!");
             ex.printStackTrace();
         }
     }
 
-    private void fillToTableCTSP() {
+    private void fillToTableCTSP(int maHD) {
         try {
-            int maHD = Integer.parseInt(tblThanhToanCuaHang.getValueAt(row, 0).toString());
             cTSPmodelTB = (DefaultTableModel) tblCTSP.getModel();
             cTSPmodelTB.setRowCount(0);
             List<Object[]> listCTSP = hDDao.getListCTSPByMaHD(maHD);
@@ -678,7 +638,6 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
             for (TTHoaDon tTHD : listTTHoaDon) {
                 cbbTrangThaiModel.addElement(tTHD);
             }
-
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
             ex.printStackTrace();
@@ -687,21 +646,31 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
 
     private void fillToCBBTimKiem() {
         try {
-            cbbTimKiemMaHD.removeAllElements();
             cbbTimKiemMaNV.removeAllElements();
             cbbTimKiemMaKH.removeAllElements();
-            List<HoaDon> listTimKiemHD = hDDao.selectAll();
-            cbbTimKiemMaHD.addElement("All");
-            cbbTimKiemMaNV.addElement("All");
-            cbbTimKiemMaKH.addElement("All");
-            for (HoaDon hD : listTimKiemHD) {
-                cbbTimKiemMaHD.addElement(hD.getMaHD());
-                cbbTimKiemMaNV.addElement(hD.getMaNV());
-                cbbTimKiemMaKH.addElement(hD.getMaKH());
+            cbbTimKiemMaNV.addElement("Mã Nhân Viên");
+            List<String> listCBBNhanVien = hDDao.getCbbMaNV();
+            for (String nv : listCBBNhanVien) {
+                cbbTimKiemMaNV.addElement(nv);
+            }
+            cbbTimKiemMaKH.addElement("Mã Khách Hàng");
+            List<String> listCBBKhangHang = hDDao.getCbbMaKH();
+            for (String kh : listCBBKhangHang) {
+                cbbTimKiemMaKH.addElement(kh);
             }
         } catch (Exception ex) {
-            Messeger.showErrorDialog(this, "Lỗi truy vấn trạng thái hóa đơn!", "Error!");
+            Messeger.showErrorDialog(this, "Lỗi truy vấn tìm kiếm hóa đơn!", "Error!");
             ex.printStackTrace();
+        }
+    }
+
+    private void setTableSP() {
+        if (cbbTrangThai.getSelectedIndex() == 0) {
+            if (tblThanhToanCuaHang.getRowCount() == 0) {
+                cTSPmodelTB.setRowCount(0);
+            }
+        } else if (tblThanhToanGiaoHang.getRowCount() == 0) {
+            cTSPmodelTB.setRowCount(0);
         }
     }
 }

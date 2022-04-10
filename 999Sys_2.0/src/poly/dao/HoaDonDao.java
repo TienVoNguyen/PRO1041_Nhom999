@@ -19,8 +19,10 @@ import poly.helper.XJDBC;
  * @author Admin
  */
 public class HoaDonDao extends BaseDao<HoaDon, String> {
+
     private Locale localeVN = new Locale("vi", "VN");
     private NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
+
     @Override
     public String getQuery(String action) {
         switch (action) {
@@ -34,18 +36,12 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
                 return "DELETE FROM HOADON WHERE MAHOADON =?";
             case "SELECTBYID":
                 return "SELECT * FROM HOADON WHERE MAHOADON = ?";
-            case "SELECTALL":
-                return "SELECT * FROM HOADON\n"
-                        + "WHERE MAHOADON NOT IN (SELECT MAHOADON FROM GIAOHANG)";
-            case "SELECTThongTinSP":
-                return "SELECT TENSP,CT_HOADON.SOLUONG FROM CT_HOADON JOIN SANPHAM on SANPHAM.MASP = CT_HOADON.MASP\n"
-                        + "WHERE MAHD = ?";
-            case "SELECTALLGIAOHANG":
-                return "SELECT GIAOHANG.MAHOADON, MANV, MAKH, TENKHACHHANG, SDT, DIACHI, NGAYMUA,NGAYGIAOHANG,GIAMGIA,TIENSHIPHANG,THANHTIEN,TENTT,GIAOHANG.GHICHU\n"
-                        + "FROM HOADON RIGHT OUTER JOIN GIAOHANG ON HOADON.MAHOADON = GIAOHANG.MAHOADON\n"
-                        + "JOIN TT_HOADON ON TT_HOADON.MATT = GIAOHANG.MATT";
             case "SELECTMAXMAHD":
                 return "SELECT MAX(MAHOADON) AS 'MAXMAHD' FROM HOADON";
+            case "CBBMaKH":
+                return "SELECT DISTINCT IIF(MAKH is null,N'Khách Lẻ',MAKH)  FROM HOADON ";
+            case "CBBMaNV":
+                return "SELECT DISTINCT MaNV FROM HOADON ";
         }
         return "";
     }
@@ -100,10 +96,10 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
         return XJDBC.update(this.getQuery("UPDATEXOAMAKH"), key) > 0;
     }
 
-    public List<Object[]> getListGIAOHANG() throws Exception {
-        String sql ="{CALL SP_TimKiemHDGiaoHang()}";
+    public List<Object[]> getListGIAOHANG(Object[] listObject) throws Exception {
+        String sql = "{CALL SP_TimKiemHDGiaoHang(?,?)}";
         List<Object[]> listGiaoHang = new ArrayList<>();
-        ResultSet rs = XJDBC.query(sql);
+        ResultSet rs = XJDBC.query(sql, listObject);
         while (rs.next()) {
             listGiaoHang.add(new Object[]{
                 rs.getObject("MAHOADON"),
@@ -124,48 +120,66 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
         }
         return listGiaoHang;
     }
-    public List<Object[]> getListHD (Object[] listObject)throws Exception{
-        String sql ="{CALL SP_TimKiemHD(?,?,?)}";
+
+    public List<Object[]> getListHD(Object[] listObject) throws Exception {
+        String sql = "{CALL SP_TimKiemHD(?,?)}";
         List<Object[]> listHD = new ArrayList<>();
-        ResultSet rs = XJDBC.query(sql,listObject);
-        while(rs.next()){
+        ResultSet rs = XJDBC.query(sql, listObject);
+        while (rs.next()) {
             listHD.add(new Object[]{
-               rs.getObject("MAHOADON"),
-               rs.getObject("MANV"),
-               rs.getObject("HOTEN"),
-               rs.getObject("MAKH"),
-               rs.getObject("NGAYMUA"),
-               df.format(rs.getObject("GIAMGIA")),
-               df.format(rs.getObject("THANHTIEN")),
-               rs.getObject("TENTT"),
-               rs.getObject("GHICHU"),
-            });
+                rs.getObject("MAHOADON"),
+                rs.getObject("MANV"),
+                rs.getObject("HOTEN"),
+                rs.getObject("MAKH"),
+                rs.getObject("NGAYMUA"),
+                df.format(rs.getObject("GIAMGIA")),
+                df.format(rs.getObject("THANHTIEN")),
+                rs.getObject("TENTT"),
+                rs.getObject("GHICHU"),});
         }
         return listHD;
     }
+
     public List<Object[]> getListCTSPByMaHD(int key) throws Exception {
         String sql = "{CALL SP_TimKiemCTSP(?)}";
         List<Object[]> listCTSP = new ArrayList<>();
         ResultSet rs = XJDBC.query(sql, key);
-        while(rs.next()){
+        while (rs.next()) {
             listCTSP.add(new Object[]{
                 rs.getObject("MASP"),
-                    rs.getObject("TENSP"),
-                    rs.getObject("MAVACH"),
-                   // String.format("%.0f", rs.getObject("GIABAN")),
-                    df.format(rs.getObject("GIABAN")),
-                   // df.format(rs.getObject("GIANHAP")),
-                //    String.format("%.0f", rs.getObject("GIANHAP")),
-                    rs.getObject("SOLUONG"),
-                    rs.getObject("TENDANHMUC"),
-                    rs.getObject("TENDVT"),
-                    rs.getObject("MASIZE"),
-                    rs.getObject("TENMAU"),
-                    rs.getObject("TENCHATLIEU"),
-                    rs.getObject("NGAYNHAP")
+                rs.getObject("TENSP"),
+                rs.getObject("MAVACH"),
+                df.format(rs.getObject("GIABAN")),
+                rs.getObject("SOLUONG"),
+                rs.getObject("TENDANHMUC"),
+                rs.getObject("TENDVT"),
+                rs.getObject("MASIZE"),
+                rs.getObject("TENMAU"),
+                rs.getObject("TENCHATLIEU"),
+                rs.getObject("NGAYNHAP")
             });
         }
         rs.getStatement().getConnection().close();
         return listCTSP;
+    }
+
+    public List<String> getCbbMaKH() throws Exception {
+        List<String> list = new ArrayList<>();
+        ResultSet rs = XJDBC.query(this.getQuery("CBBMaKH"));
+        while (rs.next()) {
+            list.add(rs.getString(1));
+        }
+        rs.getStatement().getConnection().close();
+        return list;
+    }
+
+    public List<String> getCbbMaNV() throws Exception {
+        List<String> list = new ArrayList<>();
+        ResultSet rs = XJDBC.query(this.getQuery("CBBMaNV"));
+        while (rs.next()) {
+            list.add(rs.getString(1));
+        }
+        rs.getStatement().getConnection().close();
+        return list;
     }
 }
