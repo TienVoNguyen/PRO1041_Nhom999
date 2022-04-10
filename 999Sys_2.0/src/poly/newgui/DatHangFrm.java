@@ -357,27 +357,7 @@ public class DatHangFrm extends javax.swing.JDialog {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangActionPerformed
-        StringBuilder loi = new StringBuilder();
-        if (XValidate.isEmpty(txtTenKhachHang)) {
-            loi.append("Không để trống tên khách hàng\n");
-        } else if (XValidate.isNotVNName(txtTenKhachHang)) {
-            loi.append("Họ tên không hợp lệ\n");
-        } else if (txtTenKhachHang.getText().length() > 50) {
-            loi.append("Tên khách hàng không quá 50 ký tự\n");
-        }
-        
-        if (XValidate.isEmpty(txtSDT)) {
-            loi.append("Không để trống Số điện thoại khách hàng\n");
-        } else if (XValidate.isNotPhoneNumber(txtSDT)) {
-            loi.append("Số điện thoại không hợp lệ hoặc không đủ 10 số\n");
-        }
-        
-        if (XValidate.isEmpty(txtDiaChi)) {
-            loi.append("Không để trống địa chỉ khách hàng\n");
-        }
-
-        if (loi.length() > 0) {
-            Messeger.showErrorDialog(null, loi+"", "Lỗi");
+        if (checkForm()) {
             return;
         }
         if (datHang()) {
@@ -582,4 +562,29 @@ public class DatHangFrm extends javax.swing.JDialog {
         }
         return false;
     }
+
+    public boolean checkForm() {
+        StringBuilder loi = new StringBuilder();
+        if (XValidate.isEmpty(txtTenKhachHang)) {
+            loi.append("Không để trống tên khách hàng\n");
+        } else if (XValidate.isNotVNName(txtTenKhachHang)) {
+            loi.append("Họ tên không hợp lệ\n");
+        } else if (txtTenKhachHang.getText().length() > 50) {
+            loi.append("Tên khách hàng không quá 50 ký tự\n");
+        }
+        if (XValidate.isEmpty(txtSDT)) {
+            loi.append("Không để trống Số điện thoại khách hàng\n");
+        } else if (XValidate.isNotPhoneNumber(txtSDT)) {
+            loi.append("Số điện thoại không hợp lệ hoặc không đủ 10 số\n");
+        }
+        if (XValidate.isEmpty(txtDiaChi)) {
+            loi.append("Không để trống địa chỉ khách hàng\n");
+        }
+        if (loi.length() > 0) {
+            Messeger.showErrorDialog(null, loi + "", "Lỗi");
+            return true;
+        }
+        return false;
+    }
+
 }
