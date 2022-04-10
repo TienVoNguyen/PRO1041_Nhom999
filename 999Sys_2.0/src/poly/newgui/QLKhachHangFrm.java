@@ -1280,6 +1280,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
         }
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
+     //   tblKhachHang.setRowSelectionInterval(row, row);
         if (row > 0) {
             tblKhachHang.setRowSelectionInterval(row, row);
         }
