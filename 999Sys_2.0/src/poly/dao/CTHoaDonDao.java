@@ -21,9 +21,9 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO CT_HOADON(MAHD,MASP, SOLUONG, GHICHU) VALUES (?,?,?,?)";
+                return "INSERT INTO CT_HOADON(MAHD, MASP, SOLUONG, GIABAN, GHICHU) VALUES (?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE CT_HOADON SET SOLUONG =?, GHICHU =?, TRANGTHAI =? WHERE MAHD = ? and MASP =?";
+                return "UPDATE CT_HOADON SET SOLUONG =?, GIABAN = ?, GHICHU =?, TRANGTHAI =? WHERE MAHD = ? and MASP =?";
             case "DELETE":
                 return "DELETE FROM CT_HOADON WHERE MAHD = ? and MASP =?";
             case "SELECTBYID":
@@ -44,11 +44,13 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
                     obj.getMaHD(),
                     obj.getMaSP(),
                     obj.getSoLuong(),
+                    obj.getGiaBan(),
                     obj.getGhiChu()
                 };
             case "UPDATE":
                 return new Object[]{
                     obj.getSoLuong(),
+                    obj.getGiaBan(),
                     obj.getGhiChu(),
                     obj.isTrangThai(),
                     obj.getMaHD(),
@@ -66,6 +68,7 @@ public class CTHoaDonDao extends BaseDao<CTHoaDon, String>{
         cTHD.setSoLuong(rs.getInt("SOLUONG"));
         cTHD.setGhiChu(rs.getString("GHICHU"));
         cTHD.setTrangThai(rs.getBoolean("TRANGTHAI"));
+        cTHD.setGiaBan(rs.getDouble("GIABAN"));
         return cTHD;
     }
     

@@ -8,15 +8,18 @@ package poly.newgui;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import poly.dao.CTHoaDonDao;
 import poly.dao.GiaoHangDao;
 import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
+import poly.entity.CTHoaDon;
 import poly.entity.GiaoHang;
 import poly.entity.HoaDon;
 import poly.entity.KhachHang;
@@ -39,8 +42,10 @@ public class DatHangFrm extends javax.swing.JDialog {
     KhachHangDao daoKH;
     GiaoHangDao daoGH;
     NewMainFrm parent;
+    ArrayList<CTHoaDon> listCTHD;
+    CTHoaDonDao DAOCTHD;
 
-    public DatHangFrm(JFrame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd) {
+    public DatHangFrm(JFrame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd, ArrayList<CTHoaDon> listCTHD) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -50,6 +55,8 @@ public class DatHangFrm extends javax.swing.JDialog {
         this.daoGH = new GiaoHangDao();
         this.pnlTabs = pnlTabs;
         this.hd = hd;
+        this.listCTHD = listCTHD;
+        this.DAOCTHD = new CTHoaDonDao();
         if (hd.getMaKH() != null) {
             try {
                 kh = this.daoKH.selectById(hd.getMaKH());
@@ -533,6 +540,10 @@ public class DatHangFrm extends javax.swing.JDialog {
                 this.daoGH.insert(this.getFrom());
                 NewMainFrm main = (NewMainFrm) this.parent;
                 main.setLblSoLuongDonHang();
+                for (CTHoaDon c : listCTHD) {
+                    this.DAOCTHD.update(c);
+                    System.out.println(c.getGiaBan());
+                }
                 if (hd.getMaKH() != null) {
                     try {
                         kh.setTichDiem(Integer.parseInt(txtPoint.getText()));

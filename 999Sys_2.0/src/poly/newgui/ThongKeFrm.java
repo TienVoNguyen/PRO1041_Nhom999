@@ -110,8 +110,9 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
 
         setMaximizable(true);
         setPreferredSize(new java.awt.Dimension(1920, 960));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
+        jTabbedPane1.setBackground(new java.awt.Color(102, 255, 255));
         jTabbedPane1.setForeground(new java.awt.Color(102, 0, 153));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jTabbedPane1.setOpaque(true);
@@ -351,7 +352,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         jPanel14.setPreferredSize(new java.awt.Dimension(1469, 500));
         jPanel14.setLayout(new java.awt.GridLayout(1, 0));
 
-        tpBang.setForeground(new java.awt.Color(102, 0, 153));
+        tpBang.setBackground(new java.awt.Color(102, 255, 255));
         tpBang.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tpBang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tpBang.setOpaque(true);
@@ -360,6 +361,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
 
         jPanel18.setLayout(new java.awt.BorderLayout());
 
+        tblTK.setBackground(new java.awt.Color(255, 153, 51));
         tblTK.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblTK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -377,6 +379,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
 
         jPanel18.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel19.setBackground(new java.awt.Color(153, 255, 255));
         jPanel19.setPreferredSize(new java.awt.Dimension(1464, 50));
         jPanel19.setLayout(new java.awt.BorderLayout());
 

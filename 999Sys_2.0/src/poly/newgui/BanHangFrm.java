@@ -7,8 +7,10 @@ package poly.newgui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -52,6 +54,9 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDangGH;
     DefaultTableModel dtmChiTietHoaDon;
     NewMainFrm jFrame;
+    
+    Locale localeVN = new Locale("vi", "VN");
+    NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
 
     /**
      * Creates new form BanHangFrm
@@ -281,7 +286,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
         pnlHoaDonChoGH.setLayout(new java.awt.BorderLayout());
 
-        tblHDChoGiaoHang.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        tblHDChoGiaoHang.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         tblHDChoGiaoHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -308,6 +313,19 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(tblHDChoGiaoHang);
+        if (tblHDChoGiaoHang.getColumnModel().getColumnCount() > 0) {
+            tblHDChoGiaoHang.getColumnModel().getColumn(0).setMinWidth(85);
+            tblHDChoGiaoHang.getColumnModel().getColumn(0).setPreferredWidth(85);
+            tblHDChoGiaoHang.getColumnModel().getColumn(0).setMaxWidth(85);
+            tblHDChoGiaoHang.getColumnModel().getColumn(1).setMinWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(1).setMaxWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(2).setMinWidth(200);
+            tblHDChoGiaoHang.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblHDChoGiaoHang.getColumnModel().getColumn(6).setMinWidth(140);
+            tblHDChoGiaoHang.getColumnModel().getColumn(6).setPreferredWidth(140);
+            tblHDChoGiaoHang.getColumnModel().getColumn(6).setMaxWidth(140);
+        }
 
         pnlHoaDonChoGH.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -561,7 +579,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getTenKhachHang(),
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
-                    gh.getTienShip(),
+                    df.format(gh.getTienShip()),
                     "Chờ giao hàng"
                 });
             }
@@ -584,7 +602,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
                     gh.getNgayGiaoHang(),
-                    gh.getTienShip(),
+                    df.format(gh.getTienShip()),
                     "Đang giao hàng"
                 });
             }
@@ -613,14 +631,14 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         try {
             list = this.daoCTHD.selectCTHD(maHD);
             for (CTHoaDon c : list) {
-
+                System.out.println(c.getGiaBan());
                 SanPham s = this.daoSP.selectById(c.getMaSP());
                 dtmChiTietHoaDon.addRow(new Object[]{
                     c.getMaSP(),
                     s.getTenSanPham(),
                     c.getSoLuong(),
-                    s.getGiaBan(),
-                    c.getSoLuong() * s.getGiaBan()
+                    df.format(c.getGiaBan()),
+                    df.format(c.getSoLuong() * c.getGiaBan())
                 });
             }
         } catch (Exception ex) {

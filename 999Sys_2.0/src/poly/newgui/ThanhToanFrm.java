@@ -8,14 +8,17 @@ package poly.newgui;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import poly.dao.CTHoaDonDao;
 import poly.dao.HoaDonDao;
 import poly.dao.KhachHangDao;
+import poly.entity.CTHoaDon;
 import poly.entity.HoaDon;
 import poly.entity.KhachHang;
 import poly.helper.Messeger;
@@ -39,8 +42,10 @@ public class ThanhToanFrm extends javax.swing.JDialog {
     HoaDonDao daoHD;
     KhachHangDao daoKH;
     NewMainFrm parent;
+    ArrayList<CTHoaDon> listCTHD;
+    CTHoaDonDao DAOCTHD;
     
-    public ThanhToanFrm(JFrame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd) {
+    public ThanhToanFrm(JFrame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd, ArrayList<CTHoaDon> listCTHD) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(this);
@@ -49,6 +54,8 @@ public class ThanhToanFrm extends javax.swing.JDialog {
         this.daoKH = new KhachHangDao();
         this.pnlTabs = pnlTabs;
         this.hd = hd;
+        this.listCTHD = listCTHD;
+        this.DAOCTHD = new CTHoaDonDao();
         if (hd.getMaKH() != null) {
             try {
                 kh = this.daoKH.selectById(hd.getMaKH());
@@ -449,7 +456,7 @@ public class ThanhToanFrm extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ThanhToanFrm dialog = new ThanhToanFrm(new javax.swing.JFrame(), true, new JTabbedPane(), new HoaDon());
+                ThanhToanFrm dialog = new ThanhToanFrm(new javax.swing.JFrame(), true, new JTabbedPane(), new HoaDon(), new ArrayList<>());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -504,6 +511,9 @@ public class ThanhToanFrm extends javax.swing.JDialog {
                 hd.setNgayMua(XDate.toString(new Date(), "MM/dd/yyyy hh:mm:ss"));
                 hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
                 this.daoHD.update(hd);
+                for (CTHoaDon c : listCTHD) {
+                    this.DAOCTHD.update(c);
+                }
                 if (hd.getMaKH() != null) {
                     try {
                         kh.setTichDiem(Integer.parseInt(txtPoint.getText()));
@@ -516,6 +526,7 @@ public class ThanhToanFrm extends javax.swing.JDialog {
                         return true;
                     }
                 }
+                Messeger.alert(null, "Thành công");
                 this.dispose();
                 this.pnlTabs.remove(pnlTabs.getSelectedComponent());
                 if (pnlTabs.getTabCount() < 1) {
