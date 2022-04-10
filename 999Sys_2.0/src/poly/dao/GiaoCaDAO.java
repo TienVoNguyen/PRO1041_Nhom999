@@ -34,7 +34,8 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                 return "SELECT MAGIAOCA, MANVGIAOCA, MANVNHANCA, GIONHANCA, "
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
                         + "dbo.FNDTC(MANVGIAOCA) AS DOANHTHUCA, TIENDATHUHOI,"
-                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MANVGIAOCA LIKE ? AND MATT = 2";
+                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MANVGIAOCA LIKE ? AND MATT = 2"
+                        + " ORDER BY GIONHANCA DESC";
             case "SELECTALL":
                 return "SELECT MAGIAOCA, MANVGIAOCA, MANVNHANCA, GIONHANCA, "
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
@@ -44,11 +45,15 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                 return "SELECT MAGIAOCA, MANVGIAOCA, MANVNHANCA, GIONHANCA, "
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
                         + "DOANHTHUCA, TIENDATHUHOI,"
-                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MATT = 2 AND MANVNHANCA LIKE ?";
+                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA "
+                        + "WHERE MATT = 2 AND MANVNHANCA LIKE ?";
+                        
             case "UPDATENC":
                 return "UPDATE GIAOCA SET "
                         + "GHICHUNHAN = ?, MATT = ? "
                         + " WHERE MAGIAOCA = ?";
+                case "INSERTAFTERNC":
+                return "INSERT INTO GIAOCA (MANVGIAOCA, TIENCOSO) VALUES (?,?)";
         }
         return "";
     }
@@ -76,6 +81,11 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                     obj.getGhiChuNC(),
                     obj.getMaTT(),
                     obj.getMaGiaoCa()
+                };
+            case "INSERTAFTERNC":
+                return new Object[]{
+                    obj.getMaNVGiaoCa(),
+                    obj.getTienCoSo()
                 };
         }
         return null;
@@ -110,5 +120,10 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
     
     public boolean updateNC (GiaoCa gc) {
         return XJDBC.update(getQuery("UPDATENC"), getParams("UPDATENC", gc)) > 0;
+    }
+    
+    public boolean insertAfterGC(GiaoCa gc) {
+        
+        return XJDBC.update(getQuery("INSERTAFTERNC"), getParams("INSERTAFTERNC", gc)) > 0;
     }
 }

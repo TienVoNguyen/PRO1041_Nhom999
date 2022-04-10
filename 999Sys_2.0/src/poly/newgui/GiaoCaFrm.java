@@ -591,7 +591,7 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         try {
             if (gcDAO.updateNC(setEntityNC())) {
                 Messeger.alert(null, "Nhận ca thành công!");
-                gcDAO.insert(new GiaoCa(Auth.user.getMaNV(), df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue()));
+                gcDAO.insertAfterGC(new GiaoCa(Auth.user.getMaNV(), df.parse(lblCardNCTongTien.getText(), new ParsePosition(0)).doubleValue()));
                 this.dispose();
             } else {
                 Messeger.showErrorDialog(null, "Nhận ca thất bại!", "Lỗi giao ca");

@@ -107,12 +107,14 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         tblSP = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnXuatSP = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setMaximizable(true);
         setPreferredSize(new java.awt.Dimension(1920, 960));
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 255, 255));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 153, 51)));
         jTabbedPane1.setForeground(new java.awt.Color(102, 0, 153));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jTabbedPane1.setOpaque(true);
@@ -468,7 +470,18 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Sản Phẩm", jPanel2);
 
-        getContentPane().add(jTabbedPane1);
+        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel9.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel9.setPreferredSize(new java.awt.Dimension(1270, 45));
+        jPanel9.setLayout(new java.awt.GridLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("THỐNG KÊ");
+        jPanel9.add(jLabel1);
+
+        getContentPane().add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -551,6 +564,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbxDaysYear;
     private javax.swing.JComboBox<String> cbxMonthYear;
     private javax.swing.JPanel dayCard;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -579,6 +593,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
