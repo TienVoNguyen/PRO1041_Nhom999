@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import poly.dao.GiaoCaDAO;
 import poly.dao.NhanVienDao;
 import poly.entity.NhanVien;
-import poly.helper.Auth;
+import poly.entity.TrangThaiGiaoCa;
 import poly.helper.Messeger;
 import poly.helper.XExcel;
 import poly.helper.XInternal;
@@ -30,7 +30,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
 
     private GiaoCaDAO gcDAO;
     private NhanVienDao nvDAO;
-    private List<NhanVien> lst;
+    
 
     /**
      * Creates new form QLGiaoCaFrm
@@ -113,7 +113,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(1163, 45));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -131,7 +131,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jPanel7.setBackground(new java.awt.Color(255, 153, 255));
-        jPanel7.setLayout(new java.awt.GridLayout());
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
         jPanel3.add(jPanel7, java.awt.BorderLayout.NORTH);
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 302));
@@ -464,7 +464,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 5));
 
         cbxNV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        cbxNV.setPreferredSize(new java.awt.Dimension(158, 36));
+        cbxNV.setPreferredSize(new java.awt.Dimension(250, 36));
         cbxNV.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxNVItemStateChanged(evt);
@@ -473,7 +473,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         jPanel6.add(cbxNV);
 
         cbxTT.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        cbxTT.setPreferredSize(new java.awt.Dimension(158, 36));
+        cbxTT.setPreferredSize(new java.awt.Dimension(250, 36));
         cbxTT.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxTTItemStateChanged(evt);
@@ -591,9 +591,10 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         XInternal.uncorated(this);
         gcDAO = new GiaoCaDAO();
         nvDAO = new NhanVienDao();
-        lst = new ArrayList<>();
+        
         fillToTable();
         fillToCBBNV();
+        fillToCBBTTGC();
         tblGiaoCa.setRowSelectionInterval(0, 0);
         setText();
     }
@@ -642,11 +643,26 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
 
     private void fillToCBBNV() {
         try {
+            List<NhanVien> lst = new ArrayList<>();
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbxNV.getModel();
             lst = nvDAO.selectAll();
             model.removeAllElements();
             for (NhanVien nhanVien : lst) {
                 model.addElement(nhanVien);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    private void fillToCBBTTGC() {
+        try {
+            List<TrangThaiGiaoCa> lst = new ArrayList<>();
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cbxTT.getModel();
+            lst = gcDAO.selectTTGiaoCa();
+            model.removeAllElements();
+            for (TrangThaiGiaoCa ttGC : lst) {
+                model.addElement(ttGC);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

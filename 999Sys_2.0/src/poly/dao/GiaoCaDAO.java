@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import poly.entity.GiaoCa;
+import poly.entity.TrangThaiGiaoCa;
 import poly.helper.Auth;
 import poly.helper.XDate;
 import poly.helper.XJDBC;
@@ -69,6 +70,9 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                         + " WHERE MAGIAOCA = ?";
             case "INSERTAFTERNC":
                 return "INSERT INTO GIAOCA (MANVGIAOCA, TIENCOSO) VALUES (?,?)";
+
+            case "TTGiaoCa":
+                return "SELECT * FROM TTGIAOCA";
 
             case "SELECTGIAOCA":
                 return "SELECT 'CA' + CAST(MAGIAOCA AS VARCHAR) as MAGIAOCA, TK.HOTEN NHANVIENGC, IIF(TK1.HOTEN IS NULL, N'Chưa có', TK1.HOTEN) NHANVIENNC, CONVERT(VARCHAR,GIONHANCA) as GIONHANCA, IIF(GIOGIAOCA IS NULL, N'Chưa giao', CONVERT(VARCHAR,GIOGIAOCA)) as GIOGIAOCA, TIENCOSO, TIENPHATSINH, DOANHTHUCA, TONGTIEN, IIF(GHICHUGIAO IS NULL, N'Chưa có', GHICHUGIAO) GHICHUGIAO, IIF(GHICHUNHAN IS NULL, N'Chưa có', GHICHUNHAN) GHICHUNHAN, TTGC.TENTT \n"
@@ -174,6 +178,18 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                 rs.getString("TENTT")
 
             });
+        }
+        return lst;
+    }
+    
+    public List<TrangThaiGiaoCa> selectTTGiaoCa() throws Exception {
+        List<TrangThaiGiaoCa> lst = new ArrayList<>();
+        ResultSet rs = XJDBC.query(getQuery("TTGiaoCa"));
+        while (rs.next()) {
+            TrangThaiGiaoCa ttGC = new TrangThaiGiaoCa();
+            ttGC.setMaTT(rs.getInt("MATT"));
+            ttGC.setTenTT(rs.getString("TENTT"));
+            lst.add(ttGC);
         }
         return lst;
     }
