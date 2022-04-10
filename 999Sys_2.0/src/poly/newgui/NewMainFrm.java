@@ -39,6 +39,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private ThongKeFrm thongKeFrm;
     private QLKMFrm qlKMFrm;
     private QLKhachHangFrm qlKHFrm;
+    private QLTaiKhoanFrm qlTaiKhoanFrm;
     private GiaoHangDao daoGH;
 
     /**
@@ -89,6 +90,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         btnKhoaManHinh = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        btnQLTaiKhoan = new javax.swing.JButton();
         btnKhuyenMai = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
         btnQLCTSP = new javax.swing.JButton();
@@ -227,11 +229,11 @@ public class NewMainFrm extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSoLuongDonHang.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        lblSoLuongDonHang.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblSoLuongDonHang.setForeground(new java.awt.Color(255, 0, 0));
         lblSoLuongDonHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSoLuongDonHang.setText("6");
-        jPanel4.add(lblSoLuongDonHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 30, 30));
+        jPanel4.add(lblSoLuongDonHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 20, 30));
 
         btnGiaoHang_BanHang.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnGiaoHang_BanHang.setText("Giao Hàng");
@@ -337,6 +339,20 @@ public class NewMainFrm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
+        btnQLTaiKhoan.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnQLTaiKhoan.setForeground(new java.awt.Color(255, 255, 255));
+        btnQLTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/man36.png"))); // NOI18N
+        btnQLTaiKhoan.setToolTipText("Quản lý tài khoản");
+        btnQLTaiKhoan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnQLTaiKhoan.setPreferredSize(new java.awt.Dimension(173, 65));
+        btnQLTaiKhoan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQLTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLTaiKhoanActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnQLTaiKhoan);
+
         btnKhuyenMai.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnKhuyenMai.setForeground(new java.awt.Color(255, 255, 255));
         btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/sale36.png"))); // NOI18N
@@ -428,7 +444,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnKhoaManHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaManHinhActionPerformed
@@ -497,9 +513,9 @@ public class NewMainFrm extends javax.swing.JFrame {
             dpMain.add(bhFrm);
             bhFrm.showGiaoHang(btnGiaoHang_BanHang);
             bhFrm.setVisible(true);
-            
+
         }
-        
+
     }//GEN-LAST:event_btnGiaoHang_BanHangActionPerformed
 
     private void btnGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGCActionPerformed
@@ -520,6 +536,10 @@ public class NewMainFrm extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnQLTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLTaiKhoanActionPerformed
+        openTaiKhoanFrm();
+    }//GEN-LAST:event_btnQLTaiKhoanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,6 +589,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnQLHoaDon;
     private javax.swing.JButton btnQLKhachHang;
     private javax.swing.JButton btnQLSP;
+    private javax.swing.JButton btnQLTaiKhoan;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JDesktopPane dpMain;
     private javax.swing.JPanel jPanel1;
@@ -615,26 +636,32 @@ public class NewMainFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         for (JInternalFrame frame : dpMain.getAllFrames()) {
-            
-                if (frame == bhFrm) {
-                    dpMain.remove(frame);
-                } else {
-                    frame.dispose();
-                }
-            
+
+            if (frame == bhFrm) {
+                dpMain.remove(frame);
+            } else {
+                frame.dispose();
+            }
+
         }
     }
 
     private void mouseHover() {
         //Hiệu ứng di chuột vào các button menu
-        JButton[] btns = {btnKhoaManHinh, btnKhuyenMai, btnMenu, btnQLCTSP, btnQLKhachHang, btnQLSP, btnQLHoaDon, btnThongKe, btnClose, btnMinimise};
+        JButton[] btns = {btnKhoaManHinh, btnKhuyenMai, btnMenu, btnQLCTSP,
+            btnQLKhachHang, btnQLSP, btnQLHoaDon, btnThongKe, btnClose,
+            btnMinimise, btnQLTaiKhoan, btnGiaoHang_BanHang, btnGC};
         for (JButton btn : btns) {
-            if (btn != btnClose && btn != btnMinimise) {
+            if (btn != btnClose && btn != btnMinimise && btn != btnGC && btn != btnGiaoHang_BanHang) {
                 btn.setBackground(new Color(255, 153, 51));
+            } else if (btn == btnGC | btn == btnGiaoHang_BanHang) {
+                btn.setBackground(new Color(255, 255, 51));
             } else {
                 btn.setBackground(new Color(0, 153, 153));
             }
-            btn.setUI(new BasicButtonUI());
+            if (btn != btnGC && btn != btnGiaoHang_BanHang) {
+                btn.setUI(new BasicButtonUI());
+            }
             btn.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -652,12 +679,14 @@ public class NewMainFrm extends javax.swing.JFrame {
                 public void mouseEntered(MouseEvent e) {
                     Cursor cursor = new Cursor(Cursor.HAND_CURSOR); // HAND CURSOR
                     setCursor(cursor);
-                    if (btn != btnClose && btn != btnMinimise) {
+                    if (btn != btnClose && btn != btnMinimise && btn != btnGC && btn != btnGiaoHang_BanHang) {
                         btn.setBackground(new Color(0, 153, 153));
                     } else {
                         btn.setBackground(new Color(255, 153, 51));
                     }
-                    btn.setHorizontalAlignment(SwingConstants.CENTER);
+                    if (btn != btnGC && btn != btnGiaoHang_BanHang) {
+                        btn.setHorizontalAlignment(SwingConstants.CENTER);
+                    }
                     if (btn == btnKhuyenMai) {
                         btn.setText("Quản lý khuyến mại");
                     } else if (btn == btnQLCTSP) {
@@ -670,6 +699,8 @@ public class NewMainFrm extends javax.swing.JFrame {
                         btn.setText("Quản lý hóa đơn");
                     } else if (btn == btnThongKe) {
                         btn.setText("Thống Kê");
+                    } else if (btn == btnQLTaiKhoan) {
+                        btn.setText("Quản lý tài khoản");
                     }
                 }
 
@@ -677,13 +708,15 @@ public class NewMainFrm extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent e) {
                     Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR); // HAND CURSOR
                     setCursor(cursor);
-                    if (btn != btnClose && btn != btnMinimise) {
+                    if (btn != btnClose && btn != btnMinimise && btn != btnGC && btn != btnGiaoHang_BanHang) {
                         btn.setBackground(new Color(255, 153, 51));
+                    } else if (btn == btnGC | btn == btnGiaoHang_BanHang) {
+                        btn.setBackground(new Color(255, 255, 51));
                     } else {
                         btn.setBackground(new Color(0, 153, 153));
                     }
 
-                    if (btn != btnKhoaManHinh && btn != btnMenu) {
+                    if (btn != btnKhoaManHinh && btn != btnMenu && btn != btnGC && btn != btnGiaoHang_BanHang) {
                         btn.setText("");
                     }
                 }
@@ -761,7 +794,7 @@ public class NewMainFrm extends javax.swing.JFrame {
             qlKMFrm.setVisible(true);
         }
     }
-    
+
     void openThongKeFrm() {
         closeAllFrm();
         if (thongKeFrm == null || thongKeFrm.isClosed()) {
@@ -772,7 +805,7 @@ public class NewMainFrm extends javax.swing.JFrame {
             thongKeFrm.setVisible(true);
         }
     }
-    
+
     void openKhachHangFrm() {
         closeAllFrm();
         if (qlKHFrm == null || qlKHFrm.isClosed()) {
@@ -781,6 +814,17 @@ public class NewMainFrm extends javax.swing.JFrame {
             qlKHFrm.setVisible(true);
         } else {
             qlKHFrm.setVisible(true);
+        }
+    }
+
+    void openTaiKhoanFrm() {
+        closeAllFrm();
+        if (qlTaiKhoanFrm == null || qlTaiKhoanFrm.isClosed()) {
+            qlTaiKhoanFrm = new QLTaiKhoanFrm();
+            dpMain.add(qlTaiKhoanFrm);
+            qlTaiKhoanFrm.setVisible(true);
+        } else {
+            qlTaiKhoanFrm.setVisible(true);
         }
     }
 

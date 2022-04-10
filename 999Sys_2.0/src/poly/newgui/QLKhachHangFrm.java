@@ -29,6 +29,7 @@ import poly.helper.XValidate;
  * @author NTV
  */
 public class QLKhachHangFrm extends javax.swing.JInternalFrame {
+
     DefaultTableModel khachHangModelTB = new DefaultTableModel();
     DefaultTableModel loaiKhachHangModelTB = new DefaultTableModel();
     DefaultComboBoxModel<LoaiKhachHang> loaiKhachHangComboBox = new DefaultComboBoxModel<>();
@@ -37,6 +38,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     LoaiKhachHangDao loaiKHDao;
     int row = -1;
     int rowLKH = -1;
+
     /**
      * Creates new form QLKhachHangFrm
      */
@@ -197,12 +199,12 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel15.setPreferredSize(new java.awt.Dimension(165, 20));
         jpnCBBLoaiKH.add(jLabel15, java.awt.BorderLayout.LINE_START);
 
-        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
-        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTrangThai.setText("Tương Tác");
+        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
         btnTrangThai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTrangThai.setMaximumSize(new java.awt.Dimension(110, 15));
-        btnTrangThai.setPreferredSize(new java.awt.Dimension(110, 15));
+        btnTrangThai.setPreferredSize(new java.awt.Dimension(160, 15));
         btnTrangThai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTrangThaiMouseClicked(evt);
@@ -299,10 +301,10 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnLoaiBangKH.setBackground(new java.awt.Color(102, 153, 255));
         jpnLoaiBangKH.setPreferredSize(new java.awt.Dimension(877, 40));
 
-        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblKHHoatDong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKHHoatDong.setText("Khách Hàng Tương Tác");
         lblKHHoatDong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblKHHoatDong.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jpnLoaiBangKH.add(lblKHHoatDong);
 
@@ -556,7 +558,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         );
         jpnSeparatorLayout.setVerticalGroup(
             jpnSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGap(0, 653, Short.MAX_VALUE)
         );
 
         jpnLoaiKH.add(jpnSeparator, java.awt.BorderLayout.LINE_START);
@@ -736,25 +738,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbbLoaiKHItemStateChanged
 
     private void btnTrangThaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseClicked
-        this.setFormKhachHang(new KhachHang());
-        if (btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
-            this.fillToTableKhachHang(1);
-            jpnLoaiBangKH.setBackground(Color.red);
-            lblKHHoatDong.setText("Khách Hàng Tương Tác");
-        } else if (btnTrangThai.getText().equalsIgnoreCase("Không Tương Tác")) {
-            this.fillToTableKhachHang(0);
-            jpnLoaiBangKH.setBackground(Color.BLUE);
-            lblKHHoatDong.setText("Khách Hàng Không Tương Tác");
-        }
-        if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
-            btnXoaKH.setEnabled(false);
-            btnThemKH.setEnabled(false);
-            btnNew.setEnabled(false);
-        } else {
-            btnXoaKH.setEnabled(true);
-            btnThemKH.setEnabled(true);
-            btnNew.setEnabled(true);
-        }
     }//GEN-LAST:event_btnTrangThaiMouseClicked
 
     private void btnTrangThaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseEntered
@@ -779,7 +762,25 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTrangThaiMouseExited
 
     private void btnTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangThaiActionPerformed
-        ///
+        this.setFormKhachHang(new KhachHang());
+        if (btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
+            this.fillToTableKhachHang(1);
+            jpnLoaiBangKH.setBackground(Color.red);
+            lblKHHoatDong.setText("Khách Hàng Tương Tác");
+        } else if (btnTrangThai.getText().equalsIgnoreCase("Không Tương Tác")) {
+            this.fillToTableKhachHang(0);
+            jpnLoaiBangKH.setBackground(Color.BLUE);
+            lblKHHoatDong.setText("Khách Hàng Không Tương Tác");
+        }
+        if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
+            btnXoaKH.setEnabled(false);
+            btnThemKH.setEnabled(false);
+            btnNew.setEnabled(false);
+        } else {
+            btnXoaKH.setEnabled(true);
+            btnThemKH.setEnabled(true);
+            btnNew.setEnabled(true);
+        }
     }//GEN-LAST:event_btnTrangThaiActionPerformed
 
     private void txtSearchByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchByNameKeyReleased
@@ -823,13 +824,13 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
             File file = XExcel.xuatExcel(this.tblKhachHang, "KhachHang" + XDate.toString(new Date(), "ddMMyyyyhhmmss"));
-            if(file == null){
+            if (file == null) {
                 return;
             }
-            Messeger.alert(this,"Xuất file Excel thành công!");
+            Messeger.alert(this, "Xuất file Excel thành công!");
 
         } catch (Exception ex) {
-            Messeger.showErrorDialog( this, "Lỗi xuất file Excel !", "Error!");
+            Messeger.showErrorDialog(this, "Lỗi xuất file Excel !", "Error!");
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnXuatExcelActionPerformed
@@ -839,7 +840,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         if (row == -1) {
             return;
         }
-        this.changeIndex(row+1);
+        this.changeIndex(row + 1);
         this.edit();
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
@@ -1192,7 +1193,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         this.fillToComBoBox();
         this.fillToTableLoaiKhachHang();
     }
-    
+
     private void fillToComBoBox() {
         try {
             loaiKhachHangComboBox.removeAllElements();
@@ -1273,13 +1274,16 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         } else {
             this.dateTime.setText(XDate.toString(kH.getNgaySinh(), "dd/MM/yyyy"));
         }
-        if(kH.getNgayTao() == null){
+        if (kH.getNgayTao() == null) {
             this.txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
-        }else{
-        this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
+        } else {
+            this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
         }
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
      //   tblKhachHang.setRowSelectionInterval(row, row);
+        if (row > 0) {
+            tblKhachHang.setRowSelectionInterval(row, row);
+        }
     }
 
     private KhachHang getFormKhachHang() {
