@@ -14,7 +14,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.HoaDonDao;
 import poly.dao.TTHoaDonDao;
-import poly.entity.HoaDon;
 import poly.entity.TTHoaDon;
 import poly.helper.Messeger;
 import poly.helper.XDate;

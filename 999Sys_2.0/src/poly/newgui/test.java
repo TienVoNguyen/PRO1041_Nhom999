@@ -15,6 +15,8 @@ import java.awt.Toolkit;
 public class test extends javax.swing.JFrame {
     QLKMFrm ql;
     LichSuGDFrm qltk;
+    QLGiaoCaFrm frmGiaoCa;
+    ThongKeFrm frmThongKe;
     /**
      * Creates new form test
      */
@@ -22,13 +24,23 @@ public class test extends javax.swing.JFrame {
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize.width, screenSize.height);
-        if (qltk == null || qltk.isClosed()) {
-            qltk = new LichSuGDFrm();
-            jDesktopPane1.add(qltk);
-            qltk.setVisible(true);
+//        this.setAlwaysOnTop(true);
+        //chạy giao ca
+        if (frmGiaoCa == null || frmGiaoCa.isClosed()) {
+            frmGiaoCa = new QLGiaoCaFrm();
+            jDesktopPane1.add(frmGiaoCa);
+            frmGiaoCa.setVisible(true);
         } else {
-            qltk.setVisible(true);
+            frmGiaoCa.setVisible(true);
         }
+        // Chạy thống kê
+//        if (frmThongKe == null || frmThongKe.isClosed()) {
+//            frmThongKe = new ThongKeFrm(jDesktopPane1);
+//            jDesktopPane1.add(frmThongKe);
+//            frmThongKe.setVisible(true);
+//        } else {
+//            frmThongKe.setVisible(true);
+//        }
     }
 
     /**
