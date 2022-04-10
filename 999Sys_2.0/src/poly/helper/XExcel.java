@@ -5,6 +5,7 @@
  */
 package poly.helper;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,7 +39,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author NTV
  */
 public class XExcel {
-    
 
     public static boolean readExcel(DefaultTableModel model) throws Exception {
         JFileChooser j = new JFileChooser();
@@ -245,11 +245,17 @@ public class XExcel {
                     if (name.equals("SanPham")) {
                         cell.setCellStyle(cellStyle(workbook, i, jtable));
                     }
+                    if (name.equals("GiaoCa")) {
+                        cell.setCellStyle(cellStyleGiaoCa(workbook, i, jtable));
+                    }
                 } else {
                     cell = row.createCell(j, CellType.STRING);
                     cell.setCellValue("Chưa có");
                     if (name.equals("SanPham")) {
                         cell.setCellStyle(cellStyle(workbook, i, jtable));
+                    }
+                    if (name.equals("GiaoCa")) {
+                        cell.setCellStyle(cellStyleGiaoCa(workbook, i, jtable));
                     }
                 }
             }
@@ -278,6 +284,37 @@ public class XExcel {
             style.setFont(font);
             style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        }
+        return style;
+    }
+
+    private static XSSFCellStyle cellStyleGiaoCa(XSSFWorkbook workbook, int row, JTable jtable) {
+        XSSFFont font = workbook.createFont();
+        font.setFontName("Times New Roman");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 12);
+        XSSFCellStyle style = workbook.createCellStyle();
+        style.setBorderBottom(BorderStyle.THIN);
+
+        String ghichu = jtable.getModel().getValueAt(row, 9).toString();
+        String trangThai = jtable.getModel().getValueAt(row, 11).toString();
+        if (!ghichu.equals("Chưa có") | trangThai.equals("Chờ giao ca") | trangThai.equals("Thất bại")) {
+            if (trangThai.equals("Chờ giao ca")) {
+                font.setColor(IndexedColors.RED.getIndex());
+                style.setFont(font);
+                style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+                style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            } else if (!ghichu.equals("Chưa có")) {
+                font.setColor(IndexedColors.BLACK.getIndex());
+                style.setFont(font);
+                style.setFillForegroundColor(IndexedColors.PINK.getIndex());
+                style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            } else {
+                font.setColor(IndexedColors.YELLOW.getIndex());
+                style.setFont(font);
+                style.setFillForegroundColor(IndexedColors.RED.getIndex());
+                style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            }
         }
         return style;
     }

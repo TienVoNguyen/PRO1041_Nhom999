@@ -5,6 +5,7 @@
  */
 package poly.newgui;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Image;
@@ -236,12 +237,12 @@ public class HoaDonFrm extends javax.swing.JPanel {
                     for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
                         int masphd = Integer.parseInt(tblHoaDon.getValueAt(i, 8) + "");
                         int sl = Integer.parseInt(tblHoaDon.getValueAt(i, 2) + "");
-                        double dg = Double.parseDouble(tblHoaDon.getValueAt(i, 5) + "");
+                        double dg = df.parse(tblHoaDon.getValueAt(i, 5) + "", new ParsePosition(0)).doubleValue();
                         if (maSP == masphd) {
                             int soLuongSP = slGoc - slNhap;
                             int soLuongCTHD = slNhap + sl;
                             tblHoaDon.setValueAt(soLuongCTHD, i, 2);
-                            tblHoaDon.setValueAt(soLuongCTHD * dg, i, 7);
+                            tblHoaDon.setValueAt(df.format(soLuongCTHD * dg), i, 7);
                             ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
                             tongTien();
                             suaCTHD(maSP, soLuongSP, soLuongCTHD, 0);

@@ -71,7 +71,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -81,7 +80,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         lblEndTime = new javax.swing.JLabel();
         lblTienCS = new javax.swing.JLabel();
         lblDTCa = new javax.swing.JLabel();
-        lblTienThuHoi = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         radThu = new javax.swing.JRadioButton();
@@ -106,7 +104,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -115,7 +112,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         lblcardNCNVGC = new javax.swing.JLabel();
         lblcardNCStartTime = new javax.swing.JLabel();
         lblCardNCTienCoSo = new javax.swing.JLabel();
-        lblCardNCTienThuHoi = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         lblCardNCTienPhatSinh = new javax.swing.JLabel();
         lblCardNCDoanhThuCa = new javax.swing.JLabel();
@@ -206,12 +202,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(255, 255, 255)));
         jPanel3.add(jLabel9);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Tiền đã thu hồi:");
-        jLabel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(255, 255, 255)));
-        jPanel3.add(jLabel8);
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Tiền phát sinh:");
@@ -252,9 +242,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
         lblDTCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jPanel4.add(lblDTCa);
-
-        lblTienThuHoi.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel4.add(lblTienThuHoi);
 
         jPanel8.setLayout(new java.awt.BorderLayout());
 
@@ -405,10 +392,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         jLabel16.setText("Tiền duy trì hoạt động:");
         jPanel12.add(jLabel16);
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel17.setText("Tiền đã thu hồi:");
-        jPanel12.add(jLabel17);
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel18.setText("Tiền phát sinh:");
         jPanel12.add(jLabel18);
@@ -438,9 +421,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
         lblCardNCTienCoSo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel14.add(lblCardNCTienCoSo);
-
-        lblCardNCTienThuHoi.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jPanel14.add(lblCardNCTienThuHoi);
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new java.awt.BorderLayout());
@@ -542,19 +522,16 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
                 tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
                         + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                        - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue()
                         - Double.parseDouble(txtTienPhatSinh.getText());
 
             } else {
                 tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
                         + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                        - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue()
                         + Double.parseDouble(txtTienPhatSinh.getText());
             }
         } else {
             tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
-                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                    - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue();
+                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue();
         }
         lblTongTien.setText(df.format(tongtien));
         
@@ -591,7 +568,7 @@ public class GiaoCaFrm extends javax.swing.JDialog {
         try {
             if (gcDAO.updateNC(setEntityNC())) {
                 Messeger.alert(null, "Nhận ca thành công!");
-                gcDAO.insert(new GiaoCa(Auth.user.getMaNV(), df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue()));
+                gcDAO.insertAfterGC(new GiaoCa(Auth.user.getMaNV(), df.parse(lblCardNCTongTien.getText(), new ParsePosition(0)).doubleValue()));
                 this.dispose();
             } else {
                 Messeger.showErrorDialog(null, "Nhận ca thất bại!", "Lỗi giao ca");
@@ -616,13 +593,11 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
             tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
                     + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                    - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue()
                     + df.parse(txtTienPhatSinh.getText(), new ParsePosition(0)).doubleValue();
 
         } else {
             tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
-                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                    - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue();
+                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue();
         }
         lblTongTien.setText(df.format(tongtien));
         }
@@ -636,13 +611,11 @@ public class GiaoCaFrm extends javax.swing.JDialog {
 
             tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
                     + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                    - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue()
                     - df.parse(txtTienPhatSinh.getText(), new ParsePosition(0)).doubleValue();
 
         } else {
             tongtien = df.parse(lblTienCS.getText(), new ParsePosition(0)).doubleValue()
-                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue()
-                    - df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue();
+                    + df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue();
         }
         lblTongTien.setText(df.format(tongtien));
         if (tongtien < 1000000) {
@@ -715,7 +688,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -726,7 +698,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -749,7 +720,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
     private javax.swing.JLabel lblCardNCDoanhThuCa;
     private javax.swing.JLabel lblCardNCTienCoSo;
     private javax.swing.JLabel lblCardNCTienPhatSinh;
-    private javax.swing.JLabel lblCardNCTienThuHoi;
     private javax.swing.JLabel lblCardNCTongTien;
     private javax.swing.JLabel lblDTCa;
     private javax.swing.JLabel lblEndTime;
@@ -757,7 +727,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
     private javax.swing.JLabel lblNVGiao;
     private javax.swing.JLabel lblStartTime;
     private javax.swing.JLabel lblTienCS;
-    private javax.swing.JLabel lblTienThuHoi;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JLabel lblcardNCNVGC;
     private javax.swing.JLabel lblcardNCStartTime;
@@ -805,9 +774,8 @@ public class GiaoCaFrm extends javax.swing.JDialog {
             lblStartTime.setText(XDate.toString(pa, "hh:mm dd/MM/yyyy"));
             lblEndTime.setText(XDate.toString(new Date(), "hh:mm dd/MM/yyyy"));
             lblTienCS.setText(df.format(gc.getTienCoSo()));
-            lblTienThuHoi.setText(df.format(gc.getTienDaThuHoi()));
             lblDTCa.setText(df.format(gc.getDoanhThuCa()));
-            lblTongTien.setText(df.format(gc.getDoanhThuCa() + gc.getTienCoSo() - gc.getTienDaThuHoi()));
+            lblTongTien.setText(df.format(gc.getDoanhThuCa() + gc.getTienCoSo()));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -837,9 +805,8 @@ public class GiaoCaFrm extends javax.swing.JDialog {
             }
 
             gc.setDoanhThuCa(df.parse(lblDTCa.getText(), new ParsePosition(0)).doubleValue());
-            gc.setTienDaThuHoi(df.parse(lblTienThuHoi.getText(), new ParsePosition(0)).doubleValue());
             gc.setTongTien(df.parse(lblTongTien.getText(), new ParsePosition(0)).doubleValue());
-            gc.setMaTT(2);
+            gc.setMaTT(3);
             return gc;
         } catch (Exception ex) {
             Logger.getLogger(GiaoCaFrm.class.getName()).log(Level.SEVERE, null, ex);
@@ -860,7 +827,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
                 gc.setTienPhatSinh(df.parse(lblCardNCTienPhatSinh.getText(), new ParsePosition(0)).doubleValue());
             }
             gc.setDoanhThuCa(df.parse(lblCardNCDoanhThuCa.getText(), new ParsePosition(0)).doubleValue());
-            gc.setTienDaThuHoi(df.parse(lblCardNCTienThuHoi.getText(), new ParsePosition(0)).doubleValue());
             gc.setTongTien(df.parse(lblCardNCTongTien.getText(), new ParsePosition(0)).doubleValue());
             gc.setMaTT(1);
             return gc;
@@ -886,7 +852,6 @@ public class GiaoCaFrm extends javax.swing.JDialog {
                 lblCardNCTienPhatSinh.setText(df.format(gc.getTienPhatSinh()));
                 lblcardNCStartTime.setText(XDate.toString(new Date(), "hh:mm aa dd/MM/yyyy"));
                 lblCardNCTienCoSo.setText(df.format(gc.getTienCoSo()));
-                lblCardNCTienThuHoi.setText(df.format(gc.getTienDaThuHoi()));
                 lblCardNCDoanhThuCa.setText(df.format(gc.getDoanhThuCa()));
                 lblCardNCTongTien.setText(df.format(gc.getTongTien()));
 

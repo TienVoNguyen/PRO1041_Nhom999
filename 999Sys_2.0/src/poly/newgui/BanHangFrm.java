@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.JButton;
@@ -613,7 +614,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getTenKhachHang(),
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
-                    XDate.toString(gh.getNgayGiaoHang(), "dd/MM/yyyy hh:mm:ss"),
+                    XDate.toString(gh.getNgayGiaoHang(), "dd/MM/yyyy hh:mm:ss a"),
 //                    df.format(gh.getTienShip()),
                     "Đang giao hàng"
                 });
@@ -684,6 +685,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             hd.setMaTT(5);
             gh = this.daoGH.selectById(maGH);
             gh.setMaTrangThai(5);
+            gh.setNgayGiaoHang(XDate.toDate(XDate.toString(new Date(), "dd/MM/yyyy hh:mm:ss a"), "dd/MM/yyyy hh:mm:ss a"));
             if (Messeger.confirm(this, "Xác nhận Giao Hàng!")) {
                 this.daoHD.update(hd);
                 this.daoGH.update(gh);
