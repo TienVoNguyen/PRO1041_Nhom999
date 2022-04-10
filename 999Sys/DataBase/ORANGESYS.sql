@@ -476,9 +476,9 @@ AS BEGIN
                   DONVITINH ON SANPHAM.MADVT = DONVITINH.MADVT
 		WHERE 
 				  SANPHAM.TRANGTHAI = 1
-				  and (SANPHAM.MASP like @MASP
+				  and ((SANPHAM.MASP like @MASP
 				  or MAVACH like @MAVACH
-				  or SANPHAM.TENSP like @TENSP 
+				  or SANPHAM.TENSP like @TENSP) 
 				  and  DANHMUC.TENDANHMUC like @TENDANHMUC
 				  and MAUSAC.TENMAU like @TENMAU 
 				  and SANPHAM.MASIZE like @MASIZE 

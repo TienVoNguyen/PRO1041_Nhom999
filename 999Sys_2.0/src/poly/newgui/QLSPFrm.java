@@ -1166,11 +1166,12 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String danhMuc, mau, Size, ChatLieu, key;
-        danhMuc = String.valueOf(cbbTimDanhMuc.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimDanhMuc.getSelectedItem());
-        mau = String.valueOf(cbbTimMau.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimMau.getSelectedItem());
-        Size = String.valueOf(cbbTimSize.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimSize.getSelectedItem());
-        ChatLieu = String.valueOf(cbbTimChatLieu.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimChatLieu.getSelectedItem());
+        danhMuc = String.valueOf(cbbTimDanhMuc.getSelectedItem()).equalsIgnoreCase("ALL DANH MỤC") ? "" : String.valueOf(cbbTimDanhMuc.getSelectedItem());
+        mau = String.valueOf(cbbTimMau.getSelectedItem()).equalsIgnoreCase("ALL MÀU") ? "" : String.valueOf(cbbTimMau.getSelectedItem());
+        Size = String.valueOf(cbbTimSize.getSelectedItem()).equalsIgnoreCase("ALL SIZE") ? "" : String.valueOf(cbbTimSize.getSelectedItem());
+        ChatLieu = String.valueOf(cbbTimChatLieu.getSelectedItem()).equalsIgnoreCase("ALL CHẤT LIỆU") ? "" : String.valueOf(cbbTimChatLieu.getSelectedItem());
         key = this.txtTimKiem.getText();
+        
 
         Object[] objKey = {key, "%" + key + "%", "%" + key + "%", "%" + danhMuc + "%", "%" + mau + "%", "%" + Size + "%", "%" + ChatLieu + "%"};
         loadDataToTable(objKey);
@@ -1651,7 +1652,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<ChatLieu> list = new ArrayList<>();
         try {
             list = this.daoCL.selectAll();
-            this.cbbTimChatLieu.addItem("ALL");
+            this.cbbTimChatLieu.addItem("ALL CHẤT LIỆU");
             for (ChatLieu cl : list) {
                 this.dCBCL.addElement(cl);
                 this.dCBTimCL.addElement(cl);
@@ -1668,7 +1669,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<DanhMuc> list = new ArrayList<>();
         try {
             list = this.daoDM.selectAll();
-            this.cbbTimDanhMuc.addItem("All");
+            this.cbbTimDanhMuc.addItem("All DANH MỤC");
             for (DanhMuc dm : list) {
                 this.dCBDM.addElement(dm);
                 this.dCBTimDM.addElement(dm);
@@ -1686,7 +1687,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<MauSac> list = new ArrayList<>();
         try {
             list = this.daoMauSac.selectAll();
-            this.cbbTimMau.addItem("ALL");
+            this.cbbTimMau.addItem("ALL MÀU");
             for (MauSac mauSac : list) {
                 this.dCBMS.addElement(mauSac);
                 this.dCBTimMS.addElement(mauSac);
@@ -1704,7 +1705,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<Size> list = new ArrayList<>();
         try {
             list = this.daoSize.selectAll();
-            this.cbbTimSize.addItem("ALL");
+            this.cbbTimSize.addItem("ALL SIZE");
             for (Size s : list) {
                 this.dCBSize.addElement(s);
                 this.dCBTimSize.addElement(s);

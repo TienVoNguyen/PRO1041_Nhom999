@@ -524,7 +524,7 @@ public class DatHangFrm extends javax.swing.JDialog {
         gh.setDiaChi(txtDiaChi.getText());
         gh.setTienShip(Double.parseDouble(txtTienShip.getText()));
         gh.setGhiChu(txtGhiChu.getText());
-        gh.setNgayGiaoHang(new Date());
+        gh.setNgayGiaoHang(XDate.toDate(XDate.toString(new Date(), "dd/MM/yyyy hh:mm:ss"), "dd/MM/yyyy hh:mm:ss"));
         gh.setMaTrangThai(6);
         return gh;
     }
@@ -542,7 +542,6 @@ public class DatHangFrm extends javax.swing.JDialog {
                 main.setLblSoLuongDonHang();
                 for (CTHoaDon c : listCTHD) {
                     this.DAOCTHD.update(c);
-                    System.out.println(c.getGiaBan());
                 }
                 if (hd.getMaKH() != null) {
                     try {

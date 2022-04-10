@@ -1348,7 +1348,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
         }
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
-        tblKhachHang.setRowSelectionInterval(row, row);
+//        tblKhachHang.setRowSelectionInterval(row, row);
     }
 
     private KhachHang getFormKhachHang() {
