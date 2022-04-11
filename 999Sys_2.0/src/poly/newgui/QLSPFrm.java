@@ -12,6 +12,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
@@ -69,7 +71,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     private SanPhamDao daoSP;
 
     private Thread loadData;
-    
+    boolean isNotNewData = true;
+
     NewMainFrm mainFrm;
 
     /**
@@ -1171,7 +1174,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         Size = String.valueOf(cbbTimSize.getSelectedItem()).equalsIgnoreCase("ALL SIZE") ? "" : String.valueOf(cbbTimSize.getSelectedItem());
         ChatLieu = String.valueOf(cbbTimChatLieu.getSelectedItem()).equalsIgnoreCase("ALL CHẤT LIỆU") ? "" : String.valueOf(cbbTimChatLieu.getSelectedItem());
         key = this.txtTimKiem.getText();
-        
 
         Object[] objKey = {key, "%" + key + "%", "%" + key + "%", "%" + danhMuc + "%", "%" + mau + "%", "%" + Size + "%", "%" + ChatLieu + "%"};
         loadDataToTable(objKey);
@@ -1385,7 +1387,11 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void loadDataJDialogWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loadDataJDialogWindowClosed
         this.loadData.stop();
-        Messeger.alert(null, "Thêm dữ liệu mới thành công");
+        if (isNotNewData) {
+            Messeger.alert(null, "Không tìm thấy sản phẩm mới nào trong bản excel này!");
+        } else {
+            Messeger.alert(null, "Thêm dữ liệu mới thành công");
+        }
         loadDataToTable(new Object[]{"%%", "%%", "%%", "%%", "%%", "%%", "%%"});
     }//GEN-LAST:event_loadDataJDialogWindowClosed
 
@@ -1403,15 +1409,22 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                     tblSanPham.setRowSelectionInterval(i, i);
                     mouseClicked();
                     clearImage();
-                    insertSP();
                     pgbLoadingData.setValue(i);
+
                     try {
                         Thread.sleep(30);
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                         Messeger.showErrorDialog(null, ex.getMessage(), "Error");
                     }
+                    if (checkTrungTenSP()) {
+                        continue;
+                    } else {
+                        insertSP();
+                        isNotNewData = false;
+                    }
                 }
+
             }
         });
         loadData.start();
@@ -1867,6 +1880,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                 });
             }
         } else if (Messeger.confirm(this, "Xác nhận thêm sản phẩm này?")) {
+            if (checkTrungTenSP()) {
+                Messeger.showErrorDialog(this, "sản phẩm này đã tồn tại!", "lỗi");
+                return;
+            }
             insertSP();
             Messeger.alert(this, "Thêm thành công");
             this.loadDataToTable(new Object[]{
@@ -1918,5 +1935,17 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             lblAnh.setIcon(icon);
             lblAnh.setToolTipText(file.getName());//giữ tên hình trong tooltop
         }
+    }
+
+    private boolean checkTrungTenSP() {
+        try {
+            if (this.daoSP.selectByNameSizeColor(getForm()).size() > 0) {
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLSPFrm.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
+        }
+        return false;
     }
 }

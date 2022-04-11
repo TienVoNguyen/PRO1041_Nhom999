@@ -3,20 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/BanHangFrm.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/DatHangFrm.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/helper/XValidate.java</file>
-            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/HoaDonFrm.java</file>
-=======
-            <file>file:/C:/Users/Admin/Documents/Orange_Team/PRO1041_Nhom999/999Sys_2.0/src/poly/gui/QuanLyKhachHangJDialog.java</file>
->>>>>>> 5c5f5664175c0f089a6f4c2290023b476c83ac84
-=======
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/LichSuGDFrm.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys_2.0/src/poly/dao/HoaDonDao.java</file>
-            <file>file:/E:/Learn/Git/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/test.java</file>
->>>>>>> ed23340662818f6e75ebec6de1b381652368119b
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/dao/HoaDonDao.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/helper/Messeger.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/NewMainFrm.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/dao/GiaoHangDao.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/dao/BaseDao.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/dao/SanPhamDao.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/LoadingFrm.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/QLSPFrm.java</file>
+            <file>file:/E:/hoctap/IT17101_DA1/PRO1041_Nhom999/999Sys_2.0/src/poly/newgui/LichSuGDFrm.java</file>
         </group>
     </open-files>
 </project-private>
