@@ -29,13 +29,15 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
             case "INSERT":
                 return "SET IDENTITY_INSERT [dbo].[HOADON] ON  INSERT INTO HOADON (MAHOADON, MANV, MAKH, MATT, NGAYMUA, GIAMGIA, THANHTIEN) VALUES (?,?,?,?,?,?,?)  SET IDENTITY_INSERT [dbo].[HOADON] OFF";
             case "UPDATE":
-                return "UPDATE HOADON SET MANV =?, MAKH =?, MATT =?, NGAYMUA =?, GIAMGIA =?, THANHTIEN =?, TRANGTHAI =? WHERE MAHOADON = ?";
+                return "UPDATE HOADON SET MANV =?, MAKH =?, MATT =?, NGAYMUA =?, GIAMGIA =?, THANHTIEN =? WHERE MAHOADON = ?";
             case "UPDATEXOAMAKH":
                 return "UPDATE [dbo].[HOADON] SET [MAKH] = null WHERE [MAHOADON] = ?";
             case "DELETE":
                 return "DELETE FROM HOADON WHERE MAHOADON =?";
             case "SELECTBYID":
                 return "SELECT * FROM HOADON WHERE MAHOADON = ?";
+            case "SELECTALL":
+                return "SELECT * FROM HOADON";
             case "SELECTMAXMAHD":
                 return "SELECT MAX(MAHOADON) AS 'MAXMAHD' FROM HOADON";
             case "CBBMaKH":
@@ -67,7 +69,6 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
                     obj.getNgayMua(),
                     obj.getGiamGia(),
                     obj.getThanhTien(),
-                    obj.isTrangThai(),
                     obj.getMaHD()
                 };
         }
@@ -83,7 +84,6 @@ public class HoaDonDao extends BaseDao<HoaDon, String> {
         hD.setNgayMua(rs.getString("NGAYMUA"));
         hD.setGiamGia(rs.getDouble("GIAMGIA"));
         hD.setThanhTien(rs.getDouble("THANHTIEN"));
-        hD.setTrangThai(rs.getBoolean("TRANGTHAI"));
         hD.setMaTT(rs.getInt("MATT"));
         return hD;
     }

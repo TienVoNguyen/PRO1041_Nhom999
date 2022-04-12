@@ -10,6 +10,8 @@ import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -30,7 +32,6 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
 
     private GiaoCaDAO gcDAO;
     private NhanVienDao nvDAO;
-    
 
     /**
      * Creates new form QLGiaoCaFrm
@@ -104,9 +105,6 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         btnXuat = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        txtTmKiem = new javax.swing.JTextField();
-        btnTimKiem = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         cbxNV = new javax.swing.JComboBox<>();
         cbxTT = new javax.swing.JComboBox<>();
@@ -439,32 +437,12 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(1143, 100));
         jPanel4.setLayout(new java.awt.GridLayout(1, 0, 15, 0));
 
-        jPanel5.setBackground(new java.awt.Color(255, 153, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 16))); // NOI18N
-
-        txtTmKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtTmKiem.setToolTipText("");
-        txtTmKiem.setPreferredSize(new java.awt.Dimension(256, 36));
-        jPanel5.add(txtTmKiem);
-
-        btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnTimKiem.setLabel("Tìm Kiếm");
-        btnTimKiem.setPreferredSize(new java.awt.Dimension(109, 36));
-        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTimKiemActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnTimKiem);
-
-        jPanel4.add(jPanel5);
-
         jPanel6.setBackground(new java.awt.Color(255, 153, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bộ Lọc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 16))); // NOI18N
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 5));
 
         cbxNV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        cbxNV.setPreferredSize(new java.awt.Dimension(250, 36));
+        cbxNV.setPreferredSize(new java.awt.Dimension(270, 36));
         cbxNV.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxNVItemStateChanged(evt);
@@ -473,7 +451,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         jPanel6.add(cbxNV);
 
         cbxTT.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        cbxTT.setPreferredSize(new java.awt.Dimension(250, 36));
+        cbxTT.setPreferredSize(new java.awt.Dimension(270, 36));
         cbxTT.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxTTItemStateChanged(evt);
@@ -513,18 +491,15 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
 
     private void cbxNVItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxNVItemStateChanged
         // TODO add your handling code here:
+        fillToTable(false);
     }//GEN-LAST:event_cbxNVItemStateChanged
 
     private void cbxTTItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxTTItemStateChanged
         // TODO add your handling code here:
+        fillToTable(false);
     }//GEN-LAST:event_cbxTTItemStateChanged
 
-    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTimKiemActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXuat;
     private javax.swing.JComboBox<String> cbxNV;
     private javax.swing.JComboBox<String> cbxTT;
@@ -564,7 +539,6 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
@@ -584,26 +558,54 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblGiaoCa;
     private javax.swing.JTextArea txtGhiChuGC;
     private javax.swing.JTextArea txtGhiChuNC;
-    private javax.swing.JTextField txtTmKiem;
     // End of variables declaration//GEN-END:variables
 
     private void init() {
         XInternal.uncorated(this);
         gcDAO = new GiaoCaDAO();
         nvDAO = new NhanVienDao();
-        
-        fillToTable();
-        fillToCBBNV();
         fillToCBBTTGC();
+        fillToCBBNV();
+
+        fillToTable(true);
         tblGiaoCa.setRowSelectionInterval(0, 0);
         setText();
     }
 
-    private void fillToTable() {
+    private void fillToTable(boolean chon) {
         try {
             DefaultTableModel model = (DefaultTableModel) tblGiaoCa.getModel();
             model.setRowCount(0);
-            List<Object[]> lst = gcDAO.selectGiaoCa();
+            List<Object[]> lst = new ArrayList<>();
+            if (chon) {
+                lst = gcDAO.selectGiaoCa();
+            } else if (!cbxTT.getSelectedItem().equals("Trạng thái")) {
+                String maNVGC = "";
+                String maNVNC = "";
+                if (!cbxNV.getSelectedItem().equals("Nhân viên")) {
+                    NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
+
+                    if (nv != null) {
+                        maNVGC = nv.getMaNV();
+                        maNVNC = nv.getMaNV();
+                    }
+                }
+                TrangThaiGiaoCa ttGC = (TrangThaiGiaoCa) cbxTT.getSelectedItem();
+                lst = gcDAO.timKiemCBB(maNVGC, maNVNC, ttGC.getMaTT());
+            } else {
+                String maNVGC = "";
+                String maNVNC = "";
+                if (cbxNV.getSelectedItem() != null) {
+                if (!cbxNV.getSelectedItem().equals("Nhân viên")) {
+                    NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
+
+                    if (nv != null) {
+                        maNVGC = nv.getMaNV();
+                        maNVNC = nv.getMaNV();
+                    }
+                }}
+                lst = gcDAO.timKiemCBB(maNVGC, maNVNC);
+            }
             for (Object[] ob : lst) {
                 model.addRow(ob);
             }
@@ -647,6 +649,7 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbxNV.getModel();
             lst = nvDAO.selectAll();
             model.removeAllElements();
+            model.addElement("Nhân viên");
             for (NhanVien nhanVien : lst) {
                 model.addElement(nhanVien);
             }
@@ -654,13 +657,14 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
     }
-    
+
     private void fillToCBBTTGC() {
         try {
             List<TrangThaiGiaoCa> lst = new ArrayList<>();
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbxTT.getModel();
             lst = gcDAO.selectTTGiaoCa();
             model.removeAllElements();
+            model.addElement("Trạng thái");
             for (TrangThaiGiaoCa ttGC : lst) {
                 model.addElement(ttGC);
             }
@@ -688,4 +692,34 @@ public class QLGiaoCaFrm extends javax.swing.JInternalFrame {
         lblTrangThai.setText(String.valueOf(tblGiaoCa.getValueAt(row, 11)));
     }
 
+    private List<Object[]> chonFillToTable(Boolean chon) {
+        List<Object[]> lst = new ArrayList<>();
+        try {
+            if (chon) {
+                lst = gcDAO.selectGiaoCa();
+            } else if (!cbxTT.getSelectedItem().equals("Trạng thái")) {
+                String maNVGC = "";
+                String maNVNC = "";
+                NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
+                if (nv != null) {
+                    maNVGC = nv.getMaNV();
+                    maNVNC = nv.getMaNV();
+                }
+                TrangThaiGiaoCa ttGC = (TrangThaiGiaoCa) cbxTT.getSelectedItem();
+                lst = gcDAO.timKiemCBB(maNVGC, maNVNC, ttGC.getMaTT());
+            } else {
+                String maNVGC = "";
+                String maNVNC = "";
+                NhanVien nv = (NhanVien) cbxNV.getSelectedItem();
+                if (nv != null) {
+                    maNVGC = nv.getMaNV();
+                    maNVNC = nv.getMaNV();
+                }
+                lst = gcDAO.timKiemCBB(maNVGC, maNVNC);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLGiaoCaFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lst;
+    }
 }

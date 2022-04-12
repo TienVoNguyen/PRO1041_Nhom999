@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import poly.entity.GiaoHang;
+import poly.helper.XDate;
 import poly.helper.XJDBC;
 
 /**
@@ -75,7 +76,7 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
         gh.setTenKhachHang(rs.getString("TENKHACHHANG"));
         gh.setSoDienThoai(rs.getString("SDT"));
         gh.setDiaChi(rs.getString("DIACHI"));
-        gh.setNgayGiaoHang(rs.getDate("NGAYGIAOHANG"));
+        gh.setNgayGiaoHang(rs.getTimestamp("NGAYGIAOHANG"));
         gh.setTienShip(rs.getDouble("TIENSHIPHANG"));
         gh.setGhiChu(rs.getString("GHICHU"));
         gh.setMaTrangThai(rs.getInt("MATT"));

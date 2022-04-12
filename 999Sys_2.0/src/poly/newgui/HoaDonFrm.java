@@ -5,12 +5,14 @@
  */
 package poly.newgui;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -86,7 +88,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         this.DAOCTHD = new CTHoaDonDao();
 
         this.parent = (NewMainFrm) parent;
-        
+
         this.dtmHoaDon = new DefaultTableModel();
         this.dtmKhachHang = new DefaultTableModel();
         this.dtmSanPham = new DefaultTableModel();
@@ -154,7 +156,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 slGoc = (int) table.getValueAt(modelRow, 2);
                 int masphd = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 8)) + "");
-                double gia = Double.parseDouble(table.getValueAt(modelRow, 5) + "");
+                double gia = df.parse(table.getValueAt(modelRow, 5) + "", new ParsePosition(0)).doubleValue();
                 if (!nhapSl()) {
                     int soLuongCTHD = slGoc - slNhap;
                     if (slGoc - slNhap == 0) {
@@ -167,9 +169,9 @@ public class HoaDonFrm extends javax.swing.JPanel {
                                 int soLuongSP = slsp + slNhap;
                                 tblSanPham.setValueAt(soLuongSP, i, 4);
 
-                                suaCTHD(masp, soLuongSP, soLuongCTHD);
+                                suaCTHD(masp, soLuongSP, soLuongCTHD, 0);
                                 ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 2);
-                                ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", (slGoc - slNhap) * gia), modelRow, 7);
+                                ((DefaultTableModel) table.getModel()).setValueAt(df.format((slGoc - slNhap) * gia), modelRow, 7);
                                 tongTien();
                             }
                         }
@@ -187,7 +189,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
                 int modelRow = Integer.valueOf(e.getActionCommand());
                 int sl = (int) table.getValueAt(modelRow, 2);
                 int masphd = Integer.parseInt((((DefaultTableModel) table.getModel()).getValueAt(modelRow, 8)) + "");
-                double gia = Double.parseDouble(table.getValueAt(modelRow, 5) + "");
+                double gia = df.parse(table.getValueAt(modelRow, 5) + "", new ParsePosition(0)).doubleValue();
                 for (int i = 0; i < tblSanPham.getRowCount(); i++) {
                     int masp = Integer.parseInt(tblSanPham.getValueAt(i, 0) + "");
                     slGoc = Integer.parseInt(tblSanPham.getValueAt(i, 4) + "");
@@ -201,9 +203,9 @@ public class HoaDonFrm extends javax.swing.JPanel {
                             int soLuongCTHD = sl + slNhap;
                             tblSanPham.setValueAt(soLuongSP, i, 4);
 
-                            suaCTHD(masp, soLuongSP, soLuongCTHD);
+                            suaCTHD(masp, soLuongSP, soLuongCTHD, 0);
                             ((DefaultTableModel) table.getModel()).setValueAt(soLuongCTHD, modelRow, 2);
-                            ((DefaultTableModel) table.getModel()).setValueAt(String.format("%.0f", soLuongCTHD * gia), modelRow, 7);
+                            ((DefaultTableModel) table.getModel()).setValueAt(df.format(soLuongCTHD * gia), modelRow, 7);
                             tongTien();
                         }
 
@@ -235,32 +237,37 @@ public class HoaDonFrm extends javax.swing.JPanel {
                     for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
                         int masphd = Integer.parseInt(tblHoaDon.getValueAt(i, 8) + "");
                         int sl = Integer.parseInt(tblHoaDon.getValueAt(i, 2) + "");
-                        double dg = Double.parseDouble(tblHoaDon.getValueAt(i, 5) + "");
+                        double dg = df.parse(tblHoaDon.getValueAt(i, 5) + "", new ParsePosition(0)).doubleValue();
                         if (maSP == masphd) {
                             int soLuongSP = slGoc - slNhap;
                             int soLuongCTHD = slNhap + sl;
                             tblHoaDon.setValueAt(soLuongCTHD, i, 2);
-                            tblHoaDon.setValueAt(soLuongCTHD * dg, i, 7);
+                            tblHoaDon.setValueAt(df.format(soLuongCTHD * dg), i, 7);
                             ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
                             tongTien();
-                            suaCTHD(maSP, soLuongSP, soLuongCTHD);
+                            suaCTHD(maSP, soLuongSP, soLuongCTHD, 0);
                             return;
                         }
                     }
 
-                    double thanhTien = Double.parseDouble(((DefaultTableModel) table.getModel()).getValueAt(modelRow, 3) + "") * slNhap;
+                    double thanhTien = df.parse(((DefaultTableModel) table.getModel()).getValueAt(modelRow, 3) + "", new ParsePosition(0)).doubleValue() * slNhap;
 
-                    Object[] data = new Object[]{
-                        null,
-                        ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 2),
-                        slNhap,
-                        null,
-                        null,
-                        (((DefaultTableModel) table.getModel()).getValueAt(modelRow, 3)),
-                        null,
-                        String.format("%.0f", thanhTien),
-                        ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0)
-                    };
+                    Object[] data = null;
+                    try {
+                        data = new Object[]{
+                            null,
+                            daoSP.selectById(maSP).getTenSanPham(),
+                            slNhap,
+                            null,
+                            null,
+                            (((DefaultTableModel) table.getModel()).getValueAt(modelRow, 3)),
+                            null,
+                            df.format(thanhTien),
+                            maSP
+                        };
+                    } catch (Exception ex) {
+                        Logger.getLogger(HoaDonFrm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     dtmHoaDon.addRow(data);
                     ((DefaultTableModel) table.getModel()).setValueAt(slGoc - slNhap, modelRow, 4);
                     SanPham sp = new SanPham();
@@ -723,6 +730,10 @@ public class HoaDonFrm extends javax.swing.JPanel {
             tblHoaDon.getColumnModel().getColumn(0).setMinWidth(40);
             tblHoaDon.getColumnModel().getColumn(0).setPreferredWidth(40);
             tblHoaDon.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblHoaDon.getColumnModel().getColumn(1).setMinWidth(200);
+            tblHoaDon.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblHoaDon.getColumnModel().getColumn(2).setMinWidth(60);
+            tblHoaDon.getColumnModel().getColumn(2).setPreferredWidth(60);
             tblHoaDon.getColumnModel().getColumn(3).setMinWidth(40);
             tblHoaDon.getColumnModel().getColumn(3).setPreferredWidth(40);
             tblHoaDon.getColumnModel().getColumn(3).setMaxWidth(40);
@@ -759,7 +770,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã SP", "Mã Vạch", "Tên SP", "Đơn Giá", "Số Lượng", "Thêm Vào Hóa Đơn", "Ảnh SP"
+                "Mã SP", "Mã Vạch", "Tên SP", "Đơn Giá", "Số Lượng", "Thêm", "Ảnh SP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -781,8 +792,8 @@ public class HoaDonFrm extends javax.swing.JPanel {
             tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(65);
             tblSanPham.getColumnModel().getColumn(4).setMaxWidth(80);
             tblSanPham.getColumnModel().getColumn(5).setMinWidth(60);
-            tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(60);
-            tblSanPham.getColumnModel().getColumn(5).setMaxWidth(60);
+            tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tblSanPham.getColumnModel().getColumn(5).setMaxWidth(80);
             tblSanPham.getColumnModel().getColumn(6).setMinWidth(48);
             tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(50);
             tblSanPham.getColumnModel().getColumn(6).setMaxWidth(72);
@@ -1124,7 +1135,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
             hd.setMaNV(Auth.user.getMaNV());
             hd.setMaTT(2);
             hd.setThanhTien(Double.parseDouble(lblThanhTien.getToolTipText()));
-            new ThanhToanFrm(parent, true, pnlTabs, hd).setVisible(true);
+            new ThanhToanFrm(parent, true, pnlTabs, hd, getListCTHD()).setVisible(true);
         }
 
     }//GEN-LAST:event_btnThanhToamActionPerformed
@@ -1218,7 +1229,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
             hd.setMaNV(Auth.user.getMaNV());
             hd.setMaTT(2);
             hd.setThanhTien(Double.parseDouble(lblThanhTien.getToolTipText()));
-            new DatHangFrm(parent, true, pnlTabs, hd).setVisible(true);
+            new DatHangFrm(parent, true, pnlTabs, hd, getListCTHD()).setVisible(true);
         }
     }//GEN-LAST:event_btnDatHangActionPerformed
 
@@ -1317,11 +1328,11 @@ public class HoaDonFrm extends javax.swing.JPanel {
 
         for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
             int sl = Integer.parseInt(tblHoaDon.getValueAt(i, 2) + "");
-            double thanhTienColum = Double.parseDouble(tblHoaDon.getValueAt(i, 7) + "");
-            double giaChuaGiam = sl * Double.parseDouble(tblHoaDon.getValueAt(i, 5) + "");
+            double thanhTienColum = df.parse(tblHoaDon.getValueAt(i, 7) + "", new ParsePosition(0)).doubleValue();
+//            double giaChuaGiam = sl * Double.parseDouble(tblHoaDon.getValueAt(i, 5) + "");
 
             tongTien += thanhTienColum;
-            giamGia += (giaChuaGiam - thanhTienColum);
+//            giamGia += (giaChuaGiam - thanhTienColum);
             soLuong += sl;
         }
 
@@ -1413,7 +1424,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
                     sp1.getMaSP(),
                     sp1.getMaVach(),
                     sp1.getTenSanPham(),
-                    sp1.getGiaBan(),
+                    df.format(sp1.getGiaBan()),
                     sp1.getSoLuong(),
                     null,
                     ImgLabel
@@ -1474,9 +1485,9 @@ public class HoaDonFrm extends javax.swing.JPanel {
                     c.getSoLuong(),
                     null,
                     null,
-                    s.getGiaBan(),
+                    df.format(s.getGiaBan()),
                     0,
-                    c.getSoLuong() * s.getGiaBan(),
+                    df.format(c.getSoLuong() * s.getGiaBan()),
                     c.getMaSP()
                 });
 
@@ -1517,7 +1528,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         }
     }
 
-    private void suaCTHD(int masp, int soLuongSP, int soLuongCTHD) throws NumberFormatException {
+    private void suaCTHD(int masp, int soLuongSP, int soLuongCTHD, double giaBan) throws NumberFormatException {
         SanPham sp = new SanPham();
         sp.setMaSP(masp);
         sp.setSoLuong(soLuongSP);
@@ -1525,6 +1536,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         cthd.setMaHD(Integer.parseInt(lblHoaDon.getToolTipText()));
         cthd.setMaSP(masp);
         cthd.setSoLuong(soLuongCTHD);
+        cthd.setGiaBan(giaBan);
         cthd.setTrangThai(true);
         try {
             daoSP.updateSP(sp);
@@ -1629,6 +1641,22 @@ public class HoaDonFrm extends javax.swing.JPanel {
 
     public void setLblTenKH(JLabel lblTenKH) {
         this.lblTenKH = lblTenKH;
+    }
+
+    private ArrayList<CTHoaDon> getListCTHD() {
+        ArrayList<CTHoaDon> list = new ArrayList<>();
+
+        for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+            CTHoaDon cthd = new CTHoaDon();
+            cthd.setMaHD(Integer.parseInt(lblHoaDon.getToolTipText()));
+            cthd.setMaSP(Integer.parseInt(tblHoaDon.getValueAt(i, 8) + ""));
+            cthd.setSoLuong(Integer.parseInt(tblHoaDon.getValueAt(i, 2) + ""));
+            cthd.setGiaBan(df.parse(tblHoaDon.getValueAt(i, 5) + "", new ParsePosition(0)).doubleValue());
+            cthd.setTrangThai(true);
+            list.add(cthd);
+        }
+
+        return list;
     }
 
 }
