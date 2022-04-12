@@ -6,6 +6,7 @@
 package poly.newgui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,7 @@ import poly.entity.LoaiKhachHang;
 import poly.helper.Auth;
 import poly.helper.CustomDatePicker;
 import poly.helper.Messeger;
+import poly.helper.RandomID;
 import poly.helper.XDate;
 import poly.helper.XExcel;
 import poly.helper.XInternal;
@@ -199,12 +201,12 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel15.setPreferredSize(new java.awt.Dimension(165, 20));
         jpnCBBLoaiKH.add(jLabel15, java.awt.BorderLayout.LINE_START);
 
-        btnTrangThai.setText("Tương Tác");
         btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
-        btnTrangThai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnTrangThai.setText("Tương Tác");
+        btnTrangThai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         btnTrangThai.setMaximumSize(new java.awt.Dimension(110, 15));
-        btnTrangThai.setPreferredSize(new java.awt.Dimension(160, 15));
+        btnTrangThai.setPreferredSize(new java.awt.Dimension(110, 15));
         btnTrangThai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTrangThaiMouseClicked(evt);
@@ -301,10 +303,10 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnLoaiBangKH.setBackground(new java.awt.Color(102, 153, 255));
         jpnLoaiBangKH.setPreferredSize(new java.awt.Dimension(877, 40));
 
+        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblKHHoatDong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKHHoatDong.setText("Khách Hàng Tương Tác");
         lblKHHoatDong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblKHHoatDong.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jpnLoaiBangKH.add(lblKHHoatDong);
 
@@ -334,8 +336,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jpnNAUD.add(btnNew);
 
-        btnThemKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemKH.setText("Thêm");
+        btnThemKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemKHActionPerformed(evt);
@@ -343,8 +345,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jpnNAUD.add(btnThemKH);
 
-        btnSuaKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSuaKH.setText("Sửa");
+        btnSuaKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSuaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaKHActionPerformed(evt);
@@ -418,6 +420,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnFormTextField.setLayout(new java.awt.GridLayout(5, 2, 15, 5));
 
         jPanel14.setLayout(new java.awt.BorderLayout());
+
+        txtMaKhachHang.setEditable(false);
+        txtMaKhachHang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel14.add(txtMaKhachHang, java.awt.BorderLayout.CENTER);
 
         lblMaKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -428,6 +433,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnFormTextField.add(jPanel14);
 
         jPanel13.setLayout(new java.awt.BorderLayout());
+
+        txtSDT.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel13.add(txtSDT, java.awt.BorderLayout.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -439,6 +446,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnFormTextField.add(jPanel13);
 
         jPanel21.setLayout(new java.awt.BorderLayout());
+
+        txtHoTen.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel21.add(txtHoTen, java.awt.BorderLayout.CENTER);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -455,11 +464,15 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel7.setText("  Ngày Sinh : ");
         jLabel7.setPreferredSize(new java.awt.Dimension(125, 15));
         jPanel20.add(jLabel7, java.awt.BorderLayout.LINE_START);
+
+        dateTime.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel20.add(dateTime, java.awt.BorderLayout.CENTER);
 
         jpnFormTextField.add(jPanel20);
 
         jPanel19.setLayout(new java.awt.BorderLayout());
+
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel19.add(txtDiaChi, java.awt.BorderLayout.CENTER);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -476,6 +489,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel8.setText("  Ngày Tạo : ");
         jLabel8.setPreferredSize(new java.awt.Dimension(125, 15));
         jPanel18.add(jLabel8, java.awt.BorderLayout.LINE_START);
+
+        txtNgTao.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel18.add(txtNgTao, java.awt.BorderLayout.CENTER);
 
         jpnFormTextField.add(jPanel18);
@@ -495,9 +510,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         rdoNam.setBorder(null);
         jpnGioiTinh.add(rdoNam, java.awt.BorderLayout.LINE_START);
 
-        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNu.setText("Nữ");
         rdoNu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jpnGioiTinh.add(rdoNu, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jpnGioiTinh, java.awt.BorderLayout.CENTER);
@@ -505,6 +520,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnFormTextField.add(jPanel3);
 
         jPanel16.setLayout(new java.awt.BorderLayout());
+
+        txtEmailKhachHang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel16.add(txtEmailKhachHang, java.awt.BorderLayout.CENTER);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -517,6 +534,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jPanel15.setLayout(new java.awt.BorderLayout());
 
         txtSoDiemTich.setEditable(false);
+        txtSoDiemTich.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel15.add(txtSoDiemTich, java.awt.BorderLayout.CENTER);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -528,6 +546,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnFormTextField.add(jPanel15);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jPanel1.add(jTextField1, java.awt.BorderLayout.CENTER);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -558,7 +578,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         );
         jpnSeparatorLayout.setVerticalGroup(
             jpnSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 573, Short.MAX_VALUE)
         );
 
         jpnLoaiKH.add(jpnSeparator, java.awt.BorderLayout.LINE_START);
@@ -852,6 +872,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         if (this.checkFormKhachHang()) {
             return;
         }
+        this.txtMaKhachHang.setText(RandomID.randomIDKhachHang(txtHoTen.getText().trim()));
         if (this.checkMaKH()) {
             Messeger.showErrorDialog(this, "Mã khách hàng đã tồn tại!", "Error!");
             return;
@@ -1188,6 +1209,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         loaiKhachHangComboBox = (DefaultComboBoxModel) this.cbbLoaiKH.getModel();
         dateTime.setSettings(CustomDatePicker.customsDatePicker(dateTime, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
         txtNgTao.setSettings(CustomDatePicker.customsDatePicker(txtNgTao, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
+        dateTime.setFont(new java.awt.Font("Tahoma", 1, 16));
+        txtNgTao.setFont(new java.awt.Font("Tahoma", 1, 16));
         khachHangDao = new KhachHangDao();
         loaiKHDao = new LoaiKhachHangDao();
         this.fillToComBoBox();
@@ -1415,9 +1438,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
     private boolean checkFormKhachHang() {
         StringBuilder sb = new StringBuilder();
-        if (XValidate.isEmpty(txtMaKhachHang)) {
-            sb.append("Không để trống mã khách hàng!\n");
-        }
+//        if (XValidate.isEmpty(txtMaKhachHang)) {
+//            sb.append("Không để trống mã khách hàng!\n");
+//        }
         if (XValidate.isEmpty(txtHoTen)) {
             sb.append("Không để trống họ tên!\n");
         }

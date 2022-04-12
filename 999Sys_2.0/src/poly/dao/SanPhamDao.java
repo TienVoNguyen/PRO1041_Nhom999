@@ -36,6 +36,8 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                 return "UPDATE SANPHAM SET TRANGTHAI = 1 WHERE MASP = ?";
             case "SELECTBYID":
                 return "SELECT MASP, TENSP + '  ' + SANPHAM.MASIZE + ', ' + TENMAU + ', ' + TENCHATLIEU  AS TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP)) GIABAN,GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, SANPHAM.TRANGTHAI, SANPHAM.MACHATLIEU, SANPHAM.MADVT, SANPHAM.MAMAU, SANPHAM.MASIZE  FROM CHATLIEU INNER JOIN SANPHAM ON CHATLIEU.MACHATLIEU = SANPHAM.MACHATLIEU INNER JOIN MAUSAC ON SANPHAM.MAMAU = MAUSAC.MAMAU INNER JOIN SIZE ON SANPHAM.MASIZE = SIZE.MASIZE WHERE (MASP = ?)";
+            case "SELECTBYNAME":
+                return "SELECT * FROM SANPHAM WHERE TENSP = ? AND MADM = ? AND MASIZE = ? AND MAMAU = ? AND MACHATLIEU = ?";
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":
@@ -81,6 +83,14 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                     obj.getMaChatLieu(),
                     obj.getMaSP()
                 };
+            case "SELECTBYNAME":
+                return new Object[]{
+                    obj.getTenSanPham(),
+                    obj.getMaDanhMuc(),
+                    obj.getMaSize(),
+                    obj.getMaMau(),
+                    obj.getMaChatLieu(),
+                };
             case "SELECTWHERE":
                 return new Object[]{
                     "%" + (obj.getMaDanhMuc() == 0 ? "" : obj.getMaDanhMuc()) + "%",
@@ -119,6 +129,10 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
 
     public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception {
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", sp));
+    }
+    
+    public ArrayList<SanPham> selectByNameSizeColor(SanPham sp) throws Exception {
+        return selectByquery("SELECTBYNAME", this.getParams("SELECTBYNAME", sp));
     }
 
     public static ArrayList<String> ListSp_NoKhuyenMai(boolean boo) {

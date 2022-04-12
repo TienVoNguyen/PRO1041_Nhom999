@@ -67,6 +67,8 @@ public class DatHangFrm extends javax.swing.JDialog {
             } catch (Exception ex) {
                 Logger.getLogger(ThanhToanFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            btnSuDung.setEnabled(false);
         }
         this.txtTienHang.setText(df.format(hd.getThanhTien()));
         this.txtTienHang.setToolTipText(hd.getThanhTien() + "");
