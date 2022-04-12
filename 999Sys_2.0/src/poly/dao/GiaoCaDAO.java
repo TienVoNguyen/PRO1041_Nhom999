@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import poly.entity.GiaoCa;
+import poly.entity.TrangThaiGiaoCa;
 import poly.helper.Auth;
 import poly.helper.XDate;
 import poly.helper.XJDBC;
@@ -47,7 +48,7 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                 return "SELECT MAGIAOCA, MANVGIAOCA, MANVNHANCA, GIONHANCA, "
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
                         + "dbo.FNDTC(MANVGIAOCA) AS DOANHTHUCA, "
-                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MANVGIAOCA LIKE ? AND MATT = 2"
+                        + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA WHERE MANVGIAOCA LIKE ? AND (MATT = 2 OR MATT = 3)"
                         + " ORDER BY GIONHANCA DESC";
 
             case "SELECTALL":
@@ -61,7 +62,7 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                         + "GIOGIAOCA, TIENCOSO, TIENPHATSINH, "
                         + "DOANHTHUCA, "
                         + " TONGTIEN, GHICHUGIAO, GHICHUNHAN, MATT FROM GIAOCA "
-                        + "WHERE MATT = 2 AND MANVNHANCA LIKE ?";
+                        + "WHERE MATT = 3 AND MANVNHANCA LIKE ?";
 
             case "UPDATENC":
                 return "UPDATE GIAOCA SET "
@@ -69,6 +70,9 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
                         + " WHERE MAGIAOCA = ?";
             case "INSERTAFTERNC":
                 return "INSERT INTO GIAOCA (MANVGIAOCA, TIENCOSO) VALUES (?,?)";
+
+            case "TTGiaoCa":
+                return "SELECT * FROM TTGIAOCA";
 
             case "SELECTGIAOCA":
                 return "SELECT 'CA' + CAST(MAGIAOCA AS VARCHAR) as MAGIAOCA, TK.HOTEN NHANVIENGC, IIF(TK1.HOTEN IS NULL, N'Chưa có', TK1.HOTEN) NHANVIENNC, CONVERT(VARCHAR,GIONHANCA) as GIONHANCA, IIF(GIOGIAOCA IS NULL, N'Chưa giao', CONVERT(VARCHAR,GIOGIAOCA)) as GIOGIAOCA, TIENCOSO, TIENPHATSINH, DOANHTHUCA, TONGTIEN, IIF(GHICHUGIAO IS NULL, N'Chưa có', GHICHUGIAO) GHICHUGIAO, IIF(GHICHUNHAN IS NULL, N'Chưa có', GHICHUNHAN) GHICHUNHAN, TTGC.TENTT \n"
@@ -149,6 +153,84 @@ public class GiaoCaDAO extends BaseDao<GiaoCa, Object> {
     public List<Object[]> selectGiaoCa() throws Exception {
         List<Object[]> lst = new ArrayList<>();
         ResultSet rs = XJDBC.query(getQuery("SELECTGIAOCA"));
+        while (rs.next()) {
+            String tienCS = df.format(rs.getDouble("TIENCOSO"));
+            String tienPS = df.format(rs.getDouble("TIENPHATSINH"));
+            String doanhThu = df.format(rs.getDouble("DOANHTHUCA"));
+            String tongTien = df.format(rs.getDouble("TONGTIEN"));
+            String gioNC = XDate.toString(XDate.toDate(rs.getString("GIONHANCA"), "MMMM d yyyy hh:mmaa"), "hh:mm aa dd/MM/yyyy");
+            String gioGC = "Chưa giao";
+            if (!rs.getString("GIOGIAOCA").equals("Chưa giao")) {
+                gioGC = XDate.toString(XDate.toDate(rs.getString("GIOGIAOCA"), "MMMM d yyyy hh:mmaa"), "hh:mm aa dd/MM/yyyy");
+            }
+            lst.add(new Object[]{
+                rs.getString("MAGIAOCA"),
+                rs.getString("NHANVIENGC"),
+                rs.getString("NHANVIENNC"),
+                gioNC,
+                gioGC,
+                tienCS,
+                tienPS,
+                doanhThu,
+                tongTien,
+                rs.getString("GHICHUGIAO"),
+                rs.getString("GHICHUNHAN"),
+                rs.getString("TENTT")
+
+            });
+        }
+        return lst;
+    }
+    
+    public List<TrangThaiGiaoCa> selectTTGiaoCa() throws Exception {
+        List<TrangThaiGiaoCa> lst = new ArrayList<>();
+        ResultSet rs = XJDBC.query(getQuery("TTGiaoCa"));
+        while (rs.next()) {
+            TrangThaiGiaoCa ttGC = new TrangThaiGiaoCa();
+            ttGC.setMaTT(rs.getInt("MATT"));
+            ttGC.setTenTT(rs.getString("TENTT"));
+            lst.add(ttGC);
+        }
+        return lst;
+    }
+    
+    public List<Object[]> timKiemCBB(String maNVGC, String maNVNC, int maTT) throws Exception {
+        List<Object[]> lst = new ArrayList<>();
+        String sql = "{CALL SP_TIMKIEMGIAOCA(?, ?, ?)}";
+        ResultSet rs = XJDBC.query(sql, maNVGC, maNVNC, maTT);
+        while (rs.next()) {
+            String tienCS = df.format(rs.getDouble("TIENCOSO"));
+            String tienPS = df.format(rs.getDouble("TIENPHATSINH"));
+            String doanhThu = df.format(rs.getDouble("DOANHTHUCA"));
+            String tongTien = df.format(rs.getDouble("TONGTIEN"));
+            String gioNC = XDate.toString(XDate.toDate(rs.getString("GIONHANCA"), "MMMM d yyyy hh:mmaa"), "hh:mm aa dd/MM/yyyy");
+            String gioGC = "Chưa giao";
+            if (!rs.getString("GIOGIAOCA").equals("Chưa giao")) {
+                gioGC = XDate.toString(XDate.toDate(rs.getString("GIOGIAOCA"), "MMMM d yyyy hh:mmaa"), "hh:mm aa dd/MM/yyyy");
+            }
+            lst.add(new Object[]{
+                rs.getString("MAGIAOCA"),
+                rs.getString("NHANVIENGC"),
+                rs.getString("NHANVIENNC"),
+                gioNC,
+                gioGC,
+                tienCS,
+                tienPS,
+                doanhThu,
+                tongTien,
+                rs.getString("GHICHUGIAO"),
+                rs.getString("GHICHUNHAN"),
+                rs.getString("TENTT")
+
+            });
+        }
+        return lst;
+    }
+
+    public List<Object[]> timKiemCBB(String maNVGC, String maNVNC) throws Exception {
+        List<Object[]> lst = new ArrayList<>();
+        String sql = "{CALL SP_TIMKIEMGIAOCA(?, ?, null)}";
+        ResultSet rs = XJDBC.query(sql, maNVGC, maNVNC);
         while (rs.next()) {
             String tienCS = df.format(rs.getDouble("TIENCOSO"));
             String tienPS = df.format(rs.getDouble("TIENPHATSINH"));

@@ -7,8 +7,11 @@ package poly.newgui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -25,6 +28,7 @@ import poly.entity.KhachHang;
 import poly.entity.SanPham;
 import poly.helper.CustomTabbedPaneUI;
 import poly.helper.Messeger;
+import poly.helper.XDate;
 import poly.helper.XInternal;
 
 /**
@@ -52,6 +56,9 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDangGH;
     DefaultTableModel dtmChiTietHoaDon;
     NewMainFrm jFrame;
+    
+    Locale localeVN = new Locale("vi", "VN");
+    NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
 
     /**
      * Creates new form BanHangFrm
@@ -102,7 +109,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         pnlHoaDonDangGH = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHDDangGiaoHang = new javax.swing.JTable();
-        jPanel13 = new javax.swing.JPanel();
 
         pnlMain.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(51, 51, 51)));
         pnlMain.setLayout(new java.awt.BorderLayout());
@@ -147,7 +153,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
         pnlCTHD.add(jPanel10, java.awt.BorderLayout.PAGE_END);
 
-        tblHDChiTiet.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tblHDChiTiet.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tblHDChiTiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -166,6 +172,12 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         });
         tblHDChiTiet.setRowHeight(40);
         jScrollPane1.setViewportView(tblHDChiTiet);
+        if (tblHDChiTiet.getColumnModel().getColumnCount() > 0) {
+            tblHDChiTiet.getColumnModel().getColumn(1).setMinWidth(240);
+            tblHDChiTiet.getColumnModel().getColumn(1).setPreferredWidth(240);
+            tblHDChiTiet.getColumnModel().getColumn(2).setMinWidth(60);
+            tblHDChiTiet.getColumnModel().getColumn(2).setPreferredWidth(60);
+        }
 
         pnlCTHD.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -282,20 +294,20 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
         pnlHoaDonChoGH.setLayout(new java.awt.BorderLayout());
 
-        tblHDChoGiaoHang.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        tblHDChoGiaoHang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblHDChoGiaoHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Giao Hàng", "Mã Hóa Đơn", "Tên Khách Hàng", "Số Điện Thoại", "Địa Chỉ", "Tiền ship", "Trạng thái"
+                "Mã Giao Hàng", "Mã Hóa Đơn", "Tên Khách Hàng", "Số Điện Thoại", "Địa Chỉ", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -309,6 +321,18 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(tblHDChoGiaoHang);
+        if (tblHDChoGiaoHang.getColumnModel().getColumnCount() > 0) {
+            tblHDChoGiaoHang.getColumnModel().getColumn(0).setMinWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(0).setPreferredWidth(95);
+            tblHDChoGiaoHang.getColumnModel().getColumn(1).setMinWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(1).setMaxWidth(90);
+            tblHDChoGiaoHang.getColumnModel().getColumn(2).setMinWidth(200);
+            tblHDChoGiaoHang.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblHDChoGiaoHang.getColumnModel().getColumn(5).setMinWidth(140);
+            tblHDChoGiaoHang.getColumnModel().getColumn(5).setPreferredWidth(140);
+            tblHDChoGiaoHang.getColumnModel().getColumn(5).setMaxWidth(140);
+        }
 
         pnlHoaDonChoGH.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -317,20 +341,20 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         pnlHoaDonDangGH.setBackground(new java.awt.Color(0, 128, 128));
         pnlHoaDonDangGH.setLayout(new java.awt.BorderLayout());
 
-        tblHDDangGiaoHang.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        tblHDDangGiaoHang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblHDDangGiaoHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Giao Hàng", "Mã Hóa Đơn", "Tên Khách Hàng", "Số Điện Thoại", "Địa Chỉ", "Ngày Giao Hàng", "Tiền ship", "Trạng thái"
+                "Mã Giao Hàng", "Mã Hóa Đơn", "Tên Khách Hàng", "Số Điện Thoại", "Địa Chỉ", "Ngày Giao Hàng", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -344,6 +368,12 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane4.setViewportView(tblHDDangGiaoHang);
+        if (tblHDDangGiaoHang.getColumnModel().getColumnCount() > 0) {
+            tblHDDangGiaoHang.getColumnModel().getColumn(2).setMinWidth(200);
+            tblHDDangGiaoHang.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblHDDangGiaoHang.getColumnModel().getColumn(5).setMinWidth(100);
+            tblHDDangGiaoHang.getColumnModel().getColumn(5).setPreferredWidth(120);
+        }
 
         pnlHoaDonDangGH.add(jScrollPane4, java.awt.BorderLayout.CENTER);
 
@@ -352,19 +382,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         pnlTTHD.add(pnlTableCard, java.awt.BorderLayout.CENTER);
 
         jPanel9.add(pnlTTHD, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1333, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel13, java.awt.BorderLayout.PAGE_END);
 
         pnlGiaoHang.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -444,7 +461,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel9;
@@ -576,7 +592,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getTenKhachHang(),
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
-                    gh.getTienShip(),
+//                    df.format(gh.getTienShip()),
                     "Chờ giao hàng"
                 });
             }
@@ -598,8 +614,8 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getTenKhachHang(),
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
-                    gh.getNgayGiaoHang(),
-                    gh.getTienShip(),
+                    XDate.toString(gh.getNgayGiaoHang(), "dd/MM/yyyy hh:mm:ss a"),
+//                    df.format(gh.getTienShip()),
                     "Đang giao hàng"
                 });
             }
@@ -628,14 +644,13 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         try {
             list = this.daoCTHD.selectCTHD(maHD);
             for (CTHoaDon c : list) {
-
                 SanPham s = this.daoSP.selectById(c.getMaSP());
                 dtmChiTietHoaDon.addRow(new Object[]{
                     c.getMaSP(),
                     s.getTenSanPham(),
                     c.getSoLuong(),
-                    s.getGiaBan(),
-                    c.getSoLuong() * s.getGiaBan()
+                    df.format(c.getGiaBan()),
+                    df.format(c.getSoLuong() * c.getGiaBan())
                 });
             }
         } catch (Exception ex) {
@@ -670,6 +685,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             hd.setMaTT(5);
             gh = this.daoGH.selectById(maGH);
             gh.setMaTrangThai(5);
+            gh.setNgayGiaoHang(XDate.toDate(XDate.toString(new Date(), "dd/MM/yyyy hh:mm:ss a"), "dd/MM/yyyy hh:mm:ss a"));
             if (Messeger.confirm(this, "Xác nhận Giao Hàng!")) {
                 this.daoHD.update(hd);
                 this.daoGH.update(gh);

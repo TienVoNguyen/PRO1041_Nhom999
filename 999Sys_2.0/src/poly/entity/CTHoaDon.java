@@ -13,18 +13,28 @@ public class CTHoaDon {
     private int maHD,maSP,soLuong;
     private String ghiChu;
     private boolean trangThai;
+    private double giaBan;
 
     public CTHoaDon() {
     }
 
-    public CTHoaDon(int maHD, int maSP, int soLuong, String ghiChu, boolean trangThai) {
+    public CTHoaDon(int maHD, int maSP, int soLuong, String ghiChu, boolean trangThai, double giaBan) {
         this.maHD = maHD;
         this.maSP = maSP;
         this.soLuong = soLuong;
         this.ghiChu = ghiChu;
         this.trangThai = trangThai;
+        this.giaBan = giaBan;
     }
 
+    public double getGiaBan() {
+        return giaBan;
+    }
+
+    public void setGiaBan(double giaBan) {
+        this.giaBan = giaBan;
+    }
+    
     public int getMaHD() {
         return maHD;
     }

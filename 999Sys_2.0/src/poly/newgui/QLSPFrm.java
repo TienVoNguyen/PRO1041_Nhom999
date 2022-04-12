@@ -12,6 +12,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
@@ -69,7 +71,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     private SanPhamDao daoSP;
 
     private Thread loadData;
-    
+    boolean isNotNewData = true;
+
     NewMainFrm mainFrm;
 
     /**
@@ -1166,10 +1169,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String danhMuc, mau, Size, ChatLieu, key;
-        danhMuc = String.valueOf(cbbTimDanhMuc.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimDanhMuc.getSelectedItem());
-        mau = String.valueOf(cbbTimMau.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimMau.getSelectedItem());
-        Size = String.valueOf(cbbTimSize.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimSize.getSelectedItem());
-        ChatLieu = String.valueOf(cbbTimChatLieu.getSelectedItem()).equalsIgnoreCase("ALL") ? "" : String.valueOf(cbbTimChatLieu.getSelectedItem());
+        danhMuc = String.valueOf(cbbTimDanhMuc.getSelectedItem()).equalsIgnoreCase("ALL DANH MỤC") ? "" : String.valueOf(cbbTimDanhMuc.getSelectedItem());
+        mau = String.valueOf(cbbTimMau.getSelectedItem()).equalsIgnoreCase("ALL MÀU") ? "" : String.valueOf(cbbTimMau.getSelectedItem());
+        Size = String.valueOf(cbbTimSize.getSelectedItem()).equalsIgnoreCase("ALL SIZE") ? "" : String.valueOf(cbbTimSize.getSelectedItem());
+        ChatLieu = String.valueOf(cbbTimChatLieu.getSelectedItem()).equalsIgnoreCase("ALL CHẤT LIỆU") ? "" : String.valueOf(cbbTimChatLieu.getSelectedItem());
         key = this.txtTimKiem.getText();
 
         Object[] objKey = {key, "%" + key + "%", "%" + key + "%", "%" + danhMuc + "%", "%" + mau + "%", "%" + Size + "%", "%" + ChatLieu + "%"};
@@ -1384,7 +1387,11 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void loadDataJDialogWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loadDataJDialogWindowClosed
         this.loadData.stop();
-        Messeger.alert(null, "Thêm dữ liệu mới thành công");
+        if (isNotNewData) {
+            Messeger.alert(null, "Không tìm thấy sản phẩm mới nào trong bản excel này!");
+        } else {
+            Messeger.alert(null, "Thêm dữ liệu mới thành công");
+        }
         loadDataToTable(new Object[]{"%%", "%%", "%%", "%%", "%%", "%%", "%%"});
     }//GEN-LAST:event_loadDataJDialogWindowClosed
 
@@ -1402,15 +1409,22 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                     tblSanPham.setRowSelectionInterval(i, i);
                     mouseClicked();
                     clearImage();
-                    insertSP();
                     pgbLoadingData.setValue(i);
+
                     try {
                         Thread.sleep(30);
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                         Messeger.showErrorDialog(null, ex.getMessage(), "Error");
                     }
+                    if (checkTrungTenSP()) {
+                        continue;
+                    } else {
+                        insertSP();
+                        isNotNewData = false;
+                    }
                 }
+
             }
         });
         loadData.start();
@@ -1651,7 +1665,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<ChatLieu> list = new ArrayList<>();
         try {
             list = this.daoCL.selectAll();
-            this.cbbTimChatLieu.addItem("ALL");
+            this.cbbTimChatLieu.addItem("ALL CHẤT LIỆU");
             for (ChatLieu cl : list) {
                 this.dCBCL.addElement(cl);
                 this.dCBTimCL.addElement(cl);
@@ -1668,7 +1682,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<DanhMuc> list = new ArrayList<>();
         try {
             list = this.daoDM.selectAll();
-            this.cbbTimDanhMuc.addItem("All");
+            this.cbbTimDanhMuc.addItem("All DANH MỤC");
             for (DanhMuc dm : list) {
                 this.dCBDM.addElement(dm);
                 this.dCBTimDM.addElement(dm);
@@ -1686,7 +1700,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<MauSac> list = new ArrayList<>();
         try {
             list = this.daoMauSac.selectAll();
-            this.cbbTimMau.addItem("ALL");
+            this.cbbTimMau.addItem("ALL MÀU");
             for (MauSac mauSac : list) {
                 this.dCBMS.addElement(mauSac);
                 this.dCBTimMS.addElement(mauSac);
@@ -1704,7 +1718,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         List<Size> list = new ArrayList<>();
         try {
             list = this.daoSize.selectAll();
-            this.cbbTimSize.addItem("ALL");
+            this.cbbTimSize.addItem("ALL SIZE");
             for (Size s : list) {
                 this.dCBSize.addElement(s);
                 this.dCBTimSize.addElement(s);
@@ -1866,6 +1880,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                 });
             }
         } else if (Messeger.confirm(this, "Xác nhận thêm sản phẩm này?")) {
+            if (checkTrungTenSP()) {
+                Messeger.showErrorDialog(this, "sản phẩm này đã tồn tại!", "lỗi");
+                return;
+            }
             insertSP();
             Messeger.alert(this, "Thêm thành công");
             this.loadDataToTable(new Object[]{
@@ -1917,5 +1935,17 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             lblAnh.setIcon(icon);
             lblAnh.setToolTipText(file.getName());//giữ tên hình trong tooltop
         }
+    }
+
+    private boolean checkTrungTenSP() {
+        try {
+            if (this.daoSP.selectByNameSizeColor(getForm()).size() > 0) {
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLSPFrm.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
+        }
+        return false;
     }
 }

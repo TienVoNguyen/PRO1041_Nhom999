@@ -37,6 +37,8 @@ public  class CustomDatePicker {
         // Set fonts:
         Font randomFont = new Font("Monospaced", Font.ITALIC | Font.BOLD, 20);
         Font smallerFont = new Font("Serif", Font.BOLD, 18);
+        dateSettings.setFontValidDate(randomFont);
+        dateSettings.setFontVetoedDate(randomFont);
         dateSettings.setFontMonthAndYearMenuLabels(randomFont);
         dateSettings.setFontMonthAndYearNavigationButtons(randomFont);
         dateSettings.setFontTodayLabel(randomFont);

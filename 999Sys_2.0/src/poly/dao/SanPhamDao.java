@@ -35,11 +35,13 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             case "RESTORE":
                 return "UPDATE SANPHAM SET TRANGTHAI = 1 WHERE MASP = ?";
             case "SELECTBYID":
-                return "SELECT MASP, TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP))  GIABAN, GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, TRANGTHAI, MACHATLIEU, MADVT, MAMAU, MASIZE FROM   SANPHAM WHERE (MASP = ?)";
+                return "SELECT MASP, TENSP + '  ' + SANPHAM.MASIZE + ', ' + TENMAU + ', ' + TENCHATLIEU  AS TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP)) GIABAN,GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, SANPHAM.TRANGTHAI, SANPHAM.MACHATLIEU, SANPHAM.MADVT, SANPHAM.MAMAU, SANPHAM.MASIZE  FROM CHATLIEU INNER JOIN SANPHAM ON CHATLIEU.MACHATLIEU = SANPHAM.MACHATLIEU INNER JOIN MAUSAC ON SANPHAM.MAMAU = MAUSAC.MAMAU INNER JOIN SIZE ON SANPHAM.MASIZE = SIZE.MASIZE WHERE (MASP = ?)";
+            case "SELECTBYNAME":
+                return "SELECT * FROM SANPHAM WHERE TENSP = ? AND MADM = ? AND MASIZE = ? AND MAMAU = ? AND MACHATLIEU = ?";
             case "SELECTALL":
                 return "SELECT * FROM SANPHAM";
             case "SELECTWHERE":
-                return "SELECT MASP, TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP))  GIABAN, GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, TRANGTHAI, MACHATLIEU, MADVT, MAMAU, MASIZE  FROM   SANPHAM WHERE MADM like  ? and (MASP like ? or TENSP like ?)";
+                return "SELECT MASP, TENSP + '  ' + SANPHAM.MASIZE + ', ' + TENMAU + ', ' + TENCHATLIEU  AS TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP)) GIABAN,GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, SANPHAM.TRANGTHAI, SANPHAM.MACHATLIEU, SANPHAM.MADVT, SANPHAM.MAMAU, SANPHAM.MASIZE  FROM CHATLIEU INNER JOIN SANPHAM ON CHATLIEU.MACHATLIEU = SANPHAM.MACHATLIEU INNER JOIN MAUSAC ON SANPHAM.MAMAU = MAUSAC.MAMAU INNER JOIN SIZE ON SANPHAM.MASIZE = SIZE.MASIZE WHERE MADM like  ? and (MASP like ? or TENSP like ?)";
             case "UPDATEMASP":
                 return "UPDATE SANPHAM SET SOLUONG =? WHERE MASP = ?";
         }
@@ -81,11 +83,19 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                     obj.getMaChatLieu(),
                     obj.getMaSP()
                 };
+            case "SELECTBYNAME":
+                return new Object[]{
+                    obj.getTenSanPham(),
+                    obj.getMaDanhMuc(),
+                    obj.getMaSize(),
+                    obj.getMaMau(),
+                    obj.getMaChatLieu(),
+                };
             case "SELECTWHERE":
                 return new Object[]{
-                    "%" + (obj.getMaDanhMuc() == 0 ? "":obj.getMaDanhMuc()) + "%",
-                    "%" + obj.getTenSanPham()+ "%",
-                    "%" + obj.getTenSanPham()+ "%"
+                    "%" + (obj.getMaDanhMuc() == 0 ? "" : obj.getMaDanhMuc()) + "%",
+                    "%" + obj.getTenSanPham() + "%",
+                    "%" + obj.getTenSanPham() + "%"
                 };
             case "UPDATEMASP":
                 return new Object[]{
@@ -120,6 +130,10 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
     public ArrayList<SanPham> selectWhere(SanPham sp) throws Exception {
         return selectByquery("SELECTWHERE", this.getParams("SELECTWHERE", sp));
     }
+    
+    public ArrayList<SanPham> selectByNameSizeColor(SanPham sp) throws Exception {
+        return selectByquery("SELECTBYNAME", this.getParams("SELECTBYNAME", sp));
+    }
 
     public static ArrayList<String> ListSp_NoKhuyenMai(boolean boo) {
         String sql = "SELECT MASP FROM  SANPHAM\n"
@@ -134,29 +148,29 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             return list;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
-        }}
+        }
+    }
 
-    
     public boolean updateSP(SanPham e) throws Exception {
         return XJDBC.update(this.getQuery("UPDATEMASP"), this.getParams("UPDATEMASP", e)) > 0;
     }
-    
+
     public boolean restore(int key) throws Exception {
         return XJDBC.update(this.getQuery("RESTORE"), key) > 0;
     }
 
-    public List<Object[]> getListSanPhamByListKey(Object[] listKey){
+    public List<Object[]> getListSanPhamByListKey(Object[] listKey) {
         String sql = "{CALL sp_timkiem(?,?,?,?,?,?,?)}";
         List<Object[]> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql, listKey);
             while (rs.next()) {
                 String pathImage = rs.getString(13);
-                if (pathImage == null){
+                if (pathImage == null) {
                     pathImage = "noImage.jpg";
                 }
                 JLabel ImgLabel = new JLabel();
-                ImageIcon icon = new ImageIcon(".\\AnhSP\\"+pathImage);
+                ImageIcon icon = new ImageIcon(".\\AnhSP\\" + pathImage);
                 Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
                 ImgLabel.setIcon(new ImageIcon(img));
                 ImgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -182,19 +196,19 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             throw new RuntimeException(ex);
         }
     }
-    
-    public List<Object[]> getListSanPhamDeleted(){
+
+    public List<Object[]> getListSanPhamDeleted() {
         String sql = "{CALL sp_timkiemSPdaxoa()}";
         List<Object[]> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql);
             while (rs.next()) {
                 String pathImage = rs.getString(13);
-                if (pathImage == null){
+                if (pathImage == null) {
                     pathImage = "noImage.jpg";
                 }
                 JLabel ImgLabel = new JLabel();
-                ImageIcon icon = new ImageIcon(".\\AnhSP\\"+pathImage);
+                ImageIcon icon = new ImageIcon(".\\AnhSP\\" + pathImage);
                 Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
                 ImgLabel.setIcon(new ImageIcon(img));
                 ImgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -220,9 +234,10 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             throw new RuntimeException(ex);
         }
     }
-    public SanPham getSanPhamByMaVach(String MaVach){
-    SanPham sp = new SanPham();
-    String sql = "select * from SANPHAM where TRANGTHAI = 1 and MAVACH = ? ";
+
+    public SanPham getSanPhamByMaVach(String MaVach) {
+        SanPham sp = new SanPham();
+        String sql = "select * from SANPHAM where TRANGTHAI = 1 and MAVACH = ? ";
         try {
             ResultSet rs = XJDBC.query(sql, MaVach);
             if (rs.next()) {

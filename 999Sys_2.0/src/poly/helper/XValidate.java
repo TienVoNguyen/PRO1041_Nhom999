@@ -102,6 +102,29 @@ public class XValidate {
         txtValue.setBackground(Color.white);
         return false;
     }
+    
+    public static boolean isNotVNName(JTextField txtValue) {
+        String name = String.valueOf(txtValue.getText());
+        String pattern = "^[\\p{L} .'-]+$";
+        if (!name.matches(pattern)) {
+            txtValue.setBackground(Color.YELLOW);
+            txtValue.requestFocus();
+            return true;
+        }
+        txtValue.setBackground(Color.white);
+        return false;
+    }
+    public static boolean isNotPhoneNumber(JTextField txtValue) {
+        String phoneNumber = String.valueOf(txtValue.getText());
+        String pattern = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+        if (!phoneNumber.matches(pattern)) {
+            txtValue.setBackground(Color.YELLOW);
+            txtValue.requestFocus();
+            return true;
+        }
+        txtValue.setBackground(Color.white);
+        return false;
+    }
 
     public static boolean focus_Errol(boolean boo, JTextField txtValue) {
         if (!boo) {
