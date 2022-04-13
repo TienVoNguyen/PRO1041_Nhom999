@@ -41,6 +41,7 @@ import poly.helper.ImageHelper;
 import poly.helper.Messeger;
 import poly.helper.XDate;
 import poly.helper.XExcel;
+import poly.helper.XHoaDon;
 import poly.helper.XInternal;
 import poly.helper.XValidate;
 
@@ -1440,6 +1441,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void btnInMaVachSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInMaVachSPActionPerformed
         // TODO add your handling code here:
+        XHoaDon.printBarCode();
     }//GEN-LAST:event_btnInMaVachSPActionPerformed
 
 
