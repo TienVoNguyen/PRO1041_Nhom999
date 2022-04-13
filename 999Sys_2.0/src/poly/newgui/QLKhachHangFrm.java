@@ -272,17 +272,17 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã KH", "Họ Tên", "Địa Chỉ", "Giới Tính", "Email", "SDT", "Ngày Sinh", "Ngày Tạo", "Tích Điểm"
+                "Mã KH", "Họ Tên", "Địa Chỉ", "Giới Tính", "Email", "SDT", "Ngày Sinh", "Ngày Tạo", "Tích Điểm", "Điểm EXP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1255,7 +1255,10 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                                 khachHang.getSDT(),
                                 XDate.toString(khachHang.getNgaySinh(), "dd/MM/yyyy"),
                                 XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
-                                khachHang.getTichDiem(),});
+                                khachHang.getTichDiem(),
+                                khachHang.getDiemEXP()
+                                
+                            });
                         }
                     } else if (trangThaiKH == 0) {  // 0 khách hàng k tương tác
                         if (!khachHang.isTrangThai()) {
@@ -1268,7 +1271,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                                 khachHang.getSDT(),
                                 XDate.toString(khachHang.getNgaySinh(), "dd/MM/yyyy"),
                                 XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
-                                khachHang.getTichDiem(),});
+                                khachHang.getTichDiem(),
+                                khachHang.getDiemEXP()});
                         }
                     }
                 }

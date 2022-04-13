@@ -19,7 +19,7 @@ public class test extends javax.swing.JFrame {
     QLGiaoCaFrm frmGiaoCa;
     ThongKeFrm frmThongKe;
     QLSPFrm qlSPFrm;
-
+    QLKhachHangFrm qlKH;
     /**
      * Creates new form test
      */
@@ -45,12 +45,20 @@ public class test extends javax.swing.JFrame {
 //            frmThongKe.setVisible(true);
 //        }
 //          Chạy QLSP
-        if (qlSPFrm == null || qlSPFrm.isClosed()) {
-            qlSPFrm = new QLSPFrm(null);
-            jDesktopPane1.add(qlSPFrm);
-            qlSPFrm.setVisible(true);
+//        if (qlSPFrm == null || qlSPFrm.isClosed()) {
+//            qlSPFrm = new QLSPFrm(null);
+//            jDesktopPane1.add(qlSPFrm);
+//            qlSPFrm.setVisible(true);
+//        } else {
+//            qlSPFrm.setVisible(true);
+//        }
+        //          Chạy QLKH
+        if (qlKH == null || qlKH.isClosed()) {
+            qlKH = new QLKhachHangFrm();
+            jDesktopPane1.add(qlKH);
+            qlKH.setVisible(true);
         } else {
-            qlSPFrm.setVisible(true);
+            qlKH.setVisible(true);
         }
     }
 
