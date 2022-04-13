@@ -33,6 +33,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
     private VaiTroDao dao_vt;
     private DefaultTableModel modelTable_nv;
     private DefaultTableModel modelTable_vt;
+    int index =0;
 
     /**
      * Creates new form QLTaiKhoanFrm
@@ -293,18 +294,38 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/firtsicon.png"))); // NOI18N
         btnFirst.setBackground(new java.awt.Color(255, 255, 255));
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnFirst);
 
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/preicon.png"))); // NOI18N
         btnPrev.setBackground(new java.awt.Color(255, 255, 255));
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnPrev);
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/nexticon.png"))); // NOI18N
         btnNext.setBackground(new java.awt.Color(255, 255, 255));
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnNext);
 
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/lasticon.png"))); // NOI18N
         btnLast.setBackground(new java.awt.Color(255, 255, 255));
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnLast);
 
         jpnButton.add(jPanel2);
@@ -386,17 +407,17 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel52.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 35, 0, 0, new java.awt.Color(255, 255, 255)));
         jPanel52.setLayout(new java.awt.GridLayout(1, 4));
 
+        radioql.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(radioql);
+        radioql.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radioql.setSelected(true);
         radioql.setText("Quản lý");
-        radioql.setBackground(new java.awt.Color(255, 255, 255));
-        radioql.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radioql.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel52.add(radioql);
 
         buttonGroup2.add(radionv);
-        radionv.setText("Nhân viên");
         radionv.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        radionv.setText("Nhân viên");
         radionv.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel52.add(radionv);
 
@@ -652,26 +673,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         if (viTri == -1) {
             return;
         }
-        txtMaNV.setText(tblnhanvien.getValueAt(viTri, 0).toString());
-        txtHoTen.setText(tblnhanvien.getValueAt(viTri, 1).toString());
-        txtMatKhau.setText(tblnhanvien.getValueAt(viTri, 2).toString());
-        txtngaysinh.setText(tblnhanvien.getValueAt(viTri, 3).toString());
-        txtSĐT.setText(tblnhanvien.getValueAt(viTri, 4).toString());
-        if (tblnhanvien.getValueAt(viTri, 5).toString().equalsIgnoreCase("Nam")) {
-            rdoNam.setSelected(true);
-        } else {
-            rdoNu.setSelected(true);
-        }
-        txtDiaChi.setText(tblnhanvien.getValueAt(viTri, 6).toString());
-        txtEmail.setText(tblnhanvien.getValueAt(viTri, 7).toString());
-        txtngaytao.setText(tblnhanvien.getValueAt(viTri, 8).toString());
-        if (tblnhanvien.getValueAt(viTri, 9).toString().equals("Quản Lý")) {
-            radioql.setSelected(true);
-        } else {
-            radionv.setSelected(true);
-        }
-        lbanh.setToolTipText(tblnhanvien.getValueAt(viTri, 10).toString());
-        lbanh.setIcon(ImageHelper.read(String.valueOf(tblnhanvien.getValueAt(viTri, 10))));
+        SettextTable(viTri);
     }//GEN-LAST:event_tblnhanvienMouseClicked
 
     private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
@@ -801,6 +803,68 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tblvtMouseClicked
 
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        if (tblnhanvien.getRowCount() == 0) {
+            return;
+        }
+        SettextTable(0);
+        index = 0;
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+       if (tblnhanvien.getRowCount() == 0) {
+            return;
+        }
+        SettextTable(tblnhanvien.getRowCount()-1);
+        index = tblnhanvien.getRowCount()-1;
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        if (tblnhanvien.getRowCount() == 0) {
+            return;
+        }
+        if (index == 0) {
+            index = tblnhanvien.getRowCount();
+        }
+        index--;
+        SettextTable(index);
+        
+    }//GEN-LAST:event_btnPrevActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        if (tblnhanvien.getRowCount() == 0) {
+            return;
+        }
+        if (index == tblnhanvien.getRowCount() - 1) {
+            index = -1;
+        }
+        index++;
+        SettextTable(index);
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void SettextTable(int viTri){
+        txtMaNV.setText(tblnhanvien.getValueAt(viTri, 0).toString());
+        txtHoTen.setText(tblnhanvien.getValueAt(viTri, 1).toString());
+        txtMatKhau.setText(tblnhanvien.getValueAt(viTri, 2).toString());
+        txtngaysinh.setText(tblnhanvien.getValueAt(viTri, 3).toString());
+        txtSĐT.setText(tblnhanvien.getValueAt(viTri, 4).toString());
+        if (tblnhanvien.getValueAt(viTri, 5).toString().equalsIgnoreCase("Nam")) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+        }
+        txtDiaChi.setText(tblnhanvien.getValueAt(viTri, 6).toString());
+        txtEmail.setText(tblnhanvien.getValueAt(viTri, 7).toString());
+        txtngaytao.setText(tblnhanvien.getValueAt(viTri, 8).toString());
+        if (tblnhanvien.getValueAt(viTri, 9).toString().equals("Quản Lý")) {
+            radioql.setSelected(true);
+        } else {
+            radionv.setSelected(true);
+        }
+        lbanh.setToolTipText(tblnhanvien.getValueAt(viTri, 10).toString());
+        lbanh.setIcon(ImageHelper.read(String.valueOf(tblnhanvien.getValueAt(viTri, 10))));
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
