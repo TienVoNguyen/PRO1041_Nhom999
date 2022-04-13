@@ -134,7 +134,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return vaiTro == 101? "Trưởng phòng: " + hoTen : "Nhân viên: " + hoTen;
+        return vaiTro == 101? "Quản lý: " + hoTen : "Nhân viên: " + hoTen;
     }
     
     

@@ -420,7 +420,7 @@ public class ThanhToanFrm extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSuDungActionPerformed
 
     private void txtApDungVouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApDungVouActionPerformed
-        // TODO add your handling code here:
+        Messeger.alert(parent, "Đang update");
     }//GEN-LAST:event_txtApDungVouActionPerformed
 
     /**

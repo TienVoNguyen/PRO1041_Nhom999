@@ -12,15 +12,24 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import poly.dao.SanPhamDao;
 import poly.entity.SanPham;
+import poly.helper.Messeger;
 
 public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
+    Locale localeVN = new Locale("vi", "VN");
+    NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
     private WebcamPanel panel = null;
     private Webcam webcam = null;
     private static final long serialVersionUID = 6441489157408381878L;
@@ -28,7 +37,9 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
     public static SanPham sp;
     SanPhamDao sp_dao;
     JTable tblHoaDon;
-    public Code_Reader(JTable tblHoaDon) {
+    HoaDonFrm hdFrm;
+
+    public Code_Reader(JTable tblHoaDon, HoaDonFrm hdFrm) {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initWebcam();
@@ -36,6 +47,7 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
         sp_dao = new SanPhamDao();
         sp = new SanPham();
         this.tblHoaDon = tblHoaDon;
+        this.hdFrm = hdFrm;
     }
 
     @SuppressWarnings("unchecked")
@@ -102,7 +114,7 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(() -> {
-//            new Code_Reader().setVisible(true);
+//            new Code_Reader(new JTable(), new HoaDonFrm(parent, null)).setVisible(true);
 //        });
 //    }
 
@@ -148,14 +160,74 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
             }
 
             if (result != null) {
-               sp = sp_dao.getSanPhamByMaVach(result.getText());
+                sp = sp_dao.getSanPhamByMaVach(result.getText());
                 if (sp != null & sp.getMaSP() != 0) {
-                    
-                    this.dispose();
-                    webcam.close();
+                    hdFrm.setSlGoc(sp.getSoLuong());
+                    int maSP = sp.getMaSP();
+                    if (checkNhapSL(maSP)) return;
                 }
             }
         } while (true);
+    }
+
+    public boolean checkNhapSL(int maSP) throws NumberFormatException {
+        if (!hdFrm.nhapSl()) {
+            boolean c = true;
+            for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+                int masphd = Integer.parseInt(tblHoaDon.getValueAt(i, 8) + "");
+                int sl = Integer.parseInt(tblHoaDon.getValueAt(i, 2) + "");
+                double dg = df.parse(tblHoaDon.getValueAt(i, 5) + "", new ParsePosition(0)).doubleValue();
+                if (maSP == masphd) {
+                    int soLuongSP = hdFrm.getSlGoc() - hdFrm.getSlNhap();
+                    int soLuongCTHD = hdFrm.getSlNhap() + sl;
+                    tblHoaDon.setValueAt(soLuongCTHD, i, 2);
+                    tblHoaDon.setValueAt(df.format(soLuongCTHD * dg), i, 7);
+                    hdFrm.tongTien();
+                    hdFrm.suaCTHD(maSP, soLuongSP, soLuongCTHD, 0);
+                    hdFrm.reloadTableSP();
+                    this.dispose();
+                    webcam.close();
+                    return true;
+                }
+            }
+            double thanhTien = sp.getGiaBan() * hdFrm.getSlNhap();
+            Object[] data = null;
+            try {
+                data = new Object[]{
+                    null,
+                    hdFrm.daoSP.selectById(maSP).getTenSanPham(),
+                    hdFrm.getSlNhap(),
+                    null,
+                    null,
+                    df.format(sp.getGiaBan()),
+                    null,
+                    df.format(thanhTien),
+                    maSP
+                };
+            } catch (Exception ex) {
+                Logger.getLogger(HoaDonFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            hdFrm.dtmHoaDon.addRow(data);
+            SanPham sp = new SanPham();
+            sp.setMaSP(maSP);
+            sp.setSoLuong(hdFrm.getSlGoc() - hdFrm.getSlNhap());
+            try {
+                hdFrm.daoSP.updateSP(sp);
+            } catch (Exception ex) {
+                Logger.getLogger(HoaDonFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            hdFrm.tongTien();
+            if (hdFrm.getLblHoaDon().getText().equalsIgnoreCase("Hóa đơn trống")) {
+                hdFrm.taoHoaDon();
+            }
+            hdFrm.taoHDCT(maSP, hdFrm.getSlNhap());
+            hdFrm.reloadTableSP();
+            this.dispose();
+            webcam.close();
+        } else {
+//            checkNhapSL(maSP);
+        }
+        return false;
     }
 
     @Override
