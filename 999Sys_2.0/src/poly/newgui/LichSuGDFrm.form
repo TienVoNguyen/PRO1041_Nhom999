@@ -472,7 +472,7 @@
                   <Font name="Tahoma" size="36" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; H&#xf3;a &#x110;&#x1a1;n"/>
+                <Property name="text" type="java.lang.String" value="L&#x1eca;CH S&#x1eec; GIAO D&#x1eca;CH"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[207, 30]"/>
                 </Property>
