@@ -573,7 +573,13 @@ public class NewMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniQLKMActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
-        closeAllFrm(false);
+        if (bhFrm.isVisible()) {
+            closeAllFrm(false);
+        } 
+            dpMain.add(bhFrm);
+            closeAllFrm(false);
+        
+        lblTenNV.setText("Chưa đăng nhập");
         new LoginFrm(this, true).setVisible(true);
         phanQuyen();
         new LoadingFrm(this, true, bhFrm.getPnlTabs()).setVisible(true);
@@ -727,23 +733,24 @@ public class NewMainFrm extends javax.swing.JFrame {
         new LoginFrm(this, true).setVisible(true);
         phanQuyen();
         new LoadingFrm(this, true, bhFrm.getPnlTabs()).setVisible(true);
-        
+
         startDongHo();
         mouseHover();
-        
+
     }
 
     private void closeAllFrm(boolean chon) {
         // TODO add your handling code here:
-
-        for (JInternalFrame frame : dpMain.getAllFrames()) {
-            if (chon) {
-            if (frame == bhFrm) {
-                dpMain.remove(frame);
-            } else {
-                frame.dispose();
+        if (chon) {
+            for (JInternalFrame frame : dpMain.getAllFrames()) {
+                if (frame == bhFrm) {
+                    dpMain.remove(frame);
+                } else {
+                    frame.dispose();
+                }
             }
-            } else {
+        } else {
+            for (JInternalFrame frame : dpMain.getAllFrames()) {
                 frame.dispose();
             }
         }
@@ -853,12 +860,18 @@ public class NewMainFrm extends javax.swing.JFrame {
             btnQLGiaoCa.setVisible(false);
             btnQLTaiKhoan.setVisible(false);
             btnThongKe.setVisible(false);
+            btnQLHoaDon.setVisible(false);
             mniThongKe.setVisible(false);
-        }else {
+            mniLichSuGD.setVisible(false);
+            mniQLGiaoCa.setVisible(false);
+        } else {
             btnQLGiaoCa.setVisible(true);
             btnQLTaiKhoan.setVisible(true);
             btnThongKe.setVisible(true);
+            btnQLHoaDon.setVisible(true);
             mniThongKe.setVisible(true);
+            mniLichSuGD.setVisible(true);
+            mniQLGiaoCa.setVisible(true);
         }
         this.setLblSoLuongDonHang();
     }
@@ -944,7 +957,7 @@ public class NewMainFrm extends javax.swing.JFrame {
             qlTaiKhoanFrm.setVisible(true);
         }
     }
-    
+
     private void openLichSuGDFrm() {
         closeAllFrm(true);
         if (lichSuGDFrm == null || lichSuGDFrm.isClosed()) {
@@ -955,7 +968,7 @@ public class NewMainFrm extends javax.swing.JFrame {
             lichSuGDFrm.setVisible(true);
         }
     }
-    
+
     private void openQLGiaoCaFrm() {
         closeAllFrm(true);
         if (qlGiaoCaFrm == null || qlGiaoCaFrm.isClosed()) {

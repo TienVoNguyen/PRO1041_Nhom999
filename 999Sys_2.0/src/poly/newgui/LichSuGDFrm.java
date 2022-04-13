@@ -266,7 +266,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jLabel11.setBackground(new java.awt.Color(255, 102, 255));
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Quản Lý Hóa Đơn");
+        jLabel11.setText("LỊCH SỬ GIAO DỊCH");
         jLabel11.setPreferredSize(new java.awt.Dimension(207, 30));
         jpnTitle.add(jLabel11, java.awt.BorderLayout.CENTER);
 
