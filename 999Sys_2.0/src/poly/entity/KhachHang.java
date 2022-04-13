@@ -12,18 +12,23 @@ import java.util.Date;
  * @author Admin
  */
 public class KhachHang {
+
     private String maKH;
-    private int maLoaiKH, tichDiem;
+    private int maLoaiKH, tichDiem, diemEXP;
     private String hoTen;
-    private Date ngaySinh,ngayTao;
+    private Date ngaySinh, ngayTao;
     private boolean gioiTinh;
-    private String email,SDT,diaChi;
+    private String email, SDT, diaChi;
     private boolean trangThai;
 
-    public KhachHang(String maKH, int maLoaiKH, int tichDiem, String hoTen, Date ngaySinh, Date ngayTao, boolean gioiTinh, String email, String SDT, String diaChi, boolean trangThai) {
+    public KhachHang() {
+    }
+
+    public KhachHang(String maKH, int maLoaiKH, int tichDiem, int diemEXP, String hoTen, Date ngaySinh, Date ngayTao, boolean gioiTinh, String email, String SDT, String diaChi, boolean trangThai) {
         this.maKH = maKH;
         this.maLoaiKH = maLoaiKH;
         this.tichDiem = tichDiem;
+        this.diemEXP = diemEXP;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.ngayTao = ngayTao;
@@ -32,9 +37,6 @@ public class KhachHang {
         this.SDT = SDT;
         this.diaChi = diaChi;
         this.trangThai = trangThai;
-    }
-
-    public KhachHang() {
     }
 
     public String getMaKH() {
@@ -53,6 +55,22 @@ public class KhachHang {
         this.maLoaiKH = maLoaiKH;
     }
 
+    public int getTichDiem() {
+        return tichDiem;
+    }
+
+    public void setTichDiem(int tichDiem) {
+        this.tichDiem = tichDiem;
+    }
+
+    public int getDiemEXP() {
+        return diemEXP;
+    }
+
+    public void setDiemEXP(int diemEXP) {
+        this.diemEXP = diemEXP;
+    }
+
     public String getHoTen() {
         return hoTen;
     }
@@ -67,6 +85,14 @@ public class KhachHang {
 
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
     public boolean isGioiTinh() {
@@ -101,14 +127,6 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public Date getNgayTao() {
-        return ngayTao;
-    }
-
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
-    }
-
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -116,12 +134,5 @@ public class KhachHang {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
-    public int getTichDiem() {
-        return tichDiem;
-    }
 
-    public void setTichDiem(int tichDiem) {
-        this.tichDiem = tichDiem;
-    }
 }
