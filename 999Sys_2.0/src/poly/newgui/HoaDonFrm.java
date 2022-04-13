@@ -348,6 +348,9 @@ public class HoaDonFrm extends javax.swing.JPanel {
         btnXoaKhachHang = new javax.swing.JButton();
         lblMaKH = new javax.swing.JLabel();
         txtMaKH = new javax.swing.JTextField();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        txtNgayThamGia = new javax.swing.JTextField();
         pnlMain = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -409,20 +412,17 @@ public class HoaDonFrm extends javax.swing.JPanel {
         jPanel23 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
-        jPanel24 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        txtNgayThamGia = new javax.swing.JTextField();
         jPanel25 = new javax.swing.JPanel();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        jPanel27 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        dpkNgaySinh = new com.github.lgooddatepicker.components.DatePicker();
         jPanel26 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel29 = new javax.swing.JPanel();
         rdoNam = new javax.swing.JRadioButton();
         rdoNu = new javax.swing.JRadioButton();
-        jPanel27 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        dpkNgaySinh = new com.github.lgooddatepicker.components.DatePicker();
         jPanel18 = new javax.swing.JPanel();
         btnMoiKH = new javax.swing.JButton();
         btnLuuKH = new javax.swing.JButton();
@@ -435,6 +435,20 @@ public class HoaDonFrm extends javax.swing.JPanel {
         lblMaKH.setPreferredSize(new java.awt.Dimension(60, 20));
 
         txtMaKH.setPreferredSize(new java.awt.Dimension(180, 18));
+
+        jPanel24.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel24.setPreferredSize(new java.awt.Dimension(163, 30));
+        jPanel24.setLayout(new java.awt.BorderLayout());
+
+        jLabel15.setText("Ngày tham gia");
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setPreferredSize(new java.awt.Dimension(120, 0));
+        jPanel24.add(jLabel15, java.awt.BorderLayout.WEST);
+
+        txtNgayThamGia.setEditable(false);
+        txtNgayThamGia.setPreferredSize(new java.awt.Dimension(180, 18));
+        jPanel24.add(txtNgayThamGia, java.awt.BorderLayout.CENTER);
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 102), 10));
         setLayout(new java.awt.BorderLayout());
@@ -881,10 +895,11 @@ public class HoaDonFrm extends javax.swing.JPanel {
         jPanel17.setLayout(new java.awt.BorderLayout());
 
         jPanel19.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 5, 5, 5, new java.awt.Color(0, 153, 51)));
         jPanel19.setLayout(new java.awt.BorderLayout());
 
         jPanel11.setBackground(new java.awt.Color(0, 153, 51));
-        jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 5, 0, 20, new java.awt.Color(0, 153, 51)));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "THÊM NHANH KHÁCH HÀNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel11.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
 
         jPanel20.setBackground(new java.awt.Color(0, 153, 51));
@@ -897,6 +912,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         jLabel6.setPreferredSize(new java.awt.Dimension(120, 0));
         jPanel20.add(jLabel6, java.awt.BorderLayout.LINE_START);
 
+        txtTenKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTenKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenKHActionPerformed(evt);
@@ -915,6 +931,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         lblLoaiKH.setPreferredSize(new java.awt.Dimension(120, 0));
         jPanel21.add(lblLoaiKH, java.awt.BorderLayout.WEST);
 
+        cbbLoaKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbbLoaKH.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbLoaKHItemStateChanged(evt);
@@ -933,6 +950,8 @@ public class HoaDonFrm extends javax.swing.JPanel {
         lblDiaChi.setForeground(new java.awt.Color(255, 255, 255));
         lblDiaChi.setPreferredSize(new java.awt.Dimension(120, 0));
         jPanel22.add(lblDiaChi, java.awt.BorderLayout.WEST);
+
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel22.add(txtDiaChi, java.awt.BorderLayout.CENTER);
 
         jPanel11.add(jPanel22);
@@ -947,26 +966,11 @@ public class HoaDonFrm extends javax.swing.JPanel {
         jLabel13.setPreferredSize(new java.awt.Dimension(120, 0));
         jPanel23.add(jLabel13, java.awt.BorderLayout.WEST);
 
+        txtSDT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSDT.setPreferredSize(new java.awt.Dimension(180, 18));
         jPanel23.add(txtSDT, java.awt.BorderLayout.CENTER);
 
         jPanel11.add(jPanel23);
-
-        jPanel24.setBackground(new java.awt.Color(0, 153, 51));
-        jPanel24.setPreferredSize(new java.awt.Dimension(163, 30));
-        jPanel24.setLayout(new java.awt.BorderLayout());
-
-        jLabel15.setText("Ngày tham gia");
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setPreferredSize(new java.awt.Dimension(120, 0));
-        jPanel24.add(jLabel15, java.awt.BorderLayout.WEST);
-
-        txtNgayThamGia.setEditable(false);
-        txtNgayThamGia.setPreferredSize(new java.awt.Dimension(180, 18));
-        jPanel24.add(txtNgayThamGia, java.awt.BorderLayout.CENTER);
-
-        jPanel11.add(jPanel24);
 
         jPanel25.setBackground(new java.awt.Color(0, 153, 51));
         jPanel25.setPreferredSize(new java.awt.Dimension(163, 30));
@@ -977,9 +981,25 @@ public class HoaDonFrm extends javax.swing.JPanel {
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setPreferredSize(new java.awt.Dimension(120, 0));
         jPanel25.add(lblEmail, java.awt.BorderLayout.WEST);
+
+        txtEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel25.add(txtEmail, java.awt.BorderLayout.CENTER);
 
         jPanel11.add(jPanel25);
+
+        jPanel27.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel27.setLayout(new java.awt.BorderLayout());
+
+        jLabel14.setText("Ngày sinh");
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setPreferredSize(new java.awt.Dimension(120, 0));
+        jPanel27.add(jLabel14, java.awt.BorderLayout.WEST);
+
+        dpkNgaySinh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel27.add(dpkNgaySinh, java.awt.BorderLayout.CENTER);
+
+        jPanel11.add(jPanel27);
 
         jPanel26.setBackground(new java.awt.Color(0, 153, 51));
         jPanel26.setLayout(new java.awt.BorderLayout());
@@ -991,15 +1011,17 @@ public class HoaDonFrm extends javax.swing.JPanel {
         jPanel26.add(jLabel9, java.awt.BorderLayout.WEST);
 
         jPanel29.setBackground(new java.awt.Color(0, 153, 51));
-        jPanel29.setLayout(new java.awt.GridLayout());
+        jPanel29.setLayout(new java.awt.GridLayout(1, 0));
 
         buttonGroup1.add(rdoNam);
+        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         rdoNam.setForeground(new java.awt.Color(255, 255, 255));
         rdoNam.setSelected(true);
         rdoNam.setText("Nam");
         jPanel29.add(rdoNam);
 
         buttonGroup1.add(rdoNu);
+        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         rdoNu.setForeground(new java.awt.Color(255, 255, 255));
         rdoNu.setText("Nữ");
         jPanel29.add(rdoNu);
@@ -1008,24 +1030,12 @@ public class HoaDonFrm extends javax.swing.JPanel {
 
         jPanel11.add(jPanel26);
 
-        jPanel27.setBackground(new java.awt.Color(0, 153, 51));
-        jPanel27.setLayout(new java.awt.BorderLayout());
-
-        jLabel14.setText("Ngày sinh");
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setPreferredSize(new java.awt.Dimension(120, 0));
-        jPanel27.add(jLabel14, java.awt.BorderLayout.WEST);
-        jPanel27.add(dpkNgaySinh, java.awt.BorderLayout.CENTER);
-
-        jPanel11.add(jPanel27);
-
         jPanel19.add(jPanel11, java.awt.BorderLayout.PAGE_START);
 
         jPanel17.add(jPanel19, java.awt.BorderLayout.CENTER);
 
         jPanel18.setBackground(new java.awt.Color(0, 153, 51));
-        jPanel18.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 1, 70, 100, new java.awt.Color(0, 153, 51)));
+        jPanel18.setBorder(javax.swing.BorderFactory.createMatteBorder(30, 10, 70, 70, new java.awt.Color(0, 153, 51)));
         jPanel18.setMinimumSize(new java.awt.Dimension(69, 42));
         jPanel18.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
 
@@ -1064,7 +1074,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuetMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuetMaActionPerformed
-        // TODO add your handling code here:
+        new Code_Reader(tblHoaDon, this).setVisible(true);
     }//GEN-LAST:event_btnQuetMaActionPerformed
 
     private void btnHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonMoiActionPerformed
@@ -1320,7 +1330,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         }
     }
 
-    private void tongTien() {
+    public void tongTien() {
         double tongTien = 0;
         double giamGia = 0;
         int soLuong = 0;
@@ -1343,7 +1353,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         pnlTabs.setTitleAt(pnlTabs.getSelectedIndex(), lblTenKH.getText() + ": " + df.format(tongTien));
     }
 
-    private boolean nhapSl() {
+    public boolean nhapSl() {
         String sl = JOptionPane.showInputDialog("Nhập số lượng");
         if (sl != null) {
             try {
@@ -1361,8 +1371,25 @@ public class HoaDonFrm extends javax.swing.JPanel {
                 return true;
             }
         } else {
+            slNhap = 0;
             return true;
         }
+    }
+
+    public int getSlNhap() {
+        return slNhap;
+    }
+
+    public void setSlNhap(int slNhap) {
+        this.slNhap = slNhap;
+    }
+
+    public int getSlGoc() {
+        return slGoc;
+    }
+
+    public void setSlGoc(int slGoc) {
+        this.slGoc = slGoc;
     }
 
 //    private boolean checkSL() {
@@ -1497,7 +1524,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         }
     }
 
-    private void taoHoaDon() {
+    public void taoHoaDon() {
         this.maxMaHD = this.DAOHD.getMaxMaHD();
         HoaDon hd = new HoaDon();
         hd.setMaHD(maxMaHD + 1);
@@ -1515,7 +1542,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         }
     }
 
-    private void taoHDCT(int maSP, int soLuong) {
+    public void taoHDCT(int maSP, int soLuong) {
         CTHoaDon cthd = new CTHoaDon();
         cthd.setMaHD(Integer.parseInt(lblHoaDon.getToolTipText()));
         cthd.setMaSP(maSP);
@@ -1527,7 +1554,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         }
     }
 
-    private void suaCTHD(int masp, int soLuongSP, int soLuongCTHD, double giaBan) throws NumberFormatException {
+    public void suaCTHD(int masp, int soLuongSP, int soLuongCTHD, double giaBan) throws NumberFormatException {
         SanPham sp = new SanPham();
         sp.setMaSP(masp);
         sp.setSoLuong(soLuongSP);
@@ -1556,6 +1583,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
     }
 
     private void clearFormKH() {
+        this.txtTenKH.setText("");
         this.txtDiaChi.setText("");
         this.txtEmail.setText("");
         this.txtMaKH.setText("");
@@ -1624,6 +1652,7 @@ public class HoaDonFrm extends javax.swing.JPanel {
         try {
             KhachHang kh = getFormKH();
             kh.setMaKH(RandomID.randomIDKhachHang(txtTenKH.getText().trim()));
+            kh.setMaLoaiKH(1);
             this.daoKH.insert(kh);
             Messeger.alert(this, "Đã thêm thành công");
             loadDataToTableKhachHang(kh);

@@ -25,13 +25,29 @@ public class XHoaDon {
         try {
             
             Hashtable map = new Hashtable();
-            JasperReport report = JasperCompileManager.compileReport(System.getProperty("user.dir") + "\\src\\poly\\gui\\hoadonthanhtoan.jrxml");
+            JasperReport report = JasperCompileManager.compileReport(System.getProperty("user.dir") + "\\src\\poly\\newgui\\hoadonthanhtoan.jrxml");
             
             map.put("maHD", maHD);
             Connection con = DriverManager.getConnection(XJDBC.dburl, XJDBC.user, XJDBC.pass);
             JasperPrint p = JasperFillManager.fillReport(report,  map, con);
             JasperViewer.viewReport(p, false);
             JasperExportManager.exportReportToPdfFile(p, "hoadon.pdf");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void printBarCode(){
+        try {
+            
+            Hashtable map = new Hashtable();
+            JasperReport report = JasperCompileManager.compileReport(System.getProperty("user.dir") + "\\src\\poly\\newgui\\printBarCodeFrm.jrxml");
+            
+//            map.put("maHD", maHD);
+            Connection con = DriverManager.getConnection(XJDBC.dburl, XJDBC.user, XJDBC.pass);
+            JasperPrint p = JasperFillManager.fillReport(report,  null, con);
+            JasperViewer.viewReport(p, false);
+            JasperExportManager.exportReportToPdfFile(p, "mavach.pdf");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

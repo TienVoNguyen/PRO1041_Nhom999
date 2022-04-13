@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -56,7 +58,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDangGH;
     DefaultTableModel dtmChiTietHoaDon;
     NewMainFrm jFrame;
-    
+
     Locale localeVN = new Locale("vi", "VN");
     NumberFormat df = NumberFormat.getCurrencyInstance(localeVN);
 
@@ -85,6 +87,17 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         pnlCTHD = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        btnTraHang = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtGhiChu = new javax.swing.JTextArea();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        txtTongTien = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHDChiTiet = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -110,7 +123,6 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHDDangGiaoHang = new javax.swing.JTable();
 
-        pnlMain.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(51, 51, 51)));
         pnlMain.setLayout(new java.awt.BorderLayout());
 
         pnlCardGH_BH.setLayout(new java.awt.CardLayout());
@@ -139,17 +151,58 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         pnlCTHD.setLayout(new java.awt.BorderLayout());
 
         jPanel10.setPreferredSize(new java.awt.Dimension(600, 400));
+        jPanel10.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 672, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+
+        btnTraHang.setText("Trả hàng");
+        btnTraHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraHangActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTraHang);
+
+        jPanel10.add(jPanel1, java.awt.BorderLayout.PAGE_END);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ghi Chú", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        txtGhiChu.setColumns(20);
+        txtGhiChu.setRows(5);
+        jScrollPane3.setViewportView(txtGhiChu);
+
+        jPanel4.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        jPanel5.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel5.setPreferredSize(new java.awt.Dimension(672, 100));
+        jPanel5.setLayout(new java.awt.BorderLayout());
+
+        jPanel6.setLayout(new java.awt.GridLayout(0, 1, 0, 10));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Tổng tiền (Bao gồm phí ship):");
+        jLabel3.setPreferredSize(new java.awt.Dimension(220, 16));
+        jPanel6.add(jLabel3);
+
+        jPanel5.add(jPanel6, java.awt.BorderLayout.LINE_START);
+
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setLayout(new java.awt.GridLayout(0, 1, 0, 10));
+
+        txtTongTien.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jPanel7.add(txtTongTien);
+
+        jPanel5.add(jPanel7, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel5, java.awt.BorderLayout.NORTH);
+
+        jPanel10.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         pnlCTHD.add(jPanel10, java.awt.BorderLayout.PAGE_END);
 
@@ -421,6 +474,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         if (xacNhanGiaoHang()) {
             return;
         }
+        clearDanhSachSPGiaoHang();
     }//GEN-LAST:event_btnGiaoHangTTActionPerformed
 
     private void btnDaGHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGHActionPerformed
@@ -428,6 +482,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             return;
         }
         jFrame.setLblSoLuongDonHang();
+        clearDanhSachSPGiaoHang();
     }//GEN-LAST:event_btnDaGHActionPerformed
 
     private void btnHuyGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyGiaoHangActionPerformed
@@ -436,6 +491,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
         if (jFrame != null) {
             jFrame.setLblSoLuongDonHang();
+            clearDanhSachSPGiaoHang();
         }
     }//GEN-LAST:event_btnHuyGiaoHangActionPerformed
 
@@ -451,6 +507,10 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tblHDDangGiaoHangMouseClicked
 
+    private void btnTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangActionPerformed
+        Messeger.alert(this, "Đang update");
+    }//GEN-LAST:event_btnTraHangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChoGH;
@@ -458,14 +518,23 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDangGH;
     private javax.swing.JButton btnGiaoHangTT;
     private javax.swing.JButton btnHuyGiaoHang;
+    private javax.swing.JButton btnTraHang;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblMaHD;
     private javax.swing.JLabel lblTenKH;
@@ -484,6 +553,8 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblHDChiTiet;
     private javax.swing.JTable tblHDChoGiaoHang;
     private javax.swing.JTable tblHDDangGiaoHang;
+    private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 
     public void loadHoaDonChoTT() {
@@ -574,9 +645,21 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         if (isChoGHSelected) {
             this.btnChoGH.setBackground(new Color(51, 255, 51));
             this.btnDangGH.setBackground(new Color(204, 153, 0));
+            if (tblHDChoGiaoHang.getRowCount() <= 0){
+                clearDanhSachSPGiaoHang();
+                return;
+            }
+            this.tblHDChoGiaoHang.setRowSelectionInterval(0, 0);
+            mouseClickedTblChoGH();
         } else {
             this.btnChoGH.setBackground(new Color(204, 153, 0));
             this.btnDangGH.setBackground(new Color(51, 255, 51));
+            if (tblHDDangGiaoHang.getRowCount() <= 0){
+                clearDanhSachSPGiaoHang();
+                return;
+            }
+            this.tblHDDangGiaoHang.setRowSelectionInterval(0, 0);
+            mouseClickedTblDangGH();
         }
     }
 
@@ -592,7 +675,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getTenKhachHang(),
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
-//                    df.format(gh.getTienShip()),
+                    //                    df.format(gh.getTienShip()),
                     "Chờ giao hàng"
                 });
             }
@@ -615,7 +698,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
                     gh.getSoDienThoai(),
                     gh.getDiaChi(),
                     XDate.toString(gh.getNgayGiaoHang(), "dd/MM/yyyy hh:mm:ss a"),
-//                    df.format(gh.getTienShip()),
+                    //                    df.format(gh.getTienShip()),
                     "Đang giao hàng"
                 });
             }
@@ -631,8 +714,10 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             return true;
         }
         int maHD = Integer.parseInt(tblHDChoGiaoHang.getValueAt(index, 1) + "");
+        int maGH = Integer.parseInt(tblHDChoGiaoHang.getValueAt(index, 0) + "");
         String name = tblHDChoGiaoHang.getValueAt(index, 2) + "";
         loadDataToTblChiTietHD(maHD, name);
+        loadFormHDCT(maHD, maGH);
         return false;
     }
 
@@ -665,8 +750,10 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             return true;
         }
         int maHD = Integer.parseInt(tblHDDangGiaoHang.getValueAt(index, 1) + "");
+        int maGH = Integer.parseInt(tblHDDangGiaoHang.getValueAt(index, 0) + "");
         String name = tblHDDangGiaoHang.getValueAt(index, 2) + "";
         loadDataToTblChiTietHD(maHD, name);
+        loadFormHDCT(maHD, maGH);
         return false;
     }
 
@@ -780,6 +867,25 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
     public JTabbedPane getPnlTabs() {
         return pnlTabs;
+    }
+
+    private void clearDanhSachSPGiaoHang() {
+        this.lblMaHD.setText("Mã Hóa Đơn: ");
+        this.lblTenKH.setText("Tên Khách: ");
+        this.txtTongTien.setText("");
+        this.txtGhiChu.setText("");
+        this.dtmChiTietHoaDon.setRowCount(0);
+    }
+
+    private void loadFormHDCT(int maHD, int maGH) {
+        try {
+            HoaDon h = this.daoHD.selectById(maHD + "");
+//            GiaoHang g = this.daoGH.selectById(maGH);
+            this.txtTongTien.setText(df.format(h.getThanhTien()));
+        } catch (Exception ex) {
+            Logger.getLogger(BanHangFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
