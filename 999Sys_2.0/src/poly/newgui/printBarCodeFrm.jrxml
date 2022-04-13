@@ -6,12 +6,13 @@
 	<queryString>
 		<![CDATA[SELECT
      SANPHAM."MAVACH" AS SANPHAM_MAVACH,
-     SANPHAM."TENSP" AS SANPHAM_TENSP
+     SANPHAM."TENSP" + ' CTSP:' +  SIZE."MASIZE" + ', ' + MAUSAC."TENMAU" + ', ' + CHATLIEU."TENCHATLIEU" AS SANPHAM_TENSP
 FROM
-     "dbo"."SANPHAM" SANPHAM
-WHERE
-     SANPHAM."MAVACH" IS NOT NULL
- AND SANPHAM."MAVACH" NOT LIKE '']]>
+     "dbo"."SIZE" SIZE INNER JOIN "dbo"."SANPHAM" SANPHAM ON SIZE."MASIZE" = SANPHAM."MASIZE"
+     INNER JOIN "dbo"."MAUSAC" MAUSAC ON SANPHAM."MAMAU" = MAUSAC."MAMAU"
+     INNER JOIN "dbo"."DONVITINH" DONVITINH ON SANPHAM."MADVT" = DONVITINH."MADVT"
+     INNER JOIN "dbo"."CHATLIEU" CHATLIEU ON SANPHAM."MACHATLIEU" = CHATLIEU."MACHATLIEU"
+WHERE SANPHAM."MAVACH" IS NOT NULL AND SANPHAM."MAVACH" NOT LIKE '']]>
 	</queryString>
 	<field name="SANPHAM_MAVACH" class="java.lang.String"/>
 	<field name="SANPHAM_TENSP" class="java.lang.String"/>
@@ -36,16 +37,16 @@ WHERE
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="57" splitType="Immediate">
+		<band height="58" splitType="Immediate">
 			<elementGroup/>
 			<componentElement>
-				<reportElement x="0" y="0" width="160" height="46" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="cf0ce340-6e15-420c-9ccb-c8b5a3d4975f"/>
+				<reportElement x="0" y="0" width="133" height="36" uuid="68c06ed2-579b-4c98-b434-fbcbb9e660c0"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$F{SANPHAM_MAVACH}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
 			<textField>
-				<reportElement x="160" y="0" width="97" height="46" uuid="91c154ab-8dab-4c08-b59a-f57e62b9d3ff"/>
+				<reportElement x="133" y="0" width="124" height="36" uuid="63abf5a4-a6cf-4301-8d72-ad8359c6e17b"/>
 				<textFieldExpression><![CDATA[$F{SANPHAM_TENSP}]]></textFieldExpression>
 			</textField>
 		</band>
