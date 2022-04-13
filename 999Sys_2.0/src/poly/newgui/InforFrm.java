@@ -19,6 +19,7 @@ import poly.helper.Auth;
 import poly.helper.CustomDatePicker;
 import poly.helper.ImageHelper;
 import poly.helper.Messeger;
+import poly.helper.XDate;
 import poly.helper.XInternal;
 import poly.helper.XValidate;
 
@@ -31,10 +32,10 @@ public class InforFrm extends javax.swing.JInternalFrame {
     private JFileChooser fileChooser;
     private NhanVienDao dao_nv;
     CardLayout card_DoiMK;
-
-    public InforFrm() {
+    NewMainFrm main;
+    public InforFrm(NewMainFrm main) {
         initComponents();
-
+        this.main = main;
         init();
     }
 
@@ -494,19 +495,26 @@ public class InforFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnThemMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        
+
         if (Validate()) {
             return;
         }
-        try {
-            boolean gioitinh = true;
-
-            if (!Messeger.confirm(this, "Bạn Có Muốn Sửa Không")) {
-                return;
+        if (Messeger.confirm(this, "Bạn Có Muốn Sửa Không")) {
+            try {
+                Auth.user.setDiaChi(txtDiaChi.getText());
+                Auth.user.setEmail(txtEmail.getText());
+                Auth.user.setGioiTinh(rdoNam.isSelected());
+                Auth.user.setHinhAnh(lbanh.getToolTipText());
+                Auth.user.setHoTen(txtHoTen.getText());
+                Auth.user.setNgSinh(XDate.toString(XDate.toDate(txtngaysinh.getText(), "dd/mm/yyyy"), "yyyy/mm/dd"));
+                Auth.user.setSDT(txtSĐT.getText());
+                
+                dao_nv.update(Auth.user);
+                Messeger.alert(this, "Cập nhật thông tin thành công");
+                this.main.setLblTenNV();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            dao_nv.update(Auth.user);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -520,19 +528,21 @@ public class InforFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnXacNhanDMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanDMKActionPerformed
+
+        String pass1 = txtNhapMKMoi.getText();
+        String pass2 = txtNhapLaiMKM.getText();
+        StringBuilder loi = new StringBuilder();
+        if (checkMK(loi, pass1, pass2)) {
+            return;
+        }
         if (Messeger.confirm(this, "Xác Nhận đổi mật khẩu?")) {
-            String pass1 = txtNhapMKMoi.getText();
-            String pass2 = txtNhapLaiMKM.getText();
-            StringBuilder loi = new StringBuilder();
-            if (checkMK(loi, pass1, pass2)) {
-                return;
-            }
             Auth.user.setPassWord(pass2);
             try {
                 this.dao_nv.update(Auth.user);
                 Messeger.alert(this, "Thành công!\nMời Bạn đăng nhập lại!");
                 this.dispose();
                 new LoginFrm(null, true).setVisible(true);
+                this.main.phanQuyen();
             } catch (Exception ex) {
                 Logger.getLogger(InforFrm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -617,8 +627,8 @@ public class InforFrm extends javax.swing.JInternalFrame {
         this.txtSĐT.setText(Auth.user.getSDT());
         this.rdoNam.setSelected(Auth.user.isGioiTinh());
         this.rdoNu.setSelected(!Auth.user.isGioiTinh());
-        this.txtngaysinh.setText(Auth.user.getNgSinh());
-        this.txtngaytao.setText(Auth.user.getNgayTao());
+        this.txtngaysinh.setText(XDate.toString(XDate.toDate(Auth.user.getNgSinh(), "yyyy-MM-dd"), "dd/mm/yyyy"));
+        this.txtngaytao.setText(XDate.toString(XDate.toDate(Auth.user.getNgayTao(), "yyyy-MM-dd"), "dd/mm/yyyy"));
     }
 
     private void ResetText() {

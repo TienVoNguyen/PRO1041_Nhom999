@@ -75,13 +75,13 @@ public class test extends javax.swing.JFrame {
 //        } else {
 //            qlKH.setVisible(true);
 //        }
-        if (i == null || i.isClosed()) {
-            i = new InforFrm();
-            jDesktopPane1.add(i);
-            i.setVisible(true);
-        } else {
-            i.setVisible(true);
-        }
+//        if (i == null || i.isClosed()) {
+//            i = new InforFrm();
+//            jDesktopPane1.add(i);
+//            i.setVisible(true);
+//        } else {
+//            i.setVisible(true);
+//        }
     }
 
     /**
