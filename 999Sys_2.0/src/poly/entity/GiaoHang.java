@@ -12,7 +12,7 @@ import java.util.Date;
  * @author XUÂN THÀNH
  */
 public class GiaoHang {
-    private int maGiaoHang, maHoaDon, maTrangThai;
+    private int maGiaoHang, maHoaDon, maTrangThai, suDungPoint;
     private String tenKhachHang ,soDienThoai, diaChi, ghiChu;
     private Date ngayGiaoHang;
     private double tienShip;
@@ -20,7 +20,7 @@ public class GiaoHang {
     public GiaoHang() {
     }
 
-    public GiaoHang(int maGiaoHang, int maHoaDon, int maTrangThai, String tenKhachHang, String soDienThoai, String diaChi, String ghiChu, Date ngayGiaoHang, double tienShip) {
+    public GiaoHang(int maGiaoHang, int maHoaDon, int maTrangThai, String tenKhachHang, String soDienThoai, String diaChi, String ghiChu, Date ngayGiaoHang, double tienShip, int suDungPoint) {
         this.maGiaoHang = maGiaoHang;
         this.maHoaDon = maHoaDon;
         this.maTrangThai = maTrangThai;
@@ -30,6 +30,7 @@ public class GiaoHang {
         this.ghiChu = ghiChu;
         this.ngayGiaoHang = ngayGiaoHang;
         this.tienShip = tienShip;
+        this.suDungPoint = suDungPoint;
     }
 
     public int getMaGiaoHang() {
@@ -103,5 +104,14 @@ public class GiaoHang {
     public void setTienShip(double tienShip) {
         this.tienShip = tienShip;
     }
+
     
+    public int getSuDungPoint() {
+        return suDungPoint;
+    }
+
+    public void setSuDungPoint(int suDungPoint) {
+        this.suDungPoint = suDungPoint;
+    }
+
 }
