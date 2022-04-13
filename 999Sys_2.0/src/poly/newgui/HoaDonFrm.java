@@ -1616,14 +1616,20 @@ public class HoaDonFrm extends javax.swing.JPanel {
 //        }
         if (XValidate.isEmpty(txtTenKH)) {
             sp.append("Không để trống Họ Tên Khách Hàng!\n");
+        } else if (XValidate.isNotVNName(txtTenKH)){
+            sp.append("Họ Tên Khách Hàng sai!\n");
+        } else if (txtTenKH.getText().trim().length() < 5 ){
+            sp.append("Họ Tên Khách Hàng chứa ít nhất 5 ký tự!\n");
         }
         if (XValidate.isEmpty(txtDiaChi)) {
             sp.append("Không để trống Địa Chỉ Khách Hàng!\n");
+        } else if (txtDiaChi.getText().trim().length() < 10 ){
+            sp.append("Địa Chỉ Khách Hàng chứa ít nhất 10 ký tự!\n");
         }
         if (XValidate.isEmpty(txtSDT)) {
             sp.append("Không để trống Số Điện Thoại Khách Hàng!\n");
-        } else if (XValidate.isNotNumber(txtSDT)) {
-            sp.append("Số Điện Thoại Không hợp lệ!\n");
+        } else if (XValidate.isNotPhoneNumber(txtSDT)) {
+            sp.append("Số Điện Thoại Không hợp lệ hoặc chưa đủ 10 ký tự!\n");
         }
         if (XValidate.isEmpty(txtEmail)) {
             sp.append("Không để trống Email Khách Hàng!\n");

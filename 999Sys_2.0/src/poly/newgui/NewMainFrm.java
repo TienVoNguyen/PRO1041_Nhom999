@@ -62,6 +62,12 @@ public class NewMainFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         jpmMenu = new javax.swing.JPopupMenu();
+        mniQLGiaoCa = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        mniQLKH = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        mniLichSuGD = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         mniQLSanPham = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniQLChiTietSP = new javax.swing.JMenuItem();
@@ -105,6 +111,57 @@ public class NewMainFrm extends javax.swing.JFrame {
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
         jpmMenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpmMenu.setPreferredSize(new java.awt.Dimension(300, 200));
+
+        mniQLGiaoCa.setBackground(new java.awt.Color(102, 51, 0));
+        mniQLGiaoCa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniQLGiaoCa.setForeground(new java.awt.Color(255, 255, 255));
+        mniQLGiaoCa.setText("Quản lý giao ca");
+        mniQLGiaoCa.setOpaque(true);
+        mniQLGiaoCa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQLGiaoCaActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniQLGiaoCa);
+
+        jSeparator7.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator7.setOpaque(true);
+        jpmMenu.add(jSeparator7);
+
+        mniQLKH.setBackground(new java.awt.Color(102, 51, 0));
+        mniQLKH.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniQLKH.setForeground(new java.awt.Color(255, 255, 255));
+        mniQLKH.setText("Quản lý khách hàng");
+        mniQLKH.setOpaque(true);
+        mniQLKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQLKHActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniQLKH);
+
+        jSeparator6.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setOpaque(true);
+        jpmMenu.add(jSeparator6);
+
+        mniLichSuGD.setBackground(new java.awt.Color(102, 51, 0));
+        mniLichSuGD.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniLichSuGD.setForeground(new java.awt.Color(255, 255, 255));
+        mniLichSuGD.setText("Lịch sử giao dịch");
+        mniLichSuGD.setOpaque(true);
+        mniLichSuGD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniLichSuGDActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniLichSuGD);
+
+        jSeparator5.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setOpaque(true);
+        jpmMenu.add(jSeparator5);
 
         mniQLSanPham.setBackground(new java.awt.Color(102, 51, 0));
         mniQLSanPham.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -443,7 +500,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         btnQLHoaDon.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnQLHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         btnQLHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/budget36.png"))); // NOI18N
-        btnQLHoaDon.setToolTipText("Quản lý hóa đơn");
+        btnQLHoaDon.setToolTipText("Lịch sử giao dịch");
         btnQLHoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLHoaDon.setPreferredSize(new java.awt.Dimension(133, 65));
         btnQLHoaDon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -563,6 +620,18 @@ public class NewMainFrm extends javax.swing.JFrame {
         openQLGiaoCaFrm();
     }//GEN-LAST:event_btnQLGiaoCaActionPerformed
 
+    private void mniLichSuGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLichSuGDActionPerformed
+        openLichSuGDFrm();
+    }//GEN-LAST:event_mniLichSuGDActionPerformed
+
+    private void mniQLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLKHActionPerformed
+        openKhachHangFrm();
+    }//GEN-LAST:event_mniQLKHActionPerformed
+
+    private void mniQLGiaoCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLGiaoCaActionPerformed
+        openQLGiaoCaFrm();
+    }//GEN-LAST:event_mniQLGiaoCaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -627,13 +696,19 @@ public class NewMainFrm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu jpmMenu;
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblSoLuongDonHang;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JMenuItem mniDangXuat;
+    private javax.swing.JMenuItem mniLichSuGD;
     private javax.swing.JMenuItem mniQLChiTietSP;
+    private javax.swing.JMenuItem mniQLGiaoCa;
+    private javax.swing.JMenuItem mniQLKH;
     private javax.swing.JMenuItem mniQLKM;
     private javax.swing.JMenuItem mniQLSanPham;
     private javax.swing.JMenuItem mniThongKe;
@@ -719,7 +794,7 @@ public class NewMainFrm extends javax.swing.JFrame {
                     } else if (btn == btnQLSP) {
                         btn.setText("Quản lý sản phẩm");
                     } else if (btn == btnQLHoaDon) {
-                        btn.setText("Quản lý hóa đơn");
+                        btn.setText("Lịch sử giao dịch");
                     } else if (btn == btnThongKe) {
                         btn.setText("Thống Kê");
                     } else if (btn == btnQLTaiKhoan) {
