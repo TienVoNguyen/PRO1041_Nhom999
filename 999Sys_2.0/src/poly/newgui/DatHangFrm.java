@@ -44,6 +44,7 @@ public class DatHangFrm extends javax.swing.JDialog {
     NewMainFrm parent;
     ArrayList<CTHoaDon> listCTHD;
     CTHoaDonDao DAOCTHD;
+    boolean isSuDungPoint = false;
 
     public DatHangFrm(JFrame parent, boolean modal, JTabbedPane pnlTabs, HoaDon hd, ArrayList<CTHoaDon> listCTHD) {
         super(parent, modal);
@@ -415,6 +416,7 @@ public class DatHangFrm extends javax.swing.JDialog {
                 this.txtGiamGia.setToolTipText(String.valueOf(diemTL));
                 txtPoint.setText(0 + "");
                 this.btnSuDung.setText("Hoàn Tác");
+                this.isSuDungPoint = true;
             }
         } else {
             double tienShip;
@@ -429,6 +431,7 @@ public class DatHangFrm extends javax.swing.JDialog {
             this.txtGiamGia.setText(df.format(0));
             this.txtGiamGia.setToolTipText(String.valueOf(0));
             txtPoint.setText(kh.getTichDiem() + "");
+            this.isSuDungPoint = true;
         }
     }//GEN-LAST:event_btnSuDungActionPerformed
 
@@ -539,7 +542,9 @@ public class DatHangFrm extends javax.swing.JDialog {
                 hd.setThanhTien(Double.parseDouble(txtTongTien.getToolTipText()));
                 hd.setMaTT(6);
                 this.daoHD.update(hd);
-                this.daoGH.insert(this.getFrom());
+                GiaoHang gh = this.getFrom();
+                gh.setSuDungPoint(kh.getTichDiem());
+                this.daoGH.insert(gh);
                 NewMainFrm main = (NewMainFrm) this.parent;
                 main.setLblSoLuongDonHang();
                 for (CTHoaDon c : listCTHD) {
@@ -548,8 +553,9 @@ public class DatHangFrm extends javax.swing.JDialog {
                 if (hd.getMaKH() != null) {
                     try {
                         kh.setTichDiem(Integer.parseInt(txtPoint.getText()));
-                        int diemTLSauThanhToan = (int) (Double.parseDouble(txtTongTien.getToolTipText()) * 0.01);
-                        kh.setTichDiem(kh.getTichDiem() + diemTLSauThanhToan);
+//                        tính điểm EXP
+//                        int diemTLSauThanhToan = (int) (Double.parseDouble(txtTongTien.getToolTipText()) * 0.01);
+//                        kh.setDiemEXP(kh.getDiemEXP() + diemTLSauThanhToan);
                         this.daoKH.update(kh);
                     } catch (Exception ex) {
                         Logger.getLogger(ThanhToanFrm.class.getName()).log(Level.SEVERE, null, ex);
