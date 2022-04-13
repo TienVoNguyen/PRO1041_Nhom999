@@ -236,6 +236,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
 
+        themDMJDialog.setTitle("Thêm danh mục");
+
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.BorderLayout());
 
@@ -286,6 +288,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel13.add(jPanel20, java.awt.BorderLayout.CENTER);
 
         themDMJDialog.getContentPane().add(jPanel13, java.awt.BorderLayout.CENTER);
+
+        DaXoaJDialog.setTitle("Sản phẩm đã hóa");
 
         jPanel23.setBackground(new java.awt.Color(0, 0, 0));
         jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
@@ -355,6 +359,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         DaXoaJDialog.getContentPane().add(jPanel23, java.awt.BorderLayout.CENTER);
 
+        themDVTJDialog.setTitle("Thêm đơn vị tính");
+
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setLayout(new java.awt.BorderLayout());
 
@@ -407,6 +413,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         themDVTJDialog.getContentPane().add(jPanel26, java.awt.BorderLayout.CENTER);
 
         themSizeJDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        themSizeJDialog.setTitle("Thêm Size");
 
         jPanel42.setBackground(new java.awt.Color(255, 255, 255));
         jPanel42.setLayout(new java.awt.BorderLayout());
@@ -466,6 +473,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         themSizeJDialog.getContentPane().add(jPanel42, java.awt.BorderLayout.CENTER);
 
+        themMauSacJDialog.setTitle("Thêm màu sắc");
+
         jPanel47.setBackground(new java.awt.Color(255, 255, 255));
         jPanel47.setLayout(new java.awt.BorderLayout());
 
@@ -516,6 +525,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel47.add(jPanel51, java.awt.BorderLayout.CENTER);
 
         themMauSacJDialog.getContentPane().add(jPanel47, java.awt.BorderLayout.CENTER);
+
+        themChatLieuJDialog.setTitle("Thêm chất Liệu");
 
         jPanel52.setBackground(new java.awt.Color(255, 255, 255));
         jPanel52.setLayout(new java.awt.BorderLayout());
@@ -589,6 +600,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         lblStatus.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStatus.setText("Đang tải dữ liệu ....");
+        lblStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblStatus.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel57.add(lblStatus, java.awt.BorderLayout.CENTER);
 
         loadDataJDialog.getContentPane().add(jPanel57, java.awt.BorderLayout.CENTER);
@@ -1036,7 +1049,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel21.add(jLabel3, java.awt.BorderLayout.LINE_START);
 
         txtSoLuong.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        txtSoLuong.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10000.0d));
+        txtSoLuong.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
         jPanel21.add(txtSoLuong, java.awt.BorderLayout.CENTER);
 
         jPanel14.add(jPanel21);
@@ -1433,7 +1446,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                         loadDataJDialog.dispose();
                     }
                 }
-
+                loadDataJDialog.dispose();
             }
         });
         loadData.start();
@@ -1591,12 +1604,25 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     private void init() {
         XInternal.uncorated(this);
         this.themDMJDialog.setModal(true);
+        this.themDMJDialog.setIconImage(ImageHelper.getAppIcon());
+        
         this.themChatLieuJDialog.setModal(true);
+        this.themChatLieuJDialog.setIconImage(ImageHelper.getAppIcon());
+        
         this.themDVTJDialog.setModal(true);
+        this.themDVTJDialog.setIconImage(ImageHelper.getAppIcon());
+        
         this.themMauSacJDialog.setModal(true);
+        this.themMauSacJDialog.setIconImage(ImageHelper.getAppIcon());
+        
         this.themSizeJDialog.setModal(true);
+        this.themSizeJDialog.setIconImage(ImageHelper.getAppIcon());
+        
         this.DaXoaJDialog.setModal(true);
+        this.DaXoaJDialog.setIconImage(ImageHelper.getAppIcon());
+        
         this.loadDataJDialog.setModal(true);
+        this.loadDataJDialog.setIconImage(ImageHelper.getAppIcon());
 
         this.daoCL = new ChatLieuDao();
         this.daoDM = new DanhMucDao();
@@ -1644,6 +1670,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         loadDataToCBBDVT();
         Object[] objKey = {"%%", "%%", "%%", "%%", "%%", "%%", "%%"};
         loadDataToTable(objKey);
+        this.lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/giphy.gif")));
     }
 
     private void addButtonToTable() {

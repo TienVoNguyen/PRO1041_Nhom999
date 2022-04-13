@@ -519,6 +519,7 @@ public class ThanhToanFrm extends javax.swing.JDialog {
                         kh.setTichDiem(Integer.parseInt(txtPoint.getText()));
                         int diemTLSauThanhToan = (int) (Double.parseDouble(txtTongTien.getToolTipText()) * 0.01);
                         kh.setTichDiem(kh.getTichDiem() + diemTLSauThanhToan);
+                        kh.setDiemEXP(kh.getDiemEXP() + diemTLSauThanhToan);
                         this.daoKH.update(kh);
                     } catch (Exception ex) {
                         Logger.getLogger(ThanhToanFrm.class.getName()).log(Level.SEVERE, null, ex);

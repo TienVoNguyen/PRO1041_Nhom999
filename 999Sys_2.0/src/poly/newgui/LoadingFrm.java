@@ -65,6 +65,7 @@ public class LoadingFrm extends javax.swing.JDialog implements Runnable {
         lblText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -73,13 +74,17 @@ public class LoadingFrm extends javax.swing.JDialog implements Runnable {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        pgbLoad.setBackground(new java.awt.Color(255, 255, 255));
+        pgbLoad.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         pgbLoad.setStringPainted(true);
         jPanel1.add(pgbLoad, java.awt.BorderLayout.CENTER);
 
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 100));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         lblText.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblText.setForeground(new java.awt.Color(255, 255, 255));
         lblText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel2.add(lblText, java.awt.BorderLayout.CENTER);
 
