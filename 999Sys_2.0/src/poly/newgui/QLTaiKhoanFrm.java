@@ -51,6 +51,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -137,7 +139,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel32 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
 
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(102, 255, 255)));
@@ -222,9 +224,9 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
 
         jpnSearch.setLayout(new java.awt.BorderLayout());
 
-        btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jpnSearch.add(btnTimKiem, java.awt.BorderLayout.EAST);
         jpnSearch.add(txtTimKiem, java.awt.BorderLayout.CENTER);
 
@@ -248,8 +250,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel12.setBackground(new java.awt.Color(255, 153, 51));
         jPanel12.setLayout(new java.awt.GridLayout(1, 4, 5, 0));
 
-        btnThemMoi.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemMoi.setText("Mới");
+        btnThemMoi.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemMoiActionPerformed(evt);
@@ -257,8 +259,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         });
         jPanel12.add(btnThemMoi);
 
-        btnThem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -266,8 +268,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         });
         jPanel12.add(btnThem);
 
-        btnSua.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaActionPerformed(evt);
@@ -275,8 +277,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         });
         jPanel12.add(btnSua);
 
-        btnXoa.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -289,20 +291,20 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setLayout(new java.awt.GridLayout(1, 4, 5, 0));
 
-        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/firtsicon.png"))); // NOI18N
+        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(btnFirst);
 
-        btnPrev.setBackground(new java.awt.Color(255, 255, 255));
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/preicon.png"))); // NOI18N
+        btnPrev.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(btnPrev);
 
-        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/nexticon.png"))); // NOI18N
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(btnNext);
 
-        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/lasticon.png"))); // NOI18N
+        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(btnLast);
 
         jpnButton.add(jPanel2);
@@ -313,7 +315,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 0, 0, 10, new java.awt.Color(255, 153, 102)));
         jPanel5.setPreferredSize(new java.awt.Dimension(300, 300));
-        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         lbanh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbanh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -384,15 +386,17 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel52.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 35, 0, 0, new java.awt.Color(255, 255, 255)));
         jPanel52.setLayout(new java.awt.GridLayout(1, 4));
 
-        radioql.setBackground(new java.awt.Color(255, 255, 255));
-        radioql.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup2.add(radioql);
         radioql.setSelected(true);
         radioql.setText("Quản lý");
+        radioql.setBackground(new java.awt.Color(255, 255, 255));
+        radioql.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radioql.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel52.add(radioql);
 
-        radionv.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup2.add(radionv);
         radionv.setText("Nhân viên");
+        radionv.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radionv.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel52.add(radionv);
 
@@ -439,14 +443,16 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 25, 0, 0, new java.awt.Color(255, 255, 255)));
 
-        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup1.add(rdoNam);
         rdoNam.setSelected(true);
         rdoNam.setText("Nam");
+        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNam.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel11.add(rdoNam);
 
-        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup1.add(rdoNu);
         rdoNu.setText("Nữ");
+        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNu.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel11.add(rdoNu);
 
@@ -526,7 +532,6 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(102, 102, 255)));
         jPanel16.setLayout(new java.awt.BorderLayout());
 
-        tblvt.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tblvt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -550,6 +555,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblvt.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tblvt.setRowHeight(24);
         tblvt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblvt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -659,7 +665,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         txtDiaChi.setText(tblnhanvien.getValueAt(viTri, 6).toString());
         txtEmail.setText(tblnhanvien.getValueAt(viTri, 7).toString());
         txtngaytao.setText(tblnhanvien.getValueAt(viTri, 8).toString());
-        if (tblnhanvien.getValueAt(viTri, 9).toString().equals("Trưởng Phòng")) {
+        if (tblnhanvien.getValueAt(viTri, 9).toString().equals("Quản Lý")) {
             radioql.setSelected(true);
         } else {
             radionv.setSelected(true);
@@ -788,7 +794,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         }
         txtMaVT.setText(tblvt.getValueAt(vitri, 0).toString());
         txtTenVT.setText(tblvt.getValueAt(vitri, 1).toString());
-        if (tblvt.getValueAt(vitri, 1).toString().equals("Trưởng Phòng")) {
+        if (tblvt.getValueAt(vitri, 1).toString().equals("Quản Lý")) {
             radioql.setSelected(true);
         } else {
             radionv.setSelected(true);
@@ -806,6 +812,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnThemMoi;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -914,6 +922,8 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         txtMaVT.setText("");
         txtTenVT.setText("");
         radioql.setEnabled(true);
+        lbanh.setToolTipText(null);
+        lbanh.setIcon(ImageHelper.read(String.valueOf("")));
 
     }
 
