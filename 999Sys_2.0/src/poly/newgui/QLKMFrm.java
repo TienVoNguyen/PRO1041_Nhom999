@@ -1537,10 +1537,12 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         txtGiamToiDa.setValue(0);
         txtNgayBatDau.setDateToToday();
         txtNgayKetThuc.setDateToToday();
+        vndCard.setVisible(true);
         radiovnd.setSelected(true);
         percentCard.setVisible(false);
-        vndCard.setVisible(true);
-        radioSanPham.setSelected(true);
+        jpnCardgoc.setVisible(true);
+        jpnloaiGG.setVisible(true);
+        radio_AD_SanPham.setSelected(true);
         hdCard.setVisible(false);
         spCard.setVisible(true);
     }
