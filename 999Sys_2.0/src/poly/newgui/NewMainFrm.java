@@ -516,12 +516,14 @@ public class NewMainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniQLKMActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
+        closeAllFrm(false);
         new LoginFrm(this, true).setVisible(true);
         phanQuyen();
+        new LoadingFrm(this, true, bhFrm.getPnlTabs()).setVisible(true);
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void btnGiaoHang_BanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHang_BanHangActionPerformed
-        closeAllFrm();
+        closeAllFrm(true);
         if (bhFrm == null || bhFrm.isClosed()) {
             bhFrm = new BanHangFrm(this);
             dpMain.add(bhFrm);
@@ -648,24 +650,27 @@ public class NewMainFrm extends javax.swing.JFrame {
         this.setIconImage(ImageHelper.getAppIcon());
         daoGH = new GiaoHangDao();
         new LoginFrm(this, true).setVisible(true);
-        openBanHangFrm();
+        phanQuyen();
         new LoadingFrm(this, true, bhFrm.getPnlTabs()).setVisible(true);
+        
         startDongHo();
         mouseHover();
-        phanQuyen();
+        
     }
 
-    private void closeAllFrm() {
+    private void closeAllFrm(boolean chon) {
         // TODO add your handling code here:
 
         for (JInternalFrame frame : dpMain.getAllFrames()) {
-
+            if (chon) {
             if (frame == bhFrm) {
                 dpMain.remove(frame);
             } else {
                 frame.dispose();
             }
-
+            } else {
+                frame.dispose();
+            }
         }
     }
 
@@ -768,6 +773,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         } else {
             this.lblTenNV.setText(Auth.user.getHoTen());
         }
+        openBanHangFrm();
         if (Auth.user.getVaiTro() != 101) {
             btnQLGiaoCa.setVisible(false);
             btnQLTaiKhoan.setVisible(false);
@@ -787,7 +793,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openQLSPFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (qLSPFrm == null || qLSPFrm.isClosed()) {
             qLSPFrm = new QLSPFrm(this);
             dpMain.add(qLSPFrm);
@@ -798,7 +804,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openBanHangFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (bhFrm == null || bhFrm.isClosed()) {
             bhFrm = new BanHangFrm(this);
             dpMain.add(bhFrm);
@@ -810,7 +816,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openQL_CTSPFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (qlCTSPFrm == null || qlCTSPFrm.isClosed()) {
             qlCTSPFrm = new QL_CTSPFrm(this);
             dpMain.add(qlCTSPFrm);
@@ -821,7 +827,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openQLKMFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (qlKMFrm == null || qlKMFrm.isClosed()) {
             qlKMFrm = new QLKMFrm(this);
             dpMain.add(qlKMFrm);
@@ -832,7 +838,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openThongKeFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (thongKeFrm == null || thongKeFrm.isClosed()) {
             thongKeFrm = new ThongKeFrm(dpMain);
             dpMain.add(thongKeFrm);
@@ -843,7 +849,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openKhachHangFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (qlKHFrm == null || qlKHFrm.isClosed()) {
             qlKHFrm = new QLKhachHangFrm();
             dpMain.add(qlKHFrm);
@@ -854,7 +860,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
 
     private void openTaiKhoanFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (qlTaiKhoanFrm == null || qlTaiKhoanFrm.isClosed()) {
             qlTaiKhoanFrm = new QLTaiKhoanFrm();
             dpMain.add(qlTaiKhoanFrm);
@@ -865,7 +871,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
     
     private void openLichSuGDFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (lichSuGDFrm == null || lichSuGDFrm.isClosed()) {
             lichSuGDFrm = new LichSuGDFrm();
             dpMain.add(lichSuGDFrm);
@@ -876,7 +882,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     }
     
     private void openQLGiaoCaFrm() {
-        closeAllFrm();
+        closeAllFrm(true);
         if (qlGiaoCaFrm == null || qlGiaoCaFrm.isClosed()) {
             qlGiaoCaFrm = new QLGiaoCaFrm();
             dpMain.add(qlGiaoCaFrm);
