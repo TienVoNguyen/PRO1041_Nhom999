@@ -44,6 +44,8 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                 return "SELECT MASP, TENSP + '  ' + SANPHAM.MASIZE + ', ' + TENMAU + ', ' + TENCHATLIEU  AS TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP)) GIABAN,GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, SANPHAM.TRANGTHAI, SANPHAM.MACHATLIEU, SANPHAM.MADVT, SANPHAM.MAMAU, SANPHAM.MASIZE  FROM CHATLIEU INNER JOIN SANPHAM ON CHATLIEU.MACHATLIEU = SANPHAM.MACHATLIEU INNER JOIN MAUSAC ON SANPHAM.MAMAU = MAUSAC.MAMAU INNER JOIN SIZE ON SANPHAM.MASIZE = SIZE.MASIZE WHERE MADM like  ? and (MASP like ? or TENSP like ?)";
             case "UPDATEMASP":
                 return "UPDATE SANPHAM SET SOLUONG =? WHERE MASP = ?";
+            case "getMaxMaVach":
+                return "SELECT MAX(MAVACH) FROM SANPHAM";
         }
         return "";
     }
@@ -237,7 +239,7 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
 
     public SanPham getSanPhamByMaVach(String MaVach) {
         SanPham sp = new SanPham();
-        String sql = "select * from SANPHAM where TRANGTHAI = 1 and MAVACH = ? ";
+        String sql = "SELECT MASP, TENSP + '  ' + SANPHAM.MASIZE + ', ' + TENMAU + ', ' + TENCHATLIEU  AS TENSP, MADM, MAVACH , IIF(dbo.FNSPKM(MASP) IS NULL, GIABAN, dbo.FNSPKM(MASP)) GIABAN,GIANHAP, SOLUONG, ANHSANPHAM, NGAYNHAP, APDUNGKM, SANPHAM.TRANGTHAI, SANPHAM.MACHATLIEU, SANPHAM.MADVT, SANPHAM.MAMAU, SANPHAM.MASIZE  FROM CHATLIEU INNER JOIN SANPHAM ON CHATLIEU.MACHATLIEU = SANPHAM.MACHATLIEU INNER JOIN MAUSAC ON SANPHAM.MAMAU = MAUSAC.MAMAU INNER JOIN SIZE ON SANPHAM.MASIZE = SIZE.MASIZE where SANPHAM.TRANGTHAI = 1 and MAVACH like ? ";
         try {
             ResultSet rs = XJDBC.query(sql, MaVach);
             if (rs.next()) {
@@ -249,5 +251,9 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
             Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public int getMaxMaVach(){
+        return Integer.parseInt(XJDBC.value(this.getQuery("getMaxMaVach"))+"");
     }
 }

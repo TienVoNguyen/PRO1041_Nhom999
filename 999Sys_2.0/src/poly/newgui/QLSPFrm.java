@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,6 +41,7 @@ import poly.helper.ImageHelper;
 import poly.helper.Messeger;
 import poly.helper.XDate;
 import poly.helper.XExcel;
+import poly.helper.XHoaDon;
 import poly.helper.XInternal;
 import poly.helper.XValidate;
 
@@ -173,6 +175,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         lblAnh = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
+        btnInMaVachSP = new javax.swing.JButton();
         btnNhapExcel = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
@@ -232,8 +235,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
-
-        themDMJDialog.setPreferredSize(new java.awt.Dimension(428, 219));
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.BorderLayout());
@@ -354,8 +355,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         DaXoaJDialog.getContentPane().add(jPanel23, java.awt.BorderLayout.CENTER);
 
-        themDVTJDialog.setPreferredSize(new java.awt.Dimension(428, 219));
-
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setLayout(new java.awt.BorderLayout());
 
@@ -408,7 +407,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         themDVTJDialog.getContentPane().add(jPanel26, java.awt.BorderLayout.CENTER);
 
         themSizeJDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        themSizeJDialog.setPreferredSize(new java.awt.Dimension(428, 219));
 
         jPanel42.setBackground(new java.awt.Color(255, 255, 255));
         jPanel42.setLayout(new java.awt.BorderLayout());
@@ -708,8 +706,17 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         jPanel22.setBackground(new java.awt.Color(153, 255, 255));
         jPanel22.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 1, 5, 10, new java.awt.Color(153, 255, 255)));
-        jPanel22.setPreferredSize(new java.awt.Dimension(300, 0));
+        jPanel22.setPreferredSize(new java.awt.Dimension(400, 0));
         jPanel22.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+
+        btnInMaVachSP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInMaVachSP.setText("In mã vạch");
+        btnInMaVachSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInMaVachSPActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnInMaVachSP);
 
         btnNhapExcel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNhapExcel.setText("Nhập từ EXCEL");
@@ -865,6 +872,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jLabel14.setPreferredSize(new java.awt.Dimension(150, 12));
         jPanel37.add(jLabel14, java.awt.BorderLayout.LINE_START);
 
+        txtMaVach.setEditable(false);
         txtMaVach.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jPanel37.add(txtMaVach, java.awt.BorderLayout.CENTER);
 
@@ -1088,7 +1096,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1508, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1602, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1128,7 +1136,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
-            File file = XExcel.xuatExcel(tblSanPham, "San_Pham");
+            File file = XExcel.xuatExcel(tblSanPham, "San_Pham" + XDate.toString(new Date(), "dd-MM-yyyyhhmmss"));
             if (file != null) {
                 Messeger.alert(this, "Đã xong: " + file.getAbsolutePath());
             } else {
@@ -1403,9 +1411,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             public void run() {
 
                 for (int i = 0; i < tableModel.getRowCount(); i++) {
-                    if (i == pgbLoadingData.getMaximum()) {
-                        loadDataJDialog.dispose();
-                    }
+                    
                     tblSanPham.setRowSelectionInterval(i, i);
                     mouseClicked();
                     clearImage();
@@ -1423,12 +1429,20 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                         insertSP();
                         isNotNewData = false;
                     }
+                    if (i == pgbLoadingData.getMaximum()) {
+                        loadDataJDialog.dispose();
+                    }
                 }
 
             }
         });
         loadData.start();
     }//GEN-LAST:event_loadDataJDialogWindowOpened
+
+    private void btnInMaVachSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInMaVachSPActionPerformed
+        // TODO add your handling code here:
+        XHoaDon.printBarCode();
+    }//GEN-LAST:event_btnInMaVachSPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1439,6 +1453,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnHuyThemDVTMoi;
     private javax.swing.JButton btnHuyThemMau;
     private javax.swing.JButton btnHuyThemSizeMoi;
+    private javax.swing.JButton btnInMaVachSP;
     private javax.swing.JButton btnKhoiPhuc;
     private javax.swing.JButton btnKhoiPhucTatCa;
     private javax.swing.JButton btnLuu;
@@ -1870,13 +1885,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                 Messeger.alert(this, "Cập nhật thành công");
 
                 this.loadDataToTable(new Object[]{
-                    "%" + getForm().getMaSP() + "%",
-                    "%" + getForm().getMaVach() + "%",
-                    "%" + getForm().getTenSanPham() + "%",
-                    "%" + getForm().getMaVach() + "%",
-                    "%" + getForm().getMaVach() + "%",
-                    "%" + getForm().getMaVach() + "%",
-                    "%" + getForm().getMaVach() + "%"
+                    "%%",
+                    "%%",
+                    "%%",
+                    "%%",
+                    "%%",
+                    "%%",
+                    "%%"
                 });
             }
         } else if (Messeger.confirm(this, "Xác nhận thêm sản phẩm này?")) {
@@ -1887,20 +1902,22 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             insertSP();
             Messeger.alert(this, "Thêm thành công");
             this.loadDataToTable(new Object[]{
-                "%" + getForm().getMaVach() + "%",
-                "%" + getForm().getMaVach() + "%",
-                "%" + getForm().getTenSanPham() + "%",
-                "%" + getForm().getMaVach() + "%",
-                "%" + getForm().getMaVach() + "%",
-                "%" + getForm().getMaVach() + "%",
-                "%" + getForm().getMaVach() + "%"
+                "%%",
+                "%%",
+                "%%",
+                "%%",
+                "%%",
+                "%%",
+                "%%"
             });
         }
     }
 
     private void insertSP() {
         try {
-            this.daoSP.insert(getForm());
+            SanPham sp = getForm();
+            sp.setMaVach(String.valueOf(this.daoSP.getMaxMaVach() + 1));
+            this.daoSP.insert(sp);
 
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -433,7 +433,7 @@ public class DatHangFrm extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSuDungActionPerformed
 
     private void btnAPDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAPDungActionPerformed
-        // TODO add your handling code here:
+        Messeger.alert(parent, "Đang update");
     }//GEN-LAST:event_btnAPDungActionPerformed
 
     /**

@@ -401,6 +401,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         btnQLCTSP.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnQLCTSP.setForeground(new java.awt.Color(255, 255, 255));
         btnQLCTSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/size36.png"))); // NOI18N
+        btnQLCTSP.setToolTipText("Quản lý chi tiết sản phảm");
         btnQLCTSP.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLCTSP.setPreferredSize(new java.awt.Dimension(173, 65));
         btnQLCTSP.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -414,6 +415,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         btnQLSP.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnQLSP.setForeground(new java.awt.Color(255, 255, 255));
         btnQLSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/new-product36.png"))); // NOI18N
+        btnQLSP.setToolTipText("Quản lý sản phẩm");
         btnQLSP.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLSP.setPreferredSize(new java.awt.Dimension(133, 65));
         btnQLSP.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -427,6 +429,7 @@ public class NewMainFrm extends javax.swing.JFrame {
         btnQLKhachHang.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnQLKhachHang.setForeground(new java.awt.Color(255, 255, 255));
         btnQLKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/customer36.png"))); // NOI18N
+        btnQLKhachHang.setToolTipText("Quản lý khách hàng");
         btnQLKhachHang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQLKhachHang.setPreferredSize(new java.awt.Dimension(133, 65));
         btnQLKhachHang.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
