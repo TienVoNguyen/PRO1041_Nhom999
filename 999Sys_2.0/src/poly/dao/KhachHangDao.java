@@ -24,7 +24,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
             case "INSERT":
                 return "INSERT INTO KHACHHANG (MAKH, MALOAIKH, HOTEN ,NGAYSINH, GIOITINH, EMAIL, SDT, DIACHI, NGAYTAO) VALUES (?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TICHDIEM =? WHERE MAKH=?";
+                return "UPDATE KHACHHANG SET MALOAIKH =?, HOTEN =?, NGAYSINH =?, GIOITINH =?, EMAIL =?, SDT =?, DIACHI =?, NGAYTAO =?, TICHDIEM =?, TRANGTHAI=? WHERE MAKH=?";
             case "DELETE":
                 return "UPDATE KHACHHANG SET TRANGTHAI =0 WHERE MAKH = ?";
             case "SELECTBYID":
@@ -63,6 +63,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
                     obj.getDiaChi(),
                     obj.getNgayTao(),
                     obj.getTichDiem(),
+                    obj.isTrangThai(),
                     obj.getMaKH()
                 };
             case "SELECTWHERE":
@@ -90,6 +91,8 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
         kH.setNgayTao(rs.getDate("NGAYTAO"));
         kH.setTrangThai(rs.getBoolean("TRANGTHAI"));
         kH.setTichDiem(rs.getInt("TICHDIEM"));
+        kH.setDiemEXP(rs.getInt("DIEMEXP"));
+        
         return kH;
     }
 
@@ -112,7 +115,7 @@ public class KhachHangDao extends BaseDao<KhachHang, String> {
     }
     public List<Object[]> getThongTinKhachHang(String maKH,int maLoaiKH,String hoTen,String diaChi)throws Exception{
         String sql = "{CALL SP_searchCusToms(?,?,?,?)}";
-        String[] cols = {"MAKH","HOTEN","DIACHI","GIOITINH","EMAIL","SDT","NGAYSINH","NGAYTAO","TICHDIEM"};
+        String[] cols = {"MAKH","HOTEN","DIACHI","GIOITINH","EMAIL","SDT","NGAYSINH","NGAYTAO","TICHDIEM","DIEMEXP"};
         return this.getListOfArray(sql, cols, maKH,maLoaiKH,hoTen,diaChi);
     }
 }
