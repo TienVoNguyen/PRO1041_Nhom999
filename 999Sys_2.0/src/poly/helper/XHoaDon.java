@@ -40,10 +40,8 @@ public class XHoaDon {
     public static void printBarCode(){
         try {
             
-            Hashtable map = new Hashtable();
             JasperReport report = JasperCompileManager.compileReport(System.getProperty("user.dir") + "\\src\\poly\\newgui\\printBarCodeFrm.jrxml");
             
-//            map.put("maHD", maHD);
             Connection con = DriverManager.getConnection(XJDBC.dburl, XJDBC.user, XJDBC.pass);
             JasperPrint p = JasperFillManager.fillReport(report,  null, con);
             JasperViewer.viewReport(p, false);
