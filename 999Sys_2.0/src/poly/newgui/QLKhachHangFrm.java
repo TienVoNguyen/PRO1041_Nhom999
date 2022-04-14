@@ -58,6 +58,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jpnChung = new javax.swing.JPanel();
         jpnTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
@@ -123,7 +125,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         txtSoDiemTich = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDiemEXP = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jpnLoaiKH = new javax.swing.JPanel();
         jpnSeparator = new javax.swing.JPanel();
@@ -162,9 +164,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("QUẢN LÝ KHÁCH HÀNG");
         lblTitle.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 1, 5, 1, new java.awt.Color(255, 102, 0)));
-        lblTitle.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         lblTitle.setMinimumSize(new java.awt.Dimension(285, 45));
-        lblTitle.setPreferredSize(new java.awt.Dimension(285, 45));
+        lblTitle.setPreferredSize(new java.awt.Dimension(285, 55));
         jpnTitle.add(lblTitle, java.awt.BorderLayout.CENTER);
 
         jpnChung.add(jpnTitle, java.awt.BorderLayout.PAGE_START);
@@ -183,6 +185,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jpnCBBLoaiKH.setBackground(new java.awt.Color(204, 102, 255));
         jpnCBBLoaiKH.setMinimumSize(new java.awt.Dimension(30, 20));
+        jpnCBBLoaiKH.setPreferredSize(new java.awt.Dimension(480, 20));
         jpnCBBLoaiKH.setLayout(new java.awt.BorderLayout());
 
         cbbLoaiKH.setBorder(null);
@@ -195,18 +198,18 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jpnCBBLoaiKH.add(cbbLoaiKH, java.awt.BorderLayout.EAST);
 
+        jLabel15.setText("  Loại Khách Hàng:");
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel15.setText("Loại Khách Hàng:");
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel15.setPreferredSize(new java.awt.Dimension(165, 20));
+        jLabel15.setPreferredSize(new java.awt.Dimension(155, 20));
         jpnCBBLoaiKH.add(jLabel15, java.awt.BorderLayout.LINE_START);
 
-        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
-        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTrangThai.setText("Tương Tác");
+        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
         btnTrangThai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTrangThai.setMaximumSize(new java.awt.Dimension(110, 15));
-        btnTrangThai.setPreferredSize(new java.awt.Dimension(110, 15));
+        btnTrangThai.setPreferredSize(new java.awt.Dimension(130, 15));
         btnTrangThai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTrangThaiMouseClicked(evt);
@@ -238,10 +241,10 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jpnSearchKH.add(txtSearchByName, java.awt.BorderLayout.CENTER);
 
-        btnSearch.setBackground(new java.awt.Color(255, 255, 255));
-        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
         btnSearch.setText("Sreach");
+        btnSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -253,9 +256,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jPanel9.setLayout(new java.awt.BorderLayout());
 
-        btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXuatExcel.setText("Xuất Exel");
         btnXuatExcel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXuatExcel.setPreferredSize(new java.awt.Dimension(130, 17));
         btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +285,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -297,16 +300,21 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblKhachHang);
+        if (tblKhachHang.getColumnModel().getColumnCount() > 0) {
+            tblKhachHang.getColumnModel().getColumn(3).setPreferredWidth(40);
+            tblKhachHang.getColumnModel().getColumn(8).setPreferredWidth(40);
+            tblKhachHang.getColumnModel().getColumn(9).setPreferredWidth(40);
+        }
 
         jpnTableKhachHang.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jpnLoaiBangKH.setBackground(new java.awt.Color(102, 153, 255));
+        jpnLoaiBangKH.setBackground(new java.awt.Color(255, 255, 0));
         jpnLoaiBangKH.setPreferredSize(new java.awt.Dimension(877, 40));
 
-        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblKHHoatDong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKHHoatDong.setText("Khách Hàng Tương Tác");
         lblKHHoatDong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        lblKHHoatDong.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblKHHoatDong.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jpnLoaiBangKH.add(lblKHHoatDong);
 
@@ -327,8 +335,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jpnNAUD.setBackground(new java.awt.Color(102, 153, 255));
         jpnNAUD.setLayout(new java.awt.GridLayout(1, 4, 5, 0));
 
-        btnNew.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnNew.setText("Mới");
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
@@ -354,8 +362,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jpnNAUD.add(btnSuaKH);
 
-        btnXoaKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXoaKH.setText("Xóa");
+        btnXoaKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXoaKH.setToolTipText("Xoa");
         btnXoaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,12 +512,14 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jpnGioiTinh.setLayout(new java.awt.BorderLayout());
 
-        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup1.add(rdoNam);
         rdoNam.setSelected(true);
         rdoNam.setText("Nam");
         rdoNam.setBorder(null);
+        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jpnGioiTinh.add(rdoNam, java.awt.BorderLayout.LINE_START);
 
+        buttonGroup1.add(rdoNu);
         rdoNu.setText("Nữ");
         rdoNu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -547,11 +557,11 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jPanel1.add(jTextField1, java.awt.BorderLayout.CENTER);
+        txtDiemEXP.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jPanel1.add(txtDiemEXP, java.awt.BorderLayout.CENTER);
 
+        jLabel9.setText("  Điểm EXP : ");
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel9.setText("  Mã Loại KH : ");
         jLabel9.setPreferredSize(new java.awt.Dimension(125, 15));
         jPanel1.add(jLabel9, java.awt.BorderLayout.LINE_START);
 
@@ -578,7 +588,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         );
         jpnSeparatorLayout.setVerticalGroup(
             jpnSeparatorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
 
         jpnLoaiKH.add(jpnSeparator, java.awt.BorderLayout.LINE_START);
@@ -662,22 +672,24 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setText("  Trạng Thái");
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setPreferredSize(new java.awt.Dimension(125, 14));
         jPanel4.add(jLabel14, java.awt.BorderLayout.LINE_START);
 
         jPanel8.setLayout(new java.awt.BorderLayout());
 
-        rdoTonTaiLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup2.add(rdoTonTaiLKH);
         rdoTonTaiLKH.setSelected(true);
         rdoTonTaiLKH.setText("Tồn Tại");
         rdoTonTaiLKH.setBorder(null);
+        rdoTonTaiLKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel8.add(rdoTonTaiLKH, java.awt.BorderLayout.LINE_START);
 
-        rdoKhongTonTaiLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buttonGroup2.add(rdoKhongTonTaiLKH);
         rdoKhongTonTaiLKH.setText("Không Tồn Tại");
         rdoKhongTonTaiLKH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        rdoKhongTonTaiLKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel8.add(rdoKhongTonTaiLKH, java.awt.BorderLayout.CENTER);
 
         jPanel4.add(jPanel8, java.awt.BorderLayout.CENTER);
@@ -694,8 +706,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(343, 40));
         jPanel5.setLayout(new java.awt.GridLayout(1, 4, 5, 5));
 
-        btnNewLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnNewLKH.setText("Mới");
+        btnNewLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnNewLKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewLKHActionPerformed(evt);
@@ -703,8 +715,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jPanel5.add(btnNewLKH);
 
-        btnThemLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemLKH.setText("Thêm");
+        btnThemLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemLKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemLKHActionPerformed(evt);
@@ -712,8 +724,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jPanel5.add(btnThemLKH);
 
-        btnSuaLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSuaLKH.setText("Sửa");
+        btnSuaLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSuaLKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaLKHActionPerformed(evt);
@@ -721,8 +733,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         });
         jPanel5.add(btnSuaLKH);
 
-        btnXoaLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXoaLKH.setText("Xóa");
+        btnXoaLKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnXoaLKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaLKHActionPerformed(evt);
@@ -755,6 +767,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 this.fillToTableKhachHang(0);
             }
         }
+        this.clearFormKH();
     }//GEN-LAST:event_cbbLoaiKHItemStateChanged
 
     private void btnTrangThaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseClicked
@@ -785,22 +798,14 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         this.setFormKhachHang(new KhachHang());
         if (btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
             this.fillToTableKhachHang(1);
-            jpnLoaiBangKH.setBackground(Color.red);
+            jpnLoaiBangKH.setBackground(Color.BLUE);
             lblKHHoatDong.setText("Khách Hàng Tương Tác");
         } else if (btnTrangThai.getText().equalsIgnoreCase("Không Tương Tác")) {
             this.fillToTableKhachHang(0);
-            jpnLoaiBangKH.setBackground(Color.BLUE);
+            jpnLoaiBangKH.setBackground(Color.YELLOW);
             lblKHHoatDong.setText("Khách Hàng Không Tương Tác");
         }
-        if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
-            btnXoaKH.setEnabled(false);
-            btnThemKH.setEnabled(false);
-            btnNew.setEnabled(false);
-        } else {
-            btnXoaKH.setEnabled(true);
-            btnThemKH.setEnabled(true);
-            btnNew.setEnabled(true);
-        }
+        this.changeTxtButton();
     }//GEN-LAST:event_btnTrangThaiActionPerformed
 
     private void txtSearchByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchByNameKeyReleased
@@ -814,7 +819,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             khachHangModelTB.setRowCount(0);
             for (Object[] KH : listSearchKH) {
                 String GT = Boolean.parseBoolean(String.valueOf(KH[3])) ? "Nam" : "Nữ";
-                khachHangModelTB.addRow(new Object[]{KH[0], KH[1], KH[2], GT, KH[4], KH[5], KH[6], KH[7], KH[8]});
+                khachHangModelTB.addRow(new Object[]{KH[0], KH[1], KH[2], GT, KH[4], KH[5], KH[6], KH[7], KH[8], KH[9]});
             }
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi tìm kiếm", "Error!");
@@ -860,7 +865,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         if (row == -1) {
             return;
         }
-        this.changeIndex(row + 1);
+        this.changeIndex(row);
         this.edit();
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
@@ -882,6 +887,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             khachHangDao.insert(kH);
             Messeger.alert(this, "Thêm khách hàng mới thành công!");
             this.fillToTableKhachHang(1);
+            this.clearFormKH();
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Thêm khách hàng thất bại!", "Error!");
             ex.printStackTrace();
@@ -901,6 +907,12 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             khachHangDao.update(kH);
             Messeger.alert(this, "Update khách hàng thành công!");
             this.fillToTableKhachHang(1);
+            if (this.btnTrangThai.getText().equalsIgnoreCase("Không Tương Tác")) {
+                this.btnTrangThai.setText("Tương Tác");
+                jpnLoaiBangKH.setBackground(Color.red);
+                lblKHHoatDong.setText("Khách Hàng Tương Tác");
+            }
+            this.changeTxtButton();
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi update khách hàng!", "Error!");
             ex.printStackTrace();
@@ -908,10 +920,10 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSuaKHActionPerformed
 
     private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
-        if (!Auth.isManager()) {
-            Messeger.showErrorDialog(this, "Bạn không có quyền xóa!", "Error!");
-            return;
-        }
+//        if (!Auth.isManager()) {
+//            Messeger.showErrorDialog(this, "Bạn không có quyền xóa!", "Error!");
+//            return;
+//        }
         row = this.tblKhachHang.getSelectedRow();
         if (this.txtMaKhachHang.getText().isEmpty()) {
             this.txtMaKhachHang.setBackground(Color.YELLOW);
@@ -932,7 +944,14 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             KhachHang kH = this.getFormKhachHang();
             khachHangDao.delete(kH.getMaKH());
             Messeger.alert(this, "Xóa thành công!");
-            this.fillToTableKhachHang(1);
+            if (this.btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
+                this.btnTrangThai.setText("Không Tương Tác");
+                jpnLoaiBangKH.setBackground(Color.BLUE);
+                lblKHHoatDong.setText("Khách Hàng Không Tương Tác");
+            }
+            this.changeTxtButton();
+            this.fillToTableKhachHang(0);
+            this.clearFormKH();
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi xóa khách hàng!", "Error!");
             ex.printStackTrace();
@@ -945,7 +964,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-            this.changeIndex(row + 1);
+            this.changeIndex(row);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng đầu tiên!", "Error!");
             ex.printStackTrace();
@@ -961,7 +980,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-            this.changeIndex(row + 1);
+            this.changeIndex(row);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng trước!", "Error!");
             ex.printStackTrace();
@@ -977,7 +996,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-            this.changeIndex(row + 1);
+            this.changeIndex(row);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng tiếp theo!", "Error!");
             ex.printStackTrace();
@@ -990,7 +1009,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             String maKH = tblKhachHang.getValueAt(row, 0).toString();
             KhachHang kH = khachHangDao.selectById(maKH);
             this.setFormKhachHang(kH);
-            this.changeIndex(row + 1);
+            this.changeIndex(row);
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi truy vấn khách hàng cuối cùng!", "Error!");
             ex.printStackTrace();
@@ -1121,6 +1140,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnXoaKH;
     private javax.swing.JButton btnXoaLKH;
     private javax.swing.JButton btnXuatExcel;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbbLoaiKH;
     private com.github.lgooddatepicker.components.DatePicker dateTime;
     private javax.swing.JLabel jLabel10;
@@ -1156,7 +1177,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jpnCBBLoaiKH;
     private javax.swing.JPanel jpnCenter;
     private javax.swing.JPanel jpnChung;
@@ -1191,6 +1211,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblKhachHang;
     private javax.swing.JTable tblLoaiKH;
     private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtDiemEXP;
     private javax.swing.JTextField txtEmailKhachHang;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaKhachHang;
@@ -1215,6 +1236,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         loaiKHDao = new LoaiKhachHangDao();
         this.fillToComBoBox();
         this.fillToTableLoaiKhachHang();
+        if (tblKhachHang.getRowCount() > 0) {
+            tblKhachHang.setRowSelectionInterval(row, row);
+        }
     }
 
     private void fillToComBoBox() {
@@ -1257,7 +1281,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                                 XDate.toString(khachHang.getNgayTao(), "dd/MM/yyyy"),
                                 khachHang.getTichDiem(),
                                 khachHang.getDiemEXP()
-                                
+
                             });
                         }
                     } else if (trangThaiKH == 0) {  // 0 khách hàng k tương tác
@@ -1276,7 +1300,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                         }
                     }
                 }
+
                 this.row = 0;
+                // this.setFormKhachHang(listKH.get(0));
                 this.changeIndex(row);
             }
         } catch (Exception ex) {
@@ -1286,6 +1312,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }
 
     private void setFormKhachHang(KhachHang kH) {
+
         this.txtMaKhachHang.setText(kH.getMaKH());
         this.txtHoTen.setText(kH.getHoTen());
         this.txtDiaChi.setText(kH.getDiaChi());
@@ -1307,8 +1334,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
             this.txtNgTao.setText(XDate.toString(kH.getNgayTao(), "dd/MM/yyyy"));
         }
         this.txtSoDiemTich.setText(kH.getTichDiem() + "");
-     //   tblKhachHang.setRowSelectionInterval(row, row);
-        if (row > 0) {
+        this.txtDiemEXP.setText(kH.getDiemEXP() + "");
+        if (tblKhachHang.getRowCount() > 0) {
             tblKhachHang.setRowSelectionInterval(row, row);
         }
     }
@@ -1468,8 +1495,21 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }
 
     private void changeIndex(int row) {
+
         if (tblKhachHang.getRowCount() > 0) {
-            this.lblSoLuong.setText(row + " / " + tblKhachHang.getRowCount());
+            this.lblSoLuong.setText(row + 1 + " / " + tblKhachHang.getRowCount());
+        }
+    }
+
+    private void changeTxtButton() {
+        if (lblKHHoatDong.getText().equalsIgnoreCase("Khách Hàng Không Tương Tác")) {
+            btnXoaKH.setEnabled(false);
+            btnThemKH.setEnabled(false);
+            btnNew.setEnabled(false);
+        } else {
+            btnXoaKH.setEnabled(true);
+            btnThemKH.setEnabled(true);
+            btnNew.setEnabled(true);
         }
     }
 }
