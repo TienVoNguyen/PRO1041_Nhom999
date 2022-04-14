@@ -164,7 +164,9 @@ public class Code_Reader extends javax.swing.JFrame implements Runnable, ThreadF
                 if (sp != null & sp.getMaSP() != 0) {
                     hdFrm.setSlGoc(sp.getSoLuong());
                     int maSP = sp.getMaSP();
-                    if (checkNhapSL(maSP)) return;
+                    if (Messeger.confirm(this, "Đã tìm thấy Sản Phẩm: " + sp.getTenSanPham() + "-- Giá Bán: " + df.format(sp.getGiaBan()) +"\nxác nhận thêm sản phẩm này vào hóa đơn?")){
+                        if (checkNhapSL(maSP)) return;
+                    }
                 }
             }
         } while (true);
