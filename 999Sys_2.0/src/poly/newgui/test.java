@@ -7,6 +7,8 @@ package poly.newgui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import poly.entity.NhanVien;
+import poly.helper.Auth;
 
 /**
  *
@@ -20,6 +22,9 @@ public class test extends javax.swing.JFrame {
     ThongKeFrm frmThongKe;
     QLSPFrm qlSPFrm;
     QLKhachHangFrm qlKH;
+    LichSuGDFrm lSGD;
+    InforFrm i;
+
     /**
      * Creates new form test
      */
@@ -28,6 +33,17 @@ public class test extends javax.swing.JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize.width, screenSize.height);
 //        this.setAlwaysOnTop(true);
+        Auth.user = new NhanVien();
+        Auth.user.setDiaChi("a");
+        Auth.user.setEmail("a");
+        Auth.user.setGioiTinh(true);
+        Auth.user.setHoTen("a");
+        Auth.user.setMaNV("a");
+        Auth.user.setNgSinh("22/07/1998");
+        Auth.user.setNgayTao("22/07/1998");
+        Auth.user.setPassWord("123");
+        Auth.user.setSDT("012345567");
+        Auth.user.setVaiTro(1);
         //chạy giao ca
 //        if (frmGiaoCa == null || frmGiaoCa.isClosed()) {
 //            frmGiaoCa = new QLGiaoCaFrm();
@@ -37,14 +53,21 @@ public class test extends javax.swing.JFrame {
 //            frmGiaoCa.setVisible(true);
 //        }
         // Chạy thống kê
-        if (frmThongKe == null || frmThongKe.isClosed()) {
-            frmThongKe = new ThongKeFrm(jDesktopPane1);
-            jDesktopPane1.add(frmThongKe);
-            frmThongKe.setVisible(true);
-        } else {
-            frmThongKe.setVisible(true);
-        }
+//        if (frmThongKe == null || frmThongKe.isClosed()) {
+//            frmThongKe = new ThongKeFrm(jDesktopPane1);
+//            jDesktopPane1.add(frmThongKe);
+//            frmThongKe.setVisible(true);
+//        } else {
+//            frmThongKe.setVisible(true);
+//        }
 //          Chạy QLSP
+        if (qlSPFrm == null || qlSPFrm.isClosed()) {
+            qlSPFrm = new QLSPFrm(null);
+            jDesktopPane1.add(qlSPFrm);
+            qlSPFrm.setVisible(true);
+        } else {
+            qlSPFrm.setVisible(true);
+        }
 //        if (qlSPFrm == null || qlSPFrm.isClosed()) {
 //            qlSPFrm = new QLSPFrm(null);
 //            jDesktopPane1.add(qlSPFrm);
@@ -59,6 +82,21 @@ public class test extends javax.swing.JFrame {
 //            qlKH.setVisible(true);
 //        } else {
 //            qlKH.setVisible(true);
+//        }
+        // Chạy LSGD
+        if(lSGD ==  null || lSGD.isClosed()){
+            lSGD = new LichSuGDFrm();
+            jDesktopPane1.add(lSGD);
+            lSGD.setVisible(true);
+        }else{
+            lSGD.setVisible(true);
+        }
+//        if (i == null || i.isClosed()) {
+//            i = new InforFrm();
+//            jDesktopPane1.add(i);
+//            i.setVisible(true);
+//        } else {
+//            i.setVisible(true);
 //        }
     }
 

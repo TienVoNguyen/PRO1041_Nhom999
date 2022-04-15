@@ -26,7 +26,7 @@ public class XHoaDon {
             
             Hashtable map = new Hashtable();
             JasperReport report = JasperCompileManager.compileReport(System.getProperty("user.dir") + "\\src\\poly\\newgui\\hoadonthanhtoan.jrxml");
-            
+            System.out.println(System.getProperty("user.dir"));
             map.put("maHD", maHD);
             Connection con = DriverManager.getConnection(XJDBC.dburl, XJDBC.user, XJDBC.pass);
             JasperPrint p = JasperFillManager.fillReport(report,  map, con);
