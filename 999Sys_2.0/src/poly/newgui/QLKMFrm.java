@@ -305,7 +305,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
 
         percentCard.setLayout(new java.awt.GridLayout(1, 0));
 
-        sppercent.setModel(new javax.swing.SpinnerNumberModel(0.2d, 0.0d, 10.0d, 0.05d));
+        sppercent.setModel(new javax.swing.SpinnerNumberModel(0.2d, 0.0d, 1.0d, 0.05d));
         sppercent.setEditor(new javax.swing.JSpinner.NumberEditor(sppercent, "##%"));
         percentCard.add(sppercent);
 
@@ -815,7 +815,10 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnThungRacActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        ResetForm();
+//        ResetForm();
+        if (!CheckKhongChungMaSP()) {
+            return;
+        }
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -902,6 +905,10 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         if (Validate_QLKhuyenMai()) {
             return;
         }
+        if (!Validate_Day()) {
+            Messeger.alert(this, "Ngày Kết Thúc Phải Lớn Hơn Ngày Bắt Đầu");
+            return;
+        }
         if (!radio_AD_HoaDon.isSelected() & !radio_AD_SanPham.isSelected()) {
             Messeger.alert(this, "Vui Lòng Chọn Khuyến Mãi Áp Dụng Cho Loại Mặt Hàng");
             return;
@@ -914,6 +921,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                 return;
             }
         }
+
         boolean hinhthucAD = true;
         boolean LoaiApDung = true;
         if (radioPT.isSelected()) {
@@ -925,43 +933,58 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         }
         String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
         String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        for (int i = 0; i < tblqlkm.getRowCount(); i++) {
-            if (String.valueOf(cbbSP.getSelectedItem()).equals(String.valueOf(tblqlkm.getValueAt(i, 6)))) {
-                try {
-                    Date date1 = sdf.parse(tblqlkm.getValueAt(i, 5).toString());
-                    Date date2 = sdf.parse(txtNgayBatDau.getText());
-                    if (date1.before(date2)) { //d1>d2
-                        try {
-                            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
-                                return;
-                            }
-                            double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
-                            double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
-                            kmDao.insert(new KhuyenMai(
-                                    Integer.parseInt(cbbSP.getSelectedItem().toString()),
-                                    giamToiDa,
-                                    giaTri,
-                                    txtTenKhuyenMai.getText(),
-                                    ngaybd,
-                                    ngaykt,
-                                    hinhthucAD,
-                                    LoaiApDung));
-                            LoadDataToTable_KM();
-                            ResetForm();
-                            return;
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    } else {
-                        Messeger.alert(this, "Đã Có Khuyến Mại Cho Sản Phẩm Trong Khoảng Thời Gian Này , Bạn Không Thể Thêm Mới Khuyến Mãi");
-                        return;
-                    }
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
-                    Messeger.showErrorDialog(null, ex.getMessage(), "Error");
-                }
 
+        if (radioDanhMuc.isSelected()) {
+            DanhMuc dm = (DanhMuc) cbbDanhMuc.getSelectedItem();
+            ArrayList<String> listSPInDanhMuc = KhuyenMaiDAO.getMaSP_InDanhMuc(dm.getMaDM());
+            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                return;
+            }
+            for (int i = 0; i < listSPInDanhMuc.size(); i++) {
+                String get = listSPInDanhMuc.get(i);
+                try {
+                    double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
+                    double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
+                    kmDao.insert(new KhuyenMai(
+                            Integer.parseInt(get),
+                            giamToiDa,
+                            giaTri,
+                            txtTenKhuyenMai.getText(),
+                            ngaybd,
+                            ngaykt,
+                            hinhthucAD,
+                            LoaiApDung));
+                    LoadDataToTable_KM();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            return;
+        }
+        if (radioSanPham.isSelected()) {
+            if (!CheckKhongChungMaSP()) {
+                return;
+            }
+            try {
+                if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                    return;
+                }
+                double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
+                double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
+                kmDao.insert(new KhuyenMai(
+                        Integer.parseInt(cbbSP.getSelectedItem().toString()),
+                        giamToiDa,
+                        giaTri,
+                        txtTenKhuyenMai.getText(),
+                        ngaybd,
+                        ngaykt,
+                        hinhthucAD,
+                        LoaiApDung));
+                LoadDataToTable_KM();
+                ResetForm();
+                return;
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
 
@@ -991,26 +1014,26 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
             }
         }
 
-        try {
-            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
-                return;
-            }
-            double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
-            double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
-            kmDao.insert(new KhuyenMai(
-                    Integer.parseInt(cbbSP.getSelectedItem().toString()),
-                    giamToiDa,
-                    giaTri,
-                    txtTenKhuyenMai.getText(),
-                    ngaybd,
-                    ngaykt,
-                    hinhthucAD,
-                    LoaiApDung));
-            LoadDataToTable_KM();
-            ResetForm();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+//                return;
+//            }
+//            double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
+//            double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
+//            kmDao.insert(new KhuyenMai(
+//                    Integer.parseInt(cbbSP.getSelectedItem().toString()),
+//                    giamToiDa,
+//                    giaTri,
+//                    txtTenKhuyenMai.getText(),
+//                    ngaybd,
+//                    ngaykt,
+//                    hinhthucAD,
+//                    LoaiApDung));
+//            LoadDataToTable_KM();
+//            ResetForm();
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void radioSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSanPhamActionPerformed
@@ -1096,7 +1119,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         txtGiamToiDa.setValue(Double.parseDouble(String.valueOf(tbl_HoaDon.getValueAt(viTri, 3))));
         txtNgayBatDau.setText(String.valueOf(tbl_HoaDon.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tbl_HoaDon.getValueAt(viTri, 5)));
-        
+
         txthdtoithieu.setValue(Double.parseDouble(String.valueOf(tbl_HoaDon.getValueAt(viTri, 6)).replace("đ", "")));
         radio_AD_HoaDon.setSelected(true);
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
@@ -1120,7 +1143,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         txtGiamToiDa.setValue(Double.parseDouble(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 3))));
         txtNgayBatDau.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 4)));
         txtNgayKetThuc.setText(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 5)));
-        
+
         txthdtoithieu.setValue(Double.parseDouble(String.valueOf(tbl_HoaDon_HetHan.getValueAt(viTri, 6)).replace("đ", "")));
         radio_AD_HoaDon.setSelected(true);
     }//GEN-LAST:event_tbl_HoaDon_HetHanMouseClicked
@@ -1259,6 +1282,19 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         txtNgayBatDau.setSettings(CustomDatePicker.customsDatePicker(txtNgayBatDau, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
         txtNgayKetThuc.setSettings(CustomDatePicker.customsDatePicker(txtNgayKetThuc, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
 
+    }
+
+    private boolean CheckKhongChungMaSP() {
+        SanPham sp = (SanPham) modelcbb_sp.getSelectedItem();
+        for (int i = 0; i < tblqlkm.getRowCount(); i++) {
+            String textTable = String.valueOf(tblqlkm.getValueAt(i, 6));
+            String textCbb = String.valueOf(sp.getMaSP());
+            if (textTable.equals(textCbb)) {
+                Messeger.alert(this, "Đã Có Mã Giảm Giá Cho Sản Phẩm");
+                return false;
+            }
+        }
+        return true;
     }
 
     private void LoadDataToTable_KM() {
@@ -1551,7 +1587,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         if (b) {
             card_GiaTri.show(ctCard, "vndCard");
             radiovnd.setSelected(true);
-        }else {
+        } else {
             card_GiaTri.show(ctCard, "percentCard");
             radioPT.setSelected(true);
         }

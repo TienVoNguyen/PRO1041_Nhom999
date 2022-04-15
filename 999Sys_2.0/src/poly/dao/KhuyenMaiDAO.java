@@ -116,7 +116,8 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
     }
 
     public static ArrayList<String> getMaSP_InDanhMuc(int maDM) {
-        String sql = "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ? AND SANPHAM.APDUNGKM = 1";
+        String sql = "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ? AND SANPHAM.APDUNGKM = 1\n" +
+"AND MASP not in (select MASP from KHUYENMAI )";
         ArrayList<String> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql, maDM);
