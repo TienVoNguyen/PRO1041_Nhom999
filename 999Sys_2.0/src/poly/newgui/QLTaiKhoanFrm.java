@@ -7,6 +7,8 @@ package poly.newgui;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -228,6 +230,11 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
         jpnSearch.add(btnTimKiem, java.awt.BorderLayout.EAST);
         jpnSearch.add(txtTimKiem, java.awt.BorderLayout.CENTER);
 
@@ -858,6 +865,26 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         index++;
         SettextTable(index);
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        try {
+            NhanVien nv =  dao_nv.selectById(txtTimKiem.getText());
+            if (nv == null) {
+                Messeger.alert(this, "Mã Nhân Viên Không Tồn Tại");
+                return;
+            }
+            for (int i = 0; i < tblnhanvien.getRowCount(); i++) {
+                if (tblnhanvien.getValueAt(i, 0).toString().equals(nv.getMaNV())) {
+                    SettextTable(i);
+                    Messeger.alert(this, "Đã Tìm Thành Công");
+                    return;
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(QLTaiKhoanFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void SettextTable(int viTri) {
         txtMaNV.setText(tblnhanvien.getValueAt(viTri, 0).toString());
