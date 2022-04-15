@@ -115,6 +115,9 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         btnDaGH = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         btnHuyGiaoHang = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        txtTimKiem = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
         pnlTableCard = new javax.swing.JPanel();
         pnlHoaDonChoGH = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -328,6 +331,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
 
         btnHuyGiaoHang.setBackground(new java.awt.Color(204, 0, 0));
         btnHuyGiaoHang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnHuyGiaoHang.setForeground(new java.awt.Color(255, 255, 204));
         btnHuyGiaoHang.setText("Hủy Giao Hàng");
         btnHuyGiaoHang.setPreferredSize(new java.awt.Dimension(200, 80));
         btnHuyGiaoHang.addActionListener(new java.awt.event.ActionListener() {
@@ -338,6 +342,18 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         jPanel14.add(btnHuyGiaoHang);
 
         jPanel11.add(jPanel14, java.awt.BorderLayout.CENTER);
+
+        jPanel8.setBackground(new java.awt.Color(0, 128, 128));
+        jPanel8.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        txtTimKiem.setPreferredSize(new java.awt.Dimension(800, 40));
+        jPanel8.add(txtTimKiem);
+
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
+        btnTimKiem.setPreferredSize(new java.awt.Dimension(40, 40));
+        jPanel8.add(btnTimKiem);
+
+        jPanel11.add(jPanel8, java.awt.BorderLayout.PAGE_END);
 
         pnlTTHD.add(jPanel11, java.awt.BorderLayout.PAGE_START);
 
@@ -518,6 +534,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDangGH;
     private javax.swing.JButton btnGiaoHangTT;
     private javax.swing.JButton btnHuyGiaoHang;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnTraHang;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -531,6 +548,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -554,6 +572,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblHDChoGiaoHang;
     private javax.swing.JTable tblHDDangGiaoHang;
     private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 

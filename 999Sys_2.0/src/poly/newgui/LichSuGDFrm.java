@@ -121,7 +121,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
 
         jpnFormHD.setBackground(new java.awt.Color(102, 255, 0));
         jpnFormHD.setMinimumSize(new java.awt.Dimension(203, 120));
-        jpnFormHD.setPreferredSize(new java.awt.Dimension(327, 200));
+        jpnFormHD.setPreferredSize(new java.awt.Dimension(500, 200));
         jpnFormHD.setLayout(new java.awt.BorderLayout());
 
         jPanel11.setBackground(new java.awt.Color(255, 102, 0));
@@ -145,7 +145,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnCBBTT.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setText("  Trạng Thái :");
-        jLabel3.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel3.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnCBBTT.add(jLabel3, java.awt.BorderLayout.LINE_START);
 
         jpnCBBTT.add(cbbTrangThai, java.awt.BorderLayout.CENTER);
@@ -155,7 +155,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtHoaDon.setLayout(new java.awt.BorderLayout());
 
         jLabel2.setText("  Mã Hóa Đơn :");
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel2.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtHoaDon.add(jLabel2, java.awt.BorderLayout.LINE_START);
         jpnTxtHoaDon.add(txtMaHD, java.awt.BorderLayout.CENTER);
 
@@ -164,7 +164,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtMaNV.setLayout(new java.awt.BorderLayout());
 
         jLabel5.setText("  Mã Nhân Viên :");
-        jLabel5.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel5.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtMaNV.add(jLabel5, java.awt.BorderLayout.LINE_START);
         jpnTxtMaNV.add(txtMaNV, java.awt.BorderLayout.CENTER);
 
@@ -173,7 +173,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtMaKH.setLayout(new java.awt.BorderLayout());
 
         jLabel7.setText("  Mã Khách Hàng :");
-        jLabel7.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel7.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtMaKH.add(jLabel7, java.awt.BorderLayout.LINE_START);
         jpnTxtMaKH.add(txtMaKH, java.awt.BorderLayout.CENTER);
 
@@ -182,7 +182,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtNgayMua.setLayout(new java.awt.BorderLayout());
 
         jLabel9.setText("  Ngày Mua :");
-        jLabel9.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel9.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtNgayMua.add(jLabel9, java.awt.BorderLayout.LINE_START);
         jpnTxtNgayMua.add(txtNgayMua, java.awt.BorderLayout.CENTER);
 
@@ -191,7 +191,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtGiamGia.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setText("  Giảm Giá :");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel1.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtGiamGia.add(jLabel1, java.awt.BorderLayout.LINE_START);
         jpnTxtGiamGia.add(txtGiamGia, java.awt.BorderLayout.CENTER);
 
@@ -200,7 +200,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtNgayGH.setLayout(new java.awt.BorderLayout());
 
         jLabel4.setText("  Ngày Giao Hàng :");
-        jLabel4.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel4.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtNgayGH.add(jLabel4, java.awt.BorderLayout.LINE_START);
         jpnTxtNgayGH.add(txtNgayGH, java.awt.BorderLayout.CENTER);
 
@@ -209,7 +209,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtTienShip.setLayout(new java.awt.BorderLayout());
 
         jLabel6.setText("  Tiền Ship :");
-        jLabel6.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel6.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtTienShip.add(jLabel6, java.awt.BorderLayout.LINE_START);
         jpnTxtTienShip.add(txtTienShip, java.awt.BorderLayout.CENTER);
 
@@ -218,7 +218,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtThanhTien.setLayout(new java.awt.BorderLayout());
 
         jLabel8.setText("  Thành Tiền :");
-        jLabel8.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel8.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtThanhTien.add(jLabel8, java.awt.BorderLayout.LINE_START);
         jpnTxtThanhTien.add(txtThanhTien, java.awt.BorderLayout.CENTER);
 
@@ -227,7 +227,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTxtGhiCHu.setLayout(new java.awt.BorderLayout());
 
         jLabel13.setText("  Ghi Chú :");
-        jLabel13.setPreferredSize(new java.awt.Dimension(100, 14));
+        jLabel13.setPreferredSize(new java.awt.Dimension(130, 14));
         jpnTxtGhiCHu.add(jLabel13, java.awt.BorderLayout.LINE_START);
         jpnTxtGhiCHu.add(txtGhiChu, java.awt.BorderLayout.CENTER);
 

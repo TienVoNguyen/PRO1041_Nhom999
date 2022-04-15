@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef41dd24-5422-4c6e-95b1-f8d80d619997">
 	<property name="ireport.zoom" value="1.7715610000000013"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="231"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -69,14 +69,6 @@ WHERE
 	<field name="TAIKHOAN_HOTEN" class="java.lang.String"/>
 	<field name="KHACHHANG_MAKH" class="java.lang.String"/>
 	<field name="CT_HOADON_MASP" class="java.lang.Integer"/>
-	<background>
-		<band height="555">
-			<image>
-				<reportElement x="0" y="0" width="383" height="555" uuid="65100591-74dc-43b5-bf17-4e5167d1d75f"/>
-				<imageExpression><![CDATA["D:\\OneDrive\\Hình ảnh\\bgHD (1).png"]]></imageExpression>
-			</image>
-		</band>
-	</background>
 	<title>
 		<band height="51" splitType="Stretch">
 			<staticText>

@@ -17,6 +17,7 @@ import poly.dao.VaiTroDao;
 import poly.entity.NhanVien;
 import poly.helper.Auth;
 import poly.helper.CustomDatePicker;
+import poly.helper.CustomTabbedPaneUI;
 import poly.helper.ImageHelper;
 import poly.helper.Messeger;
 import poly.helper.XDate;
@@ -33,6 +34,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
     private NhanVienDao dao_nv;
     CardLayout card_DoiMK;
     NewMainFrm main;
+
     public InforFrm(NewMainFrm main) {
         initComponents();
         this.main = main;
@@ -107,19 +109,19 @@ public class InforFrm extends javax.swing.JInternalFrame {
         jPanel10 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
 
-        pnlTabs.setBackground(new java.awt.Color(255, 153, 51));
+        pnlTabs.setBackground(new java.awt.Color(0, 102, 102));
         pnlTabs.setForeground(new java.awt.Color(255, 255, 255));
         pnlTabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        pnlTabs.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        pnlTabs.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pnlTabs.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         pnlTabs.setOpaque(true);
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(50, 1, 100, 1, new java.awt.Color(255, 153, 51)));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(50, 1, 100, 1, new java.awt.Color(0, 102, 102)));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 0, 10, new java.awt.Color(255, 153, 102)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 0, 10, new java.awt.Color(0, 102, 102)));
         jPanel5.setPreferredSize(new java.awt.Dimension(300, 300));
         jPanel5.setLayout(new java.awt.GridLayout(0, 1));
 
@@ -131,7 +133,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
         });
         jPanel5.add(lbanh);
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,17 +143,17 @@ public class InforFrm extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 248, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel1);
 
         jPanel4.add(jPanel5, java.awt.BorderLayout.LINE_START);
 
-        jPanel9.setBackground(new java.awt.Color(51, 51, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(51, 51, 255)));
+        jPanel9.setBackground(new java.awt.Color(0, 100, 100));
+        jPanel9.setBorder(javax.swing.BorderFactory.createMatteBorder(30, 30, 30, 30, new java.awt.Color(0, 102, 102)));
         jPanel9.setPreferredSize(new java.awt.Dimension(95, 650));
-        jPanel9.setLayout(new java.awt.GridLayout(4, 2, 5, 5));
+        jPanel9.setLayout(new java.awt.GridLayout(4, 2, 20, 40));
 
         jPanel22.setBackground(new java.awt.Color(255, 153, 102));
         jPanel22.setLayout(new java.awt.BorderLayout());
@@ -218,15 +220,15 @@ public class InforFrm extends javax.swing.JInternalFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 25, 0, 0, new java.awt.Color(255, 255, 255)));
 
         buttonGroup1.add(rdoNam);
-        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNam.setSelected(true);
         rdoNam.setText("Nam");
+        rdoNam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNam.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel11.add(rdoNam);
 
         buttonGroup1.add(rdoNu);
-        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNu.setText("Nữ");
+        rdoNu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         rdoNu.setPreferredSize(new java.awt.Dimension(85, 55));
         jPanel11.add(rdoNu);
 
@@ -277,11 +279,11 @@ public class InforFrm extends javax.swing.JInternalFrame {
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
 
-        jpnButton.setBackground(new java.awt.Color(255, 153, 51));
+        jpnButton.setBackground(new java.awt.Color(0, 102, 102));
         jpnButton.setPreferredSize(new java.awt.Dimension(820, 200));
 
-        jPanel12.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel12.setLayout(new java.awt.GridLayout(1, 4, 5, 0));
+        jPanel12.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel12.setLayout(new java.awt.GridLayout(1, 4, 30, 10));
 
         btnThemMoi.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnThemMoi.setText("Mới");
@@ -415,7 +417,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1526, Short.MAX_VALUE)
+            .addGap(0, 1684, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,7 +437,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel8, java.awt.BorderLayout.LINE_END);
@@ -447,7 +449,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1526, Short.MAX_VALUE)
+            .addGap(0, 1684, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +469,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel13, java.awt.BorderLayout.LINE_START);
@@ -508,7 +510,7 @@ public class InforFrm extends javax.swing.JInternalFrame {
                 Auth.user.setHoTen(txtHoTen.getText());
                 Auth.user.setNgSinh(XDate.toString(XDate.toDate(txtngaysinh.getText(), "dd/mm/yyyy"), "yyyy/mm/dd"));
                 Auth.user.setSDT(txtSĐT.getText());
-                
+
                 dao_nv.update(Auth.user);
                 Messeger.alert(this, "Cập nhật thông tin thành công");
                 this.main.setLblTenNV();
@@ -627,8 +629,11 @@ public class InforFrm extends javax.swing.JInternalFrame {
         this.txtSĐT.setText(Auth.user.getSDT());
         this.rdoNam.setSelected(Auth.user.isGioiTinh());
         this.rdoNu.setSelected(!Auth.user.isGioiTinh());
-        this.txtngaysinh.setText(XDate.toString(XDate.toDate(Auth.user.getNgSinh(), "yyyy-MM-dd"), "dd/mm/yyyy"));
-        this.txtngaytao.setText(XDate.toString(XDate.toDate(Auth.user.getNgayTao(), "yyyy-MM-dd"), "dd/mm/yyyy"));
+        String ngaysinh = XDate.toString(XDate.toDate(Auth.user.getNgSinh(), "yyyy-MM-dd"), "dd/MM/yyyy");
+        String ngaydk = XDate.toString(XDate.toDate(Auth.user.getNgayTao(), "yyyy-MM-dd"), "dd/MM/yyyy");
+        this.txtngaysinh.setText(ngaysinh);
+        this.txtngaytao.setText(ngaydk);
+        this.pnlTabs.setUI(new CustomTabbedPaneUI());
     }
 
     private void ResetText() {
