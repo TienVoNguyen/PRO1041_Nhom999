@@ -33,7 +33,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
     private VaiTroDao dao_vt;
     private DefaultTableModel modelTable_nv;
     private DefaultTableModel modelTable_vt;
-    int index =0;
+    int index = 0;
 
     /**
      * Creates new form QLTaiKhoanFrm
@@ -721,6 +721,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
                     txtngaytao.getText(),
                     true));
             LoadDataToTable_TaiKhoan();
+            Messeger.alert(this, "Thêm Thành Công");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -757,26 +758,42 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
                     txtngaytao.getText(),
                     true));
             LoadDataToTable_TaiKhoan();
+            Messeger.alert(this, "Sửa Thành Công");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+
+        if (txtMaNV.getText().trim().length() == 0) {
+            Messeger.showErrorDialog(this, "Trống Thái Khoản", "Lỗi");
+            return;
+        }
         if (Auth.user.getMaNV().equals(txtMaNV.getText())) {
             Messeger.showErrorDialog(this, "Tài Khoản Đang Đăng Nhập Không Thể Tự Chỉnh Sửa", "Lỗi");
             return;
         }
-        try {
-            if (!Messeger.confirm(this, "Bạn Có Muốn Xóa Không")) {
-                return;
+        for (int i = 0; i < tblnhanvien.getRowCount(); i++) {
+            if (tblnhanvien.getValueAt(i, 0).toString().equals(txtMaNV.getText())) {
+                try {
+                    if (!Messeger.confirm(this, "Bạn Có Muốn Xóa Không")) {
+                        return;
+                    }
+                    dao_nv.delete(txtMaNV.getText());
+                    LoadDataToTable_TaiKhoan();
+                    ResetText();
+                    Messeger.alert(this, "Xoá Thành Công");
+                    return;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    Messeger.showErrorDialog(null, ex.getMessage(), "Error");
+                }
             }
-            dao_nv.delete(txtMaNV.getText());
-            LoadDataToTable_TaiKhoan();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            Messeger.showErrorDialog(null, ex.getMessage(), "Error");
+
         }
+        Messeger.alert(this, "Không Tồn Tại Mã Tài Khoản");
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void lbanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbanhMouseClicked
@@ -812,11 +829,11 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-       if (tblnhanvien.getRowCount() == 0) {
+        if (tblnhanvien.getRowCount() == 0) {
             return;
         }
-        SettextTable(tblnhanvien.getRowCount()-1);
-        index = tblnhanvien.getRowCount()-1;
+        SettextTable(tblnhanvien.getRowCount() - 1);
+        index = tblnhanvien.getRowCount() - 1;
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
@@ -828,7 +845,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         }
         index--;
         SettextTable(index);
-        
+
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -842,7 +859,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         SettextTable(index);
     }//GEN-LAST:event_btnNextActionPerformed
 
-    private void SettextTable(int viTri){
+    private void SettextTable(int viTri) {
         txtMaNV.setText(tblnhanvien.getValueAt(viTri, 0).toString());
         txtHoTen.setText(tblnhanvien.getValueAt(viTri, 1).toString());
         txtMatKhau.setText(tblnhanvien.getValueAt(viTri, 2).toString());
@@ -863,7 +880,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         }
         lbanh.setToolTipText(tblnhanvien.getValueAt(viTri, 10).toString());
         lbanh.setIcon(ImageHelper.read(String.valueOf(tblnhanvien.getValueAt(viTri, 10))));
-    
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -967,7 +984,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         LoadDataToTable_TaiKhoan();
         txtngaysinh.setSettings(CustomDatePicker.customsDatePicker(txtngaysinh,
                 new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
-        txtngaytao.setSettings(CustomDatePicker.customsDatePicker(txtngaytao, 
+        txtngaytao.setSettings(CustomDatePicker.customsDatePicker(txtngaytao,
                 new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
         this.fileChooser = new JFileChooser();
     }
