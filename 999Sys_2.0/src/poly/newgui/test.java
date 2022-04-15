@@ -19,23 +19,39 @@ public class test extends javax.swing.JFrame {
     QLGiaoCaFrm frmGiaoCa;
     ThongKeFrm frmThongKe;
     QLSPFrm qlSPFrm;
-    QLKMFrm qlkm;
 
     /**
      * Creates new form test
      */
     public test() {
         initComponents();
-         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize.width, screenSize.height);
-        if (qlkm == null || qlkm.isClosed()) {
-            qlkm = new QLKMFrm(null);
-            jDesktopPane1.add(qlkm);
-            qlkm.setVisible(true);
+//        this.setAlwaysOnTop(true);
+        //chạy giao ca
+//        if (frmGiaoCa == null || frmGiaoCa.isClosed()) {
+//            frmGiaoCa = new QLGiaoCaFrm();
+//            jDesktopPane1.add(frmGiaoCa);
+//            frmGiaoCa.setVisible(true);
+//        } else {
+//            frmGiaoCa.setVisible(true);
+//        }
+        // Chạy thống kê
+//        if (frmThongKe == null || frmThongKe.isClosed()) {
+//            frmThongKe = new ThongKeFrm(jDesktopPane1);
+//            jDesktopPane1.add(frmThongKe);
+//            frmThongKe.setVisible(true);
+//        } else {
+//            frmThongKe.setVisible(true);
+//        }
+//          Chạy QLSP
+        if (qlSPFrm == null || qlSPFrm.isClosed()) {
+            qlSPFrm = new QLSPFrm(null);
+            jDesktopPane1.add(qlSPFrm);
+            qlSPFrm.setVisible(true);
         } else {
-            qlkm.setVisible(true);
+            qlSPFrm.setVisible(true);
         }
-  
     }
 
     /**

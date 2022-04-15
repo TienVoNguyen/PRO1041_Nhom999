@@ -645,7 +645,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         if (isChoGHSelected) {
             this.btnChoGH.setBackground(new Color(51, 255, 51));
             this.btnDangGH.setBackground(new Color(204, 153, 0));
-            if (tblHDChoGiaoHang.getRowCount() <= 0){
+            if (tblHDChoGiaoHang.getRowCount() <= 0) {
                 clearDanhSachSPGiaoHang();
                 return;
             }
@@ -654,7 +654,7 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         } else {
             this.btnChoGH.setBackground(new Color(204, 153, 0));
             this.btnDangGH.setBackground(new Color(51, 255, 51));
-            if (tblHDDangGiaoHang.getRowCount() <= 0){
+            if (tblHDDangGiaoHang.getRowCount() <= 0) {
                 clearDanhSachSPGiaoHang();
                 return;
             }
@@ -802,7 +802,22 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             hd.setMaTT(2);
             gh = this.daoGH.selectById(maGH);
             gh.setMaTrangThai(2);
+
             if (Messeger.confirm(this, "Xác nhận Đã Giao Hàng Thành Công!")) {
+                if (hd.getMaKH() != null) {
+                    try {
+                        KhachHang kh = daoKH.selectById(hd.getMaKH());
+                        //tính điểm EXP
+                        int diemTLSauThanhToan = (int) (hd.getThanhTien() * 0.01);
+                        kh.setDiemEXP(kh.getDiemEXP() + diemTLSauThanhToan);
+                        kh.setTichDiem(kh.getTichDiem() + diemTLSauThanhToan);
+                        this.daoKH.update(kh);
+                    } catch (Exception ex) {
+                        Logger.getLogger(ThanhToanFrm.class.getName()).log(Level.SEVERE, null, ex);
+                        Messeger.showErrorDialog(this, "Lỗi truy vấn", "Lỗi");
+                        return true;
+                    }
+                }
                 this.daoHD.update(hd);
                 this.daoGH.update(gh);
                 Messeger.alert(this, "Thành Công");
@@ -844,6 +859,18 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
             gh = this.daoGH.selectById(maGH);
             gh.setMaTrangThai(3);
             if (Messeger.confirm(this, "Xác nhận Hủy Giao Hàng!")) {
+                if (hd.getMaKH() != null) {
+                    try {
+                        KhachHang kh = daoKH.selectById(hd.getMaKH());
+                        //hoàn lại điểm point đã dùng
+                        kh.setTichDiem(kh.getTichDiem() + gh.getSuDungPoint());
+                        this.daoKH.update(kh);
+                    } catch (Exception ex) {
+                        Logger.getLogger(ThanhToanFrm.class.getName()).log(Level.SEVERE, null, ex);
+                        Messeger.showErrorDialog(this, "Lỗi truy vấn", "Lỗi");
+                        return true;
+                    }
+                }
                 this.daoHD.update(hd);
                 this.daoGH.update(gh);
                 for (int i = 0; i < tblHDChiTiet.getRowCount(); i++) {

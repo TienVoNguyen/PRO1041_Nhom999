@@ -313,7 +313,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
 
         jPanel11.add(ctCard);
 
-        txtGiamToiDa.setModel(new javax.swing.SpinnerNumberModel(0, null, null, 1000));
+        txtGiamToiDa.setModel(new javax.swing.SpinnerNumberModel(10000, 10000, null, 1000));
         txtGiamToiDa.setEditor(new javax.swing.JSpinner.NumberEditor(txtGiamToiDa, "###,###,### VNĐ"));
         jPanel11.add(txtGiamToiDa);
 
@@ -341,9 +341,9 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         radVND.setLayout(new java.awt.GridLayout(1, 0, 15, 5));
 
         buttonGroup3.add(radiovnd);
+        radiovnd.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radiovnd.setSelected(true);
         radiovnd.setText("VND");
-        radiovnd.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radiovnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiovndActionPerformed(evt);
@@ -352,8 +352,8 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         radVND.add(radiovnd);
 
         buttonGroup3.add(radioPT);
-        radioPT.setText("%");
         radioPT.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        radioPT.setText("%");
         radioPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioPTActionPerformed(evt);
@@ -432,9 +432,9 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         jPanel22.setLayout(new java.awt.GridLayout(1, 0, 15, 5));
 
         buttonGroup2.add(radioSanPham);
+        radioSanPham.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radioSanPham.setSelected(true);
         radioSanPham.setText("Sản Phẩm");
-        radioSanPham.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radioSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioSanPhamActionPerformed(evt);
@@ -443,8 +443,8 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         jPanel22.add(radioSanPham);
 
         buttonGroup2.add(radioDanhMuc);
-        radioDanhMuc.setText("Danh Mục");
         radioDanhMuc.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        radioDanhMuc.setText("Danh Mục");
         radioDanhMuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioDanhMucActionPerformed(evt);
@@ -522,9 +522,9 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         jPanel20.setLayout(new java.awt.GridLayout(1, 0, 15, 5));
 
         buttonGroup1.add(radio_AD_SanPham);
+        radio_AD_SanPham.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radio_AD_SanPham.setSelected(true);
         radio_AD_SanPham.setText("Sản Phẩm");
-        radio_AD_SanPham.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         radio_AD_SanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radio_AD_SanPhamActionPerformed(evt);
@@ -533,8 +533,8 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         jPanel20.add(radio_AD_SanPham);
 
         buttonGroup1.add(radio_AD_HoaDon);
-        radio_AD_HoaDon.setText("Hóa Đơn");
         radio_AD_HoaDon.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        radio_AD_HoaDon.setText("Hóa Đơn");
         radio_AD_HoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radio_AD_HoaDonActionPerformed(evt);
@@ -617,6 +617,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         jPanel6.setBackground(new java.awt.Color(255, 153, 51));
         jPanel6.setLayout(new java.awt.BorderLayout(15, 5));
 
+        tblhethang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tblhethang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -640,7 +641,6 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblhethang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tblhethang.setRowHeight(24);
         tblhethang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblhethang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -659,6 +659,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
 
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
+        tblqlkm.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tblqlkm.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -706,6 +707,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 15, new java.awt.Color(255, 153, 51)));
         jPanel7.setLayout(new java.awt.BorderLayout(15, 5));
 
+        tbl_HoaDon.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tbl_HoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -729,7 +731,6 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_HoaDon.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tbl_HoaDon.setRowHeight(24);
         tbl_HoaDon.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_HoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -749,6 +750,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
 
         jScrollPane5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
+        tbl_HoaDon_HetHan.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tbl_HoaDon_HetHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -815,10 +817,32 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnThungRacActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-//        ResetForm();
-        if (!CheckKhongChungMaSP()) {
-            return;
-        }
+        ResetForm();
+        String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
+        String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
+        KhuyenMai km = new KhuyenMai();
+            double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
+            double hdToiThieu = Double.parseDouble(String.valueOf(txthdtoithieu.getValue()));
+            km.setGiamToiDa(giamToiDa);
+            double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
+            km.setGiaTri(giaTri);
+            km.setHDToiThieu(hdToiThieu);
+            km.setTenKM(txtTenKhuyenMai.getText());
+            km.setNgayBD(ngaybd);
+            km.setNgayKT(ngaykt);
+            km.setHinhThucAD(true);
+            km.setLoaiKM(true);
+            try {
+                if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
+                    return;
+                }
+                kmDao.Insert_NoMaSp(km);
+                LoadDataToTable_KM_HoaDon();
+                return;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                Messeger.showErrorDialog(null, ex.getMessage(), "Error");
+            }
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -909,10 +933,11 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
             Messeger.alert(this, "Ngày Kết Thúc Phải Lớn Hơn Ngày Bắt Đầu");
             return;
         }
-        if (!radio_AD_HoaDon.isSelected() & !radio_AD_SanPham.isSelected()) {
-            Messeger.alert(this, "Vui Lòng Chọn Khuyến Mãi Áp Dụng Cho Loại Mặt Hàng");
+        if (txtNgayBatDau.getText().equals(txtNgayKetThuc.getText())) {
+            Messeger.alert(this, "Ngày Kết Thúc Phải Lớn Hơn Ngày Bắt Đầu");
             return;
         }
+       
         ArrayList<String> s = SanPhamDao.ListSp_NoKhuyenMai(false);
         for (int i = 0; i < s.size(); i++) {
             String get = s.get(i);
@@ -934,7 +959,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         String ngaybd = XDate.toString(XDate.toDate(txtNgayBatDau.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
         String ngaykt = XDate.toString(XDate.toDate(txtNgayKetThuc.getText(), "dd/MM/yyyy"), "MM-dd-yyyy");
 
-        if (radioDanhMuc.isSelected()) {
+        if (radioDanhMuc.isSelected() && radio_AD_SanPham.isSelected()) {
             DanhMuc dm = (DanhMuc) cbbDanhMuc.getSelectedItem();
             ArrayList<String> listSPInDanhMuc = KhuyenMaiDAO.getMaSP_InDanhMuc(dm.getMaDM());
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
@@ -945,15 +970,19 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                 try {
                     double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
                     double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
-                    kmDao.insert(new KhuyenMai(
-                            Integer.parseInt(get),
-                            giamToiDa,
-                            giaTri,
-                            txtTenKhuyenMai.getText(),
-                            ngaybd,
-                            ngaykt,
-                            hinhthucAD,
-                            LoaiApDung));
+                   if (kmDao.insert(new KhuyenMai(
+                        Integer.parseInt(cbbSP.getSelectedItem().toString()),
+                        giamToiDa,
+                        giaTri,
+                        txtTenKhuyenMai.getText(),
+                        ngaybd,
+                        ngaykt,
+                        hinhthucAD,
+                        LoaiApDung))) {
+                    Messeger.alert(null, "Thành Công b");
+                }else{
+                    Messeger.alert(null, "null/cmd");
+                }
                     LoadDataToTable_KM();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -961,7 +990,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
             }
             return;
         }
-        if (radioSanPham.isSelected()) {
+        if (radioSanPham.isSelected() && radio_AD_SanPham.isSelected()) {
             if (!CheckKhongChungMaSP()) {
                 return;
             }
@@ -971,7 +1000,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                 }
                 double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
                 double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
-                kmDao.insert(new KhuyenMai(
+               if (kmDao.insert(new KhuyenMai(
                         Integer.parseInt(cbbSP.getSelectedItem().toString()),
                         giamToiDa,
                         giaTri,
@@ -979,7 +1008,11 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                         ngaybd,
                         ngaykt,
                         hinhthucAD,
-                        LoaiApDung));
+                        LoaiApDung))) {
+                    Messeger.alert(null, "Thành Côngx");
+                }else{
+                    Messeger.alert(null, "tb2");
+                }
                 LoadDataToTable_KM();
                 ResetForm();
                 return;
@@ -1005,8 +1038,12 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                 if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
                     return;
                 }
-                kmDao.Insert_NoMaSp(km);
-                LoadDataToTable_KM_HoaDon();
+                if (kmDao.Insert_NoMaSp(km)) {
+                    Messeger.alert(null, "tc");
+                    LoadDataToTable_KM_HoaDon();
+                }else{
+                    Messeger.alert(null, "tb");
+                }
                 return;
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -1570,7 +1607,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         txtKhuyenMai.setText("");
         txtTenKhuyenMai.setText("");
         txtGiaTri.setValue(10000);
-        txtGiamToiDa.setValue(0);
+        txtGiamToiDa.setValue(10000);
         txtNgayBatDau.setDateToToday();
         txtNgayKetThuc.setDateToToday();
         vndCard.setVisible(true);

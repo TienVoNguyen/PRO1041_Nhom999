@@ -22,9 +22,9 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
     public String getQuery(String action) {
         switch(action){
             case "INSERT":
-                return "INSERT INTO GIAOHANG (MAHOADON, TENKHACHHANG, SDT, DIACHI, NGAYGIAOHANG, TIENSHIPHANG, GHICHU, MATT) VALUES (?,?,?,?,?,?,?,?)";
+                return "INSERT INTO GIAOHANG (MAHOADON, TENKHACHHANG, SDT, DIACHI, NGAYGIAOHANG, TIENSHIPHANG, GHICHU, SDPOINT, MATT) VALUES (?,?,?,?,?,?,?,?,?)";
             case "UPDATE":
-                return "UPDATE GIAOHANG SET TENKHACHHANG = ?, SDT = ?, DIACHI = ?, NGAYGIAOHANG = ?, TIENSHIPHANG = ?, GHICHU = ?, MATT = ? WHERE  (MAGIAOHANG = ?)";
+                return "UPDATE GIAOHANG SET TENKHACHHANG = ?, SDT = ?, DIACHI = ?, NGAYGIAOHANG = ?, TIENSHIPHANG = ?, GHICHU = ?, MATT = ?, SDPOINT = ? WHERE  (MAGIAOHANG = ?)";
             case "DELETE":
                 return "DELETE FROM GIAOHANG WHERE  (MAGIAOHANG = ?)";
             case "SELECTBYID":
@@ -51,6 +51,7 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
                     obj.getNgayGiaoHang(),
                     obj.getTienShip(),
                     obj.getGhiChu(),
+                    obj.getSuDungPoint(),
                     obj.getMaTrangThai()
                 };
             case "UPDATE":
@@ -62,6 +63,7 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
                     obj.getTienShip(),
                     obj.getGhiChu(),
                     obj.getMaTrangThai(),
+                    obj.getSuDungPoint(),
                     obj.getMaGiaoHang()
                 };
         }
@@ -80,6 +82,7 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
         gh.setTienShip(rs.getDouble("TIENSHIPHANG"));
         gh.setGhiChu(rs.getString("GHICHU"));
         gh.setMaTrangThai(rs.getInt("MATT"));
+        gh.setSuDungPoint(rs.getInt("SDPOINT"));
         
         return gh;
     }

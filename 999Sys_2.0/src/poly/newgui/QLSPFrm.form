@@ -3,6 +3,9 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="themDMJDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Th&#xea;m danh m&#x1ee5;c"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
@@ -151,6 +154,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="DaXoaJDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m &#x111;&#xe3; h&#xf3;a"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
@@ -302,6 +308,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="themDVTJDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Th&#xea;m &#x111;&#x1a1;n v&#x1ecb; t&#xed;nh"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
@@ -452,6 +461,7 @@
     <Container class="javax.swing.JDialog" name="themSizeJDialog">
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="2"/>
+        <Property name="title" type="java.lang.String" value="Th&#xea;m Size"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -614,6 +624,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="themMauSacJDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Th&#xea;m m&#xe0;u s&#x1eaf;c"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
@@ -762,6 +775,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="themChatLieuJDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Th&#xea;m ch&#x1ea5;t Li&#x1ec7;u"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
@@ -959,6 +975,8 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&#x110;ang t&#x1ea3;i d&#x1eef; li&#x1ec7;u ...."/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -2202,7 +2220,7 @@
                                   <Font name="Arial" size="18" style="1"/>
                                 </Property>
                                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                                  <SpinnerModel initial="1000.0" minimum="0.0" numberType="java.lang.Double" stepSize="10000.0" type="number"/>
+                                  <SpinnerModel initial="1000.0" minimum="0.0" numberType="java.lang.Double" stepSize="10.0" type="number"/>
                                 </Property>
                               </Properties>
                               <Constraints>
