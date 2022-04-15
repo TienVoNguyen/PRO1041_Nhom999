@@ -121,7 +121,6 @@ public class DoanhThuDao {
                     da,
                     rs.getInt("SOHD"),
                     rs.getInt("SOLUONG"),
-                    rs.getString("GIABAN"),
                     rs.getString("GIAMGIA"),
                     rs.getString("DOANHTHU")});
 
@@ -229,7 +228,6 @@ public class DoanhThuDao {
                     rs.getString("THANG"),
                     rs.getInt("SOHD"),
                     rs.getInt("SOLUONG"),
-                    rs.getString("GIABAN"),
                     rs.getString("GIAMGIA"),
                     rs.getString("DOANHTHU")});
 
@@ -286,7 +284,6 @@ public class DoanhThuDao {
                     rs.getString("NAM"),
                     rs.getInt("SOHD"),
                     rs.getInt("SOLUONG"),
-                    rs.getString("GIABAN"),
                     rs.getString("GIAMGIA"),
                     rs.getString("DOANHTHU")});
 
