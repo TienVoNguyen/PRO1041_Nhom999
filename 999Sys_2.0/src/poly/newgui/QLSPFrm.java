@@ -1233,8 +1233,14 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             return;
         }
         DanhMuc dm = new DanhMuc();
-        dm.setTenDanhMuc(txtTenDanhMucMoi.getText());
+        dm.setTenDanhMuc(txtTenDanhMucMoi.getText().trim());
         dm.setNgayThem(XDate.toString(new Date(), "MM/dd/yyyy"));
+        for (int i = 0; i < dCBDM.getSize(); i++) {
+            if(dm.getTenDanhMuc().equalsIgnoreCase(dCBDM.getElementAt(i).toString())){
+                Messeger.showErrorDialog(this, "Đã tồn tại tên danh mục này", "Lỗi");
+                return;
+            }
+        }
         try {
             this.daoDM.insert(dm);
             Messeger.alert(themDMJDialog, "Thêm thành công!");
@@ -1310,7 +1316,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             return;
         }
         DonViTinh dvt = new DonViTinh();
-        dvt.setTenDVT(txtTenDVTMoi.getText());
+        dvt.setTenDVT(txtTenDVTMoi.getText().trim());
+        for (int i = 0; i < dCBDVT.getSize(); i++) {
+            if(dvt.getTenDVT().equalsIgnoreCase(dCBDVT.getElementAt(i).toString())){
+                Messeger.showErrorDialog(this, "Đã tồn tại tên đơn vị tính này", "Lỗi");
+                return;
+            }
+        }
         try {
             this.daoDVT.insert(dvt);
             Messeger.alert(themDVTJDialog, "thêm thành công thành công!");
@@ -1336,8 +1348,14 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             return;
         }
         Size size = new Size();
-        size.setMaSize(txtMaSize.getText());
+        size.setMaSize(txtMaSize.getText().trim());
         size.setTenSize(txtLoaiSize.getText());
+        for (int i = 0; i < dCBSize.getSize(); i++) {
+            if(size.getMaSize().equalsIgnoreCase(dCBSize.getElementAt(i).toString())){
+                Messeger.showErrorDialog(this, "Đã tồn tại Size này", "Lỗi");
+                return;
+            }
+        }
         try {
             this.daoSize.insert(size);
             Messeger.alert(themSizeJDialog, "Thêm thành công!");
@@ -1359,7 +1377,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             return;
         }
         MauSac ms = new MauSac();
-        ms.setTenMau(txtMauMoi.getText());
+        ms.setTenMau(txtMauMoi.getText().trim());
+        for (int i = 0; i < dCBMS.getSize(); i++) {
+            if(ms.getTenMau().equalsIgnoreCase(dCBMS.getElementAt(i).toString())){
+                Messeger.showErrorDialog(this, "Đã tồn tại Màu này", "Lỗi");
+                return;
+            }
+        }
         try {
             this.daoMauSac.insert(ms);
             Messeger.alert(themMauSacJDialog, "Thêm thành công!");
@@ -1381,7 +1405,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             return;
         }
         ChatLieu cl = new ChatLieu();
-        cl.setTenChatLieu(txtTenChatLieuMoi.getText());
+        cl.setTenChatLieu(txtTenChatLieuMoi.getText().trim());
+        for (int i = 0; i < dCBCL.getSize(); i++) {
+            if(cl.getTenChatLieu().equalsIgnoreCase(dCBCL.getElementAt(i).toString())){
+                Messeger.showErrorDialog(this, "Đã tồn tại chất liệu này", "Lỗi");
+                return;
+            }
+        }
         try {
             this.daoCL.insert(cl);
             Messeger.alert(themChatLieuJDialog, "Thêm thành công!");
