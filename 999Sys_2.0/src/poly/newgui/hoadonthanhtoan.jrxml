@@ -2,7 +2,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef41dd24-5422-4c6e-95b1-f8d80d619997">
 	<property name="ireport.zoom" value="1.7715610000000013"/>
 	<property name="ireport.x" value="0"/>
+<<<<<<< HEAD
+	<property name="ireport.y" value="0"/>
+=======
 	<property name="ireport.y" value="324"/>
+>>>>>>> 46b659ee68339f81abfb17a881c74cf6051efcda
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -69,6 +73,8 @@ WHERE
 	<field name="TAIKHOAN_HOTEN" class="java.lang.String"/>
 	<field name="KHACHHANG_MAKH" class="java.lang.String"/>
 	<field name="CT_HOADON_MASP" class="java.lang.Integer"/>
+<<<<<<< HEAD
+=======
 	<background>
 		<band height="555">
 			<image>
@@ -77,6 +83,7 @@ WHERE
 			</image>
 		</band>
 	</background>
+>>>>>>> 46b659ee68339f81abfb17a881c74cf6051efcda
 	<title>
 		<band height="51" splitType="Stretch">
 			<staticText>
