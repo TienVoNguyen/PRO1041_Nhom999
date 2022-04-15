@@ -35,6 +35,8 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
                 return "SELECT COUNT(MAGIAOHANG) FROM GIAOHANG WHERE MATT = 6 or MATT = 5";
             case "SELECTBY_MATT":
                 return "SELECT * FROM GIAOHANG WHERE  (MATT = ?)";
+            case "TIMKIEM":
+                return "SELECT * FROM GIAOHANG WHERE  (MATT = ?) AND (MAHOADON like ?  or TENKHACHHANG like ? or SDT like ? or DIACHI like ?)";
         }
         return "";
     }
@@ -93,5 +95,9 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
     
     public ArrayList<GiaoHang> selectListGiaoHangByTrangThai(int maTT) throws Exception{
         return this.selectByquery("SELECTBY_MATT", maTT);
+    }
+    
+    public ArrayList<GiaoHang> timKiemGiaoHang(Object... listThongTin) throws Exception{
+        return this.selectByquery("TIMKIEM", listThongTin);
     }
 }

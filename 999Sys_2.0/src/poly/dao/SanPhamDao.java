@@ -216,8 +216,8 @@ public class SanPhamDao extends BaseDao<SanPham, Integer> {
                 ImgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 list.add(new Object[]{
                     rs.getObject(1),
-                    rs.getObject(2),
                     rs.getObject(3),
+                    rs.getObject(2),
                     rs.getObject(4),
                     rs.getObject(5),
                     rs.getObject(6),

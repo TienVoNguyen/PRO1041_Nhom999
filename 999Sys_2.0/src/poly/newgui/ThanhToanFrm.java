@@ -196,8 +196,8 @@ public class ThanhToanFrm extends javax.swing.JDialog {
         jLabel1.setText("Thanh Toán Hóa Đơn");
         jPanel7.add(jLabel1);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 153, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ORANGE SHOP");
         jPanel7.add(jLabel2);

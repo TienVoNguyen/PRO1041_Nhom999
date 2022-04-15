@@ -43,6 +43,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private GiaoHangDao daoGH;
     private LichSuGDFrm lichSuGDFrm;
     private QLGiaoCaFrm qlGiaoCaFrm;
+    private InforFrm infoFrm;
 
     /**
      * Creates new form NewMainFrm
@@ -62,6 +63,8 @@ public class NewMainFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         jpmMenu = new javax.swing.JPopupMenu();
+        mniThongTinCaNhan = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
         mniQLGiaoCa = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         mniQLKH = new javax.swing.JMenuItem();
@@ -111,6 +114,23 @@ public class NewMainFrm extends javax.swing.JFrame {
         jpmMenu.setForeground(new java.awt.Color(255, 255, 255));
         jpmMenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpmMenu.setPreferredSize(new java.awt.Dimension(300, 200));
+
+        mniThongTinCaNhan.setBackground(new java.awt.Color(102, 51, 0));
+        mniThongTinCaNhan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mniThongTinCaNhan.setForeground(new java.awt.Color(255, 255, 255));
+        mniThongTinCaNhan.setText("Thông Tin cá nhân");
+        mniThongTinCaNhan.setOpaque(true);
+        mniThongTinCaNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThongTinCaNhanActionPerformed(evt);
+            }
+        });
+        jpmMenu.add(mniThongTinCaNhan);
+
+        jSeparator8.setBackground(new java.awt.Color(102, 51, 0));
+        jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator8.setOpaque(true);
+        jpmMenu.add(jSeparator8);
 
         mniQLGiaoCa.setBackground(new java.awt.Color(102, 51, 0));
         mniQLGiaoCa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -640,6 +660,10 @@ public class NewMainFrm extends javax.swing.JFrame {
         openQLGiaoCaFrm();
     }//GEN-LAST:event_mniQLGiaoCaActionPerformed
 
+    private void mniThongTinCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThongTinCaNhanActionPerformed
+        openThongTinCaNhan();
+    }//GEN-LAST:event_mniThongTinCaNhanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -707,6 +731,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu jpmMenu;
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JLabel lblLogo;
@@ -720,6 +745,7 @@ public class NewMainFrm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniQLKM;
     private javax.swing.JMenuItem mniQLSanPham;
     private javax.swing.JMenuItem mniThongKe;
+    private javax.swing.JMenuItem mniThongTinCaNhan;
     private javax.swing.JPanel pnlFooter;
     private javax.swing.JPanel pnlHeader;
     // End of variables declaration//GEN-END:variables
@@ -849,12 +875,8 @@ public class NewMainFrm extends javax.swing.JFrame {
         }).start();
     }
 
-    private void phanQuyen() {
-        if (Auth.user == null) {
-            this.lblTenNV.setText("Chưa đăng nhập");
-        } else {
-            this.lblTenNV.setText(Auth.user.getHoTen());
-        }
+    public void phanQuyen() {
+        setLblTenNV();
         openBanHangFrm();
         if (Auth.user.getVaiTro() != 101) {
             btnQLGiaoCa.setVisible(false);
@@ -874,6 +896,14 @@ public class NewMainFrm extends javax.swing.JFrame {
             mniQLGiaoCa.setVisible(true);
         }
         this.setLblSoLuongDonHang();
+    }
+
+    public void setLblTenNV() {
+        if (Auth.user == null) {
+            this.lblTenNV.setText("Chưa đăng nhập");
+        } else {
+            this.lblTenNV.setText(Auth.user.getHoTen());
+        }
     }
 
     public void setLblSoLuongDonHang() {
@@ -977,6 +1007,17 @@ public class NewMainFrm extends javax.swing.JFrame {
             qlGiaoCaFrm.setVisible(true);
         } else {
             qlGiaoCaFrm.setVisible(true);
+        }
+    }
+
+    private void openThongTinCaNhan() {
+        closeAllFrm(true);
+        if (infoFrm == null || infoFrm.isClosed()) {
+            infoFrm = new InforFrm(this);
+            dpMain.add(infoFrm);
+            infoFrm.setVisible(true);
+        } else {
+            infoFrm.setVisible(true);
         }
     }
 

@@ -149,42 +149,49 @@ public class DatHangFrm extends javax.swing.JDialog {
         jPanel7.setLayout(new java.awt.GridLayout(0, 1, 10, 10));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Tên Khách Hàng:");
         jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
         jPanel7.add(jLabel3);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Số điện thoại:");
         jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
         jPanel7.add(jLabel2);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Địa chỉ:");
         jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
         jPanel7.add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Tiền hàng:");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
         jPanel7.add(jLabel5);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Tiền ship:");
         jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
         jPanel7.add(jLabel6);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Tổng tiền:");
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
         jPanel7.add(jLabel7);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Giảm giá:");
         jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
@@ -192,6 +199,7 @@ public class DatHangFrm extends javax.swing.JDialog {
         jPanel7.add(jLabel9);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Point:");
         jLabel10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
@@ -199,6 +207,7 @@ public class DatHangFrm extends javax.swing.JDialog {
         jPanel7.add(jLabel10);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Voucher:");
         jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 30, new java.awt.Color(0, 153, 153)));
@@ -213,6 +222,7 @@ public class DatHangFrm extends javax.swing.JDialog {
         jPanel8.setLayout(new java.awt.BorderLayout());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Ghi chú:");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);

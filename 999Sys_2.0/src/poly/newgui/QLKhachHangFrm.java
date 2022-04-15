@@ -273,6 +273,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jpnTableKhachHang.setLayout(new java.awt.BorderLayout());
 
+        tblKhachHang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -292,7 +293,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblKhachHang.setRowHeight(24);
+        tblKhachHang.setRowHeight(32);
         tblKhachHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -619,7 +620,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblLoaiKH.setRowHeight(24);
+        tblLoaiKH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tblLoaiKH.setRowHeight(32);
         tblLoaiKH.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblLoaiKH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
