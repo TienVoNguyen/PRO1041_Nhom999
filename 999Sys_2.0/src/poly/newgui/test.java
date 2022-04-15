@@ -53,14 +53,21 @@ public class test extends javax.swing.JFrame {
 //            frmGiaoCa.setVisible(true);
 //        }
         // Chạy thống kê
-        if (frmThongKe == null || frmThongKe.isClosed()) {
-            frmThongKe = new ThongKeFrm(jDesktopPane1);
-            jDesktopPane1.add(frmThongKe);
-            frmThongKe.setVisible(true);
-        } else {
-            frmThongKe.setVisible(true);
-        }
+//        if (frmThongKe == null || frmThongKe.isClosed()) {
+//            frmThongKe = new ThongKeFrm(jDesktopPane1);
+//            jDesktopPane1.add(frmThongKe);
+//            frmThongKe.setVisible(true);
+//        } else {
+//            frmThongKe.setVisible(true);
+//        }
 //          Chạy QLSP
+        if (qlSPFrm == null || qlSPFrm.isClosed()) {
+            qlSPFrm = new QLSPFrm(null);
+            jDesktopPane1.add(qlSPFrm);
+            qlSPFrm.setVisible(true);
+        } else {
+            qlSPFrm.setVisible(true);
+        }
 //        if (qlSPFrm == null || qlSPFrm.isClosed()) {
 //            qlSPFrm = new QLSPFrm(null);
 //            jDesktopPane1.add(qlSPFrm);

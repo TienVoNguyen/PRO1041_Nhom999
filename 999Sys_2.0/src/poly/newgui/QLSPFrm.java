@@ -582,7 +582,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         themChatLieuJDialog.getContentPane().add(jPanel52, java.awt.BorderLayout.CENTER);
 
+        loadDataJDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         loadDataJDialog.setMinimumSize(new java.awt.Dimension(819, 140));
+        loadDataJDialog.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                loadDataJDialogComponentShown(evt);
+            }
+        });
         loadDataJDialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 loadDataJDialogWindowClosed(evt);
@@ -1428,19 +1434,27 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnHuyThemChatLieuMoiActionPerformed
 
     private void loadDataJDialogWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loadDataJDialogWindowClosed
-        this.loadData.stop();
+//        this.loadData.stop();
         if (isNotNewData) {
             Messeger.alert(null, "Không tìm thấy sản phẩm mới nào trong bản excel này!");
         } else {
             Messeger.alert(null, "Thêm dữ liệu mới thành công");
         }
         loadDataToTable(new Object[]{"%%", "%%", "%%", "%%", "%%", "%%", "%%"});
+        this.pgbLoadingData.setValue(0);
     }//GEN-LAST:event_loadDataJDialogWindowClosed
 
     private void loadDataJDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loadDataJDialogWindowOpened
-        this.pgbLoadingData.setMaximum(tableModel.getRowCount() - 1);
+    }//GEN-LAST:event_loadDataJDialogWindowOpened
 
-        loadData = new Thread(new Runnable() {
+    private void btnInMaVachSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInMaVachSPActionPerformed
+        // TODO add your handling code here:
+        XHoaDon.printBarCode();
+    }//GEN-LAST:event_btnInMaVachSPActionPerformed
+
+    private void loadDataJDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_loadDataJDialogComponentShown
+        this.pgbLoadingData.setMaximum(tableModel.getRowCount() - 1);
+       loadData = new Thread(new Runnable() {
             @Override
             public void run() {
 
@@ -1450,7 +1464,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                     mouseClicked();
                     clearImage();
                     pgbLoadingData.setValue(i);
-
                     try {
                         Thread.sleep(30);
                     } catch (InterruptedException ex) {
@@ -1465,18 +1478,15 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
                     }
                     if (i == pgbLoadingData.getMaximum()) {
                         loadDataJDialog.dispose();
+                        loadData.stop();
                     }
                 }
                 loadDataJDialog.dispose();
+                loadData.stop();
             }
         });
         loadData.start();
-    }//GEN-LAST:event_loadDataJDialogWindowOpened
-
-    private void btnInMaVachSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInMaVachSPActionPerformed
-        // TODO add your handling code here:
-        XHoaDon.printBarCode();
-    }//GEN-LAST:event_btnInMaVachSPActionPerformed
+    }//GEN-LAST:event_loadDataJDialogComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

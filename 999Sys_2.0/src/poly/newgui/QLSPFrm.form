@@ -996,11 +996,13 @@
     </Container>
     <Container class="javax.swing.JDialog" name="loadDataJDialog">
       <Properties>
+        <Property name="defaultCloseOperation" type="int" value="2"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[819, 140]"/>
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="loadDataJDialogComponentShown"/>
         <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="loadDataJDialogWindowClosed"/>
         <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="loadDataJDialogWindowOpened"/>
       </Events>
