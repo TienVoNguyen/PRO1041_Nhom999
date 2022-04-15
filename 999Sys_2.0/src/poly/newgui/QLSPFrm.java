@@ -167,7 +167,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         btnChonAnh = new javax.swing.JButton();
@@ -303,13 +302,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel24.setBackground(new java.awt.Color(0, 0, 0));
         jPanel24.setLayout(new java.awt.BorderLayout());
 
-        tblDaXoa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblDaXoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblDaXoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Ma SP", "Ma Vach", "Ten SP", "Gia Ban", "Gia Nhap", "So Luong", "Danh Muc", "DVT", "Size", "Mau", "Chat Lieu", "Ngay Nhap", "AnhSP"
+                "Mã SP", "Mã Vạch", "Tên SP", "Giá Bán", "Giá Nhập", "Số Lượng", "Danh Mục", "DVT", "Size", "Màu", "Chất Liệu", "Ngày Nhập", "Ảnh SP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -328,6 +327,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane3.setViewportView(tblDaXoa);
+        if (tblDaXoa.getColumnModel().getColumnCount() > 0) {
+            tblDaXoa.getColumnModel().getColumn(2).setMinWidth(240);
+            tblDaXoa.getColumnModel().getColumn(2).setPreferredWidth(240);
+        }
 
         jPanel24.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
@@ -652,22 +655,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel7.setBackground(new java.awt.Color(153, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(300, 348));
         jPanel7.setLayout(new java.awt.BorderLayout());
-
-        jPanel10.setBackground(new java.awt.Color(255, 153, 102));
-        jPanel10.setPreferredSize(new java.awt.Dimension(300, 50));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jPanel10, java.awt.BorderLayout.PAGE_END);
 
         jPanel11.setBackground(new java.awt.Color(255, 153, 102));
         jPanel11.setLayout(new java.awt.BorderLayout());
@@ -1079,13 +1066,13 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         jPanel6.setBackground(new java.awt.Color(153, 255, 255));
 
-        tblSanPham.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblSanPham.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Ma SP", "Ma Vach", "Ten SP", "Gia Ban", "Gia Nhap", "So Luong", "Danh Muc", "DVT", "Size", "Mau", "Chat Lieu", "Ngay Nhap", "AnhSP", "tool"
+                "Mã SP", "Mã Vạch", "Tên SP", "Giá Bán", "Giá Nhập", "Số Lượng", "Danh Mục", "DVT", "Size", "Màu", "Chất Liệu", "Ngày Nhập", "Ảnh SP", "tool"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1104,6 +1091,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblSanPham);
+        if (tblSanPham.getColumnModel().getColumnCount() > 0) {
+            tblSanPham.getColumnModel().getColumn(2).setMinWidth(240);
+            tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(240);
+        }
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1113,7 +1104,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel6, java.awt.BorderLayout.CENTER);
@@ -1424,7 +1415,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             public void run() {
 
                 for (int i = 0; i < tableModel.getRowCount(); i++) {
-                    
+
                     tblSanPham.setRowSelectionInterval(i, i);
                     mouseClicked();
                     clearImage();
@@ -1516,7 +1507,6 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
@@ -1605,22 +1595,22 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         XInternal.uncorated(this);
         this.themDMJDialog.setModal(true);
         this.themDMJDialog.setIconImage(ImageHelper.getAppIcon());
-        
+
         this.themChatLieuJDialog.setModal(true);
         this.themChatLieuJDialog.setIconImage(ImageHelper.getAppIcon());
-        
+
         this.themDVTJDialog.setModal(true);
         this.themDVTJDialog.setIconImage(ImageHelper.getAppIcon());
-        
+
         this.themMauSacJDialog.setModal(true);
         this.themMauSacJDialog.setIconImage(ImageHelper.getAppIcon());
-        
+
         this.themSizeJDialog.setModal(true);
         this.themSizeJDialog.setIconImage(ImageHelper.getAppIcon());
-        
+
         this.DaXoaJDialog.setModal(true);
         this.DaXoaJDialog.setIconImage(ImageHelper.getAppIcon());
-        
+
         this.loadDataJDialog.setModal(true);
         this.loadDataJDialog.setIconImage(ImageHelper.getAppIcon());
 
@@ -1661,8 +1651,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         this.fileChooser = new JFileChooser();
 
         addButtonToTable();
-        tblSanPham.getColumn("AnhSP").setCellRenderer(new ImageColumn());
-        tblDaXoa.getColumn("AnhSP").setCellRenderer(new ImageColumn());
+        tblSanPham.getColumn("Ảnh SP").setCellRenderer(new ImageColumn());
+        tblDaXoa.getColumn("Ảnh SP").setCellRenderer(new ImageColumn());
         loadDataToCBBCL();
         loadDataToCBBDM();
         loadDataToCBBMau();
@@ -1885,7 +1875,9 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             String tooltip = sp.getAnhSanPham();
             if (tooltip != null) {
                 this.lblAnh.setToolTipText(tooltip);
-                this.lblAnh.setIcon(ImageHelper.read(tooltip));
+                ImageIcon icon = ImageHelper.read(tooltip);
+                Image img = icon.getImage().getScaledInstance(260, 298, Image.SCALE_SMOOTH);
+                this.lblAnh.setIcon(new ImageIcon(img));
             } else {
                 clearImage();
             }
@@ -1899,7 +1891,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
     private void clearImage() {
         ImageIcon icon = new ImageIcon(".\\AnhSP\\noImage.jpg");
-        Image img = icon.getImage().getScaledInstance(84, 104, Image.SCALE_SMOOTH);
+        Image img = icon.getImage().getScaledInstance(184, 204, Image.SCALE_SMOOTH);
         this.lblAnh.setIcon(new ImageIcon(img));
         this.lblAnh.setToolTipText("noImage.jpg");
     }
@@ -1976,7 +1968,8 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             File file = fileChooser.getSelectedFile();
             ImageHelper.save(file); // lưu hình ảnh vào thư mục logos
             ImageIcon icon = ImageHelper.read(file.getName());//đọc hình từ thư mục logos
-            lblAnh.setIcon(icon);
+            Image img = icon.getImage().getScaledInstance(260, 298, Image.SCALE_SMOOTH);//chọn kích cỡ ảnh
+            lblAnh.setIcon(new ImageIcon(img));
             lblAnh.setToolTipText(file.getName());//giữ tên hình trong tooltop
         }
     }

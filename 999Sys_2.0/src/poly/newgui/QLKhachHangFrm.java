@@ -201,10 +201,10 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel15.setPreferredSize(new java.awt.Dimension(165, 20));
         jpnCBBLoaiKH.add(jLabel15, java.awt.BorderLayout.LINE_START);
 
-        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
-        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTrangThai.setText("Tương Tác");
+        btnTrangThai.setBackground(new java.awt.Color(255, 204, 0));
         btnTrangThai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        btnTrangThai.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnTrangThai.setMaximumSize(new java.awt.Dimension(110, 15));
         btnTrangThai.setPreferredSize(new java.awt.Dimension(110, 15));
         btnTrangThai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,6 +270,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jpnTableKhachHang.setLayout(new java.awt.BorderLayout());
 
+        tblKhachHang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -289,7 +290,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblKhachHang.setRowHeight(24);
+        tblKhachHang.setRowHeight(32);
         tblKhachHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -609,7 +610,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblLoaiKH.setRowHeight(24);
+        tblLoaiKH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tblLoaiKH.setRowHeight(32);
         tblLoaiKH.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblLoaiKH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
