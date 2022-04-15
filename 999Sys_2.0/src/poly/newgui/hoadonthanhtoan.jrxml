@@ -2,7 +2,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef41dd24-5422-4c6e-95b1-f8d80d619997">
 	<property name="ireport.zoom" value="1.7715610000000013"/>
 	<property name="ireport.x" value="0"/>
+<<<<<<< HEAD
 	<property name="ireport.y" value="0"/>
+=======
+	<property name="ireport.y" value="324"/>
+>>>>>>> 46b659ee68339f81abfb17a881c74cf6051efcda
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -37,7 +41,7 @@
      CT_HOADON."SOLUONG" AS CT_HOADON_SOLUONG,
      CT_HOADON."SOLUONG"*SANPHAM."GIABAN" AS GIA,
      CT_HOADON."GHICHU" AS CT_HOADON_GHICHU,
-     KHACHHANG."HOTEN" AS KHACHHANG_HOTEN,
+     IIF(KHACHHANG."HOTEN" IS NULL, N'Khách lẻ', KHACHHANG."HOTEN") AS KHACHHANG_HOTEN,
      KHACHHANG."SDT" AS KHACHHANG_SDT,
      KHACHHANG."DIACHI" AS KHACHHANG_DIACHI,
      SANPHAM."TENSP" AS SANPHAM_TENSP,
@@ -54,7 +58,7 @@ WHERE
      HOADON."MAHOADON" = $P{maHD}]]>
 	</queryString>
 	<field name="HOADON_MAHOADON" class="java.lang.Integer"/>
-	<field name="HOADON_NGAYMUA" class="java.sql.Date"/>
+	<field name="HOADON_NGAYMUA" class="java.sql.Timestamp"/>
 	<field name="HOADON_GIAMGIA" class="java.math.BigDecimal"/>
 	<field name="HOADON_THANHTIEN" class="java.math.BigDecimal"/>
 	<field name="HOADON_GHICHU" class="java.lang.String"/>
@@ -69,6 +73,17 @@ WHERE
 	<field name="TAIKHOAN_HOTEN" class="java.lang.String"/>
 	<field name="KHACHHANG_MAKH" class="java.lang.String"/>
 	<field name="CT_HOADON_MASP" class="java.lang.Integer"/>
+<<<<<<< HEAD
+=======
+	<background>
+		<band height="555">
+			<image>
+				<reportElement x="0" y="0" width="381" height="555" uuid="a3e0717b-ec82-4ab0-839b-c8ea3c716a14"/>
+				<imageExpression><![CDATA["E:\\Learn\\Git\\PRO1041_Nhom999\\999Sys_2.0\\AnhSP\\BackGroudHD.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+>>>>>>> 46b659ee68339f81abfb17a881c74cf6051efcda
 	<title>
 		<band height="51" splitType="Stretch">
 			<staticText>
@@ -136,7 +151,7 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{KHACHHANG_HOTEN}==null?"Khách lẻ":$F{KHACHHANG_HOTEN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{KHACHHANG_HOTEN}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="254" y="20" width="127" height="20" forecolor="#000099" uuid="00a8c37a-7f9f-45e9-9906-3366958e5e89"/>

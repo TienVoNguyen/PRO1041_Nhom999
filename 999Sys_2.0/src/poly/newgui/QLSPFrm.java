@@ -302,7 +302,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
         jPanel24.setBackground(new java.awt.Color(0, 0, 0));
         jPanel24.setLayout(new java.awt.BorderLayout());
 
-        tblDaXoa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblDaXoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblDaXoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -327,6 +327,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane3.setViewportView(tblDaXoa);
+        if (tblDaXoa.getColumnModel().getColumnCount() > 0) {
+            tblDaXoa.getColumnModel().getColumn(2).setMinWidth(240);
+            tblDaXoa.getColumnModel().getColumn(2).setPreferredWidth(240);
+        }
 
         jPanel24.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
@@ -1062,7 +1066,7 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
 
         jPanel6.setBackground(new java.awt.Color(153, 255, 255));
 
-        tblSanPham.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblSanPham.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1087,6 +1091,10 @@ public class QLSPFrm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblSanPham);
+        if (tblSanPham.getColumnModel().getColumnCount() > 0) {
+            tblSanPham.getColumnModel().getColumn(2).setMinWidth(240);
+            tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(240);
+        }
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);

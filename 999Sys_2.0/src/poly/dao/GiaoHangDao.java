@@ -96,4 +96,8 @@ public class GiaoHangDao extends BaseDao<GiaoHang, Integer>{
     public ArrayList<GiaoHang> selectListGiaoHangByTrangThai(int maTT) throws Exception{
         return this.selectByquery("SELECTBY_MATT", maTT);
     }
+    
+    public ArrayList<GiaoHang> timKiemGiaoHang(Object... listThongTin) throws Exception{
+        return this.selectByquery("TIMKIEM", listThongTin);
+    }
 }

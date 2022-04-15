@@ -7,6 +7,7 @@ package poly.newgui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -347,10 +348,20 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 50));
 
         txtTimKiem.setPreferredSize(new java.awt.Dimension(800, 40));
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyPressed(evt);
+            }
+        });
         jPanel8.add(txtTimKiem);
 
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/icons/search.jpg"))); // NOI18N
         btnTimKiem.setPreferredSize(new java.awt.Dimension(40, 40));
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnTimKiem);
 
         jPanel11.add(jPanel8, java.awt.BorderLayout.PAGE_END);
@@ -527,6 +538,37 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         Messeger.alert(this, "Đang update");
     }//GEN-LAST:event_btnTraHangActionPerformed
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        String key = "%" + txtTimKiem.getText().trim() + "%";
+        if (isChoGHSelected) {
+            this.dtmChoGH.setRowCount(0);
+            ArrayList<GiaoHang> list = new ArrayList<>();
+            try {
+                list = this.daoGH.timKiemGiaoHang(6, key, key, key, key);
+                addRowChoGH(list);
+            } catch (Exception ex) {
+                Messeger.showErrorDialog(null, ex.getMessage(), "Error");
+                ex.printStackTrace();
+            }
+        } else {
+            this.dtmDangGH.setRowCount(0);
+            ArrayList<GiaoHang> list = new ArrayList<>();
+            try {
+                list = this.daoGH.timKiemGiaoHang(5, key, key, key, key);
+                addRowDangGH(list);
+            } catch (Exception ex) {
+                Messeger.showErrorDialog(null, ex.getMessage(), "Error");
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void txtTimKiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnTimKiem.doClick();
+        }
+    }//GEN-LAST:event_txtTimKiemKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChoGH;
@@ -687,20 +729,24 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         ArrayList<GiaoHang> list = new ArrayList<>();
         try {
             list = this.daoGH.selectListGiaoHangByTrangThai(6);
-            for (GiaoHang gh : list) {
-                this.dtmChoGH.addRow(new Object[]{
-                    gh.getMaGiaoHang(),
-                    gh.getMaHoaDon(),
-                    gh.getTenKhachHang(),
-                    gh.getSoDienThoai(),
-                    gh.getDiaChi(),
-                    //                    df.format(gh.getTienShip()),
-                    "Chờ giao hàng"
-                });
-            }
+            addRowChoGH(list);
         } catch (Exception ex) {
             Messeger.showErrorDialog(null, ex.getMessage(), "Error");
             ex.printStackTrace();
+        }
+    }
+
+    public void addRowChoGH(ArrayList<GiaoHang> list) {
+        for (GiaoHang gh : list) {
+            this.dtmChoGH.addRow(new Object[]{
+                gh.getMaGiaoHang(),
+                gh.getMaHoaDon(),
+                gh.getTenKhachHang(),
+                gh.getSoDienThoai(),
+                gh.getDiaChi(),
+                //                    df.format(gh.getTienShip()),
+                "Chờ giao hàng"
+            });
         }
     }
 
@@ -709,21 +755,25 @@ public class BanHangFrm extends javax.swing.JInternalFrame {
         ArrayList<GiaoHang> list = new ArrayList<>();
         try {
             list = this.daoGH.selectListGiaoHangByTrangThai(5);
-            for (GiaoHang gh : list) {
-                this.dtmDangGH.addRow(new Object[]{
-                    gh.getMaGiaoHang(),
-                    gh.getMaHoaDon(),
-                    gh.getTenKhachHang(),
-                    gh.getSoDienThoai(),
-                    gh.getDiaChi(),
-                    XDate.toString(gh.getNgayGiaoHang(), "dd/MM/yyyy hh:mm:ss a"),
-                    //                    df.format(gh.getTienShip()),
-                    "Đang giao hàng"
-                });
-            }
+            addRowDangGH(list);
         } catch (Exception ex) {
             Messeger.showErrorDialog(null, ex.getMessage(), "Error");
             ex.printStackTrace();
+        }
+    }
+
+    public void addRowDangGH(ArrayList<GiaoHang> list) {
+        for (GiaoHang gh : list) {
+            this.dtmDangGH.addRow(new Object[]{
+                gh.getMaGiaoHang(),
+                gh.getMaHoaDon(),
+                gh.getTenKhachHang(),
+                gh.getSoDienThoai(),
+                gh.getDiaChi(),
+                XDate.toString(gh.getNgayGiaoHang(), "dd/MM/yyyy hh:mm:ss a"),
+                //                    df.format(gh.getTienShip()),
+                "Đang giao hàng"
+            });
         }
     }
 

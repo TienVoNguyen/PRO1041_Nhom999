@@ -144,91 +144,120 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
 
         jpnCBBTT.setLayout(new java.awt.BorderLayout());
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("  Trạng Thái :");
-        jLabel3.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel3.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnCBBTT.add(jLabel3, java.awt.BorderLayout.LINE_START);
 
+        cbbTrangThai.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnCBBTT.add(cbbTrangThai, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnCBBTT);
 
         jpnTxtHoaDon.setLayout(new java.awt.BorderLayout());
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("  Mã Hóa Đơn :");
-        jLabel2.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel2.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtHoaDon.add(jLabel2, java.awt.BorderLayout.LINE_START);
+
+        txtMaHD.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtHoaDon.add(txtMaHD, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtHoaDon);
 
         jpnTxtMaNV.setLayout(new java.awt.BorderLayout());
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("  Mã Nhân Viên :");
-        jLabel5.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel5.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtMaNV.add(jLabel5, java.awt.BorderLayout.LINE_START);
+
+        txtMaNV.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtMaNV.add(txtMaNV, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtMaNV);
 
         jpnTxtMaKH.setLayout(new java.awt.BorderLayout());
 
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setText("  Mã Khách Hàng :");
-        jLabel7.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel7.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtMaKH.add(jLabel7, java.awt.BorderLayout.LINE_START);
+
+        txtMaKH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtMaKH.add(txtMaKH, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtMaKH);
 
         jpnTxtNgayMua.setLayout(new java.awt.BorderLayout());
 
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setText("  Ngày Mua :");
-        jLabel9.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel9.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtNgayMua.add(jLabel9, java.awt.BorderLayout.LINE_START);
+
+        txtNgayMua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtNgayMua.add(txtNgayMua, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtNgayMua);
 
         jpnTxtGiamGia.setLayout(new java.awt.BorderLayout());
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("  Giảm Giá :");
-        jLabel1.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel1.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtGiamGia.add(jLabel1, java.awt.BorderLayout.LINE_START);
+
+        txtGiamGia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtGiamGia.add(txtGiamGia, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtGiamGia);
 
         jpnTxtNgayGH.setLayout(new java.awt.BorderLayout());
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("  Ngày Giao Hàng :");
-        jLabel4.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel4.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtNgayGH.add(jLabel4, java.awt.BorderLayout.LINE_START);
+
+        txtNgayGH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtNgayGH.add(txtNgayGH, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtNgayGH);
 
         jpnTxtTienShip.setLayout(new java.awt.BorderLayout());
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("  Tiền Ship :");
-        jLabel6.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel6.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtTienShip.add(jLabel6, java.awt.BorderLayout.LINE_START);
+
+        txtTienShip.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtTienShip.add(txtTienShip, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtTienShip);
 
         jpnTxtThanhTien.setLayout(new java.awt.BorderLayout());
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setText("  Thành Tiền :");
-        jLabel8.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel8.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtThanhTien.add(jLabel8, java.awt.BorderLayout.LINE_START);
+
+        txtThanhTien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtThanhTien.add(txtThanhTien, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtThanhTien);
 
         jpnTxtGhiCHu.setLayout(new java.awt.BorderLayout());
 
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel13.setText("  Ghi Chú :");
-        jLabel13.setPreferredSize(new java.awt.Dimension(130, 14));
+        jLabel13.setPreferredSize(new java.awt.Dimension(160, 14));
         jpnTxtGhiCHu.add(jLabel13, java.awt.BorderLayout.LINE_START);
+
+        txtGhiChu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jpnTxtGhiCHu.add(txtGhiChu, java.awt.BorderLayout.CENTER);
 
         jpnFormTXT.add(jpnTxtGhiCHu);
@@ -320,6 +349,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnGiaoHang.setBackground(new java.awt.Color(51, 51, 255));
         jpnGiaoHang.setLayout(new java.awt.BorderLayout());
 
+        tblThanhToanGiaoHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblThanhToanGiaoHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -339,7 +369,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblThanhToanGiaoHang.setRowHeight(24);
+        tblThanhToanGiaoHang.setRowHeight(32);
         tblThanhToanGiaoHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblThanhToanGiaoHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -354,6 +384,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
 
         jpnCuaHang.setLayout(new java.awt.BorderLayout());
 
+        tblThanhToanCuaHang.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblThanhToanCuaHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -374,7 +405,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
             }
         });
         tblThanhToanCuaHang.setPreferredSize(new java.awt.Dimension(300, 294));
-        tblThanhToanCuaHang.setRowHeight(24);
+        tblThanhToanCuaHang.setRowHeight(32);
         tblThanhToanCuaHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblThanhToanCuaHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -396,6 +427,7 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
         jpnTBCTHD.setPreferredSize(new java.awt.Dimension(780, 294));
         jpnTBCTHD.setLayout(new java.awt.BorderLayout());
 
+        tblCTSP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblCTSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -415,9 +447,13 @@ public class LichSuGDFrm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblCTSP.setRowHeight(24);
+        tblCTSP.setRowHeight(32);
         tblCTSP.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tblCTSP);
+        if (tblCTSP.getColumnModel().getColumnCount() > 0) {
+            tblCTSP.getColumnModel().getColumn(1).setMinWidth(220);
+            tblCTSP.getColumnModel().getColumn(1).setPreferredWidth(220);
+        }
 
         jpnTBCTHD.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
