@@ -22,6 +22,7 @@ public class test extends javax.swing.JFrame {
     ThongKeFrm frmThongKe;
     QLSPFrm qlSPFrm;
     QLKhachHangFrm qlKH;
+    LichSuGDFrm lSGD;
     InforFrm i;
 
     /**
@@ -75,6 +76,14 @@ public class test extends javax.swing.JFrame {
 //        } else {
 //            qlKH.setVisible(true);
 //        }
+        // Chạy LSGD
+        if(lSGD ==  null || lSGD.isClosed()){
+            lSGD = new LichSuGDFrm();
+            jDesktopPane1.add(lSGD);
+            lSGD.setVisible(true);
+        }else{
+            lSGD.setVisible(true);
+        }
 //        if (i == null || i.isClosed()) {
 //            i = new InforFrm();
 //            jDesktopPane1.add(i);
