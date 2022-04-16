@@ -542,11 +542,11 @@
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup3"/>
                                         </Property>
+                                        <Property name="selected" type="boolean" value="true"/>
+                                        <Property name="text" type="java.lang.String" value="VND"/>
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Tahoma" size="16" style="1"/>
                                         </Property>
-                                        <Property name="selected" type="boolean" value="true"/>
-                                        <Property name="text" type="java.lang.String" value="VND"/>
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiovndActionPerformed"/>
@@ -557,10 +557,10 @@
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup3"/>
                                         </Property>
+                                        <Property name="text" type="java.lang.String" value="%"/>
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Tahoma" size="16" style="1"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="%"/>
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioPTActionPerformed"/>
@@ -729,11 +729,11 @@
                                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                                   <ComponentRef name="buttonGroup2"/>
                                                 </Property>
+                                                <Property name="selected" type="boolean" value="true"/>
+                                                <Property name="text" type="java.lang.String" value="S&#x1ea3;n Ph&#x1ea9;m"/>
                                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                                   <Font name="Tahoma" size="16" style="1"/>
                                                 </Property>
-                                                <Property name="selected" type="boolean" value="true"/>
-                                                <Property name="text" type="java.lang.String" value="S&#x1ea3;n Ph&#x1ea9;m"/>
                                               </Properties>
                                               <Events>
                                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSanPhamActionPerformed"/>
@@ -744,10 +744,10 @@
                                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                                   <ComponentRef name="buttonGroup2"/>
                                                 </Property>
+                                                <Property name="text" type="java.lang.String" value="Danh M&#x1ee5;c"/>
                                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                                   <Font name="Tahoma" size="16" style="1"/>
                                                 </Property>
-                                                <Property name="text" type="java.lang.String" value="Danh M&#x1ee5;c"/>
                                               </Properties>
                                               <Events>
                                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioDanhMucActionPerformed"/>
@@ -1001,11 +1001,11 @@
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup1"/>
                                         </Property>
+                                        <Property name="selected" type="boolean" value="true"/>
+                                        <Property name="text" type="java.lang.String" value="S&#x1ea3;n Ph&#x1ea9;m"/>
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Tahoma" size="16" style="1"/>
                                         </Property>
-                                        <Property name="selected" type="boolean" value="true"/>
-                                        <Property name="text" type="java.lang.String" value="S&#x1ea3;n Ph&#x1ea9;m"/>
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radio_AD_SanPhamActionPerformed"/>
@@ -1016,10 +1016,10 @@
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup1"/>
                                         </Property>
+                                        <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Tahoma" size="16" style="1"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radio_AD_HoaDonActionPerformed"/>
@@ -1203,9 +1203,6 @@
                               <SubComponents>
                                 <Component class="javax.swing.JTable" name="tblhethang">
                                   <Properties>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Tahoma" size="16" style="1"/>
-                                    </Property>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="7" rowCount="0">
                                         <Column editable="false" title="M&#xe3; KM" type="java.lang.String"/>
@@ -1255,6 +1252,9 @@
                                           <Renderer/>
                                         </Column>
                                       </TableColumnModel>
+                                    </Property>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Tahoma" size="16" style="1"/>
                                     </Property>
                                     <Property name="rowHeight" type="int" value="24"/>
                                     <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
@@ -1308,9 +1308,6 @@
                               <SubComponents>
                                 <Component class="javax.swing.JTable" name="tblqlkm">
                                   <Properties>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Tahoma" size="16" style="1"/>
-                                    </Property>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="7" rowCount="0">
                                         <Column editable="false" title="M&#xe3; KM" type="java.lang.String"/>
@@ -1321,6 +1318,9 @@
                                         <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.Object"/>
                                         <Column editable="false" title="M&#xe3; SP" type="java.lang.String"/>
                                       </Table>
+                                    </Property>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Tahoma" size="16" style="1"/>
                                     </Property>
                                     <Property name="rowHeight" type="int" value="24"/>
                                     <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
@@ -1389,9 +1389,6 @@
                           <SubComponents>
                             <Component class="javax.swing.JTable" name="tbl_HoaDon">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Tahoma" size="16" style="1"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="7" rowCount="0">
                                     <Column editable="false" title="M&#xe3; KM" type="java.lang.String"/>
@@ -1402,6 +1399,9 @@
                                     <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.String"/>
                                     <Column editable="false" title="HDTT" type="java.lang.String"/>
                                   </Table>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Tahoma" size="16" style="1"/>
                                 </Property>
                                 <Property name="rowHeight" type="int" value="24"/>
                                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
@@ -1462,9 +1462,6 @@
                           <SubComponents>
                             <Component class="javax.swing.JTable" name="tbl_HoaDon_HetHan">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Tahoma" size="16" style="1"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="7" rowCount="0">
                                     <Column editable="false" title="M&#xe3; KM" type="java.lang.String"/>
@@ -1475,6 +1472,9 @@
                                     <Column editable="false" title="Ng&#xe0;y KT" type="java.lang.String"/>
                                     <Column editable="true" title="HDTT" type="java.lang.String"/>
                                   </Table>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Tahoma" size="16" style="1"/>
                                 </Property>
                                 <Property name="rowHeight" type="int" value="24"/>
                                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">

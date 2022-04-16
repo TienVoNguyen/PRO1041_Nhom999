@@ -43,6 +43,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
                 return "insert into KHUYENMAI(MASP,TENKM,LOAIKM,HINHTHUCAD,GIATRI,GIAMTOIDA,HDTOITHIEU,NGAYBATDAU,NGAYKETTHUC) values (null,?,?,?,?,?,?,?,?)";
             case "UPDATENULLMASP":
                 return "UPDATE KHUYENMAI SET TENKM =?, HINHTHUCAD =?, GIATRI =?, GIAMTOIDA =?, NGAYKETTHUC =?, NGAYBATDAU =? ,HDTOITHIEU = ? ,TRANGTHAI = 1 WHERE MAKM = ?";
+              
         }
         return "";
     }
@@ -117,7 +118,7 @@ public class KhuyenMaiDAO extends BaseDao<KhuyenMai, String> {
 
     public static ArrayList<String> getMaSP_InDanhMuc(int maDM) {
         String sql = "Select MASP from DANHMUC join SANPHAM on DANHMUC.MADM = SANPHAM.MADM where DANHMUC.MADM = ? AND SANPHAM.APDUNGKM = 1\n" +
-"AND MASP not in (select MASP from KHUYENMAI )";
+"AND MASP not in (select MASP from KHUYENMAI where MASP is not null)";
         ArrayList<String> list = new ArrayList<>();
         try {
             ResultSet rs = XJDBC.query(sql, maDM);
