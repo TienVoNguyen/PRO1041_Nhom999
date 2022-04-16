@@ -938,8 +938,9 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
         if (radioDanhMuc.isSelected() && radio_AD_SanPham.isSelected()) {
             DanhMuc dm = (DanhMuc) cbbDanhMuc.getSelectedItem();
             ArrayList<String> listSPInDanhMuc = KhuyenMaiDAO.getMaSP_InDanhMuc(dm.getMaDM());
-            if (listSPInDanhMuc == null) {
-                System.out.println("x");
+            if (listSPInDanhMuc.size() == 0 ) {
+                Messeger.alert(this, "Danh Mục Đã Được Thêm Hoặc Không Tồn Tại Sản Phẩm");
+                return;
             }
             if (!Messeger.confirm(this, "Bạn Có Muốn Thêm Không")) {
                 return;
@@ -950,7 +951,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                     double giaTri = radiovnd.isSelected() ? Double.parseDouble(String.valueOf(txtGiaTri.getValue())) : Double.parseDouble(String.valueOf(sppercent.getValue())) * 100;
                     double giamToiDa = Double.parseDouble(String.valueOf(txtGiamToiDa.getValue()));
                    if (kmDao.insert(new KhuyenMai(
-                        Integer.parseInt(cbbSP.getSelectedItem().toString()),
+                        Integer.parseInt(get),
                         giamToiDa,
                         giaTri,
                         txtTenKhuyenMai.getText(),
@@ -988,7 +989,7 @@ public class QLKMFrm extends javax.swing.JInternalFrame {
                         ngaykt,
                         hinhthucAD,
                         LoaiApDung))) {
-                    Messeger.alert(null, "Thành Côngx");
+                    Messeger.alert(null, "Thành Công");
                 }else{
                     Messeger.alert(null, "tb2");
                 }
