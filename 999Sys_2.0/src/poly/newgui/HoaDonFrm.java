@@ -11,7 +11,9 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -1650,6 +1652,23 @@ public class HoaDonFrm extends javax.swing.JPanel {
             sp.append("Không để trống Email Khách Hàng!\n");
         } else if (XValidate.isNotEmail(txtEmail)) {
             sp.append("Email không hợp lệ!\n");
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date nGSinh = XDate.toDate(this.dpkNgaySinh.getText(), "dd/MM/yyyy");
+            Date now = sdf.parse(XDate.toString(new Date(), "dd/MM/yyyy"));
+            if (nGSinh.after(now)) {
+                sp.append("Ngày sinh phải trước hôm nay!\n");
+                dpkNgaySinh.setBackground(Color.YELLOW);
+            } else if (now.getYear() - nGSinh.getYear() < 16) {
+                sp.append("Khách hàng phải đủ 16 tuổi trở lên!\n");
+                dpkNgaySinh.setBackground(Color.YELLOW);
+            } else {
+                this.dpkNgaySinh.setBackground(Color.WHITE);
+            }
+        } catch (ParseException ex) {
+            sp.append("Lỗi check ngày sinh\n");
+            ex.printStackTrace();
         }
         if (sp.length() > 0) {
             Messeger.showErrorDialog(this, sp.toString(), "Lỗi");

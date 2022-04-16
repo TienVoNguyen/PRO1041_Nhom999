@@ -61,13 +61,13 @@ public class test extends javax.swing.JFrame {
 //            frmThongKe.setVisible(true);
 //        }
 //          Chạy QLSP
-        if (qlSPFrm == null || qlSPFrm.isClosed()) {
-            qlSPFrm = new QLSPFrm(null);
-            jDesktopPane1.add(qlSPFrm);
-            qlSPFrm.setVisible(true);
-        } else {
-            qlSPFrm.setVisible(true);
-        }
+//        if (qlSPFrm == null || qlSPFrm.isClosed()) {
+//            qlSPFrm = new QLSPFrm(null);
+//            jDesktopPane1.add(qlSPFrm);
+//            qlSPFrm.setVisible(true);
+//        } else {
+//            qlSPFrm.setVisible(true);
+//        }
 //        if (qlSPFrm == null || qlSPFrm.isClosed()) {
 //            qlSPFrm = new QLSPFrm(null);
 //            jDesktopPane1.add(qlSPFrm);
@@ -76,21 +76,21 @@ public class test extends javax.swing.JFrame {
 //            qlSPFrm.setVisible(true);
 //        }
         //          Chạy QLKH
-//        if (qlKH == null || qlKH.isClosed()) {
-//            qlKH = new QLKhachHangFrm();
-//            jDesktopPane1.add(qlKH);
-//            qlKH.setVisible(true);
-//        } else {
-//            qlKH.setVisible(true);
-//        }
-        // Chạy LSGD
-        if(lSGD ==  null || lSGD.isClosed()){
-            lSGD = new LichSuGDFrm();
-            jDesktopPane1.add(lSGD);
-            lSGD.setVisible(true);
-        }else{
-            lSGD.setVisible(true);
+        if (qlKH == null || qlKH.isClosed()) {
+            qlKH = new QLKhachHangFrm();
+            jDesktopPane1.add(qlKH);
+            qlKH.setVisible(true);
+        } else {
+            qlKH.setVisible(true);
         }
+        // Chạy LSGD
+//        if(lSGD ==  null || lSGD.isClosed()){
+//            lSGD = new LichSuGDFrm();
+//            jDesktopPane1.add(lSGD);
+//            lSGD.setVisible(true);
+//        }else{
+//            lSGD.setVisible(true);
+//        }
 //        if (i == null || i.isClosed()) {
 //            i = new InforFrm();
 //            jDesktopPane1.add(i);

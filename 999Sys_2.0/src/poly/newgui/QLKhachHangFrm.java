@@ -8,9 +8,13 @@ package poly.newgui;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import poly.dao.KhachHangDao;
@@ -106,7 +110,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        dateTime = new com.github.lgooddatepicker.components.DatePicker();
+        txtNgaySinh = new com.github.lgooddatepicker.components.DatePicker();
         jPanel19 = new javax.swing.JPanel();
         txtDiaChi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -309,7 +313,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         jpnTableKhachHang.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jpnLoaiBangKH.setBackground(new java.awt.Color(255, 255, 0));
+        jpnLoaiBangKH.setBackground(new java.awt.Color(0, 51, 255));
         jpnLoaiBangKH.setPreferredSize(new java.awt.Dimension(877, 40));
 
         lblKHHoatDong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -432,6 +436,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         txtMaKhachHang.setEditable(false);
         txtMaKhachHang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtMaKhachHang.setName("Mã Tự SInh"); // NOI18N
         jPanel14.add(txtMaKhachHang, java.awt.BorderLayout.CENTER);
 
         lblMaKH.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -474,8 +479,8 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(125, 15));
         jPanel20.add(jLabel7, java.awt.BorderLayout.LINE_START);
 
-        dateTime.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jPanel20.add(dateTime, java.awt.BorderLayout.CENTER);
+        txtNgaySinh.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jPanel20.add(txtNgaySinh, java.awt.BorderLayout.CENTER);
 
         jpnFormTextField.add(jPanel20);
 
@@ -776,7 +781,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTrangThaiMouseClicked
 
     private void btnTrangThaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseEntered
-        //   changeColorTitleLoaiKH("Enter");
         btnTrangThai.setBackground(Color.BLUE);
         if (btnTrangThai.getText().equalsIgnoreCase("Tương Tác")) {
             btnTrangThai.setText("Không Tương Tác");
@@ -787,7 +791,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTrangThaiMouseEntered
 
     private void btnTrangThaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrangThaiMouseExited
-        //changeColorTitleLoaiKH("Exit");
         btnTrangThai.setBackground(Color.YELLOW);
         if (lblKHHoatDong.getText().trim().equalsIgnoreCase("Khách Hàng Tương Tác")) {
             btnTrangThai.setText("Tương Tác");
@@ -855,7 +858,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 return;
             }
             Messeger.alert(this, "Xuất file Excel thành công!");
-
         } catch (Exception ex) {
             Messeger.showErrorDialog(this, "Lỗi xuất file Excel !", "Error!");
             ex.printStackTrace();
@@ -870,13 +872,18 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         this.changeIndex(row);
         this.edit();
     }//GEN-LAST:event_tblKhachHangMouseClicked
-
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         this.clearFormKH();
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
         if (this.checkFormKhachHang()) {
+            return;
+        }
+        if (this.checkDateNgaySinh()) {
+            return;
+        }
+        if (this.checkDateNgayTao()) {
             return;
         }
         this.txtMaKhachHang.setText(RandomID.randomIDKhachHang(txtHoTen.getText().trim()));
@@ -900,18 +907,23 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         if (this.checkFormKhachHang()) {
             return;
         }
+        if (this.checkDateNgaySinh()) {
+            return;
+        }
         try {
             if (!this.checkMaKH()) {
                 Messeger.showErrorDialog(this, "Mã khách hàng chưa tồn tại!", "Error!");
                 return;
             }
             KhachHang kH = this.getFormKhachHang();
+            kH.setDiemEXP(Integer.parseInt(this.txtDiemEXP.getText()));
+            kH.setTichDiem(Integer.parseInt(this.txtSoDiemTich.getText()));
             khachHangDao.update(kH);
             Messeger.alert(this, "Update khách hàng thành công!");
             this.fillToTableKhachHang(1);
             if (this.btnTrangThai.getText().equalsIgnoreCase("Không Tương Tác")) {
                 this.btnTrangThai.setText("Tương Tác");
-                jpnLoaiBangKH.setBackground(Color.red);
+                jpnLoaiBangKH.setBackground(Color.BLUE);
                 lblKHHoatDong.setText("Khách Hàng Tương Tác");
             }
             this.changeTxtButton();
@@ -937,7 +949,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         if (!Messeger.confirm(this, "Bạn có chắc muốn xóa khách hàng này?")) {
             return;
         }
-
         try {
             if (!this.checkMaKH()) {
                 Messeger.showErrorDialog(this, "Mã khách hàng chưa tồn tại!", "Error!");
@@ -1145,7 +1156,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbbLoaiKH;
-    private com.github.lgooddatepicker.components.DatePicker dateTime;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1219,6 +1229,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtMaKhachHang;
     private javax.swing.JTextField txtMaLoaiKH;
     private com.github.lgooddatepicker.components.DatePicker txtNgTao;
+    private com.github.lgooddatepicker.components.DatePicker txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtSearchByName;
     private javax.swing.JTextField txtSoDiemTich;
@@ -1230,9 +1241,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         khachHangModelTB = (DefaultTableModel) tblKhachHang.getModel();
         loaiKhachHangModelTB = (DefaultTableModel) tblLoaiKH.getModel();
         loaiKhachHangComboBox = (DefaultComboBoxModel) this.cbbLoaiKH.getModel();
-        dateTime.setSettings(CustomDatePicker.customsDatePicker(dateTime, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
+        txtNgaySinh.setSettings(CustomDatePicker.customsDatePicker(txtNgaySinh, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
         txtNgTao.setSettings(CustomDatePicker.customsDatePicker(txtNgTao, new javax.swing.ImageIcon(getClass().getResource("/poly/icons/calendar.png"))));
-        dateTime.setFont(new java.awt.Font("Tahoma", 1, 16));
+        txtNgaySinh.setFont(new java.awt.Font("Tahoma", 1, 16));
         txtNgTao.setFont(new java.awt.Font("Tahoma", 1, 16));
         khachHangDao = new KhachHangDao();
         loaiKHDao = new LoaiKhachHangDao();
@@ -1304,7 +1315,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
                 }
 
                 this.row = 0;
-                // this.setFormKhachHang(listKH.get(0));
                 this.changeIndex(row);
             }
         } catch (Exception ex) {
@@ -1326,9 +1336,9 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         this.txtEmailKhachHang.setText(kH.getEmail());
         this.txtSDT.setText(kH.getSDT());
         if (kH.getNgaySinh() == null) {
-            this.dateTime.setDateToToday();
+            this.txtNgaySinh.setDateToToday();
         } else {
-            this.dateTime.setText(XDate.toString(kH.getNgaySinh(), "dd/MM/yyyy"));
+            this.txtNgaySinh.setText(XDate.toString(kH.getNgaySinh(), "dd/MM/yyyy"));
         }
         if (kH.getNgayTao() == null) {
             this.txtNgTao.setText(XDate.toString(new Date(), "dd/MM/yyyy"));
@@ -1348,7 +1358,7 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         kH.setMaKH(txtMaKhachHang.getText());
         kH.setMaLoaiKH(loaiKH.getMaLoaiKH());
         kH.setHoTen(txtHoTen.getText());
-        kH.setNgaySinh(XDate.toDate(dateTime.getText(), "dd/MM/yyyy"));
+        kH.setNgaySinh(XDate.toDate(txtNgaySinh.getText(), "dd/MM/yyyy"));
         kH.setGioiTinh(rdoNam.isSelected() ? true : false);
         kH.setEmail(txtEmailKhachHang.getText());
         kH.setSDT(txtSDT.getText());
@@ -1356,18 +1366,6 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
         kH.setNgayTao(XDate.toDate(txtNgTao.getText(), "dd/MM/yyyy"));
         kH.setTrangThai(true);
         return kH;
-    }
-
-    public void changeColorTitleLoaiKH(String s) {
-//        if (s.equalsIgnoreCase("Exit")) {
-//            jpnLoaiBangKH.setBackground(Color.YELLOW);
-//            lblLoaiKH.setForeground(Color.RED);
-//            lblLoaiKH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 0, 0)));
-//        } else if (s.equalsIgnoreCase("Enter")) {
-//            jpnLoaiBangKH.setBackground(Color.red);
-//            lblLoaiKH.setForeground(Color.YELLOW);
-//            lblLoaiKH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 204, 0)));
-//        }
     }
 
     private void clearFormKH() {
@@ -1471,14 +1469,18 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
     private boolean checkFormKhachHang() {
         StringBuilder sb = new StringBuilder();
-//        if (XValidate.isEmpty(txtMaKhachHang)) {
-//            sb.append("Không để trống mã khách hàng!\n");
-//        }
+
         if (XValidate.isEmpty(txtHoTen)) {
             sb.append("Không để trống họ tên!\n");
+        } else if (XValidate.isNotVNName(txtHoTen)) {
+            sb.append("Họ Tên Khách Hàng sai!\n");
+        } else if (txtHoTen.getText().trim().length() < 5) {
+            sb.append("Họ Tên Khách Hàng chứa ít nhất 5 ký tự!\n");
         }
         if (XValidate.isEmpty(txtDiaChi)) {
             sb.append("Không để trống địa chỉ!\n");
+        } else if (txtDiaChi.getText().trim().length() < 10) {
+            sb.append("Địa Chỉ Khách Hàng chứa ít nhất 10 ký tự!\n");
         }
         if (XValidate.isEmpty(txtSDT)) {
             sb.append("Không để trống SDT!\n");
@@ -1486,13 +1488,67 @@ public class QLKhachHangFrm extends javax.swing.JInternalFrame {
 
         if (XValidate.isEmpty(txtEmailKhachHang)) {
             sb.append("Không để trống Email!\n");
+        } else if (XValidate.isNotEmail(txtEmailKhachHang)) {
+            sb.append("Email không hợp lệ!\n");
         }
-        // if(XValidate.isNotEmail(txtDiaChi))
         if (sb.length() > 0) {
             Messeger.showErrorDialog(this, sb.toString(), "Error!");
             return true;
         } else {
             return false;
+        }
+    }
+
+    private boolean checkDateNgaySinh() {
+        StringBuilder sbDate = new StringBuilder();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date nGSinh = XDate.toDate(this.txtNgaySinh.getText(), "dd/MM/yyyy");
+            Date now = sdf.parse(XDate.toString(new Date(), "dd/MM/yyyy"));
+            if (nGSinh.after(now)) {
+                sbDate.append("Ngày sinh phải trước hôm nay!\n");
+                txtNgaySinh.setBackground(Color.YELLOW);
+            } else if (now.getYear() - nGSinh.getYear() < 16) {
+                sbDate.append("Khách hàng phải đủ 16 tuổi trở lên!\n");
+                txtNgaySinh.setBackground(Color.YELLOW);
+            } else {
+                this.txtNgaySinh.setBackground(Color.WHITE);
+            }
+            if (sbDate.length() > 0) {
+                Messeger.showErrorDialog(this, sbDate.toString(), "Error!");
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException ex) {
+            Messeger.showErrorDialog(this, "Lỗi check ngày sinh", "error");
+            ex.printStackTrace();
+            return true;
+        }
+    }
+
+    private boolean checkDateNgayTao() {
+        StringBuilder sbDate = new StringBuilder();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date now = sdf.parse(XDate.toString(new Date(), "dd/MM/yyyy"));
+            Date nGTao = XDate.toDate(this.txtNgTao.getText(), "dd/MM/yyyy");
+            if (!nGTao.equals(now)) {
+                sbDate.append("Ngày tạo hôm nay!\n");
+                this.txtNgTao.setBackground(Color.YELLOW);
+            } else {
+                this.txtNgTao.setBackground(Color.WHITE);
+            }
+            if (sbDate.length() > 0) {
+                Messeger.showErrorDialog(this, sbDate.toString(), "Error!");
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException ex) {
+            Messeger.showErrorDialog(this, "Lỗi check ngày tạo ", "error");
+            ex.printStackTrace();
+            return true;
         }
     }
 

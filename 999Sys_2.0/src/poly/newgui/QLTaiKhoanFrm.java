@@ -5,8 +5,12 @@
  */
 package poly.newgui;
 
+import java.awt.Color;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -868,7 +872,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         try {
-            NhanVien nv =  dao_nv.selectById(txtTimKiem.getText());
+            NhanVien nv = dao_nv.selectById(txtTimKiem.getText());
             if (nv == null) {
                 Messeger.alert(this, "Mã Nhân Viên Không Tồn Tại");
                 return;
@@ -883,7 +887,7 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             Logger.getLogger(QLTaiKhoanFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void SettextTable(int viTri) {
@@ -1094,23 +1098,52 @@ public class QLTaiKhoanFrm extends javax.swing.JInternalFrame {
     private boolean Validate() {
         StringBuilder x = new StringBuilder();
         if (lbanh.getToolTipText() == null) {
-            x.append("Vui Lòng Chọn Ảnh");
-        } else if (XValidate.isEmpty(txtMaNV)) {
-            x.append("Vui Lòng Nhập Mã NV");
-        } else if (XValidate.isEmpty(txtHoTen)) {
-            x.append("Vui Lòng Nhập Họ Tên");
-        } else if (XValidate.isEmpty(txtMatKhau)) {
-            x.append("Vui Lòng Nhập Mật Khẩu");
-        } else if (XValidate.isEmpty(txtSĐT)) {
-            x.append("Vui Lòng Nhập Số Điện Thoại");
+            x.append("Vui Lòng Chọn Ảnh\n");
+        }
+        if (XValidate.isEmpty(txtMaNV)) {
+            x.append("Vui Lòng Nhập Mã NV\n");
+        }
+        if (XValidate.isEmpty(txtHoTen)) {
+            x.append("Vui Lòng Nhập Họ Tên\n");
+        } else if (XValidate.isNotVNName(txtHoTen)) {
+            x.append("Họ Tên Khách Hàng sai!\n");
+        } else if (txtHoTen.getText().trim().length() < 5) {
+            x.append("Họ Tên Khách Hàng chứa ít nhất 5 ký tự!\n");
+        }
+        if (XValidate.isEmpty(txtMatKhau)) {
+            x.append("Vui Lòng Nhập Mật Khẩu\n");
+        }
+        if (XValidate.isEmpty(txtSĐT)) {
+            x.append("Vui Lòng Nhập Số Điện Thoại\n");
         } else if (XValidate.isNotNumber(txtSĐT)) {
-            x.append("Sai Định Dạng Số Điện Thoại");
-        } else if (XValidate.isEmpty(txtDiaChi)) {
-            x.append("Vui Lòng Nhập Địa Chỉ");
-        } else if (XValidate.isEmpty(txtEmail)) {
-            x.append("Vui Lòng Nhập Email");
+            x.append("Sai Định Dạng Số Điện Thoại\n");
+        }
+        if (XValidate.isEmpty(txtDiaChi)) {
+            x.append("Vui Lòng Nhập Địa Chỉ\n");
+        } else if (txtDiaChi.getText().trim().length() < 10) {
+            x.append("Địa Chỉ Khách Hàng chứa ít nhất 10 ký tự!\n");
+        }
+        if (XValidate.isEmpty(txtEmail)) {
+            x.append("Vui Lòng Nhập Email\n");
         } else if (XValidate.isNotEmail(txtEmail)) {
-            x.append("Sai Định Dạng Email");
+            x.append("Sai Định Dạng Email\n");
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date nGSinh = XDate.toDate(this.txtngaysinh.getText(), "dd/MM/yyyy");
+            Date now = sdf.parse(XDate.toString(new Date(), "dd/MM/yyyy"));
+            if (nGSinh.after(now)) {
+                x.append("Ngày sinh phải trước hôm nay!\n");
+                txtngaysinh.setBackground(Color.YELLOW);
+            } else if (now.getYear() - nGSinh.getYear() < 18) {
+                x.append("Nhân Viên phải đủ 18 tuổi trở lên!\n");
+                txtngaysinh.setBackground(Color.YELLOW);
+            } else {
+                this.txtngaysinh.setBackground(Color.WHITE);
+            }
+        } catch (ParseException ex) {
+            x.append("Lỗi check ngày sinh\n");
+            ex.printStackTrace();
         }
         if (x.toString().length() > 0) {
             Messeger.alert(this, x.toString());
