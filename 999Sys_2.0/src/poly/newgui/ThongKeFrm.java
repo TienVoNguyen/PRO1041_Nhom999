@@ -681,7 +681,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         List<Object[]> list = dt_dao.getThongKeYear();
         model.setColumnCount(0);
 
-        Object columns[] = {"Năm", "Số HD", "Số Lượng", "Giá Bán", "Khuyến Mại", "Doanh Thu"};
+        Object columns[] = {"Năm", "Số HD", "Số Lượng", "Khuyến Mại", "Doanh Thu"};
         for (Object o : columns) {
             model.addColumn(o);
         }
@@ -712,7 +712,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         model.setRowCount(0);
         model.setColumnCount(0);
 
-        Object columns[] = {"Ngày", "Số HD", "Số Lượng", "Giá Bán", "Khuyến Mại", "Doanh Thu"};
+        Object columns[] = {"Ngày", "Số HD", "Số Lượng", "Khuyến Mại", "Doanh Thu"};
         for (Object o : columns) {
             model.addColumn(o);
         }
@@ -747,7 +747,7 @@ public class ThongKeFrm extends javax.swing.JInternalFrame {
         model.setRowCount(0);
         model.setColumnCount(0);
 
-        Object columns[] = {"Tháng", "Số HD", "Số Lượng", "Giá Bán", "Khuyến Mại", "Doanh Thu"};
+        Object columns[] = {"Tháng", "Số HD", "Số Lượng", "Khuyến Mại", "Doanh Thu"};
         for (Object o : columns) {
             model.addColumn(o);
         }
