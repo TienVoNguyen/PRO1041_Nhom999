@@ -1224,6 +1224,9 @@ public class QL_CTSPFrm extends javax.swing.JInternalFrame {
                 return;
             }
         }
+//        if (CheckLikeName(txtSize_TenSize, tblSize, 1)) {
+//            return;
+//        }
 
         for (int i = 0; i < tblSize_HetHan.getRowCount(); i++) {
             if (txtSize_MaSize.getText().trim().equals(tblSize_HetHan.getValueAt(i, 0))) {
@@ -1378,6 +1381,9 @@ public class QL_CTSPFrm extends javax.swing.JInternalFrame {
         //            return;
         //        }
 
+        if (CheckLikeName(txtDanhMuc_TenDM, tblDanhMuc, 1)) {
+            return;
+        }
         if (!Validate_DanhMuc()) {
             return;
         }
@@ -1494,6 +1500,9 @@ public class QL_CTSPFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_Moi_qlMauSacActionPerformed
 
     private void btn_Them_qlMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlMauSacActionPerformed
+        if (CheckLikeName(txtMauSac_TenMau, tblMauSac, 1)) {
+            return;
+        }
         for (int i = 0; i < tblMauSac.getRowCount(); i++) {
             if (tblMauSac.getValueAt(i, 1).toString().trim().equalsIgnoreCase(txtMauSac_TenMau.getText().trim())) {
                 Messeger.alert(null, "Đã Có Mã Trên");
@@ -1609,6 +1618,9 @@ public class QL_CTSPFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_Moi_qlChatLieuActionPerformed
 
     private void btn_Them_qlChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlChatLieuActionPerformed
+        if (CheckLikeName(txtCL_TenCL, tblCL, 1)) {
+            return;
+        }
         try {
             if (XValidate.isEmpty(txtCL_TenCL)) {
                 Messeger.showErrorDialog(null, "Không để trống tên chất liệu", "Lỗi");
@@ -1722,6 +1734,9 @@ public class QL_CTSPFrm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_Moi_qlDVTActionPerformed
 
     private void btn_Them_qlDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Them_qlDVTActionPerformed
+        if (CheckLikeName(txtDVT_TenDVT, tblDVT, 1)) {
+            return;
+        }
         try {
             if (!Messeger.confirm(null, "Bạn có muốn thêm không?")) {
                 return;
@@ -2309,6 +2324,16 @@ public class QL_CTSPFrm extends javax.swing.JInternalFrame {
             return false;
         }
         return true;
+    }
+    
+    private boolean CheckLikeName(JTextField text , JTable table , int viTri){
+        for (int i = 0; i < table.getRowCount(); i++) {
+            if (text.getText().equalsIgnoreCase(table.getValueAt(i, viTri).toString())) {
+            Messeger.alert(this, "Tên Trên Đã Tồn Tại");
+            return true;
+        }
+        }
+    return false;
     }
 
 }
